@@ -4,51 +4,411 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NAZRA</title>
+
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial,Helvetica,sans-serif;background:#050505;color:#fff}
-header{height:76px;display:flex;align-items:center;justify-content:space-between;padding:0 7%;border-bottom:1px solid #222;position:sticky;top:0;background:rgba(5,5,5,.94);z-index:10}
-..logo{width:140px;height:auto;display:block}
-nav a{color:#fff;text-decoration:none;margin-left:28px;font-size:14px}
-.hero{min-height:78vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:70px 20px;background:radial-gradient(circle at center,#171717 0,#050505 55%)}
-.hero h1{font-family:Georgia,serif;font-size:clamp(64px,15vw,150px);font-weight:400;letter-spacing:12px;margin-bottom:18px}
-.hero p{color:#aaa;letter-spacing:4px;font-size:12px;margin-bottom:34px;text-transform:uppercase}
-.btn{display:inline-block;background:#fff;color:#050505;text-decoration:none;padding:16px 34px;font-size:13px;letter-spacing:2px;font-weight:bold}
-.section{padding:70px 7%}
-.section h2{text-align:center;font-family:Georgia,serif;font-weight:400;font-size:36px;margin-bottom:45px}
-.products{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.card{background:#101010;border:1px solid #222;padding-bottom:24px}
-.product-img{height:360px;background:linear-gradient(145deg,#1b1b1b,#080808);display:flex;align-items:center;justify-content:center;color:#555;letter-spacing:3px;font-size:12px}
-.card-info{padding:20px 20px 0}
-.card h3{font-size:15px;font-weight:400;letter-spacing:2px;margin-bottom:10px}
-.price{font-size:13px;color:#aaa}
-footer{text-align:center;padding:45px 20px;border-top:1px solid #222;color:#666;font-size:11px;letter-spacing:2px}
-@media(max-width:700px){header{padding:0 20px}.logo{font-size:24px;letter-spacing:5px}nav a{margin-left:12px;font-size:11px}.products{grid-template-columns:1fr}.product-img{height:330px}.section{padding:55px 20px}}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #050505;
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* HEADER */
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  display: flex;
+  justify-content: flex-end;
+  padding: 22px 20px;
+}
+
+nav {
+  display: flex;
+  gap: 22px;
+}
+
+nav a {
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+/* HOME */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 20px;
+  background:
+    radial-gradient(circle at center, #181818 0%, #080808 45%, #000 100%);
+}
+
+.hero-content {
+  width: 100%;
+  max-width: 500px;
+}
+
+.hero-tag {
+  font-size: 11px;
+  letter-spacing: 5px;
+  color: #aaa;
+  margin-bottom: 25px;
+}
+
+.hero-logo {
+  width: 82%;
+  max-width: 420px;
+  max-height: 210px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 40px;
+}
+
+.shop-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 220px;
+  height: 64px;
+  background: #fff;
+  color: #000;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 4px;
+}
+
+/* COLLECTION */
+.collection {
+  min-height: 100vh;
+  padding: 80px 18px;
+  background: #050505;
+}
+
+.section-title {
+  text-align: center;
+  font-family: Georgia, serif;
+  font-size: 32px;
+  letter-spacing: 6px;
+  margin-bottom: 35px;
+}
+
+.products {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  max-width: 520px;
+  margin: auto;
+}
+
+.card {
+  background: #101010;
+  border: 1px solid #242424;
+  overflow: hidden;
+}
+
+.product-photo {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(circle at center, #292929 0%, #151515 40%, #080808 100%);
+}
+
+.product-logo {
+  width: 45%;
+  max-width: 180px;
+  height: auto;
+}
+
+.card-info {
+  padding: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-name {
+  font-size: 13px;
+  letter-spacing: 2px;
+}
+
+.price {
+  font-size: 13px;
+  color: #aaa;
+}
+
+/* CONTACT */
+.contact {
+  min-height: 100vh;
+  padding: 90px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #090909;
+}
+
+.contact-box {
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+}
+
+.contact-title {
+  font-family: Georgia, serif;
+  font-size: 38px;
+  letter-spacing: 6px;
+  margin-bottom: 35px;
+}
+
+.contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.contact-link {
+  display: block;
+  padding: 20px 15px;
+  background: #111;
+  border: 1px solid #292929;
+  font-size: 14px;
+}
+
+.contact-link span {
+  display: block;
+  color: #888;
+  font-size: 10px;
+  letter-spacing: 2px;
+  margin-bottom: 7px;
+  text-transform: uppercase;
+}
+
+.back {
+  display: inline-block;
+  margin-top: 30px;
+  color: #888;
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+/* FOOTER */
+footer {
+  padding: 30px 15px;
+  text-align: center;
+  color: #666;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+/* DESKTOP */
+@media (min-width: 700px) {
+  .products {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 1100px;
+  }
+}
 </style>
 </head>
+
 <body>
+
 <header>
-  <img src="Logo.PNG" alt="NAZRA" class="logo">
-  <nav><a href="#shop">SHOP</a><a href="#contact">CONTACT</a></nav>
+  <nav>
+    <a href="#shop">SHOP</a>
+    <a href="#contact">CONTACT</a>
+  </nav>
 </header>
 
-<section class="hero">
-  <div>
-    <h1>NAZRA</h1>
-    <p>Minimal. Bold. Different.</p>
-    <a class="btn" href="#shop">SHOP NOW</a>
+<!-- HOME -->
+<section class="hero" id="home">
+
+  <div class="hero-content">
+
+    <div class="hero-tag">
+      MINIMAL. BOLD. DIFFERENT.
+    </div>
+
+    <img
+      class="hero-logo"
+      src="Logo.PNG"
+      alt="NAZRA"
+    >
+
+    <a class="shop-btn" href="#shop">
+      SHOP NOW
+    </a>
+
   </div>
+
 </section>
 
-<section class="section" id="shop">
-  <h2>COLLECTION</h2>
+
+<!-- COLLECTION -->
+<section class="collection" id="shop">
+
+  <h2 class="section-title">
+    COLLECTION
+  </h2>
+
   <div class="products">
-    <div class="card"><div class="product-img">PRODUCT 01</div><div class="card-info"><h3>NAZRA HOODIE</h3><div class="price">0 EGP</div></div></div>
-    <div class="card"><div class="product-img">PRODUCT 02</div><div class="card-info"><h3>NAZRA TEE</h3><div class="price">0 EGP</div></div></div>
-    <div class="card"><div class="product-img">PRODUCT 03</div><div class="card-info"><h3>NAZRA COLLECTION</h3><div class="price">0 EGP</div></div></div>
+
+    <!-- PRODUCT 1 -->
+    <article class="card">
+
+      <div class="product-photo">
+        <img
+          class="product-logo"
+          src="Logo.PNG"
+          alt="NAZRA"
+        >
+      </div>
+
+      <div class="card-info">
+        <div class="card-name">
+          NAZRA HOODIE
+        </div>
+
+        <div class="price">
+          0 EGP
+        </div>
+      </div>
+
+    </article>
+
+
+    <!-- PRODUCT 2 -->
+    <article class="card">
+
+      <div class="product-photo">
+        <img
+          class="product-logo"
+          src="Logo.PNG"
+          alt="NAZRA"
+        >
+      </div>
+
+      <div class="card-info">
+        <div class="card-name">
+          NAZRA TEE
+        </div>
+
+        <div class="price">
+          0 EGP
+        </div>
+      </div>
+
+    </article>
+
+
+    <!-- PRODUCT 3 -->
+    <article class="card">
+
+      <div class="product-photo">
+        <img
+          class="product-logo"
+          src="Logo.PNG"
+          alt="NAZRA"
+        >
+      </div>
+
+      <div class="card-info">
+        <div class="card-name">
+          NAZRA COLLECTION
+        </div>
+
+        <div class="price">
+          0 EGP
+        </div>
+      </div>
+
+    </article>
+
   </div>
+
 </section>
 
-<footer id="contact">NAZRA © 2026 — ALL RIGHTS RESERVED</footer>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+
+  <div class="contact-box">
+
+    <h2 class="contact-title">
+      CONTACT
+    </h2>
+
+    <div class="contact-list">
+
+      <a
+        class="contact-link"
+        href="tel:01090356664"
+      >
+        <span>Phone</span>
+        01090356664
+      </a>
+
+      <a
+        class="contact-link"
+        href="tel:01095666622"
+      >
+        <span>Phone</span>
+        01095666622
+      </a>
+
+      <a
+        class="contact-link"
+        href="mailto:nazra.co123@gmail.com"
+      >
+        <span>Email</span>
+        nazra.co123@gmail.com
+      </a>
+
+      <a
+        class="contact-link"
+        href="https://www.instagram.com/nazra.co_/"
+        target="_blank"
+      >
+        <span>Instagram</span>
+        @nazra.co_
+      </a>
+
+    </div>
+
+    <a class="back" href="#home">
+      BACK TO TOP ↑
+    </a>
+
+  </div>
+
+</section>
+
+
+<footer>
+  NAZRA © 2026 — ALL RIGHTS RESERVED
+</footer>
+
 </body>
 </html>
