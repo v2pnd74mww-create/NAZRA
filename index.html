@@ -14,33 +14,32 @@
 
 :root{
   --bg:#050505;
+  --card:#111;
   --text:#fff;
   --muted:#999;
-  --card:#101010;
-  --line:#292929;
+  --border:#292929;
   --button:#fff;
   --buttonText:#000;
 }
 
 body.light{
-  --bg:#f5f5f3;
+  --bg:#f7f7f7;
+  --card:#fff;
   --text:#111;
   --muted:#666;
-  --card:#fff;
-  --line:#ddd;
+  --border:#ddd;
   --button:#111;
   --buttonText:#fff;
 }
 
 body{
-  font-family:Arial,Helvetica,sans-serif;
   background:var(--bg);
   color:var(--text);
-  transition:.3s;
-  min-height:100vh;
+  font-family:Arial,Helvetica,sans-serif;
+  transition:.25s;
 }
 
-button,a{
+button,input,select{
   font:inherit;
 }
 
@@ -48,343 +47,230 @@ button{
   cursor:pointer;
 }
 
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+/* HEADER */
+
 header{
-  position:fixed;
-  top:0;
-  left:0;
-  right:0;
-  height:70px;
+  height:75px;
+  padding:0 22px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:0 18px;
-  border-bottom:1px solid var(--line);
+  border-bottom:1px solid var(--border);
+  position:sticky;
+  top:0;
+  z-index:20;
   background:var(--bg);
-  z-index:100;
 }
 
-.header-title{
+.logo{
   font-family:Georgia,serif;
-  font-size:22px;
+  font-size:27px;
   letter-spacing:5px;
 }
 
-.header-actions{
+nav{
   display:flex;
   align-items:center;
-  gap:8px;
+  gap:12px;
 }
 
-.header-btn{
+.nav-btn{
   background:none;
   border:0;
   color:var(--text);
   font-size:12px;
   letter-spacing:1px;
-  padding:10px 7px;
+  padding:8px;
 }
 
-.theme-btn{
-  border:1px solid var(--line);
-  border-radius:50%;
-  width:36px;
-  height:36px;
+.small-btn{
+  border:1px solid var(--border);
   background:var(--card);
   color:var(--text);
+  border-radius:20px;
+  padding:7px 10px;
+  font-size:11px;
 }
 
-main{
-  padding-top:70px;
-}
+/* HOME */
 
-/* FIRST SCREEN */
-
-.hero{
-  min-height:calc(100vh - 70px);
+#home{
+  min-height:calc(100vh - 75px);
   display:flex;
-  flex-direction:column;
   align-items:center;
   justify-content:center;
   text-align:center;
   padding:30px 20px;
 }
 
-.hero-label{
-  font-size:13px;
-  letter-spacing:7px;
-  color:var(--muted);
-  margin-bottom:22px;
+.hero{
+  width:100%;
+  max-width:800px;
+}
+
+.hero-logo{
+  width:min(90%,520px);
+  max-height:300px;
+  object-fit:contain;
+  margin-bottom:25px;
 }
 
 .hero h1{
   font-family:Georgia,serif;
-  font-size:54px;
+  font-size:clamp(55px,16vw,125px);
   letter-spacing:10px;
   margin-bottom:15px;
 }
 
 .hero p{
   color:var(--muted);
-  letter-spacing:4px;
-  font-size:11px;
+  letter-spacing:6px;
+  font-size:12px;
   margin-bottom:35px;
 }
 
-.primary-btn{
+.shop-main{
   border:0;
   background:var(--button);
   color:var(--buttonText);
-  padding:18px 42px;
+  padding:18px 45px;
   font-weight:bold;
   letter-spacing:3px;
-  min-width:190px;
 }
 
-/* LOGIN */
+/* SECTIONS */
 
-.page{
-  display:none;
-  min-height:calc(100vh - 70px);
-  padding:35px 20px;
+section{
+  padding:75px 6%;
 }
 
-.page.active{
-  display:block;
-}
-
-.login-box{
-  max-width:430px;
-  margin:70px auto 0;
+.section-title{
   text-align:center;
-}
-
-.login-box .small-title{
-  color:var(--muted);
-  font-size:11px;
+  font-family:Georgia,serif;
+  font-size:34px;
   letter-spacing:5px;
-  margin-bottom:14px;
+  margin-bottom:45px;
 }
 
-.login-box h2{
-  font-family:Georgia,serif;
-  font-size:34px;
-  letter-spacing:3px;
-  margin-bottom:10px;
-}
-
-.login-box p{
-  color:var(--muted);
-  font-size:13px;
-  margin-bottom:30px;
-  line-height:1.7;
-}
-
-.form-group{
-  text-align:left;
-  margin-bottom:15px;
-}
-
-.form-group label{
-  display:block;
-  font-size:11px;
-  letter-spacing:2px;
-  margin-bottom:8px;
-}
-
-.form-group input,
-.form-group select{
-  width:100%;
-  height:52px;
-  padding:0 15px;
-  border:1px solid var(--line);
-  background:var(--card);
-  color:var(--text);
-  outline:none;
-}
-
-.confirm-btn{
-  width:100%;
-  height:54px;
-  margin-top:10px;
-  border:0;
-  background:var(--button);
-  color:var(--buttonText);
-  font-weight:bold;
-  letter-spacing:3px;
-}
-
-/* COLLECTION */
-
-.collection{
-  padding:35px 18px 70px;
-}
-
-.collection-title{
-  text-align:center;
-  font-family:Georgia,serif;
-  font-size:34px;
-  letter-spacing:7px;
-  margin:15px 0 35px;
-}
+/* PRODUCTS */
 
 .products{
   display:grid;
-  grid-template-columns:1fr;
-  gap:25px;
-  max-width:900px;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+  max-width:1200px;
   margin:auto;
 }
 
-.product-card{
+.card{
   background:var(--card);
-  border:1px solid var(--line);
+  border:1px solid var(--border);
   overflow:hidden;
 }
 
-.product-image{
-  height:380px;
-  position:relative;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:linear-gradient(145deg,#111,#050505);
-  overflow:hidden;
+.product-img{
+  width:100%;
+  height:360px;
+  object-fit:cover;
+  background:#111;
 }
 
-body.light .product-image{
-  background:linear-gradient(145deg,#eee,#fff);
+.card-info{
+  padding:20px;
 }
 
-.product-image img{
-  width:75%;
-  height:75%;
-  object-fit:contain;
-  opacity:.95;
-}
-
-.product-number{
-  position:absolute;
-  top:15px;
-  left:15px;
-  font-size:9px;
-  letter-spacing:3px;
-  color:#888;
-}
-
-.product-info{
-  padding:18px;
-}
-
-.product-info h3{
-  font-size:15px;
+.card h3{
+  font-size:14px;
   letter-spacing:2px;
-  font-weight:400;
   margin-bottom:8px;
 }
 
 .price{
   color:var(--muted);
-  font-size:13px;
   margin-bottom:18px;
 }
 
 .product-btn{
   width:100%;
-  height:46px;
-  border:1px solid var(--line);
-  background:transparent;
-  color:var(--text);
-  letter-spacing:2px;
-  font-size:11px;
-}
-
-/* PRODUCT DETAILS */
-
-.product-detail{
-  max-width:500px;
-  margin:auto;
-}
-
-.detail-image{
-  height:430px;
-  background:var(--card);
-  border:1px solid var(--line);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin-bottom:25px;
-}
-
-.detail-image img{
-  width:80%;
-  height:80%;
-  object-fit:contain;
-}
-
-.detail-name{
-  font-family:Georgia,serif;
-  font-size:30px;
-  letter-spacing:3px;
-  margin-bottom:8px;
-}
-
-.detail-price{
-  color:var(--muted);
-  margin-bottom:25px;
-}
-
-.option-title{
-  font-size:10px;
-  letter-spacing:2px;
-  margin-bottom:9px;
-}
-
-.options{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-  margin-bottom:22px;
-}
-
-.option{
-  min-width:48px;
-  height:42px;
-  padding:0 14px;
-  background:transparent;
-  color:var(--text);
-  border:1px solid var(--line);
-}
-
-.option.selected{
+  padding:13px;
+  border:1px solid var(--border);
   background:var(--button);
   color:var(--buttonText);
 }
 
-.quantity{
-  display:flex;
+/* MODALS */
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.75);
+  display:none;
   align-items:center;
-  border:1px solid var(--line);
-  width:max-content;
-  margin-bottom:22px;
+  justify-content:center;
+  z-index:100;
+  padding:20px;
 }
 
-.quantity button{
-  width:42px;
-  height:42px;
-  background:transparent;
+.modal.show{
+  display:flex;
+}
+
+.modal-box{
+  width:100%;
+  max-width:500px;
+  max-height:90vh;
+  overflow:auto;
+  background:var(--card);
+  border:1px solid var(--border);
+  padding:28px;
+  position:relative;
+}
+
+.close{
+  position:absolute;
+  right:18px;
+  top:15px;
+  background:none;
   border:0;
   color:var(--text);
-  font-size:18px;
+  font-size:25px;
 }
 
-.quantity span{
-  width:40px;
-  text-align:center;
+.modal h2{
+  font-family:Georgia,serif;
+  letter-spacing:3px;
+  margin-bottom:25px;
 }
 
-.add-cart{
+.field{
+  margin-bottom:15px;
+}
+
+.field label{
+  display:block;
+  color:var(--muted);
+  font-size:12px;
+  margin-bottom:7px;
+}
+
+.field input,
+.field select{
   width:100%;
-  height:55px;
+  padding:14px;
+  background:var(--bg);
+  color:var(--text);
+  border:1px solid var(--border);
+  outline:none;
+}
+
+.primary{
+  width:100%;
+  padding:15px;
   border:0;
   background:var(--button);
   color:var(--buttonText);
@@ -392,133 +278,164 @@ body.light .product-image{
   letter-spacing:2px;
 }
 
-/* CART */
+/* PRODUCT MODAL */
 
-.cart-list{
-  max-width:600px;
-  margin:30px auto;
+.product-preview{
+  width:100%;
+  height:300px;
+  object-fit:cover;
+  margin-bottom:20px;
 }
+
+.options{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.qty{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.qty button{
+  width:38px;
+  height:38px;
+  background:var(--bg);
+  border:1px solid var(--border);
+  color:var(--text);
+}
+
+.qty span{
+  min-width:25px;
+  text-align:center;
+}
+
+/* CART */
 
 .cart-item{
   display:flex;
   justify-content:space-between;
   gap:15px;
-  padding:18px 0;
-  border-bottom:1px solid var(--line);
-}
-
-.cart-item h3{
-  font-size:13px;
-  letter-spacing:1px;
-  margin-bottom:6px;
-}
-
-.cart-item p{
-  color:var(--muted);
-  font-size:12px;
-  line-height:1.7;
-}
-
-.remove{
-  background:none;
-  border:0;
-  color:#999;
-  font-size:11px;
+  padding:15px 0;
+  border-bottom:1px solid var(--border);
 }
 
 .cart-total{
-  display:flex;
-  justify-content:space-between;
-  padding:25px 0;
-  font-weight:bold;
+  margin:25px 0;
+  font-size:18px;
 }
 
-.checkout-btn{
-  width:100%;
-  height:54px;
-  background:var(--button);
-  color:var(--buttonText);
-  border:0;
-  font-weight:bold;
+/* PAYMENT */
+
+.payment-option{
+  border:1px solid var(--border);
+  padding:15px;
+  margin-bottom:10px;
+  cursor:pointer;
+}
+
+.payment-option.active{
+  border-color:var(--text);
+}
+
+.payment-details{
+  display:none;
+  margin:15px 0;
+}
+
+.payment-details.show{
+  display:block;
+}
+
+.vodafone{
+  font-size:22px;
   letter-spacing:2px;
+  margin:15px 0;
 }
 
 /* CONTACT */
 
-.overlay{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.7);
-  z-index:200;
+.contact-line{
+  padding:15px 0;
+  border-bottom:1px solid var(--border);
 }
 
-.overlay.active{
-  display:flex;
-  align-items:flex-start;
-  justify-content:flex-end;
-}
-
-.contact-box{
-  width:88%;
-  max-width:390px;
-  min-height:100vh;
-  background:var(--bg);
-  padding:25px;
-  border-left:1px solid var(--line);
-}
-
-.contact-top{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:50px;
-}
-
-.contact-top h2{
-  font-family:Georgia,serif;
-  letter-spacing:4px;
-}
-
-.close{
-  background:none;
-  border:0;
-  color:var(--text);
-  font-size:28px;
-}
-
-.contact-item{
-  border-bottom:1px solid var(--line);
-  padding:20px 0;
-}
-
-.contact-item span{
+.contact-line span{
   display:block;
   color:var(--muted);
-  font-size:10px;
-  letter-spacing:2px;
-  margin-bottom:8px;
+  font-size:11px;
+  margin-bottom:5px;
 }
 
-.contact-item a{
-  color:var(--text);
-  text-decoration:none;
-  font-size:15px;
+/* SUCCESS */
+
+.success{
+  text-align:center;
+  padding:45px 10px;
+}
+
+.success h2{
+  font-size:32px;
+  margin-bottom:20px;
+}
+
+.success p{
+  color:var(--muted);
+  line-height:1.7;
 }
 
 /* MOBILE */
 
-@media(min-width:700px){
-  .products{
-    grid-template-columns:repeat(3,1fr);
+@media(max-width:700px){
+
+  header{
+    padding:0 12px;
   }
 
-  .product-image{
-    height:330px;
+  .logo{
+    font-size:20px;
+    letter-spacing:3px;
+  }
+
+  nav{
+    gap:2px;
+  }
+
+  .nav-btn{
+    font-size:10px;
+    padding:6px;
+  }
+
+  .small-btn{
+    font-size:9px;
+    padding:6px 7px;
   }
 
   .hero h1{
-    font-size:80px;
+    font-size:62px;
+    letter-spacing:5px;
+  }
+
+  .hero p{
+    letter-spacing:3px;
+  }
+
+  .products{
+    grid-template-columns:1fr;
+  }
+
+  .product-img{
+    height:390px;
+  }
+
+  section{
+    padding:55px 18px;
+  }
+
+  .options{
+    grid-template-columns:1fr;
   }
 }
 </style>
@@ -526,224 +443,34 @@ body.light .product-image{
 
 <body>
 
+<!-- HEADER -->
+
 <header>
-  <div class="header-title">COLLECTION</div>
 
-  <div class="header-actions">
-    <button class="header-btn" onclick="showCollection()">SHOP</button>
+  <div class="logo">COLLECTION</div>
 
-    <button class="header-btn" onclick="openContact()">CONTACT</button>
+  <nav>
+    <button class="nav-btn" onclick="openShop()">SHOP</button>
+    <button class="nav-btn" onclick="openContact()">CONTACT</button>
+    <button class="small-btn" onclick="toggleLanguage()">EN / AR</button>
+    <button class="small-btn" onclick="toggleTheme()" id="themeBtn">☀️</button>
+  </nav>
 
-    <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">☀</button>
-  </div>
 </header>
 
-<main>
 
-<!-- FIRST PAGE -->
-<section id="home" class="hero page active">
+<!-- HOME -->
 
-  <div class="hero-label">NAZRA COLLECTION</div>
+<section id="home">
 
-  <h1>SHOP NOW</h1>
+  <div class="hero">
 
-  <p>MINIMAL. BOLD. DIFFERENT.</p>
+    <h1>NAZRA</h1>
 
-  <button class="primary-btn" onclick="openLogin()">
-    SHOP NOW
-  </button>
+    <p id="heroText">MINIMAL. BOLD. DIFFERENT.</p>
 
-</section>
-
-
-<!-- LOGIN PAGE -->
-<section id="login" class="page">
-
-  <div class="login-box">
-
-    <div class="small-title">WELCOME TO NAZRA</div>
-
-    <h2>LOGIN TO SHOP NOW</h2>
-
-    <p>
-      Enter your phone number and email<br>
-      to continue shopping with NAZRA.
-    </p>
-
-    <form
-      action="https://formspree.io/f/meaqeeol"
-      method="POST"
-      onsubmit="loginSuccess(event)"
-    >
-
-      <div class="form-group">
-        <label>PHONE NUMBER</label>
-        <input
-          type="tel"
-          name="phone"
-          placeholder="010XXXXXXXX"
-          required
-        >
-      </div>
-
-      <div class="form-group">
-        <label>EMAIL</label>
-        <input
-          type="email"
-          name="email"
-          placeholder="your@email.com"
-          required
-        >
-      </div>
-
-      <input type="hidden" name="source" value="NAZRA Website Login">
-
-      <button class="confirm-btn" type="submit">
-        CONFIRM
-      </button>
-
-    </form>
-
-  </div>
-
-</section>
-
-
-<!-- COLLECTION PAGE -->
-<section id="collection" class="page collection">
-
-  <div class="collection-title">
-    COLLECTION
-  </div>
-
-  <div class="products">
-
-    <div class="product-card">
-
-      <div class="product-image">
-        <span class="product-number">PRODUCT 01</span>
-        <img src="Logo.PNG" alt="NAZRA">
-      </div>
-
-      <div class="product-info">
-        <h3>NAZRA HOODIE</h3>
-        <div class="price">EGP 1,200</div>
-        <button class="product-btn"
-          onclick="openProduct('NAZRA HOODIE',1200)">
-          VIEW PRODUCT
-        </button>
-      </div>
-
-    </div>
-
-
-    <div class="product-card">
-
-      <div class="product-image">
-        <span class="product-number">PRODUCT 02</span>
-        <img src="Logo.PNG" alt="NAZRA">
-      </div>
-
-      <div class="product-info">
-        <h3>NAZRA TEE</h3>
-        <div class="price">EGP 650</div>
-        <button class="product-btn"
-          onclick="openProduct('NAZRA TEE',650)">
-          VIEW PRODUCT
-        </button>
-      </div>
-
-    </div>
-
-
-    <div class="product-card">
-
-      <div class="product-image">
-        <span class="product-number">PRODUCT 03</span>
-        <img src="Logo.PNG" alt="NAZRA">
-      </div>
-
-      <div class="product-info">
-        <h3>NAZRA COLLECTION</h3>
-        <div class="price">EGP 900</div>
-        <button class="product-btn"
-          onclick="openProduct('NAZRA COLLECTION',900)">
-          VIEW PRODUCT
-        </button>
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- PRODUCT PAGE -->
-<section id="product" class="page">
-
-  <div class="product-detail">
-
-    <div class="detail-image">
-      <img src="Logo.PNG" alt="NAZRA">
-    </div>
-
-    <div class="detail-name" id="detailName">
-      NAZRA HOODIE
-    </div>
-
-    <div class="detail-price" id="detailPrice">
-      EGP 1,200
-    </div>
-
-    <div class="option-title">COLOR</div>
-
-    <div class="options">
-      <button class="option selected" onclick="selectOption(this)">
-        BLACK
-      </button>
-
-      <button class="option" onclick="selectOption(this)">
-        WHITE
-      </button>
-
-      <button class="option" onclick="selectOption(this)">
-        GREY
-      </button>
-    </div>
-
-
-    <div class="option-title">SIZE</div>
-
-    <div class="options">
-      <button class="option selected" onclick="selectOption(this)">
-        S
-      </button>
-
-      <button class="option" onclick="selectOption(this)">
-        M
-      </button>
-
-      <button class="option" onclick="selectOption(this)">
-        L
-      </button>
-
-      <button class="option" onclick="selectOption(this)">
-        XL
-      </button>
-    </div>
-
-
-    <div class="option-title">QUANTITY</div>
-
-    <div class="quantity">
-      <button onclick="changeQuantity(-1)">−</button>
-      <span id="quantity">1</span>
-      <button onclick="changeQuantity(1)">+</button>
-    </div>
-
-    <button class="add-cart" onclick="addToCart()">
-      ADD TO CART
+    <button class="shop-main" onclick="startShop()">
+      SHOP NOW
     </button>
 
   </div>
@@ -751,62 +478,387 @@ body.light .product-image{
 </section>
 
 
-<!-- CART PAGE -->
-<section id="cart" class="page">
+<!-- COLLECTION -->
 
-  <div class="collection-title">
-    CART
+<section id="shop">
+
+  <h2 class="section-title" id="collectionTitle">
+    COLLECTION
+  </h2>
+
+  <div class="products">
+
+    <div class="card">
+      <img src="Logo.PNG" class="product-img">
+      <div class="card-info">
+        <h3>NAZRA HOODIE</h3>
+        <div class="price">EGP 0</div>
+        <button class="product-btn"
+          onclick="openProduct('NAZRA HOODIE')">
+          VIEW PRODUCT
+        </button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="Logo.PNG" class="product-img">
+      <div class="card-info">
+        <h3>NAZRA TEE</h3>
+        <div class="price">EGP 0</div>
+        <button class="product-btn"
+          onclick="openProduct('NAZRA TEE')">
+          VIEW PRODUCT
+        </button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="Logo.PNG" class="product-img">
+      <div class="card-info">
+        <h3>NAZRA COLLECTION</h3>
+        <div class="price">EGP 0</div>
+        <button class="product-btn"
+          onclick="openProduct('NAZRA COLLECTION')">
+          VIEW PRODUCT
+        </button>
+      </div>
+    </div>
+
   </div>
-
-  <div class="cart-list" id="cartList"></div>
 
 </section>
 
-</main>
 
+<!-- LOGIN -->
 
-<!-- CONTACT SIDE PANEL -->
+<div class="modal" id="loginModal">
 
-<div class="overlay" id="contactOverlay" onclick="closeContact(event)">
+  <div class="modal-box">
 
-  <div class="contact-box" onclick="event.stopPropagation()">
+    <button class="close" onclick="closeModal('loginModal')">×</button>
 
-    <div class="contact-top">
-      <h2>CONTACT</h2>
+    <h2>LOGIN TO SHOP NOW</h2>
 
-      <button class="close" onclick="closeContact()">
-        ×
+    <form id="loginForm">
+
+      <div class="field">
+        <label>PHONE NUMBER</label>
+        <input
+          type="tel"
+          name="phone"
+          id="loginPhone"
+          required
+          placeholder="Phone number">
+      </div>
+
+      <div class="field">
+        <label>EMAIL</label>
+        <input
+          type="email"
+          name="email"
+          id="loginEmail"
+          required
+          placeholder="Email address">
+      </div>
+
+      <button class="primary" type="submit">
+        CONFIRM
       </button>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+<!-- PRODUCT -->
+
+<div class="modal" id="productModal">
+
+  <div class="modal-box">
+
+    <button class="close" onclick="closeModal('productModal')">×</button>
+
+    <img src="Logo.PNG" class="product-preview">
+
+    <h2 id="productName"></h2>
+
+    <div class="field">
+      <label>COLOR</label>
+
+      <select id="productColor">
+        <option>Black</option>
+        <option>White</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>SIZE</label>
+
+      <select id="productSize">
+        <option>S</option>
+        <option>M</option>
+        <option>L</option>
+        <option>XL</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>QUANTITY</label>
+
+      <div class="qty">
+        <button onclick="changeQty(-1)">−</button>
+        <span id="quantity">1</span>
+        <button onclick="changeQty(1)">+</button>
+      </div>
+    </div>
+
+    <button class="primary" onclick="addToCart()">
+      ADD TO CART
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- CART -->
+
+<div class="modal" id="cartModal">
+
+  <div class="modal-box">
+
+    <button class="close" onclick="closeModal('cartModal')">×</button>
+
+    <h2>CART</h2>
+
+    <div id="cartItems"></div>
+
+    <div class="cart-total">
+      TOTAL: <strong id="cartTotal">EGP 0</strong>
+    </div>
+
+    <button class="primary" onclick="openCheckout()">
+      CHECKOUT
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- CHECKOUT -->
+
+<div class="modal" id="checkoutModal">
+
+  <div class="modal-box">
+
+    <button class="close" onclick="closeModal('checkoutModal')">×</button>
+
+    <h2>CHECKOUT</h2>
+
+    <div class="field">
+      <label>FULL NAME</label>
+      <input id="customerName" placeholder="Full name">
+    </div>
+
+    <div class="field">
+      <label>PHONE NUMBER</label>
+      <input id="customerPhone" placeholder="Phone number">
+    </div>
+
+    <div class="field">
+      <label>EMAIL</label>
+      <input id="customerEmail" type="email" placeholder="Email">
+    </div>
+
+    <div class="field">
+      <label>ADDRESS</label>
+      <input id="customerAddress" placeholder="Delivery address">
+    </div>
+
+    <button class="primary" onclick="openPayment()">
+      CONTINUE TO PAYMENT
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- PAYMENT -->
+
+<div class="modal" id="paymentModal">
+
+  <div class="modal-box">
+
+    <button class="close" onclick="closeModal('paymentModal')">×</button>
+
+    <h2>PAYMENT</h2>
+
+    <div
+      class="payment-option"
+      onclick="selectPayment('vodafone')"
+      id="vodafoneOption">
+
+      <strong>VODAFONE CASH</strong>
+
+    </div>
+
+    <div
+      class="payment-option"
+      onclick="selectPayment('cod')"
+      id="codOption">
+
+      <strong>CASH ON DELIVERY</strong>
+
     </div>
 
 
-    <div class="contact-item">
+    <!-- VODAFONE -->
+
+    <div class="payment-details" id="vodafoneDetails">
+
+      <p>Transfer to Vodafone Cash:</p>
+
+      <div class="vodafone">
+        01229884447
+      </div>
+
+      <form
+        id="paymentForm"
+        action="https://formsubmit.co/Nazrapayment@gmail.com"
+        method="POST"
+        enctype="multipart/form-data">
+
+        <input type="hidden"
+          name="_subject"
+          value="New NAZRA Vodafone Cash Order">
+
+        <input type="hidden"
+          name="_captcha"
+          value="true">
+
+        <input type="hidden"
+          name="_next"
+          value="https://nazra-qfdap.sevalla.page/?order=complete">
+
+        <input type="hidden" name="payment_method" value="Vodafone Cash">
+
+        <input type="hidden" name="customer_name" id="hiddenName">
+        <input type="hidden" name="phone" id="hiddenPhone">
+        <input type="hidden" name="email" id="hiddenEmail">
+        <input type="hidden" name="address" id="hiddenAddress">
+        <input type="hidden" name="order_details" id="hiddenOrder">
+
+        <div class="field">
+
+          <label>
+            TRANSFER SCREENSHOT
+          </label>
+
+          <input
+            type="file"
+            name="attachment"
+            accept="image/png,image/jpeg,image/webp"
+            required>
+
+        </div>
+
+        <button
+          class="primary"
+          type="submit">
+
+          CONFIRM PAYMENT
+
+        </button>
+
+      </form>
+
+    </div>
+
+
+    <!-- CASH ON DELIVERY -->
+
+    <div class="payment-details" id="codDetails">
+
+      <p style="color:var(--muted);line-height:1.6;">
+        Delivery fee: <strong>EGP 0</strong>
+      </p>
+
+      <form
+        id="codForm"
+        action="https://formsubmit.co/Nazrapayment@gmail.com"
+        method="POST">
+
+        <input type="hidden"
+          name="_subject"
+          value="New NAZRA Cash on Delivery Order">
+
+        <input type="hidden"
+          name="_captcha"
+          value="true">
+
+        <input type="hidden"
+          name="_next"
+          value="https://nazra-qfdap.sevalla.page/?order=complete">
+
+        <input type="hidden"
+          name="payment_method"
+          value="Cash on Delivery">
+
+        <input type="hidden" name="customer_name" id="codName">
+        <input type="hidden" name="phone" id="codPhone">
+        <input type="hidden" name="email" id="codEmail">
+        <input type="hidden" name="address" id="codAddress">
+        <input type="hidden" name="order_details" id="codOrder">
+
+        <button
+          class="primary"
+          type="submit">
+
+          CONFIRM ORDER
+
+        </button>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- CONTACT -->
+
+<div class="modal" id="contactModal">
+
+  <div class="modal-box">
+
+    <button class="close" onclick="closeModal('contactModal')">×</button>
+
+    <h2>CONTACT</h2>
+
+    <div class="contact-line">
       <span>PHONE</span>
-      <a href="tel:01090356664">
-        01090356664
-      </a>
+      01090356664
     </div>
 
-    <div class="contact-item">
+    <div class="contact-line">
       <span>PHONE</span>
-      <a href="tel:01095666622">
-        01095666622
-      </a>
+      01095666622
     </div>
 
-    <div class="contact-item">
+    <div class="contact-line">
       <span>EMAIL</span>
-      <a href="mailto:nazra.co123@gmail.com">
-        nazra.co123@gmail.com
-      </a>
+      nazra.co123@gmail.com
     </div>
 
-    <div class="contact-item">
+    <div class="contact-line">
       <span>INSTAGRAM</span>
-      <a
-        href="https://instagram.com/nazra.co_"
-        target="_blank"
-      >
+      <a href="https://instagram.com/nazra.co_" target="_blank">
         @nazra.co_
       </a>
     </div>
@@ -816,268 +868,75 @@ body.light .product-image{
 </div>
 
 
-<script>
+<!-- ORDER COMPLETED -->
 
-let quantity = 1;
-let currentProduct = "";
-let currentPrice = 0;
-let cart = [];
+<div class="modal" id="successModal">
 
+  <div class="modal-box success">
 
-/* PAGE SYSTEM */
+    <h2>ORDER COMPLETED</h2>
 
-function hidePages(){
-  document.querySelectorAll(".page").forEach(page=>{
-    page.classList.remove("active");
-  });
-}
+    <p>
+      Your order has been received successfully.
+      <br><br>
+      You will receive an email shortly confirming your order.
+    </p>
 
-function showCollection(){
-  hidePages();
-  document.getElementById("collection").classList.add("active");
-  window.scrollTo(0,0);
-}
+    <br>
 
-function openLogin(){
-  hidePages();
-  document.getElementById("login").classList.add("active");
-  window.scrollTo(0,0);
-}
-
-
-/* FORM SUCCESS */
-
-function loginSuccess(event){
-
-  event.preventDefault();
-
-  const form = event.target;
-
-  fetch(form.action,{
-    method:"POST",
-    body:new FormData(form),
-    headers:{
-      "Accept":"application/json"
-    }
-  })
-  .then(response=>{
-
-    if(response.ok){
-
-      alert("Confirmed! Welcome to NAZRA.");
-
-      showCollection();
-
-      form.reset();
-
-    }else{
-
-      alert("Something went wrong. Please try again.");
-
-    }
-
-  })
-  .catch(()=>{
-
-    alert("Connection error. Please try again.");
-
-  });
-
-}
-
-
-/* PRODUCT */
-
-function openProduct(name,price){
-
-  currentProduct = name;
-  currentPrice = price;
-  quantity = 1;
-
-  document.getElementById("quantity").innerText = quantity;
-
-  document.getElementById("detailName").innerText = name;
-
-  document.getElementById("detailPrice").innerText =
-    "EGP " + price.toLocaleString();
-
-  hidePages();
-
-  document.getElementById("product").classList.add("active");
-
-  window.scrollTo(0,0);
-}
-
-
-/* OPTIONS */
-
-function selectOption(button){
-
-  const group = button.parentElement;
-
-  group.querySelectorAll(".option").forEach(btn=>{
-    btn.classList.remove("selected");
-  });
-
-  button.classList.add("selected");
-}
-
-
-/* QUANTITY */
-
-function changeQuantity(amount){
-
-  quantity += amount;
-
-  if(quantity < 1){
-    quantity = 1;
-  }
-
-  document.getElementById("quantity").innerText = quantity;
-}
-
-
-/* CART */
-
-function addToCart(){
-
-  const color =
-    document.querySelectorAll(".options")[0]
-    .querySelector(".selected").innerText;
-
-  const size =
-    document.querySelectorAll(".options")[1]
-    .querySelector(".selected").innerText;
-
-  cart.push({
-    name:currentProduct,
-    price:currentPrice,
-    quantity:quantity,
-    color:color,
-    size:size
-  });
-
-  renderCart();
-
-  hidePages();
-
-  document.getElementById("cart").classList.add("active");
-
-  window.scrollTo(0,0);
-}
-
-
-function renderCart(){
-
-  const list = document.getElementById("cartList");
-
-  list.innerHTML = "";
-
-  if(cart.length === 0){
-
-    list.innerHTML =
-      "<p style='text-align:center;color:var(--muted)'>YOUR CART IS EMPTY</p>";
-
-    return;
-
-  }
-
-  let total = 0;
-
-  cart.forEach((item,index)=>{
-
-    const itemTotal = item.price * item.quantity;
-
-    total += itemTotal;
-
-    list.innerHTML += `
-
-      <div class="cart-item">
-
-        <div>
-
-          <h3>${item.name}</h3>
-
-          <p>
-            Color: ${item.color}<br>
-            Size: ${item.size}<br>
-            Quantity: ${item.quantity}<br>
-            EGP ${itemTotal.toLocaleString()}
-          </p>
-
-        </div>
-
-        <button
-          class="remove"
-          onclick="removeItem(${index})"
-        >
-          REMOVE
-        </button>
-
-      </div>
-
-    `;
-
-  });
-
-
-  list.innerHTML += `
-
-    <div class="cart-total">
-
-      <span>TOTAL</span>
-
-      <span>EGP ${total.toLocaleString()}</span>
-
-    </div>
-
-    <button class="checkout-btn" onclick="checkout()">
-      CHECKOUT / PAY
+    <button class="primary" onclick="location.href='/'">
+      BACK TO COLLECTION
     </button>
 
-  `;
-}
+  </div>
+
+</div>
 
 
-function removeItem(index){
+<script>
 
-  cart.splice(index,1);
+/* LANGUAGE */
 
-  renderCart();
-}
+let arabic = false;
 
+function toggleLanguage(){
 
-/* CHECKOUT */
+  arabic = !arabic;
 
-function checkout(){
+  if(arabic){
 
-  alert(
-    "Your cart is ready. The real payment gateway will be connected at the Pay stage."
-  );
+    document.documentElement.dir="rtl";
 
-}
+    document.querySelector(".logo").textContent="المجموعة";
 
+    document.querySelector(".hero h1").textContent="نظرة";
 
-/* CONTACT */
+    document.getElementById("heroText").textContent=
+      "بسيط. جريء. مختلف.";
 
-function openContact(){
+    document.querySelector(".shop-main").textContent=
+      "تسوق الآن";
 
-  document
-    .getElementById("contactOverlay")
-    .classList.add("active");
+    document.getElementById("collectionTitle").textContent=
+      "المجموعة";
 
-}
+  }else{
 
-function closeContact(event){
+    document.documentElement.dir="ltr";
 
-  if(!event || event.target.id === "contactOverlay"){
+    document.querySelector(".logo").textContent="COLLECTION";
 
-    document
-      .getElementById("contactOverlay")
-      .classList.remove("active");
+    document.querySelector(".hero h1").textContent="NAZRA";
 
+    document.getElementById("heroText").textContent=
+      "MINIMAL. BOLD. DIFFERENT.";
+
+    document.querySelector(".shop-main").textContent=
+      "SHOP NOW";
+
+    document.getElementById("collectionTitle").textContent=
+      "COLLECTION";
   }
-
 }
 
 
@@ -1087,27 +946,332 @@ function toggleTheme(){
 
   document.body.classList.toggle("light");
 
-  const isLight =
+  const light =
     document.body.classList.contains("light");
 
-  document.getElementById("themeBtn").innerText =
-    isLight ? "🌙" : "☀";
-
-  localStorage.setItem(
-    "nazraTheme",
-    isLight ? "light" : "dark"
-  );
+  document.getElementById("themeBtn").textContent =
+    light ? "🌙" : "☀️";
 
 }
 
 
-/* SAVE THEME */
+/* NAVIGATION */
 
-if(localStorage.getItem("nazraTheme") === "light"){
+function openShop(){
 
-  document.body.classList.add("light");
+  document.getElementById("shop")
+    .scrollIntoView({behavior:"smooth"});
+}
 
-  document.getElementById("themeBtn").innerText = "🌙";
+function startShop(){
+
+  document.getElementById("loginModal")
+    .classList.add("show");
+
+}
+
+function openContact(){
+
+  document.getElementById("contactModal")
+    .classList.add("show");
+
+}
+
+function closeModal(id){
+
+  document.getElementById(id)
+    .classList.remove("show");
+
+}
+
+
+/* LOGIN */
+
+document.getElementById("loginForm")
+.addEventListener("submit", async function(e){
+
+  e.preventDefault();
+
+  const phone =
+    document.getElementById("loginPhone").value;
+
+  const email =
+    document.getElementById("loginEmail").value;
+
+  try{
+
+    await fetch(
+      "https://formspree.io/f/meaqeeol",
+      {
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json",
+          "Accept":"application/json"
+        },
+        body:JSON.stringify({
+          phone:phone,
+          email:email
+        })
+      }
+    );
+
+  }catch(error){
+
+    console.log(error);
+
+  }
+
+  closeModal("loginModal");
+
+  setTimeout(()=>{
+
+    openShop();
+
+  },200);
+
+});
+
+
+/* PRODUCT */
+
+let selectedProduct="";
+let quantity=1;
+
+function openProduct(name){
+
+  selectedProduct=name;
+
+  quantity=1;
+
+  document.getElementById("quantity")
+    .textContent=quantity;
+
+  document.getElementById("productName")
+    .textContent=name;
+
+  document.getElementById("productModal")
+    .classList.add("show");
+
+}
+
+function changeQty(amount){
+
+  quantity+=amount;
+
+  if(quantity<1)
+    quantity=1;
+
+  document.getElementById("quantity")
+    .textContent=quantity;
+
+}
+
+
+/* CART */
+
+let cart=[];
+
+function addToCart(){
+
+  const color =
+    document.getElementById("productColor").value;
+
+  const size =
+    document.getElementById("productSize").value;
+
+  cart.push({
+    product:selectedProduct,
+    color:color,
+    size:size,
+    quantity:quantity,
+    price:0
+  });
+
+  closeModal("productModal");
+
+  updateCart();
+
+  document.getElementById("cartModal")
+    .classList.add("show");
+
+}
+
+function updateCart(){
+
+  const box =
+    document.getElementById("cartItems");
+
+  if(cart.length===0){
+
+    box.innerHTML="<p>Your cart is empty.</p>";
+
+    return;
+  }
+
+  let html="";
+
+  cart.forEach((item,index)=>{
+
+    html+=`
+      <div class="cart-item">
+
+        <div>
+          <strong>${item.product}</strong>
+          <br>
+          Color: ${item.color}
+          <br>
+          Size: ${item.size}
+          <br>
+          Quantity: ${item.quantity}
+        </div>
+
+        <button
+          class="small-btn"
+          onclick="removeCart(${index})">
+
+          ×
+
+        </button>
+
+      </div>
+    `;
+
+  });
+
+  box.innerHTML=html;
+
+  document.getElementById("cartTotal")
+    .textContent="EGP 0";
+}
+
+function removeCart(index){
+
+  cart.splice(index,1);
+
+  updateCart();
+
+}
+
+
+/* CHECKOUT */
+
+function openCheckout(){
+
+  if(cart.length===0){
+
+    alert("Your cart is empty.");
+
+    return;
+
+  }
+
+  closeModal("cartModal");
+
+  document.getElementById("checkoutModal")
+    .classList.add("show");
+
+}
+
+
+/* PAYMENT */
+
+function openPayment(){
+
+  const name =
+    document.getElementById("customerName").value;
+
+  const phone =
+    document.getElementById("customerPhone").value;
+
+  const email =
+    document.getElementById("customerEmail").value;
+
+  const address =
+    document.getElementById("customerAddress").value;
+
+  if(!name || !phone || !email || !address){
+
+    alert("Please complete all information.");
+
+    return;
+
+  }
+
+  document.getElementById("hiddenName").value=name;
+  document.getElementById("hiddenPhone").value=phone;
+  document.getElementById("hiddenEmail").value=email;
+  document.getElementById("hiddenAddress").value=address;
+
+  document.getElementById("codName").value=name;
+  document.getElementById("codPhone").value=phone;
+  document.getElementById("codEmail").value=email;
+  document.getElementById("codAddress").value=address;
+
+  const orderText =
+    cart.map(item =>
+      `${item.product} | Color: ${item.color} | Size: ${item.size} | Quantity: ${item.quantity} | Price: EGP 0`
+    ).join("\n");
+
+  document.getElementById("hiddenOrder").value=orderText;
+  document.getElementById("codOrder").value=orderText;
+
+  closeModal("checkoutModal");
+
+  document.getElementById("paymentModal")
+    .classList.add("show");
+
+}
+
+
+/* PAYMENT SELECTION */
+
+function selectPayment(type){
+
+  document
+    .querySelectorAll(".payment-option")
+    .forEach(el=>el.classList.remove("active"));
+
+  document
+    .querySelectorAll(".payment-details")
+    .forEach(el=>el.classList.remove("show"));
+
+  if(type==="vodafone"){
+
+    document
+      .getElementById("vodafoneOption")
+      .classList.add("active");
+
+    document
+      .getElementById("vodafoneDetails")
+      .classList.add("show");
+
+  }
+
+  if(type==="cod"){
+
+    document
+      .getElementById("codOption")
+      .classList.add("active");
+
+    document
+      .getElementById("codDetails")
+      .classList.add("show");
+
+  }
+
+}
+
+
+/* SUCCESS PAGE */
+
+if(
+  new URLSearchParams(location.search)
+    .get("order")==="complete"
+){
+
+  document
+    .getElementById("successModal")
+    .classList.add("show");
 
 }
 
