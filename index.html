@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>NAZRA</title>
 
-<!-- FIREBASE -->
 <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
 
@@ -48,9 +49,7 @@ body{
   transition:.25s;
 }
 
-button,
-input,
-select{
+button,input,select{
   font:inherit;
 }
 
@@ -64,9 +63,7 @@ a{
 }
 
 
-/* =========================
-   HEADER
-========================= */
+/* HEADER */
 
 header{
   height:75px;
@@ -84,8 +81,6 @@ header{
 .logo{
   font-family:Georgia,serif;
   font-size:27px;
-
-  /* الحروف قريبة */
   letter-spacing:1px;
 }
 
@@ -114,9 +109,7 @@ nav{
 }
 
 
-/* =========================
-   HOME
-========================= */
+/* HOME */
 
 #home{
   min-height:calc(100vh - 75px);
@@ -135,10 +128,7 @@ nav{
 .hero h1{
   font-family:Georgia,serif;
   font-size:clamp(55px,16vw,125px);
-
-  /* NAZRA من غير مسافات كبيرة */
   letter-spacing:1px;
-
   margin-bottom:15px;
 }
 
@@ -159,9 +149,7 @@ nav{
 }
 
 
-/* =========================
-   COLLECTION
-========================= */
+/* SECTIONS */
 
 section{
   padding:75px 6%;
@@ -182,6 +170,9 @@ section{
   letter-spacing:2px;
   margin-bottom:45px;
 }
+
+
+/* PRODUCTS */
 
 .products{
   display:grid;
@@ -228,9 +219,7 @@ section{
 }
 
 
-/* =========================
-   MODALS
-========================= */
+/* MODALS */
 
 .modal{
   position:fixed;
@@ -295,11 +284,6 @@ section{
   outline:none;
 }
 
-
-/* =========================
-   PRIMARY BUTTON
-========================= */
-
 .primary{
   width:100%;
   padding:15px;
@@ -311,9 +295,7 @@ section{
 }
 
 
-/* =========================
-   AUTH
-========================= */
+/* AUTH */
 
 .auth-tabs{
   display:grid;
@@ -356,30 +338,7 @@ section{
 }
 
 
-/* =========================
-   ACCOUNT
-========================= */
-
-.account-bar{
-  display:none;
-  align-items:center;
-  gap:8px;
-}
-
-.account-bar.show{
-  display:flex;
-}
-
-
-/* =========================
-   PHONE
-========================= */
-
-/*
-   مهم:
-   أرقام التليفون English فقط
-   0-9 فقط
-*/
+/* PHONE */
 
 .phone-input{
   direction:ltr !important;
@@ -389,9 +348,19 @@ section{
 }
 
 
-/* =========================
-   PRODUCT
-========================= */
+/* ACCOUNT */
+
+.account-bar{
+  display:none;
+  align-items:center;
+}
+
+.account-bar.show{
+  display:flex;
+}
+
+
+/* PRODUCT */
 
 .product-preview{
   width:100%;
@@ -420,9 +389,7 @@ section{
 }
 
 
-/* =========================
-   CART
-========================= */
+/* CART */
 
 .cart-item{
   display:flex;
@@ -438,9 +405,45 @@ section{
 }
 
 
-/* =========================
-   PAYMENT
-========================= */
+/* FLOATING CART */
+
+.floating-cart{
+  position:fixed;
+  left:20px;
+  bottom:20px;
+  width:55px;
+  height:55px;
+  border-radius:50%;
+  border:1px solid var(--border);
+  background:var(--card);
+  color:var(--text);
+  z-index:90;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+  box-shadow:0 5px 20px rgba(0,0,0,.35);
+}
+
+.cart-count{
+  position:absolute;
+  top:-5px;
+  right:-5px;
+  min-width:19px;
+  height:19px;
+  padding:0 5px;
+  border-radius:50%;
+  background:var(--button);
+  color:var(--buttonText);
+  font-size:11px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:bold;
+}
+
+
+/* PAYMENT */
 
 .payment-option{
   border:1px solid var(--border);
@@ -464,19 +467,14 @@ section{
 
 .vodafone{
   font-size:22px;
-
-  /* رقم إنجليزي */
   direction:ltr;
   text-align:left;
-
   letter-spacing:1px;
   margin:15px 0;
 }
 
 
-/* =========================
-   CONTACT
-========================= */
+/* CONTACT */
 
 .contact-line{
   padding:15px 0;
@@ -491,9 +489,7 @@ section{
 }
 
 
-/* =========================
-   SUCCESS
-========================= */
+/* SUCCESS */
 
 .success{
   text-align:center;
@@ -511,9 +507,7 @@ section{
 }
 
 
-/* =========================
-   MOBILE
-========================= */
+/* MOBILE */
 
 @media(max-width:700px){
 
@@ -561,6 +555,11 @@ section{
     padding:55px 18px;
   }
 
+  .floating-cart{
+    left:15px;
+    bottom:15px;
+  }
+
 }
 
 </style>
@@ -570,9 +569,7 @@ section{
 <body>
 
 
-<!-- =========================
-     HEADER
-========================= -->
+<!-- HEADER -->
 
 <header>
 
@@ -582,47 +579,25 @@ section{
 
   <nav>
 
-    <button
-      class="nav-btn"
-      onclick="openShop()">
-
+    <button class="nav-btn" onclick="openShop()">
       SHOP
-
     </button>
 
-
-    <button
-      class="nav-btn"
-      onclick="openContact()">
-
+    <button class="nav-btn" onclick="openContact()">
       CONTACT
-
     </button>
 
+    <div class="account-bar" id="accountBar">
 
-    <div
-      class="account-bar"
-      id="accountBar">
-
-      <button
-        class="small-btn"
-        onclick="logout()">
-
+      <button class="small-btn" onclick="logout()">
         LOGOUT
-
       </button>
 
     </div>
 
-
-    <button
-      class="small-btn"
-      onclick="toggleLanguage()">
-
+    <button class="small-btn" onclick="toggleLanguage()">
       EN / AR
-
     </button>
-
 
     <button
       class="small-btn"
@@ -638,9 +613,7 @@ section{
 </header>
 
 
-<!-- =========================
-     HOME
-========================= -->
+<!-- HOME -->
 
 <section id="home">
 
@@ -667,9 +640,7 @@ section{
 </section>
 
 
-<!-- =========================
-     COLLECTION
-========================= -->
+<!-- COLLECTION -->
 
 <section id="shop">
 
@@ -693,7 +664,7 @@ section{
 
       <div class="card-info">
 
-        <h3>
+        <h3 id="productTitle1">
           NAZRA HOODIE
         </h3>
 
@@ -703,6 +674,7 @@ section{
 
         <button
           class="product-btn"
+          id="productButton1"
           onclick="openProduct('NAZRA HOODIE')">
 
           VIEW PRODUCT
@@ -722,7 +694,7 @@ section{
 
       <div class="card-info">
 
-        <h3>
+        <h3 id="productTitle2">
           NAZRA TEE
         </h3>
 
@@ -732,6 +704,7 @@ section{
 
         <button
           class="product-btn"
+          id="productButton2"
           onclick="openProduct('NAZRA TEE')">
 
           VIEW PRODUCT
@@ -751,7 +724,7 @@ section{
 
       <div class="card-info">
 
-        <h3>
+        <h3 id="productTitle3">
           NAZRA COLLECTION
         </h3>
 
@@ -761,6 +734,7 @@ section{
 
         <button
           class="product-btn"
+          id="productButton3"
           onclick="openProduct('NAZRA COLLECTION')">
 
           VIEW PRODUCT
@@ -776,9 +750,27 @@ section{
 </section>
 
 
-<!-- =========================
-     AUTH
-========================= -->
+<!-- FLOATING CART -->
+
+<button
+  class="floating-cart"
+  onclick="openCart()"
+  aria-label="Cart">
+
+  🛒
+
+  <span
+    class="cart-count"
+    id="cartCount">
+
+    0
+
+  </span>
+
+</button>
+
+
+<!-- AUTH -->
 
 <div
   class="modal"
@@ -795,7 +787,7 @@ section{
     </button>
 
 
-    <h2>
+    <h2 id="accountTitle">
       NAZRA ACCOUNT
     </h2>
 
@@ -842,10 +834,9 @@ section{
       id="loginForm"
       class="auth-form active">
 
-
       <div class="field">
 
-        <label>
+        <label id="loginEmailLabel">
           EMAIL
         </label>
 
@@ -860,7 +851,7 @@ section{
 
       <div class="field">
 
-        <label>
+        <label id="loginPasswordLabel">
           PASSWORD
         </label>
 
@@ -876,6 +867,7 @@ section{
 
       <button
         class="primary"
+        id="loginButton"
         type="submit">
 
         LOGIN
@@ -891,10 +883,9 @@ section{
       id="signupForm"
       class="auth-form">
 
-
       <div class="field">
 
-        <label>
+        <label id="signupPhoneLabel">
           PHONE NUMBER
         </label>
 
@@ -913,7 +904,7 @@ section{
 
       <div class="field">
 
-        <label>
+        <label id="signupEmailLabel">
           EMAIL
         </label>
 
@@ -928,7 +919,7 @@ section{
 
       <div class="field">
 
-        <label>
+        <label id="signupPasswordLabel">
           PASSWORD
         </label>
 
@@ -944,6 +935,7 @@ section{
 
       <button
         class="primary"
+        id="signupButton"
         type="submit">
 
         CREATE ACCOUNT
@@ -957,9 +949,7 @@ section{
 </div>
 
 
-<!-- =========================
-     PRODUCT
-========================= -->
+<!-- PRODUCT -->
 
 <div
   class="modal"
@@ -987,17 +977,17 @@ section{
 
     <div class="field">
 
-      <label>
+      <label id="colorLabel">
         COLOR
       </label>
 
       <select id="productColor">
 
-        <option>
+        <option id="blackOption">
           Black
         </option>
 
-        <option>
+        <option id="whiteOption">
           White
         </option>
 
@@ -1008,7 +998,7 @@ section{
 
     <div class="field">
 
-      <label>
+      <label id="sizeLabel">
         SIZE
       </label>
 
@@ -1026,31 +1016,23 @@ section{
 
     <div class="field">
 
-      <label>
+      <label id="quantityLabel">
         QUANTITY
       </label>
 
 
       <div class="qty">
 
-        <button
-          onclick="changeQty(-1)">
-
+        <button onclick="changeQty(-1)">
           −
-
         </button>
-
 
         <span id="quantity">
           1
         </span>
 
-
-        <button
-          onclick="changeQty(1)">
-
+        <button onclick="changeQty(1)">
           +
-
         </button>
 
       </div>
@@ -1060,6 +1042,7 @@ section{
 
     <button
       class="primary"
+      id="addCartButton"
       onclick="addToCart()">
 
       ADD TO CART
@@ -1071,9 +1054,7 @@ section{
 </div>
 
 
-<!-- =========================
-     CART
-========================= -->
+<!-- CART -->
 
 <div
   class="modal"
@@ -1090,7 +1071,7 @@ section{
     </button>
 
 
-    <h2>
+    <h2 id="cartTitle">
       CART
     </h2>
 
@@ -1101,7 +1082,9 @@ section{
 
     <div class="cart-total">
 
-      TOTAL:
+      <span id="totalText">
+        TOTAL:
+      </span>
 
       <strong id="cartTotal">
         EGP 0
@@ -1112,6 +1095,7 @@ section{
 
     <button
       class="primary"
+      id="checkoutButton"
       onclick="openCheckout()">
 
       CHECKOUT
@@ -1123,9 +1107,7 @@ section{
 </div>
 
 
-<!-- =========================
-     CHECKOUT
-========================= -->
+<!-- CHECKOUT -->
 
 <div
   class="modal"
@@ -1142,14 +1124,14 @@ section{
     </button>
 
 
-    <h2>
+    <h2 id="checkoutTitle">
       CHECKOUT
     </h2>
 
 
     <div class="field">
 
-      <label>
+      <label id="nameLabel">
         FULL NAME
       </label>
 
@@ -1162,7 +1144,7 @@ section{
 
     <div class="field">
 
-      <label>
+      <label id="checkoutPhoneLabel">
         PHONE NUMBER
       </label>
 
@@ -1180,7 +1162,7 @@ section{
 
     <div class="field">
 
-      <label>
+      <label id="emailLabel">
         EMAIL
       </label>
 
@@ -1194,7 +1176,7 @@ section{
 
     <div class="field">
 
-      <label>
+      <label id="addressLabel">
         ADDRESS
       </label>
 
@@ -1207,6 +1189,7 @@ section{
 
     <button
       class="primary"
+      id="paymentContinueButton"
       onclick="openPayment()">
 
       CONTINUE TO PAYMENT
@@ -1218,9 +1201,7 @@ section{
 </div>
 
 
-<!-- =========================
-     PAYMENT
-========================= -->
+<!-- PAYMENT -->
 
 <div
   class="modal"
@@ -1237,51 +1218,67 @@ section{
     </button>
 
 
-    <h2>
+    <h2 id="paymentTitle">
       PAYMENT
     </h2>
 
 
+    <!-- TRANSFER -->
+
     <div
       class="payment-option"
-      onclick="selectPayment('vodafone')"
-      id="vodafoneOption">
+      onclick="selectPayment('transfer')"
+      id="transferOption">
 
-      <strong>
-        VODAFONE CASH
+      <strong id="transferTitle">
+        VODAFONE CASH / INSTAPAY
       </strong>
 
     </div>
 
+
+    <!-- COD -->
 
     <div
       class="payment-option"
       onclick="selectPayment('cod')"
       id="codOption">
 
-      <strong>
+      <strong id="codTitle">
         CASH ON DELIVERY
       </strong>
 
     </div>
 
 
-    <!-- VODAFONE -->
+    <!-- TRANSFER DETAILS -->
 
     <div
       class="payment-details"
-      id="vodafoneDetails">
+      id="transferDetails">
 
-      <p>
-        Transfer to Vodafone Cash:
+      <p id="transferToText">
+        Transfer the amount to:
       </p>
 
-
-      <!-- English numbers only -->
 
       <div class="vodafone">
         01229884447
       </div>
+
+
+      <p
+        id="transferInfo"
+        style="
+        color:var(--muted);
+        font-size:13px;
+        line-height:1.6;
+        margin-bottom:18px;
+        ">
+
+        You can pay using Vodafone Cash or InstaPay.
+
+      </p>
 
 
       <form
@@ -1293,7 +1290,7 @@ section{
         <input
           type="hidden"
           name="_subject"
-          value="New NAZRA Vodafone Cash Order">
+          value="New NAZRA Vodafone Cash / InstaPay Order">
 
 
         <input
@@ -1311,7 +1308,7 @@ section{
         <input
           type="hidden"
           name="payment_method"
-          value="Vodafone Cash">
+          value="Vodafone Cash / InstaPay">
 
 
         <input
@@ -1344,11 +1341,37 @@ section{
           id="hiddenOrder">
 
 
+        <input
+          type="hidden"
+          name="transferred_from"
+          id="hiddenTransferFrom">
+
+
         <div class="field">
 
-          <label>
+          <label id="transferFromLabel">
+            TRANSFERRED FROM PHONE NUMBER
+          </label>
+
+          <input
+            id="transferFromPhone"
+            class="phone-input"
+            type="tel"
+            inputmode="numeric"
+            maxlength="11"
+            autocomplete="tel"
+            placeholder="01XXXXXXXXX"
+            required>
+
+        </div>
+
+
+        <div class="field">
+
+          <label id="screenshotLabel">
             TRANSFER SCREENSHOT
           </label>
+
 
           <input
             type="file"
@@ -1361,6 +1384,7 @@ section{
 
         <button
           class="primary"
+          id="confirmPaymentButton"
           type="submit">
 
           CONFIRM PAYMENT
@@ -1372,19 +1396,21 @@ section{
     </div>
 
 
-    <!-- COD -->
+    <!-- COD DETAILS -->
 
     <div
       class="payment-details"
       id="codDetails">
 
       <p
-        style="color:var(--muted);line-height:1.6;">
+        id="deliveryFeeText"
+        style="
+        color:var(--muted);
+        line-height:1.6;
+        ">
 
         Delivery fee:
-        <strong>
-          EGP 0
-        </strong>
+        <strong>EGP 0</strong>
 
       </p>
 
@@ -1450,6 +1476,7 @@ section{
 
         <button
           class="primary"
+          id="confirmOrderButton"
           type="submit">
 
           CONFIRM ORDER
@@ -1465,9 +1492,7 @@ section{
 </div>
 
 
-<!-- =========================
-     CONTACT
-========================= -->
+<!-- CONTACT -->
 
 <div
   class="modal"
@@ -1484,20 +1509,23 @@ section{
     </button>
 
 
-    <h2>
+    <h2 id="contactTitle">
       CONTACT
     </h2>
 
 
     <div class="contact-line">
 
-      <span>
+      <span id="phoneText1">
         PHONE
       </span>
 
       <span
         class="phone-input"
-        style="color:var(--text);font-size:inherit;">
+        style="
+        color:var(--text);
+        font-size:inherit;
+        ">
 
         01090356664
 
@@ -1508,13 +1536,16 @@ section{
 
     <div class="contact-line">
 
-      <span>
+      <span id="phoneText2">
         PHONE
       </span>
 
       <span
         class="phone-input"
-        style="color:var(--text);font-size:inherit;">
+        style="
+        color:var(--text);
+        font-size:inherit;
+        ">
 
         01095666622
 
@@ -1525,7 +1556,7 @@ section{
 
     <div class="contact-line">
 
-      <span>
+      <span id="emailText">
         EMAIL
       </span>
 
@@ -1536,7 +1567,7 @@ section{
 
     <div class="contact-line">
 
-      <span>
+      <span id="instagramText">
         INSTAGRAM
       </span>
 
@@ -1555,9 +1586,7 @@ section{
 </div>
 
 
-<!-- =========================
-     SUCCESS
-========================= -->
+<!-- SUCCESS -->
 
 <div
   class="modal"
@@ -1565,12 +1594,12 @@ section{
 
   <div class="modal-box success">
 
-    <h2>
+    <h2 id="successTitle">
       ORDER COMPLETED
     </h2>
 
 
-    <p>
+    <p id="successText">
 
       Your order has been received successfully.
 
@@ -1586,6 +1615,7 @@ section{
 
     <button
       class="primary"
+      id="backButton"
       onclick="location.href='/'">
 
       BACK TO COLLECTION
@@ -1628,17 +1658,9 @@ const firebaseConfig = {
 
 };
 
-
-/* Initialize Firebase */
-
 firebase.initializeApp(firebaseConfig);
 
 const auth = firebase.auth();
-
-
-/*
-   Keep user logged in between visits.
-*/
 
 auth.setPersistence(
   firebase.auth.Auth.Persistence.LOCAL
@@ -1661,72 +1683,344 @@ function toggleLanguage(){
 
     document.documentElement.dir="rtl";
 
-    /*
-      NAZRA MUST STAY NAZRA
-      Do NOT translate the brand.
-    */
+    document.querySelector(".logo").textContent=
+      "المجموعة";
 
-    document
-      .querySelector(".logo")
-      .textContent="COLLECTION";
+    document.getElementById("heroLogo").textContent=
+      "NAZRA";
 
-
-    document
-      .getElementById("heroLogo")
-      .textContent="NAZRA";
-
-
-    document
-      .getElementById("heroText")
-      .textContent=
+    document.getElementById("heroText").textContent=
       "بسيط. جريء. مختلف.";
 
-
-    document
-      .querySelector(".shop-main")
-      .textContent=
+    document.querySelector(".shop-main").textContent=
       "تسوق الآن";
 
+    document.getElementById("collectionTitle").textContent=
+      "المجموعة";
 
-    document
-      .getElementById("collectionTitle")
-      .textContent=
-      "COLLECTION";
+
+    document.getElementById("productTitle1").textContent=
+      "هودي NAZRA";
+
+    document.getElementById("productTitle2").textContent=
+      "تيشيرت NAZRA";
+
+    document.getElementById("productTitle3").textContent=
+      "مجموعة NAZRA";
+
+
+    document.getElementById("productButton1").textContent=
+      "عرض المنتج";
+
+    document.getElementById("productButton2").textContent=
+      "عرض المنتج";
+
+    document.getElementById("productButton3").textContent=
+      "عرض المنتج";
+
+
+    document.getElementById("accountTitle").textContent=
+      "حساب NAZRA";
+
+    document.getElementById("loginTab").textContent=
+      "تسجيل الدخول";
+
+    document.getElementById("signupTab").textContent=
+      "إنشاء حساب";
+
+
+    document.getElementById("loginEmailLabel").textContent=
+      "البريد الإلكتروني";
+
+    document.getElementById("loginPasswordLabel").textContent=
+      "كلمة المرور";
+
+    document.getElementById("loginButton").textContent=
+      "تسجيل الدخول";
+
+
+    document.getElementById("signupPhoneLabel").textContent=
+      "رقم الهاتف";
+
+    document.getElementById("signupEmailLabel").textContent=
+      "البريد الإلكتروني";
+
+    document.getElementById("signupPasswordLabel").textContent=
+      "كلمة المرور";
+
+    document.getElementById("signupButton").textContent=
+      "إنشاء حساب";
+
+
+    document.getElementById("colorLabel").textContent=
+      "اللون";
+
+    document.getElementById("sizeLabel").textContent=
+      "المقاس";
+
+    document.getElementById("quantityLabel").textContent=
+      "الكمية";
+
+    document.getElementById("addCartButton").textContent=
+      "أضف إلى السلة";
+
+
+    document.getElementById("cartTitle").textContent=
+      "السلة";
+
+    document.getElementById("totalText").textContent=
+      "الإجمالي:";
+
+    document.getElementById("checkoutButton").textContent=
+      "إتمام الطلب";
+
+
+    document.getElementById("checkoutTitle").textContent=
+      "إتمام الطلب";
+
+    document.getElementById("nameLabel").textContent=
+      "الاسم بالكامل";
+
+    document.getElementById("checkoutPhoneLabel").textContent=
+      "رقم الهاتف";
+
+    document.getElementById("emailLabel").textContent=
+      "البريد الإلكتروني";
+
+    document.getElementById("addressLabel").textContent=
+      "العنوان";
+
+    document.getElementById("paymentContinueButton").textContent=
+      "الانتقال إلى الدفع";
+
+
+    document.getElementById("paymentTitle").textContent=
+      "الدفع";
+
+    document.getElementById("transferTitle").textContent=
+      "فودافون كاش / إنستا باي";
+
+    document.getElementById("codTitle").textContent=
+      "الدفع عند الاستلام";
+
+    document.getElementById("transferToText").textContent=
+      "حوّل المبلغ إلى:";
+
+    document.getElementById("transferInfo").textContent=
+      "يمكنك الدفع عن طريق فودافون كاش أو إنستا باي.";
+
+    document.getElementById("transferFromLabel").textContent=
+      "رقم الهاتف المُحوَّل منه";
+
+    document.getElementById("screenshotLabel").textContent=
+      "صورة التحويل";
+
+    document.getElementById("confirmPaymentButton").textContent=
+      "تأكيد الدفع";
+
+    document.getElementById("deliveryFeeText").innerHTML=
+      "مصاريف التوصيل: <strong>EGP 0</strong>";
+
+    document.getElementById("confirmOrderButton").textContent=
+      "تأكيد الطلب";
+
+
+    document.getElementById("contactTitle").textContent=
+      "تواصل معنا";
+
+    document.getElementById("phoneText1").textContent=
+      "الهاتف";
+
+    document.getElementById("phoneText2").textContent=
+      "الهاتف";
+
+    document.getElementById("emailText").textContent=
+      "البريد الإلكتروني";
+
+    document.getElementById("instagramText").textContent=
+      "إنستجرام";
+
+
+    document.getElementById("successTitle").textContent=
+      "تم إتمام الطلب";
+
+    document.getElementById("successText").innerHTML=
+      "تم استلام طلبك بنجاح.<br><br>ستصلك رسالة بريد إلكتروني قريبًا لتأكيد طلبك.";
+
+    document.getElementById("backButton").textContent=
+      "العودة إلى المجموعة";
 
 
   }else{
 
     document.documentElement.dir="ltr";
 
-
-    document
-      .querySelector(".logo")
-      .textContent=
+    document.querySelector(".logo").textContent=
       "COLLECTION";
 
-
-    document
-      .getElementById("heroLogo")
-      .textContent=
+    document.getElementById("heroLogo").textContent=
       "NAZRA";
 
-
-    document
-      .getElementById("heroText")
-      .textContent=
+    document.getElementById("heroText").textContent=
       "MINIMAL. BOLD. DIFFERENT.";
 
-
-    document
-      .querySelector(".shop-main")
-      .textContent=
+    document.querySelector(".shop-main").textContent=
       "SHOP NOW";
 
-
-    document
-      .getElementById("collectionTitle")
-      .textContent=
+    document.getElementById("collectionTitle").textContent=
       "COLLECTION";
+
+
+    document.getElementById("productTitle1").textContent=
+      "NAZRA HOODIE";
+
+    document.getElementById("productTitle2").textContent=
+      "NAZRA TEE";
+
+    document.getElementById("productTitle3").textContent=
+      "NAZRA COLLECTION";
+
+
+    document.getElementById("productButton1").textContent=
+      "VIEW PRODUCT";
+
+    document.getElementById("productButton2").textContent=
+      "VIEW PRODUCT";
+
+    document.getElementById("productButton3").textContent=
+      "VIEW PRODUCT";
+
+
+    document.getElementById("accountTitle").textContent=
+      "NAZRA ACCOUNT";
+
+    document.getElementById("loginTab").textContent=
+      "LOGIN";
+
+    document.getElementById("signupTab").textContent=
+      "SIGN UP";
+
+
+    document.getElementById("loginEmailLabel").textContent=
+      "EMAIL";
+
+    document.getElementById("loginPasswordLabel").textContent=
+      "PASSWORD";
+
+    document.getElementById("loginButton").textContent=
+      "LOGIN";
+
+
+    document.getElementById("signupPhoneLabel").textContent=
+      "PHONE NUMBER";
+
+    document.getElementById("signupEmailLabel").textContent=
+      "EMAIL";
+
+    document.getElementById("signupPasswordLabel").textContent=
+      "PASSWORD";
+
+    document.getElementById("signupButton").textContent=
+      "CREATE ACCOUNT";
+
+
+    document.getElementById("colorLabel").textContent=
+      "COLOR";
+
+    document.getElementById("sizeLabel").textContent=
+      "SIZE";
+
+    document.getElementById("quantityLabel").textContent=
+      "QUANTITY";
+
+    document.getElementById("addCartButton").textContent=
+      "ADD TO CART";
+
+
+    document.getElementById("cartTitle").textContent=
+      "CART";
+
+    document.getElementById("totalText").textContent=
+      "TOTAL:";
+
+    document.getElementById("checkoutButton").textContent=
+      "CHECKOUT";
+
+
+    document.getElementById("checkoutTitle").textContent=
+      "CHECKOUT";
+
+    document.getElementById("nameLabel").textContent=
+      "FULL NAME";
+
+    document.getElementById("checkoutPhoneLabel").textContent=
+      "PHONE NUMBER";
+
+    document.getElementById("emailLabel").textContent=
+      "EMAIL";
+
+    document.getElementById("addressLabel").textContent=
+      "ADDRESS";
+
+    document.getElementById("paymentContinueButton").textContent=
+      "CONTINUE TO PAYMENT";
+
+
+    document.getElementById("paymentTitle").textContent=
+      "PAYMENT";
+
+    document.getElementById("transferTitle").textContent=
+      "VODAFONE CASH / INSTAPAY";
+
+    document.getElementById("codTitle").textContent=
+      "CASH ON DELIVERY";
+
+    document.getElementById("transferToText").textContent=
+      "Transfer the amount to:";
+
+    document.getElementById("transferInfo").textContent=
+      "You can pay using Vodafone Cash or InstaPay.";
+
+    document.getElementById("transferFromLabel").textContent=
+      "TRANSFERRED FROM PHONE NUMBER";
+
+    document.getElementById("screenshotLabel").textContent=
+      "TRANSFER SCREENSHOT";
+
+    document.getElementById("confirmPaymentButton").textContent=
+      "CONFIRM PAYMENT";
+
+    document.getElementById("deliveryFeeText").innerHTML=
+      "Delivery fee: <strong>EGP 0</strong>";
+
+    document.getElementById("confirmOrderButton").textContent=
+      "CONFIRM ORDER";
+
+
+    document.getElementById("contactTitle").textContent=
+      "CONTACT";
+
+    document.getElementById("phoneText1").textContent=
+      "PHONE";
+
+    document.getElementById("phoneText2").textContent=
+      "PHONE";
+
+    document.getElementById("emailText").textContent=
+      "EMAIL";
+
+    document.getElementById("instagramText").textContent=
+      "INSTAGRAM";
+
+
+    document.getElementById("successTitle").textContent=
+      "ORDER COMPLETED";
+
+    document.getElementById("successText").innerHTML=
+      "Your order has been received successfully.<br><br>You will receive an email shortly confirming your order.";
+
+    document.getElementById("backButton").textContent=
+      "BACK TO COLLECTION";
 
   }
 
@@ -1739,29 +2033,19 @@ function toggleLanguage(){
 
 function toggleTheme(){
 
-  document
-    .body
-    .classList
-    .toggle("light");
-
+  document.body.classList.toggle("light");
 
   const light =
-    document
-      .body
-      .classList
-      .contains("light");
+    document.body.classList.contains("light");
 
-
-  document
-    .getElementById("themeBtn")
-    .textContent =
+  document.getElementById("themeBtn").textContent=
     light ? "🌙" : "☀️";
 
 }
 
 
 /* =====================================================
-   COLLECTION ACCESS
+   COLLECTION
 ===================================================== */
 
 function showCollection(){
@@ -1769,15 +2053,7 @@ function showCollection(){
   const shop =
     document.getElementById("shop");
 
-
   shop.classList.add("show");
-
-
-  /*
-    Open collection AFTER login.
-    It does NOT automatically scroll down
-    before login.
-  */
 
   setTimeout(function(){
 
@@ -1795,13 +2071,9 @@ function showCollection(){
    SHOP
 ===================================================== */
 
-async function openShop(){
+function openShop(){
 
-  const user =
-    auth.currentUser;
-
-
-  if(user){
+  if(auth.currentUser){
 
     showCollection();
 
@@ -1821,13 +2093,9 @@ async function openShop(){
 }
 
 
-async function startShop(){
+function startShop(){
 
-  const user =
-    auth.currentUser;
-
-
-  if(user){
+  if(auth.currentUser){
 
     showCollection();
 
@@ -1883,7 +2151,6 @@ function showAuth(type){
 
   clearAuthMessages();
 
-
   document
     .querySelectorAll(".auth-tab")
     .forEach(function(el){
@@ -1891,7 +2158,6 @@ function showAuth(type){
       el.classList.remove("active");
 
     });
-
 
   document
     .querySelectorAll(".auth-form")
@@ -1909,12 +2175,10 @@ function showAuth(type){
       .classList
       .add("active");
 
-
     document
       .getElementById("loginForm")
       .classList
       .add("active");
-
 
   }else{
 
@@ -1922,7 +2186,6 @@ function showAuth(type){
       .getElementById("signupTab")
       .classList
       .add("active");
-
 
     document
       .getElementById("signupForm")
@@ -1940,7 +2203,6 @@ function clearAuthMessages(){
     .getElementById("authError")
     .textContent="";
 
-
   document
     .getElementById("authSuccess")
     .textContent="";
@@ -1954,7 +2216,6 @@ function authError(message){
     .getElementById("authError")
     .textContent=
     message;
-
 
   document
     .getElementById("authSuccess")
@@ -1970,7 +2231,6 @@ function authSuccess(message){
     .textContent=
     message;
 
-
   document
     .getElementById("authError")
     .textContent="";
@@ -1979,20 +2239,14 @@ function authSuccess(message){
 
 
 /* =====================================================
-   PHONE
+   PHONE VALIDATION
 ===================================================== */
-
-
-/*
-   Convert anything that is NOT an English digit
-   into nothing.
-
-   This means Arabic numbers are removed too.
-*/
 
 function onlyEnglishDigits(value){
 
-  return value.replace(/[^0-9]/g,"");
+  return value
+    .replace(/[^0-9]/g,"")
+    .slice(0,11);
 
 }
 
@@ -2005,8 +2259,8 @@ function validEgyptianPhone(phone){
 
 
 /*
-   Apply English-only phone input
-   to every phone field.
+   ALL PHONE FIELDS:
+   English numbers only.
 */
 
 document
@@ -2018,8 +2272,7 @@ document
       function(){
 
         this.value =
-          onlyEnglishDigits(this.value)
-          .slice(0,11);
+          onlyEnglishDigits(this.value);
 
       }
     );
@@ -2038,7 +2291,6 @@ document
     async function(e){
 
       e.preventDefault();
-
 
       clearAuthMessages();
 
@@ -2066,7 +2318,9 @@ document
       if(!validEgyptianPhone(phone)){
 
         authError(
-          "Phone number must be exactly 11 English digits and start with 01."
+          arabic
+          ? "رقم الهاتف يجب أن يكون 11 رقمًا إنجليزيًا ويبدأ بـ 01."
+          : "Phone number must be exactly 11 English digits and start with 01."
         );
 
         return;
@@ -2077,7 +2331,9 @@ document
       if(password.length<6){
 
         authError(
-          "Password must be at least 6 characters."
+          arabic
+          ? "كلمة المرور يجب أن تكون 6 أحرف على الأقل."
+          : "Password must be at least 6 characters."
         );
 
         return;
@@ -2086,10 +2342,6 @@ document
 
 
       try{
-
-        /*
-          Create Firebase account.
-        */
 
         const result =
           await auth
@@ -2103,10 +2355,6 @@ document
           result.user;
 
 
-        /*
-          Save phone inside Firebase user's profile.
-        */
-
         await user.updateProfile({
 
           displayName:phone
@@ -2115,17 +2363,14 @@ document
 
 
         authSuccess(
-          "Account created successfully."
+          arabic
+          ? "تم إنشاء الحساب بنجاح."
+          : "Account created successfully."
         );
 
 
         updateAccountUI();
 
-
-        /*
-          CLOSE LOGIN/SIGNUP
-          THEN SHOW COLLECTION DIRECTLY.
-        */
 
         setTimeout(function(){
 
@@ -2148,7 +2393,9 @@ document
         ){
 
           message =
-            "This email is already registered. Please login.";
+            arabic
+            ? "هذا البريد الإلكتروني مسجل بالفعل. سجل الدخول."
+            : "This email is already registered. Please login.";
 
         }
 
@@ -2159,7 +2406,9 @@ document
         ){
 
           message =
-            "Please enter a valid email address.";
+            arabic
+            ? "أدخل بريدًا إلكترونيًا صحيحًا."
+            : "Please enter a valid email address.";
 
         }
 
@@ -2170,7 +2419,9 @@ document
         ){
 
           message =
-            "Password must be at least 6 characters.";
+            arabic
+            ? "كلمة المرور يجب أن تكون 6 أحرف على الأقل."
+            : "Password must be at least 6 characters.";
 
         }
 
@@ -2194,7 +2445,6 @@ document
     async function(e){
 
       e.preventDefault();
-
 
       clearAuthMessages();
 
@@ -2222,17 +2472,14 @@ document
 
 
         authSuccess(
-          "Login successful."
+          arabic
+          ? "تم تسجيل الدخول بنجاح."
+          : "Login successful."
         );
 
 
         updateAccountUI();
 
-
-        /*
-          THIS IS THE IMPORTANT PART:
-          Login → close modal → Collection.
-        */
 
         setTimeout(function(){
 
@@ -2255,7 +2502,9 @@ document
         ){
 
           message =
-            "Email or password is incorrect.";
+            arabic
+            ? "البريد الإلكتروني أو كلمة المرور غير صحيحة."
+            : "Email or password is incorrect.";
 
         }
 
@@ -2266,7 +2515,9 @@ document
         ){
 
           message =
-            "No account found with this email.";
+            arabic
+            ? "لا يوجد حساب بهذا البريد الإلكتروني."
+            : "No account found with this email.";
 
         }
 
@@ -2277,7 +2528,9 @@ document
         ){
 
           message =
-            "Incorrect password.";
+            arabic
+            ? "كلمة المرور غير صحيحة."
+            : "Incorrect password.";
 
         }
 
@@ -2332,18 +2585,10 @@ async function logout(){
 auth.onAuthStateChanged(
   function(user){
 
-    if(user){
+    updateAccountUI();
 
-      updateAccountUI();
 
-    }else{
-
-      updateAccountUI();
-
-      /*
-        Collection is ALWAYS hidden
-        when there is no logged-in user.
-      */
+    if(!user){
 
       document
         .getElementById("shop")
@@ -2393,11 +2638,6 @@ let quantity=1;
 
 
 function openProduct(name){
-
-  /*
-    Extra security:
-    Product cannot be opened without login.
-  */
 
   if(!auth.currentUser){
 
@@ -2491,9 +2731,16 @@ function addToCart(){
 
   closeModal("productModal");
 
-
   updateCart();
 
+  openCart();
+
+}
+
+
+function openCart(){
+
+  updateCart();
 
   document
     .getElementById("cartModal")
@@ -2509,10 +2756,28 @@ function updateCart(){
     document.getElementById("cartItems");
 
 
+  const count =
+    cart.reduce(
+      function(total,item){
+
+        return total + item.quantity;
+
+      },
+      0
+    );
+
+
+  document
+    .getElementById("cartCount")
+    .textContent=
+    count;
+
+
   if(cart.length===0){
 
-    box.innerHTML=
-      "<p>Your cart is empty.</p>";
+    box.innerHTML =
+      `<p>${arabic ? "السلة فارغة." : "Your cart is empty."}</p>`;
+
 
     document
       .getElementById("cartTotal")
@@ -2542,17 +2807,17 @@ function updateCart(){
 
             <br>
 
-            Color:
+            ${arabic ? "اللون" : "Color"}:
             ${item.color}
 
             <br>
 
-            Size:
+            ${arabic ? "المقاس" : "Size"}:
             ${item.size}
 
             <br>
 
-            Quantity:
+            ${arabic ? "الكمية" : "Quantity"}:
             ${item.quantity}
 
           </div>
@@ -2603,7 +2868,9 @@ function openCheckout(){
   if(cart.length===0){
 
     alert(
-      "Your cart is empty."
+      arabic
+      ? "السلة فارغة."
+      : "Your cart is empty."
     );
 
     return;
@@ -2613,11 +2880,6 @@ function openCheckout(){
 
   closeModal("cartModal");
 
-
-  /*
-    If user is logged in,
-    automatically use their Firebase email.
-  */
 
   if(auth.currentUser){
 
@@ -2679,7 +2941,9 @@ function openPayment(){
   ){
 
     alert(
-      "Please complete all information."
+      arabic
+      ? "من فضلك أكمل جميع البيانات."
+      : "Please complete all information."
     );
 
     return;
@@ -2690,7 +2954,9 @@ function openPayment(){
   if(!validEgyptianPhone(phone)){
 
     alert(
-      "Phone number must be exactly 11 English digits and start with 01."
+      arabic
+      ? "رقم الهاتف يجب أن يكون 11 رقمًا إنجليزيًا ويبدأ بـ 01."
+      : "Phone number must be exactly 11 English digits and start with 01."
     );
 
     return;
@@ -2780,6 +3046,23 @@ function openPayment(){
 
 
 /* =====================================================
+   TRANSFER PHONE
+===================================================== */
+
+document
+  .getElementById("transferFromPhone")
+  .addEventListener(
+    "input",
+    function(){
+
+      this.value =
+        onlyEnglishDigits(this.value);
+
+    }
+  );
+
+
+/* =====================================================
    PAYMENT SELECTION
 ===================================================== */
 
@@ -2789,8 +3072,7 @@ function selectPayment(type){
     .querySelectorAll(".payment-option")
     .forEach(function(el){
 
-      el.classList
-        .remove("active");
+      el.classList.remove("active");
 
     });
 
@@ -2799,22 +3081,21 @@ function selectPayment(type){
     .querySelectorAll(".payment-details")
     .forEach(function(el){
 
-      el.classList
-        .remove("show");
+      el.classList.remove("show");
 
     });
 
 
-  if(type==="vodafone"){
+  if(type==="transfer"){
 
     document
-      .getElementById("vodafoneOption")
+      .getElementById("transferOption")
       .classList
       .add("active");
 
 
     document
-      .getElementById("vodafoneDetails")
+      .getElementById("transferDetails")
       .classList
       .add("show");
 
@@ -2840,6 +3121,47 @@ function selectPayment(type){
 
 
 /* =====================================================
+   TRANSFER FORM
+===================================================== */
+
+document
+  .querySelector("#transferDetails form")
+  .addEventListener(
+    "submit",
+    function(e){
+
+      const transferPhone =
+        document
+          .getElementById("transferFromPhone")
+          .value
+          .trim();
+
+
+      if(!validEgyptianPhone(transferPhone)){
+
+        e.preventDefault();
+
+        alert(
+          arabic
+          ? "رقم الهاتف الذي تم التحويل منه يجب أن يكون 11 رقمًا إنجليزيًا ويبدأ بـ 01."
+          : "Transferred-from phone number must be exactly 11 English digits and start with 01."
+        );
+
+        return;
+
+      }
+
+
+      document
+        .getElementById("hiddenTransferFrom")
+        .value=
+        transferPhone;
+
+    }
+  );
+
+
+/* =====================================================
    SUCCESS
 ===================================================== */
 
@@ -2854,6 +3176,13 @@ if(
     .add("show");
 
 }
+
+
+/* =====================================================
+   INITIAL CART
+===================================================== */
+
+updateCart();
 
 </script>
 
