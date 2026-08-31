@@ -5,12 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NAZRA</title>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
 :root{
   --bg:#050505;
@@ -39,20 +37,9 @@ body{
   transition:.25s;
 }
 
-button,input,select{
-  font:inherit;
-}
-
-button{
-  cursor:pointer;
-}
-
-a{
-  color:inherit;
-  text-decoration:none;
-}
-
-/* HEADER */
+button,input,select{font:inherit}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
 
 header{
   height:75px;
@@ -73,11 +60,7 @@ header{
   letter-spacing:5px;
 }
 
-nav{
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
+nav{display:flex;align-items:center;gap:12px}
 
 .nav-btn{
   background:none;
@@ -97,8 +80,6 @@ nav{
   font-size:11px;
 }
 
-/* HOME */
-
 #home{
   min-height:calc(100vh - 75px);
   display:flex;
@@ -108,17 +89,7 @@ nav{
   padding:30px 20px;
 }
 
-.hero{
-  width:100%;
-  max-width:800px;
-}
-
-.hero-logo{
-  width:min(90%,520px);
-  max-height:300px;
-  object-fit:contain;
-  margin-bottom:25px;
-}
+.hero{width:100%;max-width:800px}
 
 .hero h1{
   font-family:Georgia,serif;
@@ -143,11 +114,7 @@ nav{
   letter-spacing:3px;
 }
 
-/* SECTIONS */
-
-section{
-  padding:75px 6%;
-}
+section{padding:75px 6%}
 
 .section-title{
   text-align:center;
@@ -156,8 +123,6 @@ section{
   letter-spacing:5px;
   margin-bottom:45px;
 }
-
-/* PRODUCTS */
 
 .products{
   display:grid;
@@ -180,9 +145,7 @@ section{
   background:#111;
 }
 
-.card-info{
-  padding:20px;
-}
+.card-info{padding:20px}
 
 .card h3{
   font-size:14px;
@@ -203,8 +166,6 @@ section{
   color:var(--buttonText);
 }
 
-/* MODALS */
-
 .modal{
   position:fixed;
   inset:0;
@@ -216,9 +177,7 @@ section{
   padding:20px;
 }
 
-.modal.show{
-  display:flex;
-}
+.modal.show{display:flex}
 
 .modal-box{
   width:100%;
@@ -247,9 +206,7 @@ section{
   margin-bottom:25px;
 }
 
-.field{
-  margin-bottom:15px;
-}
+.field{margin-bottom:15px}
 
 .field label{
   display:block;
@@ -278,19 +235,46 @@ section{
   letter-spacing:2px;
 }
 
-/* PRODUCT MODAL */
+.auth-tabs{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  margin-bottom:25px;
+}
+
+.auth-tab{
+  padding:12px;
+  background:none;
+  color:var(--muted);
+  border:1px solid var(--border);
+}
+
+.auth-tab.active{
+  color:var(--text);
+  border-color:var(--text);
+}
+
+.auth-form{display:none}
+.auth-form.active{display:block}
+
+.error{
+  color:#ff6b6b;
+  font-size:13px;
+  margin-bottom:15px;
+  line-height:1.5;
+}
+
+.success-msg{
+  color:#6cff9a;
+  font-size:13px;
+  margin-bottom:15px;
+  line-height:1.5;
+}
 
 .product-preview{
   width:100%;
   height:300px;
   object-fit:cover;
   margin-bottom:20px;
-}
-
-.options{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
 }
 
 .qty{
@@ -312,8 +296,6 @@ section{
   text-align:center;
 }
 
-/* CART */
-
 .cart-item{
   display:flex;
   justify-content:space-between;
@@ -327,8 +309,6 @@ section{
   font-size:18px;
 }
 
-/* PAYMENT */
-
 .payment-option{
   border:1px solid var(--border);
   padding:15px;
@@ -336,26 +316,16 @@ section{
   cursor:pointer;
 }
 
-.payment-option.active{
-  border-color:var(--text);
-}
+.payment-option.active{border-color:var(--text)}
 
-.payment-details{
-  display:none;
-  margin:15px 0;
-}
-
-.payment-details.show{
-  display:block;
-}
+.payment-details{display:none;margin:15px 0}
+.payment-details.show{display:block}
 
 .vodafone{
   font-size:22px;
   letter-spacing:2px;
   margin:15px 0;
 }
-
-/* CONTACT */
 
 .contact-line{
   padding:15px 0;
@@ -369,122 +339,61 @@ section{
   margin-bottom:5px;
 }
 
-/* SUCCESS */
+.success{text-align:center;padding:45px 10px}
+.success h2{font-size:32px;margin-bottom:20px}
+.success p{color:var(--muted);line-height:1.7}
 
-.success{
-  text-align:center;
-  padding:45px 10px;
+.account-bar{
+  display:none;
+  align-items:center;
+  gap:8px;
 }
 
-.success h2{
-  font-size:32px;
-  margin-bottom:20px;
-}
-
-.success p{
-  color:var(--muted);
-  line-height:1.7;
-}
-
-/* MOBILE */
+.account-bar.show{display:flex}
 
 @media(max-width:700px){
-
-  header{
-    padding:0 12px;
-  }
-
-  .logo{
-    font-size:20px;
-    letter-spacing:3px;
-  }
-
-  nav{
-    gap:2px;
-  }
-
-  .nav-btn{
-    font-size:10px;
-    padding:6px;
-  }
-
-  .small-btn{
-    font-size:9px;
-    padding:6px 7px;
-  }
-
-  .hero h1{
-    font-size:62px;
-    letter-spacing:5px;
-  }
-
-  .hero p{
-    letter-spacing:3px;
-  }
-
-  .products{
-    grid-template-columns:1fr;
-  }
-
-  .product-img{
-    height:390px;
-  }
-
-  section{
-    padding:55px 18px;
-  }
-
-  .options{
-    grid-template-columns:1fr;
-  }
+  header{padding:0 12px}
+  .logo{font-size:20px;letter-spacing:3px}
+  nav{gap:2px}
+  .nav-btn{font-size:10px;padding:6px}
+  .small-btn{font-size:9px;padding:6px 7px}
+  .hero h1{font-size:62px;letter-spacing:5px}
+  .hero p{letter-spacing:3px}
+  .products{grid-template-columns:1fr}
+  .product-img{height:390px}
+  section{padding:55px 18px}
 }
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
-
 <header>
-
   <div class="logo">COLLECTION</div>
 
   <nav>
     <button class="nav-btn" onclick="openShop()">SHOP</button>
     <button class="nav-btn" onclick="openContact()">CONTACT</button>
+
+    <div class="account-bar" id="accountBar">
+      <button class="small-btn" onclick="logout()">LOGOUT</button>
+    </div>
+
     <button class="small-btn" onclick="toggleLanguage()">EN / AR</button>
     <button class="small-btn" onclick="toggleTheme()" id="themeBtn">☀️</button>
   </nav>
-
 </header>
 
-
-<!-- HOME -->
-
 <section id="home">
-
   <div class="hero">
-
     <h1>NAZRA</h1>
-
     <p id="heroText">MINIMAL. BOLD. DIFFERENT.</p>
-
-    <button class="shop-main" onclick="startShop()">
-      SHOP NOW
-    </button>
-
+    <button class="shop-main" onclick="startShop()">SHOP NOW</button>
   </div>
-
 </section>
 
-
-<!-- COLLECTION -->
-
 <section id="shop">
-
-  <h2 class="section-title" id="collectionTitle">
-    COLLECTION
-  </h2>
+  <h2 class="section-title" id="collectionTitle">COLLECTION</h2>
 
   <div class="products">
 
@@ -493,8 +402,7 @@ section{
       <div class="card-info">
         <h3>NAZRA HOODIE</h3>
         <div class="price">EGP 0</div>
-        <button class="product-btn"
-          onclick="openProduct('NAZRA HOODIE')">
+        <button class="product-btn" onclick="openProduct('NAZRA HOODIE')">
           VIEW PRODUCT
         </button>
       </div>
@@ -505,8 +413,7 @@ section{
       <div class="card-info">
         <h3>NAZRA TEE</h3>
         <div class="price">EGP 0</div>
-        <button class="product-btn"
-          onclick="openProduct('NAZRA TEE')">
+        <button class="product-btn" onclick="openProduct('NAZRA TEE')">
           VIEW PRODUCT
         </button>
       </div>
@@ -517,65 +424,101 @@ section{
       <div class="card-info">
         <h3>NAZRA COLLECTION</h3>
         <div class="price">EGP 0</div>
-        <button class="product-btn"
-          onclick="openProduct('NAZRA COLLECTION')">
+        <button class="product-btn" onclick="openProduct('NAZRA COLLECTION')">
           VIEW PRODUCT
         </button>
       </div>
     </div>
 
   </div>
-
 </section>
 
 
-<!-- LOGIN -->
+<!-- AUTH -->
 
-<div class="modal" id="loginModal">
-
+<div class="modal" id="authModal">
   <div class="modal-box">
 
-    <button class="close" onclick="closeModal('loginModal')">×</button>
+    <button class="close" onclick="closeModal('authModal')">×</button>
 
-    <h2>LOGIN TO SHOP NOW</h2>
+    <h2>NAZRA ACCOUNT</h2>
 
-    <form id="loginForm">
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="loginTab" onclick="showAuth('login')">
+        LOGIN
+      </button>
+
+      <button class="auth-tab" id="signupTab" onclick="showAuth('signup')">
+        SIGN UP
+      </button>
+    </div>
+
+    <div id="authError" class="error"></div>
+    <div id="authSuccess" class="success-msg"></div>
+
+    <!-- LOGIN -->
+
+    <form id="loginForm" class="auth-form active">
+
+      <div class="field">
+        <label>EMAIL</label>
+        <input id="loginEmail" type="email" required placeholder="Email">
+      </div>
+
+      <div class="field">
+        <label>PASSWORD</label>
+        <input id="loginPassword" type="password" required minlength="6" placeholder="Password">
+      </div>
+
+      <button class="primary" type="submit">
+        LOGIN
+      </button>
+
+    </form>
+
+    <!-- SIGN UP -->
+
+    <form id="signupForm" class="auth-form">
 
       <div class="field">
         <label>PHONE NUMBER</label>
         <input
+          id="signupPhone"
           type="tel"
-          name="phone"
-          id="loginPhone"
+          inputmode="numeric"
+          maxlength="11"
           required
-          placeholder="Phone number">
+          placeholder="01XXXXXXXXX">
       </div>
 
       <div class="field">
         <label>EMAIL</label>
+        <input id="signupEmail" type="email" required placeholder="Email">
+      </div>
+
+      <div class="field">
+        <label>PASSWORD</label>
         <input
-          type="email"
-          name="email"
-          id="loginEmail"
+          id="signupPassword"
+          type="password"
+          minlength="6"
           required
-          placeholder="Email address">
+          placeholder="Password">
       </div>
 
       <button class="primary" type="submit">
-        CONFIRM
+        CREATE ACCOUNT
       </button>
 
     </form>
 
   </div>
-
 </div>
 
 
 <!-- PRODUCT -->
 
 <div class="modal" id="productModal">
-
   <div class="modal-box">
 
     <button class="close" onclick="closeModal('productModal')">×</button>
@@ -586,7 +529,6 @@ section{
 
     <div class="field">
       <label>COLOR</label>
-
       <select id="productColor">
         <option>Black</option>
         <option>White</option>
@@ -595,7 +537,6 @@ section{
 
     <div class="field">
       <label>SIZE</label>
-
       <select id="productSize">
         <option>S</option>
         <option>M</option>
@@ -619,14 +560,12 @@ section{
     </button>
 
   </div>
-
 </div>
 
 
 <!-- CART -->
 
 <div class="modal" id="cartModal">
-
   <div class="modal-box">
 
     <button class="close" onclick="closeModal('cartModal')">×</button>
@@ -644,14 +583,12 @@ section{
     </button>
 
   </div>
-
 </div>
 
 
 <!-- CHECKOUT -->
 
 <div class="modal" id="checkoutModal">
-
   <div class="modal-box">
 
     <button class="close" onclick="closeModal('checkoutModal')">×</button>
@@ -665,7 +602,12 @@ section{
 
     <div class="field">
       <label>PHONE NUMBER</label>
-      <input id="customerPhone" placeholder="Phone number">
+      <input
+        id="customerPhone"
+        type="tel"
+        inputmode="numeric"
+        maxlength="11"
+        placeholder="01XXXXXXXXX">
     </div>
 
     <div class="field">
@@ -683,40 +625,29 @@ section{
     </button>
 
   </div>
-
 </div>
 
 
 <!-- PAYMENT -->
 
 <div class="modal" id="paymentModal">
-
   <div class="modal-box">
 
     <button class="close" onclick="closeModal('paymentModal')">×</button>
 
     <h2>PAYMENT</h2>
 
-    <div
-      class="payment-option"
-      onclick="selectPayment('vodafone')"
-      id="vodafoneOption">
-
+    <div class="payment-option"
+         onclick="selectPayment('vodafone')"
+         id="vodafoneOption">
       <strong>VODAFONE CASH</strong>
-
     </div>
 
-    <div
-      class="payment-option"
-      onclick="selectPayment('cod')"
-      id="codOption">
-
+    <div class="payment-option"
+         onclick="selectPayment('cod')"
+         id="codOption">
       <strong>CASH ON DELIVERY</strong>
-
     </div>
-
-
-    <!-- VODAFONE -->
 
     <div class="payment-details" id="vodafoneDetails">
 
@@ -727,24 +658,21 @@ section{
       </div>
 
       <form
-        id="paymentForm"
         action="https://formsubmit.co/Nazrapayment@gmail.com"
         method="POST"
         enctype="multipart/form-data">
 
-        <input type="hidden"
-          name="_subject"
-          value="New NAZRA Vodafone Cash Order">
+        <input type="hidden" name="_subject"
+               value="New NAZRA Vodafone Cash Order">
+
+        <input type="hidden" name="_captcha" value="true">
+
+        <input type="hidden" name="_next"
+               value="https://nazra-qfdap.sevalla.page/?order=complete">
 
         <input type="hidden"
-          name="_captcha"
-          value="true">
-
-        <input type="hidden"
-          name="_next"
-          value="https://nazra-qfdap.sevalla.page/?order=complete">
-
-        <input type="hidden" name="payment_method" value="Vodafone Cash">
+               name="payment_method"
+               value="Vodafone Cash">
 
         <input type="hidden" name="customer_name" id="hiddenName">
         <input type="hidden" name="phone" id="hiddenPhone">
@@ -753,33 +681,22 @@ section{
         <input type="hidden" name="order_details" id="hiddenOrder">
 
         <div class="field">
-
-          <label>
-            TRANSFER SCREENSHOT
-          </label>
+          <label>TRANSFER SCREENSHOT</label>
 
           <input
             type="file"
             name="attachment"
             accept="image/png,image/jpeg,image/webp"
             required>
-
         </div>
 
-        <button
-          class="primary"
-          type="submit">
-
+        <button class="primary" type="submit">
           CONFIRM PAYMENT
-
         </button>
 
       </form>
-
     </div>
 
-
-    <!-- CASH ON DELIVERY -->
 
     <div class="payment-details" id="codDetails">
 
@@ -788,25 +705,20 @@ section{
       </p>
 
       <form
-        id="codForm"
         action="https://formsubmit.co/Nazrapayment@gmail.com"
         method="POST">
 
-        <input type="hidden"
-          name="_subject"
-          value="New NAZRA Cash on Delivery Order">
+        <input type="hidden" name="_subject"
+               value="New NAZRA Cash on Delivery Order">
+
+        <input type="hidden" name="_captcha" value="true">
+
+        <input type="hidden" name="_next"
+               value="https://nazra-qfdap.sevalla.page/?order=complete">
 
         <input type="hidden"
-          name="_captcha"
-          value="true">
-
-        <input type="hidden"
-          name="_next"
-          value="https://nazra-qfdap.sevalla.page/?order=complete">
-
-        <input type="hidden"
-          name="payment_method"
-          value="Cash on Delivery">
+               name="payment_method"
+               value="Cash on Delivery">
 
         <input type="hidden" name="customer_name" id="codName">
         <input type="hidden" name="phone" id="codPhone">
@@ -814,27 +726,20 @@ section{
         <input type="hidden" name="address" id="codAddress">
         <input type="hidden" name="order_details" id="codOrder">
 
-        <button
-          class="primary"
-          type="submit">
-
+        <button class="primary" type="submit">
           CONFIRM ORDER
-
         </button>
 
       </form>
-
     </div>
 
   </div>
-
 </div>
 
 
 <!-- CONTACT -->
 
 <div class="modal" id="contactModal">
-
   <div class="modal-box">
 
     <button class="close" onclick="closeModal('contactModal')">×</button>
@@ -864,14 +769,12 @@ section{
     </div>
 
   </div>
-
 </div>
 
 
-<!-- ORDER COMPLETED -->
+<!-- SUCCESS -->
 
 <div class="modal" id="successModal">
-
   <div class="modal-box success">
 
     <h2>ORDER COMPLETED</h2>
@@ -889,19 +792,44 @@ section{
     </button>
 
   </div>
-
 </div>
 
 
 <script>
 
-/* LANGUAGE */
+/* =========================
+   SUPABASE
+========================= */
 
-let arabic = false;
+const SUPABASE_URL =
+"https://kqzepzjzufmjncbovvxz.supabase.co";
+
+const SUPABASE_PUBLISHABLE_KEY =
+"sb_publishable_UELhMfLwe44PnyhC9yNvBg_0y9HlCHt";
+
+const supabaseClient =
+supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_PUBLISHABLE_KEY,
+  {
+    auth:{
+      persistSession:true,
+      autoRefreshToken:true,
+      detectSessionInUrl:true
+    }
+  }
+);
+
+
+/* =========================
+   LANGUAGE
+========================= */
+
+let arabic=false;
 
 function toggleLanguage(){
 
-  arabic = !arabic;
+  arabic=!arabic;
 
   if(arabic){
 
@@ -912,13 +840,13 @@ function toggleLanguage(){
     document.querySelector(".hero h1").textContent="نظرة";
 
     document.getElementById("heroText").textContent=
-      "بسيط. جريء. مختلف.";
+    "بسيط. جريء. مختلف.";
 
     document.querySelector(".shop-main").textContent=
-      "تسوق الآن";
+    "تسوق الآن";
 
     document.getElementById("collectionTitle").textContent=
-      "المجموعة";
+    "المجموعة";
 
   }else{
 
@@ -929,110 +857,341 @@ function toggleLanguage(){
     document.querySelector(".hero h1").textContent="NAZRA";
 
     document.getElementById("heroText").textContent=
-      "MINIMAL. BOLD. DIFFERENT.";
+    "MINIMAL. BOLD. DIFFERENT.";
 
     document.querySelector(".shop-main").textContent=
-      "SHOP NOW";
+    "SHOP NOW";
 
     document.getElementById("collectionTitle").textContent=
-      "COLLECTION";
+    "COLLECTION";
   }
 }
 
 
-/* DARK / LIGHT */
+/* =========================
+   THEME
+========================= */
 
 function toggleTheme(){
 
   document.body.classList.toggle("light");
 
   const light =
-    document.body.classList.contains("light");
+  document.body.classList.contains("light");
 
   document.getElementById("themeBtn").textContent =
-    light ? "🌙" : "☀️";
-
+  light ? "🌙" : "☀️";
 }
 
 
-/* NAVIGATION */
+/* =========================
+   NAVIGATION
+========================= */
 
 function openShop(){
 
   document.getElementById("shop")
-    .scrollIntoView({behavior:"smooth"});
+  .scrollIntoView({behavior:"smooth"});
 }
 
-function startShop(){
+async function startShop(){
 
-  document.getElementById("loginModal")
+  const {data} =
+  await supabaseClient.auth.getSession();
+
+  if(data.session){
+
+    openShop();
+
+  }else{
+
+    clearAuthMessages();
+
+    document.getElementById("authModal")
     .classList.add("show");
-
+  }
 }
 
 function openContact(){
 
   document.getElementById("contactModal")
-    .classList.add("show");
-
+  .classList.add("show");
 }
 
 function closeModal(id){
 
   document.getElementById(id)
-    .classList.remove("show");
-
+  .classList.remove("show");
 }
 
 
-/* LOGIN */
+/* =========================
+   AUTH UI
+========================= */
 
-document.getElementById("loginForm")
+function showAuth(type){
+
+  clearAuthMessages();
+
+  document
+  .querySelectorAll(".auth-tab")
+  .forEach(el=>el.classList.remove("active"));
+
+  document
+  .querySelectorAll(".auth-form")
+  .forEach(el=>el.classList.remove("active"));
+
+  if(type==="login"){
+
+    document.getElementById("loginTab")
+    .classList.add("active");
+
+    document.getElementById("loginForm")
+    .classList.add("active");
+
+  }else{
+
+    document.getElementById("signupTab")
+    .classList.add("active");
+
+    document.getElementById("signupForm")
+    .classList.add("active");
+  }
+}
+
+function clearAuthMessages(){
+
+  document.getElementById("authError").textContent="";
+  document.getElementById("authSuccess").textContent="";
+}
+
+function authError(message){
+
+  document.getElementById("authError").textContent=message;
+  document.getElementById("authSuccess").textContent="";
+}
+
+function authSuccess(message){
+
+  document.getElementById("authSuccess").textContent=message;
+  document.getElementById("authError").textContent="";
+}
+
+
+/* =========================
+   PHONE VALIDATION
+========================= */
+
+function validEgyptianPhone(phone){
+
+  return /^01[0-9]{9}$/.test(phone);
+}
+
+
+/* =========================
+   SIGN UP
+========================= */
+
+document
+.getElementById("signupForm")
 .addEventListener("submit", async function(e){
 
   e.preventDefault();
 
+  clearAuthMessages();
+
   const phone =
-    document.getElementById("loginPhone").value;
+  document.getElementById("signupPhone").value.trim();
 
   const email =
-    document.getElementById("loginEmail").value;
+  document.getElementById("signupEmail").value.trim();
 
-  try{
+  const password =
+  document.getElementById("signupPassword").value;
 
-    await fetch(
-      "https://formspree.io/f/meaqeeol",
-      {
-        method:"POST",
-        headers:{
-          "Content-Type":"application/json",
-          "Accept":"application/json"
-        },
-        body:JSON.stringify({
-          phone:phone,
-          email:email
-        })
-      }
+  if(!validEgyptianPhone(phone)){
+
+    authError(
+      "Phone number must be exactly 11 digits and start with 01."
     );
 
-  }catch(error){
-
-    console.log(error);
-
+    return;
   }
 
-  closeModal("loginModal");
+  if(password.length<6){
+
+    authError(
+      "Password must be at least 6 characters."
+    );
+
+    return;
+  }
+
+  const {data,error} =
+  await supabaseClient.auth.signUp({
+
+    email:email,
+
+    password:password,
+
+    options:{
+      data:{
+        phone:phone
+      }
+    }
+
+  });
+
+  if(error){
+
+    authError(error.message);
+    return;
+  }
+
+  if(data.user){
+
+    /*
+      Save the phone in Profiles.
+      This requires the INSERT RLS policy
+      described below.
+    */
+
+    const {error:profileError} =
+    await supabaseClient
+    .from("Profiles")
+    .insert({
+      Idid:data.user.id,
+      Phone:phone
+    });
+
+    if(profileError){
+
+      console.log(profileError);
+
+      authSuccess(
+        "Account created. Please check your email to confirm your account."
+      );
+
+    }else{
+
+      authSuccess(
+        "Account created successfully."
+      );
+    }
+  }
 
   setTimeout(()=>{
 
+    closeModal("authModal");
+
     openShop();
 
-  },200);
+  },1200);
 
 });
 
 
-/* PRODUCT */
+/* =========================
+   LOGIN
+========================= */
+
+document
+.getElementById("loginForm")
+.addEventListener("submit", async function(e){
+
+  e.preventDefault();
+
+  clearAuthMessages();
+
+  const email =
+  document.getElementById("loginEmail").value.trim();
+
+  const password =
+  document.getElementById("loginPassword").value;
+
+  const {data,error} =
+  await supabaseClient.auth.signInWithPassword({
+
+    email:email,
+    password:password
+
+  });
+
+  if(error){
+
+    authError(error.message);
+    return;
+  }
+
+  if(data.session){
+
+    updateAccountUI();
+
+    closeModal("authModal");
+
+    openShop();
+  }
+
+});
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+async function logout(){
+
+  const {error} =
+  await supabaseClient.auth.signOut({
+    scope:"local"
+  });
+
+  if(error){
+
+    alert(error.message);
+    return;
+  }
+
+  updateAccountUI();
+
+  alert("You have been logged out.");
+}
+
+
+/* =========================
+   SESSION
+========================= */
+
+async function updateAccountUI(){
+
+  const {data} =
+  await supabaseClient.auth.getSession();
+
+  const bar =
+  document.getElementById("accountBar");
+
+  if(data.session){
+
+    bar.classList.add("show");
+
+  }else{
+
+    bar.classList.remove("show");
+  }
+}
+
+supabaseClient.auth.onAuthStateChange(
+  function(){
+    updateAccountUI();
+  }
+);
+
+updateAccountUI();
+
+
+/* =========================
+   PRODUCT
+========================= */
 
 let selectedProduct="";
 let quantity=1;
@@ -1044,14 +1203,13 @@ function openProduct(name){
   quantity=1;
 
   document.getElementById("quantity")
-    .textContent=quantity;
+  .textContent=quantity;
 
   document.getElementById("productName")
-    .textContent=name;
+  .textContent=name;
 
   document.getElementById("productModal")
-    .classList.add("show");
-
+  .classList.add("show");
 }
 
 function changeQty(amount){
@@ -1062,22 +1220,23 @@ function changeQty(amount){
     quantity=1;
 
   document.getElementById("quantity")
-    .textContent=quantity;
-
+  .textContent=quantity;
 }
 
 
-/* CART */
+/* =========================
+   CART
+========================= */
 
 let cart=[];
 
 function addToCart(){
 
   const color =
-    document.getElementById("productColor").value;
+  document.getElementById("productColor").value;
 
   const size =
-    document.getElementById("productSize").value;
+  document.getElementById("productSize").value;
 
   cart.push({
     product:selectedProduct,
@@ -1092,19 +1251,17 @@ function addToCart(){
   updateCart();
 
   document.getElementById("cartModal")
-    .classList.add("show");
-
+  .classList.add("show");
 }
 
 function updateCart(){
 
   const box =
-    document.getElementById("cartItems");
+  document.getElementById("cartItems");
 
   if(cart.length===0){
 
     box.innerHTML="<p>Your cart is empty.</p>";
-
     return;
   }
 
@@ -1114,7 +1271,6 @@ function updateCart(){
 
     html+=`
       <div class="cart-item">
-
         <div>
           <strong>${item.product}</strong>
           <br>
@@ -1128,20 +1284,16 @@ function updateCart(){
         <button
           class="small-btn"
           onclick="removeCart(${index})">
-
           ×
-
         </button>
-
       </div>
     `;
-
   });
 
   box.innerHTML=html;
 
   document.getElementById("cartTotal")
-    .textContent="EGP 0";
+  .textContent="EGP 0";
 }
 
 function removeCart(index){
@@ -1149,52 +1301,59 @@ function removeCart(index){
   cart.splice(index,1);
 
   updateCart();
-
 }
 
 
-/* CHECKOUT */
+/* =========================
+   CHECKOUT
+========================= */
 
 function openCheckout(){
 
   if(cart.length===0){
 
     alert("Your cart is empty.");
-
     return;
-
   }
 
   closeModal("cartModal");
 
   document.getElementById("checkoutModal")
-    .classList.add("show");
-
+  .classList.add("show");
 }
 
 
-/* PAYMENT */
+/* =========================
+   PAYMENT
+========================= */
 
 function openPayment(){
 
   const name =
-    document.getElementById("customerName").value;
+  document.getElementById("customerName").value.trim();
 
   const phone =
-    document.getElementById("customerPhone").value;
+  document.getElementById("customerPhone").value.trim();
 
   const email =
-    document.getElementById("customerEmail").value;
+  document.getElementById("customerEmail").value.trim();
 
   const address =
-    document.getElementById("customerAddress").value;
+  document.getElementById("customerAddress").value.trim();
 
   if(!name || !phone || !email || !address){
 
     alert("Please complete all information.");
+    return;
+  }
+
+  if(!validEgyptianPhone(phone)){
+
+    alert(
+      "Phone number must be exactly 11 digits and start with 01."
+    );
 
     return;
-
   }
 
   document.getElementById("hiddenName").value=name;
@@ -1208,9 +1367,9 @@ function openPayment(){
   document.getElementById("codAddress").value=address;
 
   const orderText =
-    cart.map(item =>
-      `${item.product} | Color: ${item.color} | Size: ${item.size} | Quantity: ${item.quantity} | Price: EGP 0`
-    ).join("\n");
+  cart.map(item =>
+    `${item.product} | Color: ${item.color} | Size: ${item.size} | Quantity: ${item.quantity} | Price: EGP 0`
+  ).join("\n");
 
   document.getElementById("hiddenOrder").value=orderText;
   document.getElementById("codOrder").value=orderText;
@@ -1218,61 +1377,60 @@ function openPayment(){
   closeModal("checkoutModal");
 
   document.getElementById("paymentModal")
-    .classList.add("show");
-
+  .classList.add("show");
 }
 
 
-/* PAYMENT SELECTION */
+/* =========================
+   PAYMENT SELECTION
+========================= */
 
 function selectPayment(type){
 
   document
-    .querySelectorAll(".payment-option")
-    .forEach(el=>el.classList.remove("active"));
+  .querySelectorAll(".payment-option")
+  .forEach(el=>el.classList.remove("active"));
 
   document
-    .querySelectorAll(".payment-details")
-    .forEach(el=>el.classList.remove("show"));
+  .querySelectorAll(".payment-details")
+  .forEach(el=>el.classList.remove("show"));
 
   if(type==="vodafone"){
 
     document
-      .getElementById("vodafoneOption")
-      .classList.add("active");
+    .getElementById("vodafoneOption")
+    .classList.add("active");
 
     document
-      .getElementById("vodafoneDetails")
-      .classList.add("show");
-
+    .getElementById("vodafoneDetails")
+    .classList.add("show");
   }
 
   if(type==="cod"){
 
     document
-      .getElementById("codOption")
-      .classList.add("active");
+    .getElementById("codOption")
+    .classList.add("active");
 
     document
-      .getElementById("codDetails")
-      .classList.add("show");
-
+    .getElementById("codDetails")
+    .classList.add("show");
   }
-
 }
 
 
-/* SUCCESS PAGE */
+/* =========================
+   SUCCESS
+========================= */
 
 if(
   new URLSearchParams(location.search)
-    .get("order")==="complete"
+  .get("order")==="complete"
 ){
 
   document
-    .getElementById("successModal")
-    .classList.add("show");
-
+  .getElementById("successModal")
+  .classList.add("show");
 }
 
 </script>
