@@ -3,10 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>NAZRA</title>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<!-- FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
 
 <style>
 
@@ -36,6 +37,10 @@ body.light{
   --buttonText:#fff;
 }
 
+html{
+  scroll-behavior:smooth;
+}
+
 body{
   background:var(--bg);
   color:var(--text);
@@ -59,29 +64,29 @@ a{
 }
 
 
-/* ================= HEADER ================= */
+/* =========================
+   HEADER
+========================= */
 
 header{
   height:75px;
   padding:0 22px;
-
   display:flex;
   align-items:center;
   justify-content:space-between;
-
   border-bottom:1px solid var(--border);
-
   position:sticky;
   top:0;
   z-index:20;
-
   background:var(--bg);
 }
 
 .logo{
   font-family:Georgia,serif;
   font-size:27px;
-  letter-spacing:3px;
+
+  /* الحروف قريبة */
+  letter-spacing:1px;
 }
 
 nav{
@@ -94,10 +99,8 @@ nav{
   background:none;
   border:0;
   color:var(--text);
-
   font-size:12px;
   letter-spacing:1px;
-
   padding:8px;
 }
 
@@ -105,26 +108,22 @@ nav{
   border:1px solid var(--border);
   background:var(--card);
   color:var(--text);
-
   border-radius:20px;
-
   padding:7px 10px;
-
   font-size:11px;
 }
 
 
-/* ================= HOME ================= */
+/* =========================
+   HOME
+========================= */
 
 #home{
   min-height:calc(100vh - 75px);
-
   display:flex;
   align-items:center;
   justify-content:center;
-
   text-align:center;
-
   padding:30px 20px;
 }
 
@@ -135,42 +134,38 @@ nav{
 
 .hero h1{
   font-family:Georgia,serif;
-
   font-size:clamp(55px,16vw,125px);
 
-  /* الحروف قريبة من بعض */
-  letter-spacing:2px;
+  /* NAZRA من غير مسافات كبيرة */
+  letter-spacing:1px;
 
   margin-bottom:15px;
 }
 
 .hero p{
   color:var(--muted);
-
   letter-spacing:4px;
-
   font-size:12px;
-
   margin-bottom:35px;
 }
 
 .shop-main{
   border:0;
-
   background:var(--button);
   color:var(--buttonText);
-
   padding:18px 45px;
-
   font-weight:bold;
-
-  letter-spacing:2px;
+  letter-spacing:3px;
 }
 
 
-/* ================= COLLECTION ================= */
+/* =========================
+   COLLECTION
+========================= */
 
-/* مخفية تماما قبل تسجيل الدخول */
+section{
+  padding:75px 6%;
+}
 
 #shop{
   display:none;
@@ -180,51 +175,32 @@ nav{
   display:block;
 }
 
-
-/* ================= PRODUCTS ================= */
-
-section{
-  padding:75px 6%;
-}
-
 .section-title{
   text-align:center;
-
   font-family:Georgia,serif;
-
   font-size:34px;
-
-  letter-spacing:3px;
-
+  letter-spacing:2px;
   margin-bottom:45px;
 }
 
 .products{
   display:grid;
-
   grid-template-columns:repeat(3,1fr);
-
   gap:20px;
-
   max-width:1200px;
-
   margin:auto;
 }
 
 .card{
   background:var(--card);
-
   border:1px solid var(--border);
-
   overflow:hidden;
 }
 
 .product-img{
   width:100%;
   height:360px;
-
   object-fit:cover;
-
   background:#111;
 }
 
@@ -234,47 +210,36 @@ section{
 
 .card h3{
   font-size:14px;
-
-  letter-spacing:2px;
-
+  letter-spacing:1px;
   margin-bottom:8px;
 }
 
 .price{
   color:var(--muted);
-
   margin-bottom:18px;
 }
 
 .product-btn{
   width:100%;
-
   padding:13px;
-
   border:1px solid var(--border);
-
   background:var(--button);
-
   color:var(--buttonText);
 }
 
 
-/* ================= MODALS ================= */
+/* =========================
+   MODALS
+========================= */
 
 .modal{
   position:fixed;
-
   inset:0;
-
   background:rgba(0,0,0,.75);
-
   display:none;
-
   align-items:center;
   justify-content:center;
-
   z-index:100;
-
   padding:20px;
 }
 
@@ -284,42 +249,28 @@ section{
 
 .modal-box{
   width:100%;
-
   max-width:500px;
-
   max-height:90vh;
-
   overflow:auto;
-
   background:var(--card);
-
   border:1px solid var(--border);
-
   padding:28px;
-
   position:relative;
 }
 
 .close{
   position:absolute;
-
   right:18px;
   top:15px;
-
   background:none;
-
   border:0;
-
   color:var(--text);
-
   font-size:25px;
 }
 
 .modal h2{
   font-family:Georgia,serif;
-
   letter-spacing:2px;
-
   margin-bottom:25px;
 }
 
@@ -329,69 +280,56 @@ section{
 
 .field label{
   display:block;
-
   color:var(--muted);
-
   font-size:12px;
-
   margin-bottom:7px;
 }
 
 .field input,
 .field select{
   width:100%;
-
   padding:14px;
-
   background:var(--bg);
-
   color:var(--text);
-
   border:1px solid var(--border);
-
   outline:none;
 }
 
+
+/* =========================
+   PRIMARY BUTTON
+========================= */
+
 .primary{
   width:100%;
-
   padding:15px;
-
   border:0;
-
   background:var(--button);
-
   color:var(--buttonText);
-
   font-weight:bold;
-
   letter-spacing:2px;
 }
 
 
-/* ================= AUTH ================= */
+/* =========================
+   AUTH
+========================= */
 
 .auth-tabs{
   display:grid;
-
   grid-template-columns:1fr 1fr;
-
   margin-bottom:25px;
 }
 
 .auth-tab{
   padding:12px;
-
   background:none;
-
   color:var(--muted);
-
   border:1px solid var(--border);
 }
 
 .auth-tab.active{
   color:var(--text);
-
   border-color:var(--text);
 }
 
@@ -405,32 +343,26 @@ section{
 
 .error{
   color:#ff6b6b;
-
   font-size:13px;
-
   margin-bottom:15px;
-
   line-height:1.5;
 }
 
 .success-msg{
   color:#6cff9a;
-
   font-size:13px;
-
   margin-bottom:15px;
-
   line-height:1.5;
 }
 
 
-/* ================= ACCOUNT ================= */
+/* =========================
+   ACCOUNT
+========================= */
 
 .account-bar{
   display:none;
-
   align-items:center;
-
   gap:8px;
 }
 
@@ -439,74 +371,81 @@ section{
 }
 
 
-/* ================= PRODUCT ================= */
+/* =========================
+   PHONE
+========================= */
+
+/*
+   مهم:
+   أرقام التليفون English فقط
+   0-9 فقط
+*/
+
+.phone-input{
+  direction:ltr !important;
+  text-align:left !important;
+  unicode-bidi:plaintext;
+  font-family:Arial,Helvetica,sans-serif;
+}
+
+
+/* =========================
+   PRODUCT
+========================= */
 
 .product-preview{
   width:100%;
-
   height:300px;
-
   object-fit:cover;
-
   margin-bottom:20px;
 }
 
 .qty{
   display:flex;
-
   align-items:center;
-
   gap:10px;
 }
 
 .qty button{
   width:38px;
   height:38px;
-
   background:var(--bg);
-
   border:1px solid var(--border);
-
   color:var(--text);
 }
 
 .qty span{
   min-width:25px;
-
   text-align:center;
 }
 
 
-/* ================= CART ================= */
+/* =========================
+   CART
+========================= */
 
 .cart-item{
   display:flex;
-
   justify-content:space-between;
-
   gap:15px;
-
   padding:15px 0;
-
   border-bottom:1px solid var(--border);
 }
 
 .cart-total{
   margin:25px 0;
-
   font-size:18px;
 }
 
 
-/* ================= PAYMENT ================= */
+/* =========================
+   PAYMENT
+========================= */
 
 .payment-option{
   border:1px solid var(--border);
-
   padding:15px;
-
   margin-bottom:10px;
-
   cursor:pointer;
 }
 
@@ -516,7 +455,6 @@ section{
 
 .payment-details{
   display:none;
-
   margin:15px 0;
 }
 
@@ -527,53 +465,55 @@ section{
 .vodafone{
   font-size:22px;
 
-  letter-spacing:2px;
+  /* رقم إنجليزي */
+  direction:ltr;
+  text-align:left;
 
+  letter-spacing:1px;
   margin:15px 0;
 }
 
 
-/* ================= CONTACT ================= */
+/* =========================
+   CONTACT
+========================= */
 
 .contact-line{
   padding:15px 0;
-
   border-bottom:1px solid var(--border);
 }
 
 .contact-line span{
   display:block;
-
   color:var(--muted);
-
   font-size:11px;
-
   margin-bottom:5px;
 }
 
 
-/* ================= SUCCESS ================= */
+/* =========================
+   SUCCESS
+========================= */
 
 .success{
   text-align:center;
-
   padding:45px 10px;
 }
 
 .success h2{
   font-size:32px;
-
   margin-bottom:20px;
 }
 
 .success p{
   color:var(--muted);
-
   line-height:1.7;
 }
 
 
-/* ================= MOBILE ================= */
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:700px){
 
@@ -583,7 +523,7 @@ section{
 
   .logo{
     font-size:20px;
-    letter-spacing:2px;
+    letter-spacing:1px;
   }
 
   nav{
@@ -602,8 +542,6 @@ section{
 
   .hero h1{
     font-size:62px;
-
-    /* NAZRA الحروف قريبة */
     letter-spacing:1px;
   }
 
@@ -622,6 +560,7 @@ section{
   section{
     padding:55px 18px;
   }
+
 }
 
 </style>
@@ -631,7 +570,9 @@ section{
 <body>
 
 
-<!-- ================= HEADER ================= -->
+<!-- =========================
+     HEADER
+========================= -->
 
 <header>
 
@@ -697,13 +638,15 @@ section{
 </header>
 
 
-<!-- ================= HOME ================= -->
+<!-- =========================
+     HOME
+========================= -->
 
 <section id="home">
 
   <div class="hero">
 
-    <h1>
+    <h1 id="heroLogo">
       NAZRA
     </h1>
 
@@ -724,7 +667,9 @@ section{
 </section>
 
 
-<!-- ================= COLLECTION ================= -->
+<!-- =========================
+     COLLECTION
+========================= -->
 
 <section id="shop">
 
@@ -831,14 +776,15 @@ section{
 </section>
 
 
-<!-- ================= AUTH ================= -->
+<!-- =========================
+     AUTH
+========================= -->
 
 <div
   class="modal"
   id="authModal">
 
   <div class="modal-box">
-
 
     <button
       class="close"
@@ -954,10 +900,11 @@ section{
 
         <input
           id="signupPhone"
+          class="phone-input"
           type="tel"
           inputmode="numeric"
           maxlength="11"
-          pattern="01[0-9]{9}"
+          autocomplete="tel"
           required
           placeholder="01XXXXXXXXX">
 
@@ -1010,14 +957,15 @@ section{
 </div>
 
 
-<!-- ================= PRODUCT ================= -->
+<!-- =========================
+     PRODUCT
+========================= -->
 
 <div
   class="modal"
   id="productModal">
 
   <div class="modal-box">
-
 
     <button
       class="close"
@@ -1123,14 +1071,15 @@ section{
 </div>
 
 
-<!-- ================= CART ================= -->
+<!-- =========================
+     CART
+========================= -->
 
 <div
   class="modal"
   id="cartModal">
 
   <div class="modal-box">
-
 
     <button
       class="close"
@@ -1174,14 +1123,15 @@ section{
 </div>
 
 
-<!-- ================= CHECKOUT ================= -->
+<!-- =========================
+     CHECKOUT
+========================= -->
 
 <div
   class="modal"
   id="checkoutModal">
 
   <div class="modal-box">
-
 
     <button
       class="close"
@@ -1218,10 +1168,11 @@ section{
 
       <input
         id="customerPhone"
+        class="phone-input"
         type="tel"
         inputmode="numeric"
         maxlength="11"
-        pattern="01[0-9]{9}"
+        autocomplete="tel"
         placeholder="01XXXXXXXXX">
 
     </div>
@@ -1267,14 +1218,15 @@ section{
 </div>
 
 
-<!-- ================= PAYMENT ================= -->
+<!-- =========================
+     PAYMENT
+========================= -->
 
 <div
   class="modal"
   id="paymentModal">
 
   <div class="modal-box">
-
 
     <button
       class="close"
@@ -1324,6 +1276,8 @@ section{
         Transfer to Vodafone Cash:
       </p>
 
+
+      <!-- English numbers only -->
 
       <div class="vodafone">
         01229884447
@@ -1396,7 +1350,6 @@ section{
             TRANSFER SCREENSHOT
           </label>
 
-
           <input
             type="file"
             name="attachment"
@@ -1425,12 +1378,10 @@ section{
       class="payment-details"
       id="codDetails">
 
-
       <p
         style="color:var(--muted);line-height:1.6;">
 
         Delivery fee:
-
         <strong>
           EGP 0
         </strong>
@@ -1514,14 +1465,15 @@ section{
 </div>
 
 
-<!-- ================= CONTACT ================= -->
+<!-- =========================
+     CONTACT
+========================= -->
 
 <div
   class="modal"
   id="contactModal">
 
   <div class="modal-box">
-
 
     <button
       class="close"
@@ -1543,7 +1495,13 @@ section{
         PHONE
       </span>
 
-      01090356664
+      <span
+        class="phone-input"
+        style="color:var(--text);font-size:inherit;">
+
+        01090356664
+
+      </span>
 
     </div>
 
@@ -1554,7 +1512,13 @@ section{
         PHONE
       </span>
 
-      01095666622
+      <span
+        class="phone-input"
+        style="color:var(--text);font-size:inherit;">
+
+        01095666622
+
+      </span>
 
     </div>
 
@@ -1591,15 +1555,15 @@ section{
 </div>
 
 
-<!-- ================= SUCCESS ================= -->
+<!-- =========================
+     SUCCESS
+========================= -->
 
 <div
   class="modal"
   id="successModal">
 
-  <div
-    class="modal-box success">
-
+  <div class="modal-box success">
 
     <h2>
       ORDER COMPLETED
@@ -1635,40 +1599,55 @@ section{
 
 <script>
 
+/* =====================================================
+   FIREBASE
+===================================================== */
 
-/* =========================
-   SUPABASE
-========================= */
+const firebaseConfig = {
 
-const SUPABASE_URL =
-"https://kqzepzjzufmjncbovvxz.supabase.co";
+  apiKey:
+  "AIzaSyDJoKLH3lxWV-O_lRApNMGGCdGUL-6R-vc",
+
+  authDomain:
+  "nazra-c5aa2.firebaseapp.com",
+
+  projectId:
+  "nazra-c5aa2",
+
+  storageBucket:
+  "nazra-c5aa2.firebasestorage.app",
+
+  messagingSenderId:
+  "23487988128",
+
+  appId:
+  "1:23487988128:web:aa30f0a3b1e182a743a4c5",
+
+  measurementId:
+  "G-QGWWBB1PS2"
+
+};
 
 
-const SUPABASE_PUBLISHABLE_KEY =
-"sb_publishable_UELhMfLwe44PnyhC9yNvBg_0y9HlCHt";
+/* Initialize Firebase */
+
+firebase.initializeApp(firebaseConfig);
+
+const auth = firebase.auth();
 
 
-const supabaseClient =
-supabase.createClient(
+/*
+   Keep user logged in between visits.
+*/
 
-  SUPABASE_URL,
-
-  SUPABASE_PUBLISHABLE_KEY,
-
-  {
-    auth:{
-      persistSession:true,
-      autoRefreshToken:true,
-      detectSessionInUrl:true
-    }
-  }
-
+auth.setPersistence(
+  firebase.auth.Auth.Persistence.LOCAL
 );
 
 
-/* =========================
+/* =====================================================
    LANGUAGE
-========================= */
+===================================================== */
 
 let arabic=false;
 
@@ -1683,29 +1662,36 @@ function toggleLanguage(){
     document.documentElement.dir="rtl";
 
     /*
-      مهم:
-      NAZRA تفضل NAZRA
-      مش هتتحول لعربي
+      NAZRA MUST STAY NAZRA
+      Do NOT translate the brand.
     */
 
-    document.querySelector(".logo")
+    document
+      .querySelector(".logo")
       .textContent="COLLECTION";
 
 
-    document.querySelector(".hero h1")
+    document
+      .getElementById("heroLogo")
       .textContent="NAZRA";
 
 
-    document.getElementById("heroText")
-      .textContent="بسيط. جريء. مختلف.";
+    document
+      .getElementById("heroText")
+      .textContent=
+      "بسيط. جريء. مختلف.";
 
 
-    document.querySelector(".shop-main")
-      .textContent="تسوق الآن";
+    document
+      .querySelector(".shop-main")
+      .textContent=
+      "تسوق الآن";
 
 
-    document.getElementById("collectionTitle")
-      .textContent="المجموعة";
+    document
+      .getElementById("collectionTitle")
+      .textContent=
+      "COLLECTION";
 
 
   }else{
@@ -1713,53 +1699,70 @@ function toggleLanguage(){
     document.documentElement.dir="ltr";
 
 
-    document.querySelector(".logo")
-      .textContent="COLLECTION";
+    document
+      .querySelector(".logo")
+      .textContent=
+      "COLLECTION";
 
 
-    document.querySelector(".hero h1")
-      .textContent="NAZRA";
+    document
+      .getElementById("heroLogo")
+      .textContent=
+      "NAZRA";
 
 
-    document.getElementById("heroText")
-      .textContent="MINIMAL. BOLD. DIFFERENT.";
+    document
+      .getElementById("heroText")
+      .textContent=
+      "MINIMAL. BOLD. DIFFERENT.";
 
 
-    document.querySelector(".shop-main")
-      .textContent="SHOP NOW";
+    document
+      .querySelector(".shop-main")
+      .textContent=
+      "SHOP NOW";
 
 
-    document.getElementById("collectionTitle")
-      .textContent="COLLECTION";
+    document
+      .getElementById("collectionTitle")
+      .textContent=
+      "COLLECTION";
 
   }
 
 }
 
 
-/* =========================
+/* =====================================================
    THEME
-========================= */
+===================================================== */
 
 function toggleTheme(){
 
-  document.body.classList.toggle("light");
+  document
+    .body
+    .classList
+    .toggle("light");
 
 
   const light =
-    document.body.classList.contains("light");
+    document
+      .body
+      .classList
+      .contains("light");
 
 
-  document.getElementById("themeBtn")
+  document
+    .getElementById("themeBtn")
     .textContent =
-      light ? "🌙" : "☀️";
+    light ? "🌙" : "☀️";
 
 }
 
 
-/* =========================
-   COLLECTION
-========================= */
+/* =====================================================
+   COLLECTION ACCESS
+===================================================== */
 
 function showCollection(){
 
@@ -1770,10 +1773,17 @@ function showCollection(){
   shop.classList.add("show");
 
 
+  /*
+    Open collection AFTER login.
+    It does NOT automatically scroll down
+    before login.
+  */
+
   setTimeout(function(){
 
     shop.scrollIntoView({
-      behavior:"smooth"
+      behavior:"smooth",
+      block:"start"
     });
 
   },100);
@@ -1781,24 +1791,17 @@ function showCollection(){
 }
 
 
-/* =========================
-   SHOP BUTTON
-========================= */
+/* =====================================================
+   SHOP
+===================================================== */
 
 async function openShop(){
 
-  const {data,error} =
-    await supabaseClient.auth.getSession();
+  const user =
+    auth.currentUser;
 
 
-  if(error){
-
-    console.log(error);
-
-  }
-
-
-  if(data && data.session){
+  if(user){
 
     showCollection();
 
@@ -1806,10 +1809,12 @@ async function openShop(){
 
     clearAuthMessages();
 
+    showAuth("login");
 
     document
       .getElementById("authModal")
-      .classList.add("show");
+      .classList
+      .add("show");
 
   }
 
@@ -1818,18 +1823,11 @@ async function openShop(){
 
 async function startShop(){
 
-  const {data,error} =
-    await supabaseClient.auth.getSession();
+  const user =
+    auth.currentUser;
 
 
-  if(error){
-
-    console.log(error);
-
-  }
-
-
-  if(data && data.session){
+  if(user){
 
     showCollection();
 
@@ -1837,41 +1835,49 @@ async function startShop(){
 
     clearAuthMessages();
 
+    showAuth("login");
 
     document
       .getElementById("authModal")
-      .classList.add("show");
+      .classList
+      .add("show");
 
   }
 
 }
 
 
-/* =========================
+/* =====================================================
    CONTACT
-========================= */
+===================================================== */
 
 function openContact(){
 
   document
     .getElementById("contactModal")
-    .classList.add("show");
+    .classList
+    .add("show");
 
 }
 
+
+/* =====================================================
+   MODAL
+===================================================== */
 
 function closeModal(id){
 
   document
     .getElementById(id)
-    .classList.remove("show");
+    .classList
+    .remove("show");
 
 }
 
 
-/* =========================
+/* =====================================================
    AUTH UI
-========================= */
+===================================================== */
 
 function showAuth(type){
 
@@ -1900,23 +1906,28 @@ function showAuth(type){
 
     document
       .getElementById("loginTab")
-      .classList.add("active");
+      .classList
+      .add("active");
 
 
     document
       .getElementById("loginForm")
-      .classList.add("active");
+      .classList
+      .add("active");
+
 
   }else{
 
     document
       .getElementById("signupTab")
-      .classList.add("active");
+      .classList
+      .add("active");
 
 
     document
       .getElementById("signupForm")
-      .classList.add("active");
+      .classList
+      .add("active");
 
   }
 
@@ -1941,7 +1952,8 @@ function authError(message){
 
   document
     .getElementById("authError")
-    .textContent=message;
+    .textContent=
+    message;
 
 
   document
@@ -1955,7 +1967,8 @@ function authSuccess(message){
 
   document
     .getElementById("authSuccess")
-    .textContent=message;
+    .textContent=
+    message;
 
 
   document
@@ -1965,9 +1978,24 @@ function authSuccess(message){
 }
 
 
-/* =========================
+/* =====================================================
    PHONE
-========================= */
+===================================================== */
+
+
+/*
+   Convert anything that is NOT an English digit
+   into nothing.
+
+   This means Arabic numbers are removed too.
+*/
+
+function onlyEnglishDigits(value){
+
+  return value.replace(/[^0-9]/g,"");
+
+}
+
 
 function validEgyptianPhone(phone){
 
@@ -1976,9 +2004,32 @@ function validEgyptianPhone(phone){
 }
 
 
-/* =========================
+/*
+   Apply English-only phone input
+   to every phone field.
+*/
+
+document
+  .querySelectorAll(".phone-input")
+  .forEach(function(input){
+
+    input.addEventListener(
+      "input",
+      function(){
+
+        this.value =
+          onlyEnglishDigits(this.value)
+          .slice(0,11);
+
+      }
+    );
+
+  });
+
+
+/* =====================================================
    SIGN UP
-========================= */
+===================================================== */
 
 document
   .getElementById("signupForm")
@@ -2015,7 +2066,7 @@ document
       if(!validEgyptianPhone(phone)){
 
         authError(
-          "Phone number must be exactly 11 digits and start with 01."
+          "Phone number must be exactly 11 English digits and start with 01."
         );
 
         return;
@@ -2034,48 +2085,33 @@ document
       }
 
 
-      const {data,error} =
-        await supabaseClient.auth.signUp({
+      try{
 
-          email:email,
+        /*
+          Create Firebase account.
+        */
 
-          password:password,
+        const result =
+          await auth
+            .createUserWithEmailAndPassword(
+              email,
+              password
+            );
 
-          options:{
-            data:{
-              phone:phone
-            }
-          }
+
+        const user =
+          result.user;
+
+
+        /*
+          Save phone inside Firebase user's profile.
+        */
+
+        await user.updateProfile({
+
+          displayName:phone
 
         });
-
-
-      if(error){
-
-        authError(error.message);
-
-        return;
-
-      }
-
-
-      /*
-        لو Supabase عامل Email Confirmation
-        مش هيكون فيه Session لحد ما المستخدم
-        يأكد الإيميل.
-      */
-
-      if(data && data.session){
-
-        await supabaseClient
-          .from("Profiles")
-          .insert({
-
-            Idid:data.user.id,
-
-            Phone:phone
-
-          });
 
 
         authSuccess(
@@ -2086,23 +2122,60 @@ document
         updateAccountUI();
 
 
+        /*
+          CLOSE LOGIN/SIGNUP
+          THEN SHOW COLLECTION DIRECTLY.
+        */
+
         setTimeout(function(){
 
           closeModal("authModal");
 
           showCollection();
 
-        },700);
+        },500);
 
 
-      }else{
+      }catch(error){
 
-        authSuccess(
-          "Account created. Check your email, confirm your account, then login."
-        );
+        let message =
+          error.message;
 
 
-        showAuth("login");
+        if(
+          error.code ===
+          "auth/email-already-in-use"
+        ){
+
+          message =
+            "This email is already registered. Please login.";
+
+        }
+
+
+        if(
+          error.code ===
+          "auth/invalid-email"
+        ){
+
+          message =
+            "Please enter a valid email address.";
+
+        }
+
+
+        if(
+          error.code ===
+          "auth/weak-password"
+        ){
+
+          message =
+            "Password must be at least 6 characters.";
+
+        }
+
+
+        authError(message);
 
       }
 
@@ -2110,9 +2183,9 @@ document
   );
 
 
-/* =========================
+/* =====================================================
    LOGIN
-========================= */
+===================================================== */
 
 document
   .getElementById("loginForm")
@@ -2139,39 +2212,77 @@ document
           .value;
 
 
-      const {data,error} =
-        await supabaseClient.auth
-          .signInWithPassword({
+      try{
 
-            email:email,
-
-            password:password
-
-          });
+        await auth
+          .signInWithEmailAndPassword(
+            email,
+            password
+          );
 
 
-      if(error){
+        authSuccess(
+          "Login successful."
+        );
 
-        authError(error.message);
-
-        return;
-
-      }
-
-
-      if(data && data.session){
 
         updateAccountUI();
 
 
-        closeModal("authModal");
-
-
         /*
-          هنا فقط الكولكشن تظهر
+          THIS IS THE IMPORTANT PART:
+          Login → close modal → Collection.
         */
 
-        showCollection();
+        setTimeout(function(){
+
+          closeModal("authModal");
+
+          showCollection();
+
+        },300);
+
+
+      }catch(error){
+
+        let message =
+          error.message;
+
+
+        if(
+          error.code ===
+          "auth/invalid-credential"
+        ){
+
+          message =
+            "Email or password is incorrect.";
+
+        }
+
+
+        if(
+          error.code ===
+          "auth/user-not-found"
+        ){
+
+          message =
+            "No account found with this email.";
+
+        }
+
+
+        if(
+          error.code ===
+          "auth/wrong-password"
+        ){
+
+          message =
+            "Incorrect password.";
+
+        }
+
+
+        authError(message);
 
       }
 
@@ -2179,98 +2290,102 @@ document
   );
 
 
-/* =========================
+/* =====================================================
    LOGOUT
-========================= */
+===================================================== */
 
 async function logout(){
 
-  const {error} =
-    await supabaseClient.auth.signOut({
-      scope:"local"
-    });
+  try{
 
+    await auth.signOut();
 
-  if(error){
-
-    alert(error.message);
-
-    return;
-
-  }
-
-
-  /*
-    إخفاء الكولكشن بعد Logout
-  */
-
-  document
-    .getElementById("shop")
-    .classList.remove("show");
-
-
-  updateAccountUI();
-
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-
-}
-
-
-/* =========================
-   SESSION
-========================= */
-
-async function updateAccountUI(){
-
-  const {data} =
-    await supabaseClient.auth.getSession();
-
-
-  const bar =
-    document.getElementById("accountBar");
-
-
-  if(data && data.session){
-
-    bar.classList.add("show");
-
-  }else{
-
-    bar.classList.remove("show");
-
-
-    /*
-      ممنوع الكولكشن تظهر بدون Login
-    */
 
     document
       .getElementById("shop")
-      .classList.remove("show");
+      .classList
+      .remove("show");
+
+
+    updateAccountUI();
+
+
+    window.scrollTo({
+      top:0,
+      behavior:"smooth"
+    });
+
+
+  }catch(error){
+
+    alert(error.message);
 
   }
 
 }
 
 
-supabaseClient.auth.onAuthStateChange(
-  function(){
+/* =====================================================
+   AUTH STATE
+===================================================== */
 
-    updateAccountUI();
+auth.onAuthStateChanged(
+  function(user){
+
+    if(user){
+
+      updateAccountUI();
+
+    }else{
+
+      updateAccountUI();
+
+      /*
+        Collection is ALWAYS hidden
+        when there is no logged-in user.
+      */
+
+      document
+        .getElementById("shop")
+        .classList
+        .remove("show");
+
+    }
 
   }
 );
 
 
-updateAccountUI();
+/* =====================================================
+   ACCOUNT UI
+===================================================== */
+
+function updateAccountUI(){
+
+  const bar =
+    document.getElementById("accountBar");
 
 
-/* =========================
+  if(auth.currentUser){
+
+    bar
+      .classList
+      .add("show");
+
+  }else{
+
+    bar
+      .classList
+      .remove("show");
+
+  }
+
+}
+
+
+/* =====================================================
    PRODUCT
-========================= */
+===================================================== */
 
 let selectedProduct="";
 
@@ -2279,6 +2394,20 @@ let quantity=1;
 
 function openProduct(name){
 
+  /*
+    Extra security:
+    Product cannot be opened without login.
+  */
+
+  if(!auth.currentUser){
+
+    startShop();
+
+    return;
+
+  }
+
+
   selectedProduct=name;
 
   quantity=1;
@@ -2286,17 +2415,20 @@ function openProduct(name){
 
   document
     .getElementById("quantity")
-    .textContent=quantity;
+    .textContent=
+    quantity;
 
 
   document
     .getElementById("productName")
-    .textContent=name;
+    .textContent=
+    name;
 
 
   document
     .getElementById("productModal")
-    .classList.add("show");
+    .classList
+    .add("show");
 
 }
 
@@ -2315,14 +2447,15 @@ function changeQty(amount){
 
   document
     .getElementById("quantity")
-    .textContent=quantity;
+    .textContent=
+    quantity;
 
 }
 
 
-/* =========================
+/* =====================================================
    CART
-========================= */
+===================================================== */
 
 let cart=[];
 
@@ -2364,7 +2497,8 @@ function addToCart(){
 
   document
     .getElementById("cartModal")
-    .classList.add("show");
+    .classList
+    .add("show");
 
 }
 
@@ -2380,6 +2514,11 @@ function updateCart(){
     box.innerHTML=
       "<p>Your cart is empty.</p>";
 
+    document
+      .getElementById("cartTotal")
+      .textContent=
+      "EGP 0";
+
     return;
 
   }
@@ -2388,49 +2527,51 @@ function updateCart(){
   let html="";
 
 
-  cart.forEach(function(item,index){
+  cart.forEach(
+    function(item,index){
 
-    html+=`
+      html+=`
 
-      <div class="cart-item">
+        <div class="cart-item">
 
-        <div>
+          <div>
 
-          <strong>
-            ${item.product}
-          </strong>
+            <strong>
+              ${item.product}
+            </strong>
 
-          <br>
+            <br>
 
-          Color:
-          ${item.color}
+            Color:
+            ${item.color}
 
-          <br>
+            <br>
 
-          Size:
-          ${item.size}
+            Size:
+            ${item.size}
 
-          <br>
+            <br>
 
-          Quantity:
-          ${item.quantity}
+            Quantity:
+            ${item.quantity}
+
+          </div>
+
+
+          <button
+            class="small-btn"
+            onclick="removeCart(${index})">
+
+            ×
+
+          </button>
 
         </div>
 
+      `;
 
-        <button
-          class="small-btn"
-          onclick="removeCart(${index})">
-
-          ×
-
-        </button>
-
-      </div>
-
-    `;
-
-  });
+    }
+  );
 
 
   box.innerHTML=html;
@@ -2438,7 +2579,8 @@ function updateCart(){
 
   document
     .getElementById("cartTotal")
-    .textContent="EGP 0";
+    .textContent=
+    "EGP 0";
 
 }
 
@@ -2452,15 +2594,17 @@ function removeCart(index){
 }
 
 
-/* =========================
+/* =====================================================
    CHECKOUT
-========================= */
+===================================================== */
 
 function openCheckout(){
 
   if(cart.length===0){
 
-    alert("Your cart is empty.");
+    alert(
+      "Your cart is empty."
+    );
 
     return;
 
@@ -2470,16 +2614,32 @@ function openCheckout(){
   closeModal("cartModal");
 
 
+  /*
+    If user is logged in,
+    automatically use their Firebase email.
+  */
+
+  if(auth.currentUser){
+
+    document
+      .getElementById("customerEmail")
+      .value =
+      auth.currentUser.email || "";
+
+  }
+
+
   document
     .getElementById("checkoutModal")
-    .classList.add("show");
+    .classList
+    .add("show");
 
 }
 
 
-/* =========================
+/* =====================================================
    PAYMENT
-========================= */
+===================================================== */
 
 function openPayment(){
 
@@ -2511,7 +2671,12 @@ function openPayment(){
       .trim();
 
 
-  if(!name || !phone || !email || !address){
+  if(
+    !name ||
+    !phone ||
+    !email ||
+    !address
+  ){
 
     alert(
       "Please complete all information."
@@ -2525,7 +2690,7 @@ function openPayment(){
   if(!validEgyptianPhone(phone)){
 
     alert(
-      "Phone number must be exactly 11 digits and start with 01."
+      "Phone number must be exactly 11 English digits and start with 01."
     );
 
     return;
@@ -2535,60 +2700,72 @@ function openPayment(){
 
   document
     .getElementById("hiddenName")
-    .value=name;
+    .value=
+    name;
 
 
   document
     .getElementById("hiddenPhone")
-    .value=phone;
+    .value=
+    phone;
 
 
   document
     .getElementById("hiddenEmail")
-    .value=email;
+    .value=
+    email;
 
 
   document
     .getElementById("hiddenAddress")
-    .value=address;
+    .value=
+    address;
 
 
   document
     .getElementById("codName")
-    .value=name;
+    .value=
+    name;
 
 
   document
     .getElementById("codPhone")
-    .value=phone;
+    .value=
+    phone;
 
 
   document
     .getElementById("codEmail")
-    .value=email;
+    .value=
+    email;
 
 
   document
     .getElementById("codAddress")
-    .value=address;
+    .value=
+    address;
 
 
   const orderText =
-    cart.map(function(item){
+    cart
+      .map(function(item){
 
-      return `${item.product} | Color: ${item.color} | Size: ${item.size} | Quantity: ${item.quantity} | Price: EGP 0`;
+        return `${item.product} | Color: ${item.color} | Size: ${item.size} | Quantity: ${item.quantity} | Price: EGP 0`;
 
-    }).join("\n");
+      })
+      .join("\n");
 
 
   document
     .getElementById("hiddenOrder")
-    .value=orderText;
+    .value=
+    orderText;
 
 
   document
     .getElementById("codOrder")
-    .value=orderText;
+    .value=
+    orderText;
 
 
   closeModal("checkoutModal");
@@ -2596,14 +2773,15 @@ function openPayment(){
 
   document
     .getElementById("paymentModal")
-    .classList.add("show");
+    .classList
+    .add("show");
 
 }
 
 
-/* =========================
+/* =====================================================
    PAYMENT SELECTION
-========================= */
+===================================================== */
 
 function selectPayment(type){
 
@@ -2611,7 +2789,8 @@ function selectPayment(type){
     .querySelectorAll(".payment-option")
     .forEach(function(el){
 
-      el.classList.remove("active");
+      el.classList
+        .remove("active");
 
     });
 
@@ -2620,7 +2799,8 @@ function selectPayment(type){
     .querySelectorAll(".payment-details")
     .forEach(function(el){
 
-      el.classList.remove("show");
+      el.classList
+        .remove("show");
 
     });
 
@@ -2629,12 +2809,14 @@ function selectPayment(type){
 
     document
       .getElementById("vodafoneOption")
-      .classList.add("active");
+      .classList
+      .add("active");
 
 
     document
       .getElementById("vodafoneDetails")
-      .classList.add("show");
+      .classList
+      .add("show");
 
   }
 
@@ -2643,21 +2825,23 @@ function selectPayment(type){
 
     document
       .getElementById("codOption")
-      .classList.add("active");
+      .classList
+      .add("active");
 
 
     document
       .getElementById("codDetails")
-      .classList.add("show");
+      .classList
+      .add("show");
 
   }
 
 }
 
 
-/* =========================
+/* =====================================================
    SUCCESS
-========================= */
+===================================================== */
 
 if(
   new URLSearchParams(location.search)
@@ -2666,7 +2850,8 @@ if(
 
   document
     .getElementById("successModal")
-    .classList.add("show");
+    .classList
+    .add("show");
 
 }
 
