@@ -3,11 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>NAZRA</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
+
 *{
   box-sizing:border-box;
   margin:0;
@@ -41,7 +43,9 @@ body{
   transition:.25s;
 }
 
-button,input,select{
+button,
+input,
+select{
   font:inherit;
 }
 
@@ -55,25 +59,29 @@ a{
 }
 
 
-/* HEADER */
+/* ================= HEADER ================= */
 
 header{
   height:75px;
   padding:0 22px;
+
   display:flex;
   align-items:center;
   justify-content:space-between;
+
   border-bottom:1px solid var(--border);
+
   position:sticky;
   top:0;
   z-index:20;
+
   background:var(--bg);
 }
 
 .logo{
   font-family:Georgia,serif;
   font-size:27px;
-  letter-spacing:5px;
+  letter-spacing:3px;
 }
 
 nav{
@@ -86,8 +94,10 @@ nav{
   background:none;
   border:0;
   color:var(--text);
+
   font-size:12px;
   letter-spacing:1px;
+
   padding:8px;
 }
 
@@ -95,20 +105,26 @@ nav{
   border:1px solid var(--border);
   background:var(--card);
   color:var(--text);
+
   border-radius:20px;
+
   padding:7px 10px;
+
   font-size:11px;
 }
 
 
-/* HOME */
+/* ================= HOME ================= */
 
 #home{
   min-height:calc(100vh - 75px);
+
   display:flex;
   align-items:center;
   justify-content:center;
+
   text-align:center;
+
   padding:30px 20px;
 }
 
@@ -119,44 +135,42 @@ nav{
 
 .hero h1{
   font-family:Georgia,serif;
+
   font-size:clamp(55px,16vw,125px);
-  letter-spacing:10px;
+
+  /* الحروف قريبة من بعض */
+  letter-spacing:2px;
+
   margin-bottom:15px;
 }
 
 .hero p{
   color:var(--muted);
-  letter-spacing:6px;
+
+  letter-spacing:4px;
+
   font-size:12px;
+
   margin-bottom:35px;
 }
 
 .shop-main{
   border:0;
+
   background:var(--button);
   color:var(--buttonText);
+
   padding:18px 45px;
+
   font-weight:bold;
-  letter-spacing:3px;
+
+  letter-spacing:2px;
 }
 
 
-/* SECTIONS */
+/* ================= COLLECTION ================= */
 
-section{
-  padding:75px 6%;
-}
-
-.section-title{
-  text-align:center;
-  font-family:Georgia,serif;
-  font-size:34px;
-  letter-spacing:5px;
-  margin-bottom:45px;
-}
-
-
-/* COLLECTION HIDDEN UNTIL LOGIN */
+/* مخفية تماما قبل تسجيل الدخول */
 
 #shop{
   display:none;
@@ -167,26 +181,50 @@ section{
 }
 
 
-/* PRODUCTS */
+/* ================= PRODUCTS ================= */
+
+section{
+  padding:75px 6%;
+}
+
+.section-title{
+  text-align:center;
+
+  font-family:Georgia,serif;
+
+  font-size:34px;
+
+  letter-spacing:3px;
+
+  margin-bottom:45px;
+}
 
 .products{
   display:grid;
+
   grid-template-columns:repeat(3,1fr);
+
   gap:20px;
+
   max-width:1200px;
+
   margin:auto;
 }
 
 .card{
   background:var(--card);
+
   border:1px solid var(--border);
+
   overflow:hidden;
 }
 
 .product-img{
   width:100%;
   height:360px;
+
   object-fit:cover;
+
   background:#111;
 }
 
@@ -196,34 +234,47 @@ section{
 
 .card h3{
   font-size:14px;
+
   letter-spacing:2px;
+
   margin-bottom:8px;
 }
 
 .price{
   color:var(--muted);
+
   margin-bottom:18px;
 }
 
 .product-btn{
   width:100%;
+
   padding:13px;
+
   border:1px solid var(--border);
+
   background:var(--button);
+
   color:var(--buttonText);
 }
 
 
-/* MODALS */
+/* ================= MODALS ================= */
 
 .modal{
   position:fixed;
+
   inset:0;
+
   background:rgba(0,0,0,.75);
+
   display:none;
+
   align-items:center;
   justify-content:center;
+
   z-index:100;
+
   padding:20px;
 }
 
@@ -233,28 +284,42 @@ section{
 
 .modal-box{
   width:100%;
+
   max-width:500px;
+
   max-height:90vh;
+
   overflow:auto;
+
   background:var(--card);
+
   border:1px solid var(--border);
+
   padding:28px;
+
   position:relative;
 }
 
 .close{
   position:absolute;
+
   right:18px;
   top:15px;
+
   background:none;
+
   border:0;
+
   color:var(--text);
+
   font-size:25px;
 }
 
 .modal h2{
   font-family:Georgia,serif;
-  letter-spacing:3px;
+
+  letter-spacing:2px;
+
   margin-bottom:25px;
 }
 
@@ -264,49 +329,69 @@ section{
 
 .field label{
   display:block;
+
   color:var(--muted);
+
   font-size:12px;
+
   margin-bottom:7px;
 }
 
 .field input,
 .field select{
   width:100%;
+
   padding:14px;
+
   background:var(--bg);
+
   color:var(--text);
+
   border:1px solid var(--border);
+
   outline:none;
 }
 
 .primary{
   width:100%;
+
   padding:15px;
+
   border:0;
+
   background:var(--button);
+
   color:var(--buttonText);
+
   font-weight:bold;
+
   letter-spacing:2px;
 }
 
 
-/* AUTH */
+/* ================= AUTH ================= */
 
 .auth-tabs{
   display:grid;
+
   grid-template-columns:1fr 1fr;
+
   margin-bottom:25px;
 }
 
 .auth-tab{
   padding:12px;
+
   background:none;
+
   color:var(--muted);
+
   border:1px solid var(--border);
 }
 
 .auth-tab.active{
   color:var(--text);
+
   border-color:var(--text);
 }
 
@@ -320,24 +405,32 @@ section{
 
 .error{
   color:#ff6b6b;
+
   font-size:13px;
+
   margin-bottom:15px;
+
   line-height:1.5;
 }
 
 .success-msg{
   color:#6cff9a;
+
   font-size:13px;
+
   margin-bottom:15px;
+
   line-height:1.5;
 }
 
 
-/* ACCOUNT */
+/* ================= ACCOUNT ================= */
 
 .account-bar{
   display:none;
+
   align-items:center;
+
   gap:8px;
 }
 
@@ -346,57 +439,74 @@ section{
 }
 
 
-/* PRODUCT */
+/* ================= PRODUCT ================= */
 
 .product-preview{
   width:100%;
+
   height:300px;
+
   object-fit:cover;
+
   margin-bottom:20px;
 }
 
 .qty{
   display:flex;
+
   align-items:center;
+
   gap:10px;
 }
 
 .qty button{
   width:38px;
   height:38px;
+
   background:var(--bg);
+
   border:1px solid var(--border);
+
   color:var(--text);
 }
 
 .qty span{
   min-width:25px;
+
   text-align:center;
 }
 
 
-/* CART */
+/* ================= CART ================= */
 
 .cart-item{
   display:flex;
+
   justify-content:space-between;
+
   gap:15px;
+
   padding:15px 0;
+
   border-bottom:1px solid var(--border);
 }
 
 .cart-total{
   margin:25px 0;
+
   font-size:18px;
 }
 
 
-/* PAYMENT */
+/* ================= PAYMENT ================= */
 
 .payment-option{
   border:1px solid var(--border);
+
   padding:15px;
+
   margin-bottom:10px;
+
   cursor:pointer;
 }
 
@@ -406,6 +516,7 @@ section{
 
 .payment-details{
   display:none;
+
   margin:15px 0;
 }
 
@@ -415,45 +526,54 @@ section{
 
 .vodafone{
   font-size:22px;
+
   letter-spacing:2px;
+
   margin:15px 0;
 }
 
 
-/* CONTACT */
+/* ================= CONTACT ================= */
 
 .contact-line{
   padding:15px 0;
+
   border-bottom:1px solid var(--border);
 }
 
 .contact-line span{
   display:block;
+
   color:var(--muted);
+
   font-size:11px;
+
   margin-bottom:5px;
 }
 
 
-/* SUCCESS */
+/* ================= SUCCESS ================= */
 
 .success{
   text-align:center;
+
   padding:45px 10px;
 }
 
 .success h2{
   font-size:32px;
+
   margin-bottom:20px;
 }
 
 .success p{
   color:var(--muted);
+
   line-height:1.7;
 }
 
 
-/* MOBILE */
+/* ================= MOBILE ================= */
 
 @media(max-width:700px){
 
@@ -463,7 +583,7 @@ section{
 
   .logo{
     font-size:20px;
-    letter-spacing:3px;
+    letter-spacing:2px;
   }
 
   nav{
@@ -482,11 +602,13 @@ section{
 
   .hero h1{
     font-size:62px;
-    letter-spacing:5px;
+
+    /* NAZRA الحروف قريبة */
+    letter-spacing:1px;
   }
 
   .hero p{
-    letter-spacing:3px;
+    letter-spacing:2px;
   }
 
   .products{
@@ -501,6 +623,7 @@ section{
     padding:55px 18px;
   }
 }
+
 </style>
 </head>
 
@@ -508,38 +631,65 @@ section{
 <body>
 
 
-<!-- HEADER -->
+<!-- ================= HEADER ================= -->
 
 <header>
 
-  <div class="logo">COLLECTION</div>
+  <div class="logo">
+    COLLECTION
+  </div>
 
   <nav>
 
-    <button class="nav-btn" onclick="openShop()">
+    <button
+      class="nav-btn"
+      onclick="openShop()">
+
       SHOP
+
     </button>
 
-    <button class="nav-btn" onclick="openContact()">
+
+    <button
+      class="nav-btn"
+      onclick="openContact()">
+
       CONTACT
+
     </button>
 
-    <div class="account-bar" id="accountBar">
 
-      <button class="small-btn" onclick="logout()">
+    <div
+      class="account-bar"
+      id="accountBar">
+
+      <button
+        class="small-btn"
+        onclick="logout()">
+
         LOGOUT
+
       </button>
 
     </div>
 
-    <button class="small-btn" onclick="toggleLanguage()">
+
+    <button
+      class="small-btn"
+      onclick="toggleLanguage()">
+
       EN / AR
+
     </button>
 
-    <button class="small-btn"
-            onclick="toggleTheme()"
-            id="themeBtn">
+
+    <button
+      class="small-btn"
+      onclick="toggleTheme()"
+      id="themeBtn">
+
       ☀️
+
     </button>
 
   </nav>
@@ -547,20 +697,23 @@ section{
 </header>
 
 
-<!-- HOME -->
+<!-- ================= HOME ================= -->
 
 <section id="home">
 
   <div class="hero">
 
-    <h1>NAZRA</h1>
+    <h1>
+      NAZRA
+    </h1>
 
     <p id="heroText">
       MINIMAL. BOLD. DIFFERENT.
     </p>
 
-    <button class="shop-main"
-            onclick="startShop()">
+    <button
+      class="shop-main"
+      onclick="startShop()">
 
       SHOP NOW
 
@@ -571,35 +724,41 @@ section{
 </section>
 
 
-<!-- COLLECTION -->
+<!-- ================= COLLECTION ================= -->
 
 <section id="shop">
 
-  <h2 class="section-title"
-      id="collectionTitle">
+  <h2
+    class="section-title"
+    id="collectionTitle">
 
     COLLECTION
 
   </h2>
+
 
   <div class="products">
 
 
     <div class="card">
 
-      <img src="Logo.PNG"
-           class="product-img">
+      <img
+        src="Logo.PNG"
+        class="product-img">
 
       <div class="card-info">
 
-        <h3>NAZRA HOODIE</h3>
+        <h3>
+          NAZRA HOODIE
+        </h3>
 
         <div class="price">
           EGP 0
         </div>
 
-        <button class="product-btn"
-                onclick="openProduct('NAZRA HOODIE')">
+        <button
+          class="product-btn"
+          onclick="openProduct('NAZRA HOODIE')">
 
           VIEW PRODUCT
 
@@ -612,19 +771,23 @@ section{
 
     <div class="card">
 
-      <img src="Logo.PNG"
-           class="product-img">
+      <img
+        src="Logo.PNG"
+        class="product-img">
 
       <div class="card-info">
 
-        <h3>NAZRA TEE</h3>
+        <h3>
+          NAZRA TEE
+        </h3>
 
         <div class="price">
           EGP 0
         </div>
 
-        <button class="product-btn"
-                onclick="openProduct('NAZRA TEE')">
+        <button
+          class="product-btn"
+          onclick="openProduct('NAZRA TEE')">
 
           VIEW PRODUCT
 
@@ -637,19 +800,23 @@ section{
 
     <div class="card">
 
-      <img src="Logo.PNG"
-           class="product-img">
+      <img
+        src="Logo.PNG"
+        class="product-img">
 
       <div class="card-info">
 
-        <h3>NAZRA COLLECTION</h3>
+        <h3>
+          NAZRA COLLECTION
+        </h3>
 
         <div class="price">
           EGP 0
         </div>
 
-        <button class="product-btn"
-                onclick="openProduct('NAZRA COLLECTION')">
+        <button
+          class="product-btn"
+          onclick="openProduct('NAZRA COLLECTION')">
 
           VIEW PRODUCT
 
@@ -658,23 +825,29 @@ section{
       </div>
 
     </div>
-
 
   </div>
 
 </section>
 
 
-<!-- AUTH -->
+<!-- ================= AUTH ================= -->
 
-<div class="modal" id="authModal">
+<div
+  class="modal"
+  id="authModal">
 
   <div class="modal-box">
 
-    <button class="close"
-            onclick="closeModal('authModal')">
+
+    <button
+      class="close"
+      onclick="closeModal('authModal')">
+
       ×
+
     </button>
+
 
     <h2>
       NAZRA ACCOUNT
@@ -683,18 +856,20 @@ section{
 
     <div class="auth-tabs">
 
-      <button class="auth-tab active"
-              id="loginTab"
-              onclick="showAuth('login')">
+      <button
+        class="auth-tab active"
+        id="loginTab"
+        onclick="showAuth('login')">
 
         LOGIN
 
       </button>
 
 
-      <button class="auth-tab"
-              id="signupTab"
-              onclick="showAuth('signup')">
+      <button
+        class="auth-tab"
+        id="signupTab"
+        onclick="showAuth('signup')">
 
         SIGN UP
 
@@ -703,19 +878,24 @@ section{
     </div>
 
 
-    <div id="authError"
-         class="error">
+    <div
+      id="authError"
+      class="error">
     </div>
 
-    <div id="authSuccess"
-         class="success-msg">
+
+    <div
+      id="authSuccess"
+      class="success-msg">
     </div>
 
 
     <!-- LOGIN -->
 
-    <form id="loginForm"
-          class="auth-form active">
+    <form
+      id="loginForm"
+      class="auth-form active">
+
 
       <div class="field">
 
@@ -748,8 +928,9 @@ section{
       </div>
 
 
-      <button class="primary"
-              type="submit">
+      <button
+        class="primary"
+        type="submit">
 
         LOGIN
 
@@ -760,8 +941,10 @@ section{
 
     <!-- SIGN UP -->
 
-    <form id="signupForm"
-          class="auth-form">
+    <form
+      id="signupForm"
+      class="auth-form">
+
 
       <div class="field">
 
@@ -774,6 +957,7 @@ section{
           type="tel"
           inputmode="numeric"
           maxlength="11"
+          pattern="01[0-9]{9}"
           required
           placeholder="01XXXXXXXXX">
 
@@ -811,8 +995,9 @@ section{
       </div>
 
 
-      <button class="primary"
-              type="submit">
+      <button
+        class="primary"
+        type="submit">
 
         CREATE ACCOUNT
 
@@ -825,21 +1010,27 @@ section{
 </div>
 
 
-<!-- PRODUCT -->
+<!-- ================= PRODUCT ================= -->
 
-<div class="modal"
-     id="productModal">
+<div
+  class="modal"
+  id="productModal">
 
   <div class="modal-box">
 
-    <button class="close"
-            onclick="closeModal('productModal')">
+
+    <button
+      class="close"
+      onclick="closeModal('productModal')">
+
       ×
+
     </button>
 
 
-    <img src="Logo.PNG"
-         class="product-preview">
+    <img
+      src="Logo.PNG"
+      class="product-preview">
 
 
     <h2 id="productName">
@@ -875,21 +1066,10 @@ section{
 
       <select id="productSize">
 
-        <option>
-          S
-        </option>
-
-        <option>
-          M
-        </option>
-
-        <option>
-          L
-        </option>
-
-        <option>
-          XL
-        </option>
+        <option>S</option>
+        <option>M</option>
+        <option>L</option>
+        <option>XL</option>
 
       </select>
 
@@ -905,16 +1085,24 @@ section{
 
       <div class="qty">
 
-        <button onclick="changeQty(-1)">
+        <button
+          onclick="changeQty(-1)">
+
           −
+
         </button>
+
 
         <span id="quantity">
           1
         </span>
 
-        <button onclick="changeQty(1)">
+
+        <button
+          onclick="changeQty(1)">
+
           +
+
         </button>
 
       </div>
@@ -922,8 +1110,9 @@ section{
     </div>
 
 
-    <button class="primary"
-            onclick="addToCart()">
+    <button
+      class="primary"
+      onclick="addToCart()">
 
       ADD TO CART
 
@@ -934,28 +1123,37 @@ section{
 </div>
 
 
-<!-- CART -->
+<!-- ================= CART ================= -->
 
-<div class="modal"
-     id="cartModal">
+<div
+  class="modal"
+  id="cartModal">
 
   <div class="modal-box">
 
-    <button class="close"
-            onclick="closeModal('cartModal')">
+
+    <button
+      class="close"
+      onclick="closeModal('cartModal')">
+
       ×
+
     </button>
+
 
     <h2>
       CART
     </h2>
 
+
     <div id="cartItems">
     </div>
+
 
     <div class="cart-total">
 
       TOTAL:
+
       <strong id="cartTotal">
         EGP 0
       </strong>
@@ -963,8 +1161,9 @@ section{
     </div>
 
 
-    <button class="primary"
-            onclick="openCheckout()">
+    <button
+      class="primary"
+      onclick="openCheckout()">
 
       CHECKOUT
 
@@ -975,17 +1174,23 @@ section{
 </div>
 
 
-<!-- CHECKOUT -->
+<!-- ================= CHECKOUT ================= -->
 
-<div class="modal"
-     id="checkoutModal">
+<div
+  class="modal"
+  id="checkoutModal">
 
   <div class="modal-box">
 
-    <button class="close"
-            onclick="closeModal('checkoutModal')">
+
+    <button
+      class="close"
+      onclick="closeModal('checkoutModal')">
+
       ×
+
     </button>
+
 
     <h2>
       CHECKOUT
@@ -1016,6 +1221,7 @@ section{
         type="tel"
         inputmode="numeric"
         maxlength="11"
+        pattern="01[0-9]{9}"
         placeholder="01XXXXXXXXX">
 
     </div>
@@ -1048,8 +1254,9 @@ section{
     </div>
 
 
-    <button class="primary"
-            onclick="openPayment()">
+    <button
+      class="primary"
+      onclick="openPayment()">
 
       CONTINUE TO PAYMENT
 
@@ -1060,26 +1267,33 @@ section{
 </div>
 
 
-<!-- PAYMENT -->
+<!-- ================= PAYMENT ================= -->
 
-<div class="modal"
-     id="paymentModal">
+<div
+  class="modal"
+  id="paymentModal">
 
   <div class="modal-box">
 
-    <button class="close"
-            onclick="closeModal('paymentModal')">
+
+    <button
+      class="close"
+      onclick="closeModal('paymentModal')">
+
       ×
+
     </button>
+
 
     <h2>
       PAYMENT
     </h2>
 
 
-    <div class="payment-option"
-         onclick="selectPayment('vodafone')"
-         id="vodafoneOption">
+    <div
+      class="payment-option"
+      onclick="selectPayment('vodafone')"
+      id="vodafoneOption">
 
       <strong>
         VODAFONE CASH
@@ -1088,9 +1302,10 @@ section{
     </div>
 
 
-    <div class="payment-option"
-         onclick="selectPayment('cod')"
-         id="codOption">
+    <div
+      class="payment-option"
+      onclick="selectPayment('cod')"
+      id="codOption">
 
       <strong>
         CASH ON DELIVERY
@@ -1101,8 +1316,9 @@ section{
 
     <!-- VODAFONE -->
 
-    <div class="payment-details"
-         id="vodafoneDetails">
+    <div
+      class="payment-details"
+      id="vodafoneDetails">
 
       <p>
         Transfer to Vodafone Cash:
@@ -1180,6 +1396,7 @@ section{
             TRANSFER SCREENSHOT
           </label>
 
+
           <input
             type="file"
             name="attachment"
@@ -1204,12 +1421,16 @@ section{
 
     <!-- COD -->
 
-    <div class="payment-details"
-         id="codDetails">
+    <div
+      class="payment-details"
+      id="codDetails">
 
-      <p style="color:var(--muted);line-height:1.6;">
+
+      <p
+        style="color:var(--muted);line-height:1.6;">
 
         Delivery fee:
+
         <strong>
           EGP 0
         </strong>
@@ -1293,17 +1514,23 @@ section{
 </div>
 
 
-<!-- CONTACT -->
+<!-- ================= CONTACT ================= -->
 
-<div class="modal"
-     id="contactModal">
+<div
+  class="modal"
+  id="contactModal">
 
   <div class="modal-box">
 
-    <button class="close"
-            onclick="closeModal('contactModal')">
+
+    <button
+      class="close"
+      onclick="closeModal('contactModal')">
+
       ×
+
     </button>
+
 
     <h2>
       CONTACT
@@ -1364,16 +1591,20 @@ section{
 </div>
 
 
-<!-- SUCCESS -->
+<!-- ================= SUCCESS ================= -->
 
-<div class="modal"
-     id="successModal">
+<div
+  class="modal"
+  id="successModal">
 
-  <div class="modal-box success">
+  <div
+    class="modal-box success">
+
 
     <h2>
       ORDER COMPLETED
     </h2>
+
 
     <p>
 
@@ -1389,8 +1620,9 @@ section{
     <br>
 
 
-    <button class="primary"
-            onclick="location.href='/'">
+    <button
+      class="primary"
+      onclick="location.href='/'">
 
       BACK TO COLLECTION
 
@@ -1411,13 +1643,18 @@ section{
 const SUPABASE_URL =
 "https://kqzepzjzufmjncbovvxz.supabase.co";
 
+
 const SUPABASE_PUBLISHABLE_KEY =
 "sb_publishable_UELhMfLwe44PnyhC9yNvBg_0y9HlCHt";
 
+
 const supabaseClient =
 supabase.createClient(
+
   SUPABASE_URL,
+
   SUPABASE_PUBLISHABLE_KEY,
+
   {
     auth:{
       persistSession:true,
@@ -1425,6 +1662,7 @@ supabase.createClient(
       detectSessionInUrl:true
     }
   }
+
 );
 
 
@@ -1434,44 +1672,68 @@ supabase.createClient(
 
 let arabic=false;
 
+
 function toggleLanguage(){
 
   arabic=!arabic;
+
 
   if(arabic){
 
     document.documentElement.dir="rtl";
 
-    document.querySelector(".logo").textContent="المجموعة";
+    /*
+      مهم:
+      NAZRA تفضل NAZRA
+      مش هتتحول لعربي
+    */
 
-    document.querySelector(".hero h1").textContent="نظرة";
+    document.querySelector(".logo")
+      .textContent="COLLECTION";
 
-    document.getElementById("heroText").textContent=
-    "بسيط. جريء. مختلف.";
 
-    document.querySelector(".shop-main").textContent=
-    "تسوق الآن";
+    document.querySelector(".hero h1")
+      .textContent="NAZRA";
 
-    document.getElementById("collectionTitle").textContent=
-    "المجموعة";
+
+    document.getElementById("heroText")
+      .textContent="بسيط. جريء. مختلف.";
+
+
+    document.querySelector(".shop-main")
+      .textContent="تسوق الآن";
+
+
+    document.getElementById("collectionTitle")
+      .textContent="المجموعة";
+
 
   }else{
 
     document.documentElement.dir="ltr";
 
-    document.querySelector(".logo").textContent="COLLECTION";
 
-    document.querySelector(".hero h1").textContent="NAZRA";
+    document.querySelector(".logo")
+      .textContent="COLLECTION";
 
-    document.getElementById("heroText").textContent=
-    "MINIMAL. BOLD. DIFFERENT.";
 
-    document.querySelector(".shop-main").textContent=
-    "SHOP NOW";
+    document.querySelector(".hero h1")
+      .textContent="NAZRA";
 
-    document.getElementById("collectionTitle").textContent=
-    "COLLECTION";
+
+    document.getElementById("heroText")
+      .textContent="MINIMAL. BOLD. DIFFERENT.";
+
+
+    document.querySelector(".shop-main")
+      .textContent="SHOP NOW";
+
+
+    document.getElementById("collectionTitle")
+      .textContent="COLLECTION";
+
   }
+
 }
 
 
@@ -1483,24 +1745,30 @@ function toggleTheme(){
 
   document.body.classList.toggle("light");
 
-  const light =
-  document.body.classList.contains("light");
 
-  document.getElementById("themeBtn").textContent =
-  light ? "🌙" : "☀️";
+  const light =
+    document.body.classList.contains("light");
+
+
+  document.getElementById("themeBtn")
+    .textContent =
+      light ? "🌙" : "☀️";
+
 }
 
 
 /* =========================
-   COLLECTION ACCESS
+   COLLECTION
 ========================= */
 
 function showCollection(){
 
   const shop =
-  document.getElementById("shop");
+    document.getElementById("shop");
+
 
   shop.classList.add("show");
+
 
   setTimeout(function(){
 
@@ -1509,19 +1777,26 @@ function showCollection(){
     });
 
   },100);
+
 }
 
+
+/* =========================
+   SHOP BUTTON
+========================= */
 
 async function openShop(){
 
   const {data,error} =
-  await supabaseClient.auth.getSession();
+    await supabaseClient.auth.getSession();
+
 
   if(error){
 
     console.log(error);
 
   }
+
 
   if(data && data.session){
 
@@ -1531,23 +1806,28 @@ async function openShop(){
 
     clearAuthMessages();
 
-    document.getElementById("authModal")
+
+    document
+      .getElementById("authModal")
       .classList.add("show");
 
   }
+
 }
 
 
 async function startShop(){
 
   const {data,error} =
-  await supabaseClient.auth.getSession();
+    await supabaseClient.auth.getSession();
+
 
   if(error){
 
     console.log(error);
 
   }
+
 
   if(data && data.session){
 
@@ -1557,12 +1837,19 @@ async function startShop(){
 
     clearAuthMessages();
 
-    document.getElementById("authModal")
+
+    document
+      .getElementById("authModal")
       .classList.add("show");
 
   }
+
 }
 
+
+/* =========================
+   CONTACT
+========================= */
 
 function openContact(){
 
@@ -1590,6 +1877,7 @@ function showAuth(type){
 
   clearAuthMessages();
 
+
   document
     .querySelectorAll(".auth-tab")
     .forEach(function(el){
@@ -1614,6 +1902,7 @@ function showAuth(type){
       .getElementById("loginTab")
       .classList.add("active");
 
+
     document
       .getElementById("loginForm")
       .classList.add("active");
@@ -1624,46 +1913,60 @@ function showAuth(type){
       .getElementById("signupTab")
       .classList.add("active");
 
+
     document
       .getElementById("signupForm")
       .classList.add("active");
 
   }
+
 }
 
 
 function clearAuthMessages(){
 
-  document.getElementById("authError")
+  document
+    .getElementById("authError")
     .textContent="";
 
-  document.getElementById("authSuccess")
+
+  document
+    .getElementById("authSuccess")
     .textContent="";
+
 }
 
 
 function authError(message){
 
-  document.getElementById("authError")
+  document
+    .getElementById("authError")
     .textContent=message;
 
-  document.getElementById("authSuccess")
+
+  document
+    .getElementById("authSuccess")
     .textContent="";
+
 }
 
 
 function authSuccess(message){
 
-  document.getElementById("authSuccess")
+  document
+    .getElementById("authSuccess")
     .textContent=message;
 
-  document.getElementById("authError")
+
+  document
+    .getElementById("authError")
     .textContent="";
+
 }
 
 
 /* =========================
-   PHONE VALIDATION
+   PHONE
 ========================= */
 
 function validEgyptianPhone(phone){
@@ -1684,6 +1987,7 @@ document
     async function(e){
 
       e.preventDefault();
+
 
       clearAuthMessages();
 
@@ -1719,7 +2023,7 @@ document
       }
 
 
-      if(password.length < 6){
+      if(password.length<6){
 
         authError(
           "Password must be at least 6 characters."
@@ -1756,34 +2060,22 @@ document
 
 
       /*
-        If email confirmation is enabled,
-        Supabase may create the account without
-        creating an active session.
+        لو Supabase عامل Email Confirmation
+        مش هيكون فيه Session لحد ما المستخدم
+        يأكد الإيميل.
       */
 
       if(data && data.session){
 
-        /*
-          Save profile only when authenticated.
-        */
+        await supabaseClient
+          .from("Profiles")
+          .insert({
 
-        const {error:profileError} =
-          await supabaseClient
-            .from("Profiles")
-            .insert({
+            Idid:data.user.id,
 
-              Idid:data.user.id,
+            Phone:phone
 
-              Phone:phone
-
-            });
-
-
-        if(profileError){
-
-          console.log(profileError);
-
-        }
+          });
 
 
         authSuccess(
@@ -1800,14 +2092,15 @@ document
 
           showCollection();
 
-        },800);
+        },700);
 
 
       }else{
 
         authSuccess(
-          "Account created. Please check your email, confirm your account, then login."
+          "Account created. Check your email, confirm your account, then login."
         );
+
 
         showAuth("login");
 
@@ -1829,6 +2122,7 @@ document
 
       e.preventDefault();
 
+
       clearAuthMessages();
 
 
@@ -1846,13 +2140,14 @@ document
 
 
       const {data,error} =
-        await supabaseClient.auth.signInWithPassword({
+        await supabaseClient.auth
+          .signInWithPassword({
 
-          email:email,
+            email:email,
 
-          password:password
+            password:password
 
-        });
+          });
 
 
       if(error){
@@ -1868,7 +2163,13 @@ document
 
         updateAccountUI();
 
+
         closeModal("authModal");
+
+
+        /*
+          هنا فقط الكولكشن تظهر
+        */
 
         showCollection();
 
@@ -1898,6 +2199,10 @@ async function logout(){
 
   }
 
+
+  /*
+    إخفاء الكولكشن بعد Logout
+  */
 
   document
     .getElementById("shop")
@@ -1936,6 +2241,11 @@ async function updateAccountUI(){
   }else{
 
     bar.classList.remove("show");
+
+
+    /*
+      ممنوع الكولكشن تظهر بدون Login
+    */
 
     document
       .getElementById("shop")
