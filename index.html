@@ -1,20 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>NAZRA</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NAZRA — نظرة</title>
 
 <style>
-:root{
-  --bg:#050505;
-  --panel:#0c0c0c;
-  --card:#111;
-  --line:#262626;
-  --text:#f5f1e8;
-  --muted:#969696;
-  --gold:#b7a16b;
-}
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap');
 
 *{
   box-sizing:border-box;
@@ -27,732 +19,901 @@ html{
 }
 
 body{
-  background:var(--bg);
-  color:var(--text);
-  font-family:Arial,Helvetica,sans-serif;
-  overflow-x:hidden;
+  background:#080808;
+  color:#f5f2eb;
+  font-family:'Cairo',Arial,sans-serif;
+  overflow:hidden;
+  transition:.5s;
 }
 
-button,input,select,textarea{
-  font:inherit;
+/* =========================
+   LANDING
+========================= */
+
+#landing{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:
+    radial-gradient(circle at center,#292929 0%,#111 35%,#050505 80%);
+  transition:1s ease;
 }
 
-button{
+.landing-content{
+  text-align:center;
+}
+
+.landing-ar{
+  font-family:'Cairo',sans-serif;
+  font-weight:300;
+  font-size:clamp(60px,13vw,145px);
+  letter-spacing:5px;
+  line-height:1;
+}
+
+.landing-en{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(14px,2vw,22px);
+  letter-spacing:12px;
+  opacity:.5;
+  direction:ltr;
+  margin-top:10px;
+}
+
+.enter{
+  margin-top:55px;
+  padding:17px 45px;
+  background:transparent;
+  border:1px solid rgba(255,255,255,.4);
+  color:white;
+  font-size:10px;
+  letter-spacing:4px;
   cursor:pointer;
+  transition:.4s;
 }
 
-a{
-  text-decoration:none;
-  color:inherit;
+.enter:hover{
+  background:white;
+  color:black;
 }
 
-/* HEADER */
 
-.header{
+/* =========================
+   APP
+========================= */
+
+#app{
+  display:none;
+  height:100vh;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 70% 20%,#202020 0%,#0b0b0b 45%,#050505 100%);
+}
+
+
+/* =========================
+   TOP CONTROLS
+========================= */
+
+.top-controls{
+  position:fixed;
+  top:25px;
+  right:30px;
+  z-index:500;
+  display:flex;
+  align-items:center;
+  gap:7px;
+  direction:ltr;
+}
+
+.control{
+  height:38px;
+  min-width:55px;
+  padding:0 13px;
+  border:1px solid rgba(255,255,255,.16);
+  background:rgba(15,15,15,.72);
+  color:#888;
+  font-size:9px;
+  letter-spacing:1.5px;
+  cursor:pointer;
+  backdrop-filter:blur(15px);
+  transition:.35s;
+}
+
+.control:hover,
+.control.active{
+  color:#fff;
+  border-color:rgba(255,255,255,.5);
+  background:rgba(255,255,255,.08);
+}
+
+.control-divider{
+  width:1px;
+  height:22px;
+  background:rgba(255,255,255,.15);
+}
+
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar{
   position:fixed;
   top:0;
   left:0;
-  right:0;
-  height:70px;
-  z-index:50;
-  background:rgba(5,5,5,.86);
-  backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--line);
+  bottom:0;
+  width:92px;
+  z-index:400;
   display:flex;
   align-items:center;
-  justify-content:space-between;
-  padding:0 18px;
+  justify-content:center;
+  flex-direction:column;
+  gap:27px;
+  border-right:1px solid rgba(255,255,255,.08);
+  background:rgba(5,5,5,.75);
+  backdrop-filter:blur(18px);
 }
 
-.brand{
-  font:28px Georgia,serif;
-  letter-spacing:9px;
-}
-
-.icon-btn{
+.nav-item{
   width:42px;
   height:42px;
-  border:1px solid var(--line);
-  background:#0a0a0a;
-  color:var(--text);
-  border-radius:50%;
-  position:relative;
-}
-
-.icon-btn span{
-  position:absolute;
-  right:-5px;
-  top:-5px;
-  background:var(--gold);
-  color:#111;
-  border-radius:50%;
-  min-width:17px;
-  height:17px;
-  font-size:9px;
-  line-height:17px;
-}
-
-/* HERO */
-
-.hero{
-  min-height:760px;
-  padding:130px 24px 80px;
   display:flex;
   align-items:center;
-  background:
-    radial-gradient(
-      circle at 76% 45%,
-      #28231c 0,
-      #11100e 20%,
-      #070707 54%,
-      #000 80%
-    );
+  justify-content:center;
+  color:#666;
+  font-size:8px;
+  letter-spacing:2px;
+  cursor:pointer;
+  transition:.35s;
+  direction:ltr;
   position:relative;
+}
+
+.nav-item:hover,
+.nav-item.active{
+  color:#fff;
+}
+
+.nav-icon{
+  font-size:19px;
+  line-height:1;
+  filter:grayscale(1);
+}
+
+.nav-text{
+  position:absolute;
+  left:48px;
+  white-space:nowrap;
+  opacity:0;
+  pointer-events:none;
+  font-size:8px;
+  letter-spacing:2px;
+  color:#aaa;
+  transition:.3s;
+}
+
+.nav-item:hover .nav-text{
+  opacity:1;
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+.main{
+  margin-left:92px;
+  height:100vh;
+  overflow-y:auto;
+  overflow-x:hidden;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+  min-height:100vh;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   overflow:hidden;
 }
 
-.hero:after{
-  content:"";
+.hero-glow{
   position:absolute;
-  right:-80px;
-  top:150px;
-  width:310px;
-  height:470px;
-  border-radius:170px 170px 0 0;
-  background:
-    radial-gradient(
-      circle at 55% 15%,
-      #6b6252 0,
-      #29261f 24%,
-      #090909 65%
-    );
-  opacity:.5;
+  width:650px;
+  height:650px;
+  border-radius:50%;
+  background:radial-gradient(
+    circle,
+    rgba(255,255,255,.09),
+    transparent 68%
+  );
+  filter:blur(25px);
 }
 
 .hero-content{
   position:relative;
-  z-index:2;
-  width:100%;
-  max-width:680px;
+  text-align:center;
+  direction:rtl;
 }
 
-.eyebrow{
-  font-size:10px;
+.hero-ar{
+  font-family:'Cairo',sans-serif;
+  font-weight:300;
+  font-size:clamp(70px,12vw,155px);
   letter-spacing:5px;
-  color:var(--muted);
-  text-transform:uppercase;
+  line-height:1;
 }
 
-.hero-logo{
-  width:min(78vw,440px);
-  max-height:180px;
-  object-fit:contain;
-  margin:22px 0 24px;
+.hero-en{
+  margin-top:13px;
+  font-family:'Playfair Display',serif;
+  font-size:clamp(13px,2vw,21px);
+  letter-spacing:11px;
+  opacity:.42;
+  direction:ltr;
 }
 
-.hero h1{
-  font:clamp(46px,12vw,92px) Georgia,serif;
-  letter-spacing:8px;
-}
-
-.hero-tag{
-  font-size:12px;
+.hero-sub{
+  margin-top:35px;
+  color:#777;
+  font-size:9px;
   letter-spacing:6px;
-  color:#aaa;
-  margin:12px 0 32px;
+  direction:ltr;
 }
 
-.primary{
-  border:1px solid var(--gold);
+.collections-btn{
+  margin-top:45px;
+  padding:17px 40px;
+  border:1px solid rgba(255,255,255,.4);
   background:transparent;
-  color:var(--text);
-  padding:17px 25px;
+  color:white;
+  font-size:9px;
   letter-spacing:4px;
-  text-transform:uppercase;
-  min-height:54px;
+  cursor:pointer;
+  transition:.4s;
 }
 
-.primary:hover{
-  background:var(--gold);
-  color:#090909;
+.collections-btn:hover{
+  background:white;
+  color:black;
 }
 
-/* COLLECTION */
+
+/* =========================
+   SECTIONS
+========================= */
 
 .section{
-  padding:76px 20px;
+  display:none;
+  min-height:100vh;
+  padding:110px 8%;
 }
 
-.section-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:end;
-  margin-bottom:25px;
+.section.open{
+  display:block;
 }
 
 .section-title{
-  font:34px Georgia,serif;
-  letter-spacing:5px;
+  font-family:'Playfair Display',serif;
+  font-size:clamp(45px,7vw,90px);
+  font-weight:400;
+  letter-spacing:2px;
+  direction:ltr;
+  margin-bottom:60px;
 }
 
-.view{
-  font-size:10px;
-  letter-spacing:2px;
-  color:var(--gold);
-  background:none;
-  border:0;
-}
+
+/* =========================
+   COLLECTION
+========================= */
 
 .products{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:14px;
-  max-width:1100px;
-  margin:auto;
+  gap:24px;
+}
+
+.product{
+  position:relative;
+  min-height:390px;
+  padding:25px;
+  border:1px solid rgba(255,255,255,.1);
+  display:flex;
+  align-items:flex-end;
+  cursor:pointer;
+  overflow:hidden;
+  transition:.4s;
+}
+
+.product:hover{
+  transform:translateY(-6px);
+  border-color:rgba(255,255,255,.35);
+}
+
+.product-bg{
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at center,#292929,#101010 60%,#070707);
+}
+
+.product-number{
+  position:absolute;
+  top:20px;
+  right:20px;
+  color:#555;
+  font-size:9px;
+}
+
+.product-info{
+  position:relative;
+  z-index:2;
+  direction:ltr;
+}
+
+.product-name{
+  font-family:'Playfair Display',serif;
+  font-size:27px;
+}
+
+.product-price{
+  margin-top:7px;
+  color:#777;
+  font-size:11px;
+}
+
+
+/* =========================
+   STORY
+========================= */
+
+.story{
+  max-width:850px;
+}
+
+.story p{
+  color:#aaa;
+  line-height:2.2;
+  font-size:14px;
+  margin-bottom:28px;
+}
+
+.separator{
+  height:1px;
+  width:100%;
+  background:rgba(255,255,255,.13);
+  margin:60px 0;
+}
+
+
+/* =========================
+   CARDS
+========================= */
+
+.cards{
+  max-width:850px;
 }
 
 .card{
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:12px;
-  overflow:hidden;
+  padding:25px 0;
+  border-bottom:1px solid rgba(255,255,255,.1);
 }
 
-.photo{
-  aspect-ratio:1/1.12;
-  background:
-    radial-gradient(
-      circle at 50% 35%,
-      #30302f,
-      #151515 48%,
-      #090909
-    );
-  display:grid;
-  place-items:center;
-  overflow:hidden;
-}
-
-.photo img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-.placeholder{
-  font:28px Georgia,serif;
-  letter-spacing:5px;
-  color:#aaa;
-}
-
-.card-info{
-  padding:15px;
-}
-
-.card-name{
-  font-size:12px;
-  letter-spacing:2px;
-}
-
-.price{
-  font-size:12px;
-  color:var(--muted);
-  margin-top:7px;
-}
-
-.add{
-  width:100%;
-  margin-top:13px;
-  padding:12px;
-  background:#eee;
-  color:#090909;
-  border:0;
-  font-size:11px;
-  letter-spacing:2px;
-}
-
-/* FOOTER */
-
-.footer{
-  border-top:1px solid var(--line);
-  padding:28px 20px;
-  color:#777;
-  font-size:10px;
-  letter-spacing:3px;
-  display:flex;
-  justify-content:flex-start;
-}
-
-.footer strong{
-  font:20px Georgia,serif;
-  letter-spacing:7px;
-  color:#ddd;
-}
-
-/* BOTTOM NAV */
-
-.bottom{
-  position:fixed;
-  bottom:0;
-  left:0;
-  right:0;
-  height:68px;
-  z-index:60;
-  background:rgba(5,5,5,.96);
-  border-top:1px solid var(--line);
-  display:flex;
-  justify-content:space-around;
-  align-items:center;
-}
-
-.bottom button{
-  background:none;
-  border:0;
-  color:#aaa;
-  font-size:9px;
-  letter-spacing:1px;
-  display:flex;
-  flex-direction:column;
-  gap:5px;
-  align-items:center;
-}
-
-.bottom b{
-  font-size:18px;
+.card h3{
+  font-family:'Playfair Display',serif;
+  font-size:20px;
   font-weight:400;
-  color:#ddd;
+  direction:ltr;
 }
 
-/* MODAL */
+.card p{
+  margin-top:10px;
+  color:#888;
+  font-size:13px;
+  line-height:1.9;
+}
 
-.overlay{
+
+/* =========================
+   CONTACT
+========================= */
+
+.contact{
+  max-width:650px;
+}
+
+.contact-line{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:24px 0;
+  border-bottom:1px solid rgba(255,255,255,.1);
+}
+
+.contact-label{
+  color:#555;
+  font-size:9px;
+  letter-spacing:2px;
+  direction:ltr;
+}
+
+.contact-value{
+  font-size:13px;
+  direction:ltr;
+}
+
+
+/* =========================
+   CART
+========================= */
+
+.bottom-cart{
   position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.72);
-  backdrop-filter:blur(10px);
-  z-index:100;
-  display:none;
-  align-items:flex-start;
+  right:28px;
+  bottom:25px;
+  z-index:450;
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  background:#111;
+  color:white;
+  border:1px solid rgba(255,255,255,.2);
+  cursor:pointer;
+  display:flex;
+  align-items:center;
   justify-content:center;
-  padding:82px 14px 88px;
-  overflow:auto;
+  font-size:19px;
+  transition:.3s;
 }
 
-.overlay.show{
+.bottom-cart:hover{
+  background:white;
+  color:black;
+}
+
+.cart-count{
+  position:absolute;
+  top:-4px;
+  right:-4px;
+  width:17px;
+  height:17px;
+  border-radius:50%;
+  background:white;
+  color:black;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:8px;
+}
+
+
+/* =========================
+   AI
+========================= */
+
+.ai-button{
+  position:fixed;
+  right:28px;
+  bottom:90px;
+  z-index:450;
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.25);
+  background:#111;
+  color:white;
+  cursor:pointer;
+  font-size:10px;
+  letter-spacing:1px;
+}
+
+.ai-window{
+  position:fixed;
+  right:28px;
+  bottom:150px;
+  width:370px;
+  height:540px;
+  z-index:1000;
+  background:#0e0e0e;
+  border:1px solid rgba(255,255,255,.13);
+  display:none;
+  flex-direction:column;
+  box-shadow:0 25px 100px rgba(0,0,0,.7);
+}
+
+.ai-window.show{
   display:flex;
 }
+
+.ai-head{
+  padding:18px;
+  border-bottom:1px solid rgba(255,255,255,.1);
+  display:flex;
+  justify-content:space-between;
+  direction:ltr;
+}
+
+.ai-title{
+  font-family:'Playfair Display',serif;
+  font-size:17px;
+}
+
+.ai-online{
+  color:#666;
+  font-size:8px;
+  letter-spacing:2px;
+  margin-top:3px;
+}
+
+.ai-close{
+  border:0;
+  background:none;
+  color:#777;
+  cursor:pointer;
+  font-size:20px;
+}
+
+.ai-messages{
+  flex:1;
+  overflow-y:auto;
+  padding:18px;
+}
+
+.message{
+  max-width:86%;
+  padding:12px 14px;
+  margin-bottom:12px;
+  font-size:12px;
+  line-height:1.8;
+}
+
+.message.ai{
+  background:#171717;
+  color:#ddd;
+  margin-right:auto;
+  direction:auto;
+}
+
+.message.user{
+  background:#eee;
+  color:#111;
+  margin-left:auto;
+  direction:auto;
+}
+
+.ai-input{
+  display:flex;
+  border-top:1px solid rgba(255,255,255,.1);
+  direction:ltr;
+}
+
+.ai-input input{
+  flex:1;
+  border:0;
+  outline:0;
+  padding:15px;
+  background:#090909;
+  color:white;
+}
+
+.ai-input button{
+  width:55px;
+  border:0;
+  background:white;
+  color:black;
+  cursor:pointer;
+}
+
+
+/* =========================
+   MODAL
+========================= */
 
 .modal{
-  width:min(620px,100%);
-  background:
-    linear-gradient(
-      145deg,
-      #111,
-      #080808
-    );
-  border:1px solid #333;
-  border-radius:16px;
-  position:relative;
-  box-shadow:0 20px 80px #000;
-  padding:25px;
+  position:fixed;
+  inset:0;
+  z-index:2000;
+  background:rgba(0,0,0,.78);
+  backdrop-filter:blur(18px);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-box{
+  width:min(650px,100%);
+  max-height:90vh;
+  overflow:auto;
+  background:#111;
+  border:1px solid rgba(255,255,255,.13);
+  padding:35px;
+  direction:ltr;
+}
+
+.modal-title{
+  font-family:'Playfair Display',serif;
+  font-size:35px;
+  margin-bottom:25px;
 }
 
 .close{
-  position:absolute;
-  right:16px;
-  top:14px;
-  width:38px;
-  height:38px;
+  float:right;
   border:0;
   background:none;
-  color:#ddd;
-  font-size:28px;
-}
-
-.modal h2{
-  font:30px Georgia,serif;
-  letter-spacing:5px;
-  margin-bottom:22px;
-  text-align:center;
-}
-
-.rule{
-  height:1px;
-  background:#333;
-  margin:15px 0 22px;
-}
-
-/* STORY / POLICY / FAQ */
-
-.story p,
-.policy p{
-  color:#c8c4bc;
-  line-height:1.75;
-  font-size:13px;
-  margin-bottom:16px;
-}
-
-.arabic{
-  direction:rtl;
-  text-align:right;
-}
-
-.arabic p{
-  font-size:14px;
-}
-
-.faq details{
-  border-bottom:1px solid #2a2a2a;
-  padding:15px 0;
-}
-
-.faq summary{
+  color:#777;
+  font-size:25px;
   cursor:pointer;
-  font-size:12px;
-}
-
-.faq p{
-  color:#aaa;
-  margin-top:10px;
-  line-height:1.6;
-  font-size:12px;
-}
-
-/* FORMS */
-
-.form-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
 }
 
 .field{
-  margin-bottom:12px;
-}
-
-.field.full{
-  grid-column:1/-1;
-}
-
-.field label{
-  display:block;
-  font-size:10px;
-  letter-spacing:1.5px;
-  color:#aaa;
-  margin-bottom:7px;
-}
-
-.field input,
-.field select,
-.field textarea{
   width:100%;
+  margin:7px 0;
+  padding:14px;
   background:#080808;
-  color:#eee;
-  border:1px solid #333;
-  border-radius:8px;
-  padding:13px;
+  color:white;
+  border:1px solid rgba(255,255,255,.1);
   outline:none;
 }
 
-.field textarea{
-  min-height:110px;
-  resize:vertical;
-}
-
-.field input:focus,
-.field select:focus,
-.field textarea:focus{
-  border-color:var(--gold);
-}
-
-.req{
-  color:#c99;
-}
-
-.form-note{
-  font-size:10px;
-  color:#777;
-  line-height:1.5;
-  margin:8px 0 14px;
-}
-
-.submit{
+.primary{
   width:100%;
-  padding:14px;
-  border:1px solid #444;
-  background:#eee;
-  color:#080808;
-  letter-spacing:2px;
-  font-size:11px;
-}
-
-.submit:disabled{
-  opacity:.35;
-  cursor:not-allowed;
-}
-
-/* LIST BUTTONS */
-
-.type-list{
-  display:grid;
-  gap:8px;
-}
-
-.type-list button,
-.type-list a{
-  padding:14px;
-  text-align:left;
-  background:#0a0a0a;
-  border:1px solid #2b2b2b;
-  color:#ddd;
-  border-radius:8px;
-  letter-spacing:1px;
-}
-
-.type-list button:hover,
-.type-list a:hover{
-  border-color:var(--gold);
-}
-
-.back-link{
-  display:inline-block;
-  margin:0 0 18px;
-  color:#aaa;
-  font-size:10px;
+  margin-top:15px;
+  padding:15px;
+  background:white;
+  color:black;
+  border:0;
+  cursor:pointer;
   letter-spacing:2px;
 }
 
-/* CART */
-
-.cart-row{
-  display:flex;
-  justify-content:space-between;
-  gap:12px;
-  border-bottom:1px solid #2a2a2a;
-  padding:14px 0;
-  font-size:12px;
+.secondary{
+  width:100%;
+  margin-top:10px;
+  padding:15px;
+  background:transparent;
+  color:white;
+  border:1px solid rgba(255,255,255,.2);
+  cursor:pointer;
 }
 
-.cart-empty{
-  text-align:center;
+
+/* =========================
+   LIGHT MODE
+========================= */
+
+body.light{
+  background:#e9e5dc;
+  color:#161616;
+}
+
+body.light #app{
+  background:
+    radial-gradient(circle at 70% 20%,#fff 0%,#e9e5dc 55%,#d8d3c8 100%);
+}
+
+body.light .sidebar{
+  background:rgba(235,231,222,.82);
+  border-color:rgba(0,0,0,.1);
+}
+
+body.light .nav-item{
   color:#888;
-  padding:25px;
 }
 
-.total{
-  display:flex;
-  justify-content:space-between;
-  margin:18px 0;
-  font-size:13px;
-}
-
-/* AI */
-
-.chat-launch{
-  position:fixed;
-  right:16px;
-  bottom:82px;
-  z-index:70;
-  width:62px;
-  height:62px;
-  border:1px solid var(--gold);
-  border-radius:50%;
-  background:#090909;
-  color:#eee;
-  box-shadow:0 8px 30px #000;
-}
-
-.chat-launch span{
-  display:block;
-  font:22px Georgia,serif;
-}
-
-.chat-launch small{
-  font-size:7px;
-  letter-spacing:1px;
-}
-
-.chat-panel{
-  position:fixed;
-  right:14px;
-  bottom:155px;
-  width:min(360px,calc(100vw - 28px));
-  height:450px;
-  z-index:80;
-  background:#0b0b0b;
-  border:1px solid #333;
-  border-radius:15px;
-  display:none;
-  flex-direction:column;
-  box-shadow:0 20px 70px #000;
-}
-
-.chat-panel.show{
-  display:flex;
-}
-
-.chat-head{
-  padding:14px 16px;
-  border-bottom:1px solid #292929;
-  display:flex;
-  justify-content:space-between;
-}
-
-.chat-head strong{
-  font:18px Georgia,serif;
-  letter-spacing:2px;
-}
-
-.chat-body{
-  padding:14px;
-  overflow:auto;
-  flex:1;
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-}
-
-.bubble{
-  max-width:84%;
-  padding:10px 12px;
-  border-radius:10px;
-  background:#181818;
-  color:#ddd;
-  font-size:12px;
-  line-height:1.45;
-}
-
-.bubble.user{
-  align-self:flex-end;
-  background:#ddd;
+body.light .nav-item:hover,
+body.light .nav-item.active{
   color:#111;
 }
 
-.chat-input{
-  display:flex;
-  border-top:1px solid #292929;
+body.light .nav-text{
+  color:#333;
 }
 
-.chat-input input{
-  flex:1;
-  background:#090909;
-  color:#fff;
-  border:0;
-  padding:13px;
+body.light .control{
+  background:rgba(255,255,255,.55);
+  color:#777;
+  border-color:rgba(0,0,0,.12);
 }
 
-.chat-input button{
-  width:54px;
-  border:0;
-  background:#eee;
+body.light .control.active{
   color:#111;
+  border-color:rgba(0,0,0,.3);
 }
 
-/* DRAWER */
-
-.drawer{
-  position:fixed;
-  inset:0;
-  z-index:90;
-  display:none;
+body.light .collections-btn{
+  color:#111;
+  border-color:rgba(0,0,0,.3);
 }
 
-.drawer.show{
-  display:block;
+body.light .collections-btn:hover{
+  background:#111;
+  color:white;
 }
 
-.drawer-bg{
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,.65);
+body.light .product{
+  border-color:rgba(0,0,0,.1);
 }
 
-.drawer-panel{
-  position:absolute;
-  top:0;
-  left:0;
-  bottom:0;
-  width:min(310px,84vw);
-  background:#090909;
-  border-right:1px solid #333;
-  padding:90px 22px 30px;
+body.light .product-bg{
+  background:radial-gradient(circle,#f8f6f0,#d7d2c7);
 }
 
-.drawer-panel button{
-  display:block;
-  width:100%;
-  padding:17px 4px;
-  border:0;
-  border-bottom:1px solid #222;
+body.light .story p,
+body.light .card p{
+  color:#555;
+}
+
+body.light .separator,
+body.light .card,
+body.light .contact-line{
   background:none;
-  color:#ddd;
-  text-align:left;
-  letter-spacing:2px;
-  font-size:11px;
+  border-color:rgba(0,0,0,.12);
 }
 
-/* MOBILE */
+body.light .contact-label{
+  color:#777;
+}
 
-@media(max-width:680px){
+body.light .bottom-cart,
+body.light .ai-button{
+  background:#eeeae1;
+  color:#111;
+  border-color:rgba(0,0,0,.2);
+}
+
+body.light .ai-window{
+  background:#eeeae1;
+  border-color:rgba(0,0,0,.15);
+}
+
+body.light .ai-head{
+  border-color:rgba(0,0,0,.12);
+}
+
+body.light .message.ai{
+  background:#e1ddd4;
+  color:#111;
+}
+
+body.light .message.user{
+  background:#111;
+  color:white;
+}
+
+body.light .ai-input{
+  border-color:rgba(0,0,0,.12);
+}
+
+body.light .ai-input input{
+  background:#e2ded5;
+  color:#111;
+}
+
+body.light .modal{
+  background:rgba(255,255,255,.65);
+}
+
+body.light .modal-box{
+  background:#eeeae1;
+  border-color:rgba(0,0,0,.15);
+}
+
+body.light .field{
+  background:#e0dcd3;
+  color:#111;
+  border-color:rgba(0,0,0,.12);
+}
+
+body.light .secondary{
+  color:#111;
+  border-color:rgba(0,0,0,.2);
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:800px){
+
+  .sidebar{
+    top:auto;
+    left:0;
+    right:0;
+    bottom:0;
+    width:100%;
+    height:65px;
+    flex-direction:row;
+    gap:0;
+    border-right:0;
+    border-top:1px solid rgba(255,255,255,.1);
+    justify-content:space-around;
+  }
+
+  .nav-item{
+    width:45px;
+    height:45px;
+  }
+
+  .nav-icon{
+    font-size:18px;
+  }
+
+  .nav-text{
+    display:none;
+  }
+
+  .main{
+    margin-left:0;
+    padding-bottom:65px;
+  }
+
+  .top-controls{
+    top:16px;
+    right:16px;
+  }
+
+  .control{
+    height:34px;
+    min-width:47px;
+    padding:0 9px;
+    font-size:7px;
+  }
+
+  .hero-ar{
+    font-size:68px;
+  }
+
+  .hero-en{
+    font-size:12px;
+    letter-spacing:7px;
+  }
+
+  .hero-sub{
+    font-size:7px;
+    letter-spacing:3px;
+    max-width:280px;
+    margin-left:auto;
+    margin-right:auto;
+  }
 
   .products{
-    grid-template-columns:repeat(2,1fr);
-    gap:10px;
-  }
-
-  .hero{
-    min-height:720px;
-  }
-
-  .hero h1{
-    font-size:48px;
-  }
-
-  .form-grid{
     grid-template-columns:1fr;
-  }
-
-  .field.full{
-    grid-column:auto;
   }
 
   .section{
-    padding:62px 14px;
+    padding:90px 25px;
   }
 
-  .card-info{
-    padding:12px;
+  .bottom-cart{
+    right:18px;
+    bottom:82px;
   }
 
-  .add{
-    font-size:9px;
+  .ai-button{
+    right:18px;
+    bottom:140px;
   }
 
-  .modal{
-    padding:22px 16px;
-  }
-
-  .brand{
-    font-size:23px;
-  }
-
-  .hero:after{
-    right:-130px;
-    opacity:.4;
-  }
-}
-
-@media(max-width:420px){
-
-  .products{
-    grid-template-columns:1fr;
-  }
-
-  .hero-logo{
-    width:85vw;
-  }
-
-  .hero-tag{
-    letter-spacing:4px;
+  .ai-window{
+    right:18px;
+    bottom:200px;
+    width:calc(100vw - 36px);
+    height:490px;
   }
 }
 </style>
@@ -760,399 +921,1031 @@ a{
 
 <body>
 
-<header class="header">
 
-  <button class="icon-btn" id="menuBtn">
-    ☰
-  </button>
+<!-- =========================
+     FIRST SCREEN
+========================= -->
 
-  <div class="brand">
-    NAZRA
-  </div>
+<div id="landing">
 
-  <button class="icon-btn" id="cartTop">
-    ♧
-    <span id="cartCount">0</span>
-  </button>
+  <div class="landing-content">
 
-</header>
+    <div class="landing-ar">
+      نظرة
+    </div>
 
-
-<main>
-
-<section class="hero" id="home">
-
-  <div class="hero-content">
-
-    <div class="eyebrow">
+    <div class="landing-en">
       NAZRA
     </div>
 
-    <img
-      class="hero-logo"
-      src="Logo.PNG"
-      alt="NAZRA logo"
-      onerror="this.style.display='none'"
-    >
-
-    <h1>
-      NAZRA
-    </h1>
-
-    <div class="hero-tag">
-      MINIMAL. BOLD. DIFFERENT.
-    </div>
-
-    <button class="primary" id="collectionsBtn">
-      TO COLLECTIONS →
+    <button class="enter" onclick="enterSite()">
+      TO COLLECTIONS
     </button>
 
   </div>
-
-</section>
-
-
-<section class="section" id="shop">
-
-  <div class="section-head">
-
-    <h2 class="section-title">
-      COLLECTIONS
-    </h2>
-
-    <button class="view" id="allProducts">
-      VIEW ALL →
-    </button>
-
-  </div>
-
-  <div class="products" id="products"></div>
-
-</section>
-
-</main>
-
-
-<footer class="footer">
-  <strong>
-    NAZRA
-  </strong>
-</footer>
-
-
-<!-- BOTTOM NAV -->
-
-<nav class="bottom">
-
-  <button data-open="home">
-    <b>⌂</b>
-    HOME
-  </button>
-
-  <button id="bottomCart">
-    <b>♧</b>
-    CART
-  </button>
-
-  <button data-open="contact">
-    <b>⌕</b>
-    CONTACT
-  </button>
-
-  <button data-open="reports">
-    <b>▥</b>
-    REPORTS
-  </button>
-
-  <button data-open="story">
-    <b>N</b>
-    STORY
-  </button>
-
-  <button data-open="policy">
-    <b>◇</b>
-    POLICY
-  </button>
-
-  <button data-open="faq">
-    <b>?</b>
-    FAQ
-  </button>
-
-</nav>
-
-
-<!-- AI -->
-
-<button class="chat-launch" id="chatLaunch">
-  <span>N</span>
-  <small>AI CHAT</small>
-</button>
-
-
-<div class="chat-panel" id="chatPanel">
-
-  <div class="chat-head">
-
-    <strong>
-      NAZRA AI
-    </strong>
-
-    <button class="close" id="chatClose">
-      ×
-    </button>
-
-  </div>
-
-  <div class="chat-body" id="chatBody"></div>
-
-  <form class="chat-input" id="chatForm">
-
-    <input
-      id="chatInput"
-      autocomplete="off"
-      placeholder="Ask NAZRA AI..."
-    >
-
-    <button>
-      ➤
-    </button>
-
-  </form>
 
 </div>
 
 
-<!-- DRAWER -->
+<!-- =========================
+     APP
+========================= -->
 
-<div class="drawer" id="drawer">
+<div id="app">
 
-  <div class="drawer-bg" id="drawerBg"></div>
 
-  <aside class="drawer-panel">
+  <!-- LANGUAGE + THEME -->
 
-    <button data-open="home">
-      HOME
+  <div class="top-controls">
+
+    <button
+      id="enBtn"
+      class="control active"
+      onclick="setLanguage('en')"
+    >
+      ENGLISH
     </button>
 
-    <button id="drawerCart">
-      CART
+    <button
+      id="arBtn"
+      class="control"
+      onclick="setLanguage('ar')"
+    >
+      عربي
     </button>
 
-    <button data-open="contact">
-      CONTACT
+    <div class="control-divider"></div>
+
+    <button
+      id="darkBtn"
+      class="control active"
+      onclick="setTheme('dark')"
+    >
+      DARK
     </button>
 
-    <button data-open="reports">
-      REPORTS
+    <button
+      id="lightBtn"
+      class="control"
+      onclick="setTheme('light')"
+    >
+      LIGHT
     </button>
 
-    <button data-open="story">
-      NAZRA STORY
-    </button>
-
-    <button data-open="policy">
-      POLICY
-    </button>
-
-    <button data-open="faq">
-      FAQ
-    </button>
-
-  </aside>
-
-</div>
+  </div>
 
 
-<!-- MODAL -->
+  <!-- =========================
+       SIDEBAR
+  ========================= -->
 
-<div class="overlay" id="modalOverlay">
+  <nav class="sidebar">
 
-  <div class="modal" id="modal"></div>
+
+    <!-- HOME -->
+
+    <div
+      class="nav-item active"
+      onclick="goHome()"
+      title="Home"
+    >
+
+      <span class="nav-icon">⌂</span>
+
+      <span class="nav-text">
+        HOME
+      </span>
+
+    </div>
+
+
+    <!-- CART -->
+
+    <div
+      class="nav-item"
+      onclick="openCart()"
+      title="Cart"
+    >
+
+      <span class="nav-icon">🛒</span>
+
+      <span class="nav-text">
+        CART
+      </span>
+
+    </div>
+
+
+    <!-- CONTACT -->
+
+    <div
+      class="nav-item"
+      onclick="showSection('contact')"
+      title="Contact"
+    >
+
+      <span class="nav-icon">☎</span>
+
+      <span class="nav-text">
+        CONTACT
+      </span>
+
+    </div>
+
+
+    <!-- REPORTS -->
+
+    <div
+      class="nav-item"
+      onclick="showSection('reports')"
+      title="Reports"
+    >
+
+      <span class="nav-icon">⚠</span>
+
+      <span class="nav-text">
+        REPORTS
+      </span>
+
+    </div>
+
+
+    <!-- STORY -->
+
+    <div
+      class="nav-item"
+      onclick="showSection('story')"
+      title="NAZRA Story"
+    >
+
+      <span class="nav-icon">◈</span>
+
+      <span class="nav-text">
+        NAZRA STORY
+      </span>
+
+    </div>
+
+
+    <!-- POLICY -->
+
+    <div
+      class="nav-item"
+      onclick="showSection('policy')"
+      title="Policy"
+    >
+
+      <span class="nav-icon">◇</span>
+
+      <span class="nav-text">
+        POLICY
+      </span>
+
+    </div>
+
+
+    <!-- FAQ -->
+
+    <div
+      class="nav-item"
+      onclick="showSection('faq')"
+      title="FAQ"
+    >
+
+      <span class="nav-icon">?</span>
+
+      <span class="nav-text">
+        FAQ
+      </span>
+
+    </div>
+
+  </nav>
+
+
+  <!-- =========================
+       MAIN
+  ========================= -->
+
+  <main class="main" id="main">
+
+
+    <!-- HOME -->
+
+    <section id="home" class="hero">
+
+      <div class="hero-glow"></div>
+
+      <div class="hero-content">
+
+        <div class="hero-ar">
+          نظرة
+        </div>
+
+        <div class="hero-en">
+          NAZRA
+        </div>
+
+        <div class="hero-sub">
+          SOME THINGS ARE NOT UNDERSTOOD THE FIRST TIME
+        </div>
+
+        <button
+          class="collections-btn"
+          onclick="showSection('collection')"
+        >
+          TO COLLECTIONS
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- COLLECTION -->
+
+    <section
+      id="collection"
+      class="section"
+    >
+
+      <div class="section-title">
+        COLLECTION
+      </div>
+
+      <div class="products">
+
+
+        <div
+          class="product"
+          onclick="addProduct('NAZRA HOODIE',1200)"
+        >
+
+          <div class="product-bg"></div>
+
+          <div class="product-number">
+            01
+          </div>
+
+          <div class="product-info">
+
+            <div class="product-name">
+              NAZRA HOODIE
+            </div>
+
+            <div class="product-price">
+              1200 EGP · ADD TO CART
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div
+          class="product"
+          onclick="addProduct('NAZRA TEE',650)"
+        >
+
+          <div class="product-bg"></div>
+
+          <div class="product-number">
+            02
+          </div>
+
+          <div class="product-info">
+
+            <div class="product-name">
+              NAZRA TEE
+            </div>
+
+            <div class="product-price">
+              650 EGP · ADD TO CART
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div
+          class="product"
+          onclick="addProduct('NAZRA COLLECTION',1500)"
+        >
+
+          <div class="product-bg"></div>
+
+          <div class="product-number">
+            03
+          </div>
+
+          <div class="product-info">
+
+            <div class="product-name">
+              NAZRA COLLECTION
+            </div>
+
+            <div class="product-price">
+              1500 EGP · ADD TO CART
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- CONTACT -->
+
+    <section id="contact" class="section">
+
+      <div class="section-title">
+        CONTACT
+      </div>
+
+      <div class="contact">
+
+        <div class="contact-line">
+
+          <span class="contact-label">
+            PHONE
+          </span>
+
+          <span class="contact-value">
+            01090356664
+          </span>
+
+        </div>
+
+        <div class="contact-line">
+
+          <span class="contact-label">
+            EMAIL
+          </span>
+
+          <span class="contact-value">
+            nazra.co123@gmail.com
+          </span>
+
+        </div>
+
+        <div class="contact-line">
+
+          <span class="contact-label">
+            INSTAGRAM
+          </span>
+
+          <span class="contact-value">
+            @nazra.co_
+          </span>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- REPORTS -->
+
+    <section id="reports" class="section">
+
+      <div class="section-title">
+        REPORTS
+      </div>
+
+      <div class="cards">
+
+        <div class="card">
+          <h3>ORDER ISSUE</h3>
+          <p>
+            Report a problem with your order or order details.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>PAYMENT ISSUE</h3>
+          <p>
+            Report a problem with Vodafone Cash, InstaPay or payment confirmation.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>DELIVERY ISSUE</h3>
+          <p>
+            Report a delayed, missing or incorrect delivery.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>PRODUCT ISSUE</h3>
+          <p>
+            Report a problem with the product you received.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>OTHER</h3>
+          <p>
+            Tell NAZRA anything else you need help with.
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- STORY -->
+
+    <section id="story" class="section">
+
+      <div class="section-title">
+        NAZRA STORY
+      </div>
+
+      <div class="story">
+
+        <p>
+          There are things you do not see when you look at them but only when you look through them
+        </p>
+
+        <p>
+          We do not always remember faces and we do not always remember the words that were said but we remember one gaze that changed something inside us without knowing how
+        </p>
+
+        <p>
+          A gaze is not a moment it is a meaning it is a feeling that passes between two people without a sound and a small detail that may remain in memory longer than it should
+        </p>
+
+        <p>
+          This is where NAZRA came from Not to tell you who you are and not to give you a shape to wear but to leave you the space to say something about yourself without speaking
+        </p>
+
+        <p>
+          We believe true difference does not need to ask for attention and what truly catches the eye is not what tries to be seen but what makes you look twice
+        </p>
+
+        <p>
+          NAZRA Because some things are not understood the first time
+        </p>
+
+        <div class="separator"></div>
+
+        <p dir="rtl">
+          هناك أشياء لا ترى حين تنظر إليها بل ترى حين تنظر من خلالها نحن لا نتذكر الوجوه دائما ولا نتذكر الكلمات التي قيلت لكننا نتذكر نظرة واحدة غيرت شيئا بداخلنا دون أن نعرف كيف
+        </p>
+
+        <p dir="rtl">
+          النظرة ليست لحظة هي معنى هي شعور يمر بين شخصين دون صوت وتفصيلة صغيرة قد تظل عالقة في الذاكرة أطول مما ينبغي
+        </p>
+
+        <p dir="rtl">
+          ومن هنا جاءت NAZRA ليس لنقول لك من تكون ولا لنضع لك شكلا ترتديه بل لنترك لك مساحة أن تقول شيئا عن نفسك دون أن تنطق
+        </p>
+
+        <p dir="rtl">
+          نؤمن أن الاختلاف الحقيقي لا يحتاج إلى أن يطلب الانتباه وأن ما يلفت النظر حقا ليس ما يحاول أن يرى بل ما يجعلك تنظر مرة أخرى
+        </p>
+
+        <p dir="rtl">
+          NAZRA لأن بعض الأشياء لا تفهم من المرة الأولى
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- POLICY -->
+
+    <section id="policy" class="section">
+
+      <div class="section-title">
+        POLICY
+      </div>
+
+      <div class="cards">
+
+        <div class="card">
+          <h3>PAYMENT</h3>
+          <p>
+            Vodafone Cash, InstaPay and Cash on Delivery are available.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>EXCHANGE</h3>
+          <p>
+            Exchange is available within 10 days if the item is in its original condition.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>NO REFUNDS</h3>
+          <p>
+            NAZRA does not offer refunds. Exchange only.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>ITEM CONDITION</h3>
+          <p>
+            Worn or washed items cannot be exchanged. Original tags and packaging must remain.
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- FAQ -->
+
+    <section id="faq" class="section">
+
+      <div class="section-title">
+        FAQ
+      </div>
+
+      <div class="cards">
+
+        <div class="card">
+          <h3>
+            HOW CAN I PLACE AN ORDER?
+          </h3>
+          <p>
+            Choose your product, add it to the cart and complete your checkout information.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>
+            WHAT PAYMENT METHODS ARE AVAILABLE?
+          </h3>
+          <p>
+            Vodafone Cash, InstaPay and Cash on Delivery.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>
+            CAN I EXCHANGE MY ITEM?
+          </h3>
+          <p>
+            Yes. Exchange is available within 10 days under the exchange policy.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>
+            WHAT IF MY ORDER HAS NOT ARRIVED?
+          </h3>
+          <p>
+            Contact NAZRA support or use the Reports section to report the delivery issue.
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       CART BUTTON
+  ========================= -->
+
+  <button
+    class="bottom-cart"
+    onclick="openCart()"
+    aria-label="Shopping Cart"
+  >
+
+    🛒
+
+    <span
+      class="cart-count"
+      id="cartCount"
+    >
+      0
+    </span>
+
+  </button>
+
+
+  <!-- =========================
+       AI BUTTON
+  ========================= -->
+
+  <button
+    class="ai-button"
+    onclick="toggleAI()"
+  >
+    AI
+  </button>
+
+
+  <!-- =========================
+       AI WINDOW
+  ========================= -->
+
+  <div
+    class="ai-window"
+    id="aiWindow"
+  >
+
+    <div class="ai-head">
+
+      <div>
+
+        <div class="ai-title">
+          NAZRA AI
+        </div>
+
+        <div class="ai-online">
+          ONLINE · SUPPORT
+        </div>
+
+      </div>
+
+      <button
+        class="ai-close"
+        onclick="toggleAI()"
+      >
+        ×
+      </button>
+
+    </div>
+
+    <div
+      class="ai-messages"
+      id="aiMessages"
+    >
+
+      <div class="message ai">
+        أهلاً بيك في NAZRA. اسألني عن الأوردر، التوصيل، الدفع، الاستبدال، المنتجات أو أي حاجة تخص البراند.
+        <br><br>
+        You can also speak English or Franco.
+      </div>
+
+    </div>
+
+    <div class="ai-input">
+
+      <input
+        id="aiInput"
+        placeholder="Ask NAZRA AI..."
+        onkeydown="if(event.key==='Enter') sendAI()"
+      >
+
+      <button onclick="sendAI()">
+        →
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       CART MODAL
+  ========================= -->
+
+  <div
+    class="modal"
+    id="cartModal"
+  >
+
+    <div class="modal-box">
+
+      <button
+        class="close"
+        onclick="closeModal('cartModal')"
+      >
+        ×
+      </button>
+
+      <div class="modal-title">
+        YOUR CART
+      </div>
+
+      <div id="cartItems">
+        Your cart is empty.
+      </div>
+
+      <button
+        class="primary"
+        onclick="checkout()"
+      >
+        CHECKOUT
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       CHECKOUT MODAL
+  ========================= -->
+
+  <div
+    class="modal"
+    id="checkoutModal"
+  >
+
+    <div class="modal-box">
+
+      <button
+        class="close"
+        onclick="closeModal('checkoutModal')"
+      >
+        ×
+      </button>
+
+      <div class="modal-title">
+        CHECKOUT
+      </div>
+
+      <input
+        class="field"
+        id="fullName"
+        placeholder="Full Name"
+      >
+
+      <input
+        class="field"
+        id="phone"
+        placeholder="Phone Number"
+        maxlength="11"
+        inputmode="numeric"
+      >
+
+      <input
+        class="field"
+        id="email"
+        placeholder="Email"
+      >
+
+      <input
+        class="field"
+        id="address"
+        placeholder="Address"
+      >
+
+      <button
+        class="primary"
+        onclick="goPayment()"
+      >
+        CONTINUE TO PAYMENT
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       PAYMENT MODAL
+  ========================= -->
+
+  <div
+    class="modal"
+    id="paymentModal"
+  >
+
+    <div class="modal-box">
+
+      <button
+        class="close"
+        onclick="closeModal('paymentModal')"
+      >
+        ×
+      </button>
+
+      <div class="modal-title">
+        PAYMENT
+      </div>
+
+      <button
+        class="secondary"
+        onclick="selectPayment('Vodafone Cash')"
+      >
+        VODAFONE CASH
+      </button>
+
+      <button
+        class="secondary"
+        onclick="selectPayment('InstaPay')"
+      >
+        INSTAPAY
+      </button>
+
+      <button
+        class="secondary"
+        onclick="selectPayment('Cash on Delivery')"
+      >
+        CASH ON DELIVERY
+      </button>
+
+      <div
+        id="paymentInfo"
+        style="
+          margin-top:20px;
+          color:#888;
+          line-height:1.8;
+        "
+      ></div>
+
+      <input
+        type="file"
+        id="transferImage"
+        class="field"
+        accept="image/*"
+        style="display:none;"
+      >
+
+      <button
+        id="finishPayment"
+        class="primary"
+        style="display:none;"
+        onclick="finishOrder()"
+      >
+        COMPLETE ORDER
+      </button>
+
+    </div>
+
+  </div>
 
 </div>
 
 
 <script>
 
-/* PRODUCTS */
+/* =========================
+   LANDING
+========================= */
 
-const products = [
+function enterSite(){
 
-  {
-    id:1,
-    name:"NAZRA HOODIE",
-    price:0,
-    img:"product1.jpg"
-  },
+  document.getElementById("landing").style.opacity="0";
 
-  {
-    id:2,
-    name:"NAZRA TEE",
-    price:0,
-    img:"product2.jpg"
-  },
+  setTimeout(()=>{
 
-  {
-    id:3,
-    name:"NAZRA COLLECTION",
-    price:0,
-    img:"product3.jpg"
-  }
+    document.getElementById("landing").style.display="none";
 
-];
+    document.getElementById("app").style.display="block";
 
+    document.body.style.overflow="hidden";
 
-let cart = [];
+    goHome();
 
-
-/* STORY */
-
-const storyEn = [
-
-"There are things you do not see when you look at them but only when you look through them. We do not always remember faces and we do not always remember the words that were said but we remember one gaze that changed something inside us without knowing how.",
-
-"A gaze is not a moment. It is a meaning. It is a feeling that passes between two people without a sound and a small detail that may remain in memory longer than it should.",
-
-"This is where NAZRA came from. Not to tell you who you are and not to give you a shape to wear but to leave you the space to say something about yourself without speaking.",
-
-"We believe true difference does not need to ask for attention and what truly catches the eye is not what tries to be seen but what makes you look twice.",
-
-"NAZRA. Because some things are not understood the first time."
-
-];
-
-
-const storyAr = [
-
-"هناك أشياء لا ترى حين تنظر إليها بل ترى حين تنظر من خلالها. نحن لا نتذكر الوجوه دائما ولا نتذكر الكلمات التي قيلت لكننا نتذكر نظرة واحدة غيرت شيئا بداخلنا دون أن نعرف كيف.",
-
-"النظرة ليست لحظة. هي معنى. هي شعور يمر بين شخصين دون صوت وتفصيلة صغيرة قد تظل عالقة في الذاكرة أطول مما ينبغي.",
-
-"ومن هنا جاءت NAZRA. ليس لنقول لك من تكون ولا لنضع لك شكلا ترتديه بل لنترك لك مساحة أن تقول شيئا عن نفسك دون أن تنطق.",
-
-"نؤمن أن الاختلاف الحقيقي لا يحتاج إلى أن يطلب الانتباه وأن ما يلفت النظر حقا ليس ما يحاول أن يرى بل ما يجعلك تنظر مرة أخرى.",
-
-"NAZRA. لأن بعض الأشياء لا تفهم من المرة الأولى."
-
-];
-
-
-/* MODALS */
-
-function openModal(html){
-
-  modal.innerHTML = html;
-
-  modalOverlay.classList.add("show");
+  },700);
 
 }
 
 
-function closeModal(){
+/* =========================
+   HOME
+========================= */
 
-  modalOverlay.classList.remove("show");
+function goHome(){
 
-  modal.innerHTML = "";
+  showSection("home");
 
-}
+  const main=document.getElementById("main");
 
+  main.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
 
-function shell(title,body){
+  document.querySelectorAll(".nav-item")
+    .forEach(item=>item.classList.remove("active"));
 
-  return `
-
-    <button
-      class="close"
-      onclick="closeModal()"
-    >
-      ×
-    </button>
-
-    <h2>${title}</h2>
-
-    ${body}
-
-  `;
+  document.querySelector(".nav-item")
+    .classList.add("active");
 
 }
 
 
-/* PRODUCTS */
+/* =========================
+   SECTIONS
+========================= */
 
-function renderProducts(){
+const sections=[
+  "home",
+  "collection",
+  "contact",
+  "reports",
+  "story",
+  "policy",
+  "faq"
+];
 
-  productsEl.innerHTML = products.map(p => `
+function showSection(id){
 
-    <article class="card">
+  sections.forEach(section=>{
 
-      <div class="photo">
+    const el=document.getElementById(section);
 
-        <img
-          src="${p.img}"
-          alt="${p.name}"
-          onerror="
-            this.style.display='none';
-            this.nextElementSibling.style.display='block'
-          "
-        >
+    if(!el)return;
 
-        <div
-          class="placeholder"
-          style="display:none"
-        >
-          NAZRA
-        </div>
+    if(section==="home"){
 
-      </div>
+      el.style.display=
+        id==="home" ? "flex" : "none";
 
-      <div class="card-info">
+    }else{
 
-        <div class="card-name">
-          ${p.name}
-        </div>
-
-        <div class="price">
-          ${p.price} EGP
-        </div>
-
-        <button
-          class="add"
-          data-product="${p.id}"
-        >
-          ADD TO CART
-        </button>
-
-      </div>
-
-    </article>
-
-  `).join("");
-
-  document.querySelectorAll(".add").forEach(button => {
-
-    button.onclick = () => {
-
-      addToCart(
-        Number(button.dataset.product)
+      el.classList.toggle(
+        "open",
+        section===id
       );
 
-    };
+    }
 
   });
 
+  document.getElementById("main")
+    .scrollTo({
+      top:0,
+      behavior:"smooth"
+    });
+
 }
 
 
-/* CART */
+/* =========================
+   LANGUAGE
+========================= */
 
-function addToCart(id){
+function setLanguage(language){
 
-  const product = products.find(
-    p => p.id === id
+  document
+    .getElementById("enBtn")
+    .classList.toggle(
+      "active",
+      language==="en"
+    );
+
+  document
+    .getElementById("arBtn")
+    .classList.toggle(
+      "active",
+      language==="ar"
+    );
+
+}
+
+
+/* =========================
+   THEME
+========================= */
+
+function setTheme(theme){
+
+  document.body.classList.toggle(
+    "light",
+    theme==="light"
   );
 
-  cart.push(product);
+  document
+    .getElementById("darkBtn")
+    .classList.toggle(
+      "active",
+      theme==="dark"
+    );
+
+  document
+    .getElementById("lightBtn")
+    .classList.toggle(
+      "active",
+      theme==="light"
+    );
+
+}
+
+
+/* =========================
+   CART
+========================= */
+
+let cart=[];
+
+function addProduct(name,price){
+
+  cart.push({
+    name:name,
+    price:price,
+    quantity:1
+  });
 
   updateCart();
 
@@ -1160,1524 +1953,268 @@ function addToCart(id){
 
 }
 
-
 function updateCart(){
 
-  cartCount.textContent = cart.length;
+  const count=cart.reduce(
+    (total,item)=>total+item.quantity,
+    0
+  );
+
+  document.getElementById(
+    "cartCount"
+  ).textContent=count;
+
+  const container=
+    document.getElementById("cartItems");
+
+  if(cart.length===0){
+
+    container.innerHTML=
+      "Your cart is empty.";
+
+    return;
+
+  }
+
+  container.innerHTML=
+    cart.map((item,index)=>`
+
+      <div style="
+        padding:18px 0;
+        border-bottom:1px solid rgba(255,255,255,.1);
+        display:flex;
+        justify-content:space-between;
+      ">
+
+        <div>
+
+          <strong>
+            ${item.name}
+          </strong>
+
+          <div style="
+            color:#777;
+            font-size:12px;
+            margin-top:5px;
+          ">
+            ${item.price} EGP × ${item.quantity}
+          </div>
+
+        </div>
+
+        <button
+          onclick="removeProduct(${index})"
+          style="
+            background:none;
+            border:0;
+            color:#777;
+            cursor:pointer;
+          "
+        >
+          REMOVE
+        </button>
+
+      </div>
+
+    `).join("");
 
 }
 
+function removeProduct(index){
+
+  cart.splice(index,1);
+
+  updateCart();
+
+}
 
 function openCart(){
 
-  let body = cart.length
+  updateCart();
 
-    ? cart.map((p,i) => `
+  document
+    .getElementById("cartModal")
+    .classList.add("show");
 
-      <div class="cart-row">
+}
 
-        <span>
 
-          ${p.name}
+/* =========================
+   CHECKOUT
+========================= */
 
-          <br>
+function checkout(){
 
-          <small>
-            ${p.price} EGP
-          </small>
+  if(cart.length===0){
 
-        </span>
+    alert("Your cart is empty.");
 
-        <button
-          onclick="
-            cart.splice(${i},1);
-            updateCart();
-            openCart();
-          "
-        >
-          ×
-        </button>
+    return;
 
-      </div>
+  }
 
-    `).join("")
+  closeModal("cartModal");
 
-    : `
+  document
+    .getElementById("checkoutModal")
+    .classList.add("show");
 
-      <div class="cart-empty">
-        Your cart is empty
-      </div>
+}
 
+function goPayment(){
+
+  const name=
+    document.getElementById("fullName")
+      .value.trim();
+
+  const phone=
+    document.getElementById("phone")
+      .value.trim();
+
+  const email=
+    document.getElementById("email")
+      .value.trim();
+
+  const address=
+    document.getElementById("address")
+      .value.trim();
+
+  if(!name || !phone || !email || !address){
+
+    alert(
+      "Please complete all fields."
+    );
+
+    return;
+
+  }
+
+  if(!/^01[0-9]{9}$/.test(phone)){
+
+    alert(
+      "Phone number must contain exactly 11 digits and start with 01."
+    );
+
+    return;
+
+  }
+
+  closeModal("checkoutModal");
+
+  document
+    .getElementById("paymentModal")
+    .classList.add("show");
+
+}
+
+
+/* =========================
+   PAYMENT
+========================= */
+
+let selectedPayment="";
+
+function selectPayment(method){
+
+  selectedPayment=method;
+
+  const info=
+    document.getElementById("paymentInfo");
+
+  const upload=
+    document.getElementById("transferImage");
+
+  const finish=
+    document.getElementById("finishPayment");
+
+  if(method==="Cash on Delivery"){
+
+    info.innerHTML=`
+      Cash on Delivery selected.<br>
+      You will pay when your order arrives.
     `;
 
+    upload.style.display="none";
 
-  const total = cart.reduce(
-    (sum,p) => sum + p.price,
-    0
-  );
+  }else{
 
+    info.innerHTML=`
+      Send your payment through
+      <strong>${method}</strong>.<br><br>
 
-  openModal(
+      Vodafone Cash / InstaPay number:<br>
 
-    shell(
+      <strong style="color:#fff">
+        01229884447
+      </strong>
 
-      "CART",
+      <br><br>
 
-      `
-
-      ${body}
-
-      <div class="total">
-
-        <b>
-          TOTAL
-        </b>
-
-        <b>
-          ${total} EGP
-        </b>
-
-      </div>
-
-      ${
-        cart.length
-
-        ?
-
-        '<button class="submit" onclick="openCheckout()">CHECKOUT</button>'
-
-        :
-
-        ''
-      }
-
-      `
-
-    )
-
-  );
-
-}
-
-
-/* PHONE */
-
-function validPhone(value){
-
-  return /^01\d{9}$/.test(value);
-
-}
-
-
-/* CHECKOUT */
-
-function openCheckout(){
-
-  openModal(
-
-    shell(
-
-      "CHECKOUT",
-
-      `
-
-      <form id="checkoutForm">
-
-        <div class="form-grid">
-
-          <div class="field">
-
-            <label>
-              FULL NAME <span class="req">*</span>
-            </label>
-
-            <input
-              name="name"
-              required
-            >
-
-          </div>
-
-
-          <div class="field">
-
-            <label>
-              PHONE <span class="req">*</span>
-            </label>
-
-            <input
-              name="phone"
-              inputmode="numeric"
-              maxlength="11"
-              required
-            >
-
-          </div>
-
-
-          <div class="field">
-
-            <label>
-              EMAIL <span class="req">*</span>
-            </label>
-
-            <input
-              name="email"
-              type="email"
-              required
-            >
-
-          </div>
-
-
-          <div class="field full">
-
-            <label>
-              ADDRESS <span class="req">*</span>
-            </label>
-
-            <textarea
-              name="address"
-              required
-            ></textarea>
-
-          </div>
-
-        </div>
-
-
-        <button class="submit">
-          CONTINUE TO PAYMENT
-        </button>
-
-      </form>
-
-      `
-
-    )
-
-  );
-
-
-  checkoutForm.onsubmit = e => {
-
-    e.preventDefault();
-
-
-    if(
-      !validPhone(
-        e.target.phone.value
-      )
-    ){
-
-      return alert(
-        "Phone number must be exactly 11 digits and start with 01"
-      );
-
-    }
-
-
-    openPayment();
-
-  };
-
-}
-
-
-/* PAYMENT */
-
-function openPayment(){
-
-  const total = cart.reduce(
-    (sum,p) => sum + p.price,
-    0
-  );
-
-
-  openModal(
-
-    shell(
-
-      "PAYMENT",
-
-      `
-
-      <div class="type-list">
-
-        <button
-          onclick="
-            paymentChoice(
-              'Vodafone Cash / InstaPay',
-              ${total}
-            )
-          "
-        >
-          VODAFONE CASH / INSTAPAY
-        </button>
-
-
-        <button
-          onclick="
-            paymentChoice(
-              'Cash on Delivery',
-              ${total}
-            )
-          "
-        >
-          CASH ON DELIVERY
-        </button>
-
-      </div>
-
-
-      <p class="form-note">
-
-        For transfer payment the transfer screenshot is required.
-
-      </p>
-
-      `
-
-    )
-
-  );
-
-}
-
-
-/* PAYMENT CHOICE */
-
-function paymentChoice(
-  method,
-  total
-){
-
-  openModal(
-
-    shell(
-
-      "PAYMENT DETAILS",
-
-      `
-
-      <form id="paymentForm">
-
-        <div class="field">
-
-          <label>
-            PAYMENT METHOD
-          </label>
-
-          <input
-            value="${method}"
-            readonly
-          >
-
-        </div>
-
-
-        ${
-          method.includes("Vodafone")
-
-          ?
-
-          `
-
-          <div class="field">
-
-            <label>
-              TRANSFER SCREENSHOT
-              <span class="req">*</span>
-            </label>
-
-            <input
-              type="file"
-              accept="image/*"
-              required
-            >
-
-          </div>
-
-          `
-
-          :
-
-          ""
-        }
-
-
-        <div class="field">
-
-          <label>
-            ORDER NOTE
-          </label>
-
-          <textarea
-            placeholder="Optional note"
-          ></textarea>
-
-        </div>
-
-
-        <button class="submit">
-
-          CONFIRM ORDER —
-          ${total} EGP
-
-        </button>
-
-      </form>
-
-      `
-
-    )
-
-  );
-
-
-  paymentForm.onsubmit = e => {
-
-    e.preventDefault();
-
-
-    openModal(
-
-      shell(
-
-        "ORDER RECEIVED",
-
-        `
-
-        <div
-          style="
-            text-align:center;
-            color:#bbb;
-            line-height:1.7
-          "
-        >
-
-          Your order has been received successfully.
-
-          <br>
-
-          NAZRA will contact you
-          to confirm the details.
-
-        </div>
-
-        `
-
-      )
-
-    );
-
-
-    cart = [];
-
-    updateCart();
-
-  };
-
-}
-
-
-/* CONTACT */
-
-function contact(){
-
-  openModal(
-
-    shell(
-
-      "CONTACT",
-
-      `
-
-      <div class="type-list">
-
-        <a href="tel:01090356664">
-          01090356664
-        </a>
-
-
-        <a href="mailto:nazra.co123@gmail.com">
-          nazra.co123@gmail.com
-        </a>
-
-
-        <a
-          href="https://www.instagram.com/nazra.co_/"
-          target="_blank"
-        >
-          @nazra.co_
-        </a>
-
-      </div>
-
-      `
-
-    )
-
-  );
-
-}
-
-
-/* STORY */
-
-function story(){
-
-  openModal(
-
-    shell(
-
-      "NAZRA STORY",
-
-      `
-
-      <div class="story">
-
-        ${
-
-          storyEn.map(
-            text => `<p>${text}</p>`
-          ).join("")
-
-        }
-
-
-        <div class="rule"></div>
-
-
-        <div class="arabic">
-
-          ${
-
-            storyAr.map(
-              text => `<p>${text}</p>`
-            ).join("")
-
-          }
-
-        </div>
-
-      </div>
-
-      `
-
-    )
-
-  );
-
-}
-
-
-/* POLICY */
-
-function policy(){
-
-  const en = [
-
-    "All NAZRA pieces are carefully prepared and checked before they are delivered.",
-
-    "We believe every piece should reach you exactly as intended and for that reason we ask you to check your order when you receive it.",
-
-    "Exchange is available within 10 days from the date of delivery.",
-
-    "The piece must be in its original condition, unworn, unwashed, undamaged and with all original tags and packaging.",
-
-    "NAZRA does not offer refunds. Exchanges only.",
-
-    "Any piece that has been worn, washed, damaged or altered will not be accepted for exchange.",
-
-    "The exchange process is subject to checking the condition of the piece before approval.",
-
-    "By placing an order with NAZRA you agree to these terms."
-
-  ];
-
-
-  const ar = [
-
-    "كل قطعة من NAZRA يتم تجهيزها ومراجعتها بعناية قبل تسليمها.",
-
-    "نحن نؤمن أن كل قطعة يجب أن تصل إليك كما صممت تماما ولهذا نطلب منك مراجعة طلبك عند استلامه.",
-
-    "الاستبدال متاح خلال 10 أيام من تاريخ الاستلام.",
-
-    "يجب أن تكون القطعة بحالتها الأصلية وغير مستخدمة أو مغسولة أو تالفة مع وجود جميع التيكتات والتغليف الأصلي.",
-
-    "NAZRA لا توفر استرجاع للمنتجات. الاستبدال فقط.",
-
-    "أي قطعة تم ارتداؤها أو غسلها أو إتلافها أو تعديلها لن يتم قبول استبدالها.",
-
-    "عملية الاستبدال تخضع لمراجعة حالة القطعة قبل الموافقة عليها.",
-
-    "بإتمام طلبك من NAZRA فأنت توافق على هذه الشروط."
-
-  ];
-
-
-  openModal(
-
-    shell(
-
-      "POLICY",
-
-      `
-
-      <div class="policy">
-
-        ${
-
-          en.map(
-            text => `<p>${text}</p>`
-          ).join("")
-
-        }
-
-
-        <div class="rule"></div>
-
-
-        <div class="arabic">
-
-          ${
-
-            ar.map(
-              text => `<p>${text}</p>`
-            ).join("")
-
-          }
-
-        </div>
-
-      </div>
-
-      `
-
-    )
-
-  );
-
-}
-
-
-/* FAQ */
-
-function faq(){
-
-  const questions = [
-
-    [
-      "What payment methods are available?",
-      "You can pay through Vodafone Cash, InstaPay or Cash on Delivery.",
-      "ايه طرق الدفع المتاحة؟",
-      "تقدر تدفع عن طريق فودافون كاش أو إنستا باي أو الدفع عند الاستلام."
-    ],
-
-    [
-      "How can I place an order?",
-      "Choose your piece, select the size and color, then add it to your cart and complete the checkout.",
-      "ازاي اقدر اعمل اوردر؟",
-      "اختار القطعة وحدد المقاس واللون وبعدها ضيفها للعربة وكمل بيانات الطلب."
-    ],
-
-    [
-      "How long does delivery take?",
-      "Delivery time depends on your location and will be confirmed with you after placing your order.",
-      "التوصيل بياخد وقت قد ايه؟",
-      "مدة التوصيل بتختلف حسب مكانك وبيتم تأكيدها معاك بعد تسجيل الطلب."
-    ],
-
-    [
-      "Can I exchange my order?",
-      "Yes. Exchanges are available within 10 days of delivery as long as the piece is in its original condition.",
-      "هل اقدر استبدل الأوردر؟",
-      "اه الاستبدال متاح خلال 10 أيام من تاريخ الاستلام بشرط إن القطعة تكون بحالتها الأصلية."
-    ],
-
-    [
-      "Can I return my order?",
-      "No. NAZRA does not offer refunds. Exchanges only.",
-      "هل اقدر ارجع الأوردر؟",
-      "لا NAZRA لا توفر استرجاع للمنتجات والاستبدال فقط."
-    ],
-
-    [
-      "Can I exchange a piece that has been worn or washed?",
-      "No. The piece must be unworn, unwashed, undamaged and in its original condition with the original tags and packaging.",
-      "هل اقدر استبدل قطعة اتلبست أو اتغسلت؟",
-      "لا لازم القطعة تكون غير مستخدمة وغير مغسولة وغير تالفة وبحالتها الأصلية مع التيكتات والتغليف الأصلي."
-    ],
-
-    [
-      "How can I contact NAZRA?",
-      "You can contact NAZRA through the Contact section on the website.",
-      "ازاي اقدر اتواصل مع NAZRA؟",
-      "تقدر تتواصل معانا من خلال قسم Contact الموجود في الموقع."
-    ]
-
-  ];
-
-
-  openModal(
-
-    shell(
-
-      "FAQ",
-
-      `
-
-      <div class="faq">
-
-        ${
-
-          questions.map(q => `
-
-            <details>
-
-              <summary>
-                ${q[0]}
-              </summary>
-
-              <p>
-                ${q[1]}
-              </p>
-
-
-              <div class="arabic">
-
-                <strong>
-                  ${q[2]}
-                </strong>
-
-                <p>
-                  ${q[3]}
-                </p>
-
-              </div>
-
-            </details>
-
-          `).join("")
-
-        }
-
-      </div>
-
-      `
-
-    )
-
-  );
-
-}
-
-
-/* REPORTS */
-
-function reports(){
-
-  openModal(
-
-    shell(
-
-      "REPORT AN ISSUE",
-
-      `
-
-      <div id="reportChooser">
-
-        <div class="form-note">
-
-          Choose the type of issue and complete
-          every required field before you can submit.
-
-        </div>
-
-
-        <div class="type-list">
-
-          <button onclick="reportForm('order')">
-            ORDER ISSUE →
-          </button>
-
-          <button onclick="reportForm('payment')">
-            PAYMENT ISSUE →
-          </button>
-
-          <button onclick="reportForm('delivery')">
-            DELIVERY ISSUE →
-          </button>
-
-          <button onclick="reportForm('product')">
-            PRODUCT ISSUE →
-          </button>
-
-          <button onclick="reportForm('other')">
-            OTHER →
-          </button>
-
-        </div>
-
-      </div>
-
-
-      <div id="reportArea"></div>
-
-      `
-
-    )
-
-  );
-
-}
-
-
-/* REPORT FORM */
-
-function reportForm(type){
-
-  const configs = {
-
-    order:[
-      "ORDER NUMBER",
-      "FULL NAME",
-      "PHONE NUMBER",
-      "DESCRIBE THE ISSUE",
-      "UPLOAD PHOTO (OPTIONAL)"
-    ],
-
-    payment:[
-      "ORDER NUMBER",
-      "PAYMENT METHOD",
-      "FULL NAME",
-      "PHONE NUMBER",
-      "DESCRIBE THE ISSUE",
-      "PAYMENT SCREENSHOT"
-    ],
-
-    delivery:[
-      "ORDER NUMBER",
-      "FULL NAME",
-      "PHONE NUMBER",
-      "DELIVERY ADDRESS",
-      "DESCRIBE THE ISSUE"
-    ],
-
-    product:[
-      "ORDER NUMBER",
-      "FULL NAME",
-      "PHONE NUMBER",
-      "PRODUCT NAME",
-      "DESCRIBE THE ISSUE",
-      "PHOTOS OF THE PRODUCT"
-    ],
-
-    other:[
-      "FULL NAME",
-      "PHONE NUMBER",
-      "DESCRIBE THE ISSUE"
-    ]
-
-  };
-
-
-  const fields = configs[type].map(label => {
-
-    const name =
-      label
-      .toLowerCase()
-      .replaceAll(" ","_")
-      .replace(/[()]/g,"");
-
-
-    if(label === "PAYMENT METHOD"){
-
-      return `
-
-        <div class="field">
-
-          <label>
-            ${label}
-            <span class="req">*</span>
-          </label>
-
-          <select
-            name="${name}"
-            required
-          >
-
-            <option value="">
-              Select
-            </option>
-
-            <option>
-              Vodafone Cash
-            </option>
-
-            <option>
-              InstaPay
-            </option>
-
-            <option>
-              Cash on Delivery
-            </option>
-
-          </select>
-
-        </div>
-
-      `;
-
-    }
-
-
-    if(
-      label.includes("SCREENSHOT") ||
-      label.includes("PHOTOS")
-    ){
-
-      return `
-
-        <div class="field full">
-
-          <label>
-
-            ${label}
-            <span class="req">*</span>
-
-          </label>
-
-          <input
-            type="file"
-            name="${name}"
-            accept="image/*"
-            required
-          >
-
-        </div>
-
-      `;
-
-    }
-
-
-    if(label.includes("OPTIONAL")){
-
-      return `
-
-        <div class="field full">
-
-          <label>
-            ${label}
-          </label>
-
-          <input
-            type="file"
-            name="${name}"
-            accept="image/*"
-          >
-
-        </div>
-
-      `;
-
-    }
-
-
-    if(
-      label.includes("DESCRIBE") ||
-      label.includes("ADDRESS")
-    ){
-
-      return `
-
-        <div class="field full">
-
-          <label>
-
-            ${label}
-            <span class="req">*</span>
-
-          </label>
-
-          <textarea
-            name="${name}"
-            required
-          ></textarea>
-
-        </div>
-
-      `;
-
-    }
-
-
-    return `
-
-      <div class="field">
-
-        <label>
-
-          ${label}
-          <span class="req">*</span>
-
-        </label>
-
-        <input
-          name="${name}"
-          ${
-            label === "PHONE NUMBER"
-            ?
-            'inputmode="numeric" maxlength="11"'
-            :
-            ''
-          }
-          required
-        >
-
-      </div>
-
+      After transferring, upload your payment screenshot.
     `;
 
-  }).join("");
-
-
-  reportArea.innerHTML = `
-
-    <a
-      class="back-link"
-      href="#"
-      onclick="
-        reports();
-        return false
-      "
-    >
-      ← BACK
-    </a>
-
-
-    <form id="reportForm">
-
-      <div class="form-grid">
-
-        ${fields}
-
-      </div>
-
-
-      <button
-        class="submit"
-        disabled
-        id="reportSubmit"
-      >
-        CONFIRM REPORT
-      </button>
-
-    </form>
-
-  `;
-
-
-  const form =
-    document.getElementById(
-      "reportForm"
-    );
-
-
-  const btn =
-    document.getElementById(
-      "reportSubmit"
-    );
-
-
-  function check(){
-
-    let ok =
-      [...form.querySelectorAll("[required]")]
-      .every(x => {
-
-        if(x.type === "file"){
-
-          return x.files.length;
-
-        }
-
-        return x.value.trim();
-
-      });
-
-
-    const phone =
-      form.querySelector(
-        '[name="phone_number"]'
-      );
-
-
-    if(
-      phone &&
-      phone.value &&
-      !validPhone(phone.value)
-    ){
-
-      ok = false;
-
-    }
-
-
-    btn.disabled = !ok;
+    upload.style.display="block";
 
   }
 
+  finish.style.display="block";
 
-  form.addEventListener(
-    "input",
-    check
-  );
+}
 
+function finishOrder(){
 
-  form.addEventListener(
-    "change",
-    check
-  );
+  if(
+    selectedPayment!=="Cash on Delivery" &&
+    !document.getElementById(
+      "transferImage"
+    ).files.length
+  ){
 
-
-  form.onsubmit = e => {
-
-    e.preventDefault();
-
-
-    if(btn.disabled){
-      return;
-    }
-
-
-    openModal(
-
-      shell(
-
-        "REPORT SENT",
-
-        `
-
-        <div
-          style="
-            text-align:center;
-            color:#bbb;
-            line-height:1.7
-          "
-        >
-
-          Your report has been submitted.
-
-          <br>
-
-          NAZRA will review the issue.
-
-        </div>
-
-        `
-
-      )
-
+    alert(
+      "Please upload your transfer screenshot."
     );
 
-  };
+    return;
+
+  }
+
+  alert(
+    "Your order has been prepared successfully. Thank you for choosing NAZRA."
+  );
+
+  cart=[];
+
+  updateCart();
+
+  closeModal("paymentModal");
 
 }
 
 
-/* AI CHAT */
+/* =========================
+   MODALS
+========================= */
 
-function addChat(
-  text,
-  who="ai"
-){
+function closeModal(id){
 
-  const div =
-    document.createElement(
-      "div"
-    );
-
-
-  div.className =
-    "bubble " +
-    (who === "user" ? "user" : "");
-
-
-  div.textContent = text;
-
-
-  chatBody.appendChild(div);
-
-
-  chatBody.scrollTop =
-    chatBody.scrollHeight;
+  document
+    .getElementById(id)
+    .classList.remove("show");
 
 }
 
 
-/* FRANCO + ENGLISH AI */
-
-function botReply(q){
-
-  const s =
-    q.toLowerCase();
-
-
-  if(
-    /exchange|بدل|استبدال|el exchange|momken/.test(s)
-  ){
-
-    return "Aywa, momken within 10 days mn date of delivery بشرط en el piece tkoun b7altaha el aslya w ma tkounsh etlbest aw etghaslet w ykoon el tags w packaging mawgoodin.";
-
-  }
-
-
-  if(
-    /delivery|توصيل|الشحن|يوصل|بياخد|el delivery/.test(s)
-  ){
-
-    return "Delivery time depends on your location and will be confirmed with you after placing your order.";
-
-  }
-
-
-  if(
-    /payment|دفع|فلوس|vodafone|instapay|فودافون|انستا/.test(s)
-  ){
-
-    return "You can pay through Vodafone Cash, InstaPay or Cash on Delivery.";
-
-  }
-
-
-  if(
-    /order|اوردر|طلب|اطلب|اعمل/.test(s)
-  ){
-
-    return "Choose your piece, select the size and color, then add it to your cart and complete the checkout.";
-
-  }
-
-
-  if(
-    /return|refund|استرجاع|ارجع/.test(s)
-  ){
-
-    return "NAZRA does not offer refunds. Exchanges only.";
-
-  }
-
-
-  if(
-    /worn|washed|اتلبس|اتغسل/.test(s)
-  ){
-
-    return "No. The piece must be unworn, unwashed, undamaged and in its original condition with the original tags and packaging.";
-
-  }
-
-
-  if(
-    /contact|تواصل|كلم|انست/.test(s)
-  ){
-
-    return "You can contact NAZRA through the Contact section on the website.";
-
-  }
-
-
-  return "I am not sure about that yet. Please contact NAZRA through the Contact section and we will help you.";
-
-}
-
-
-/* ELEMENTS */
-
-const productsEl =
-  document.getElementById(
-    "products"
-  );
-
-const cartCount =
-  document.getElementById(
-    "cartCount"
-  );
-
-const modalOverlay =
-  document.getElementById(
-    "modalOverlay"
-  );
-
-const modal =
-  document.getElementById(
-    "modal"
-  );
-
-const chatPanel =
-  document.getElementById(
-    "chatPanel"
-  );
-
-const chatBody =
-  document.getElementById(
-    "chatBody"
-  );
-
-
-/* INIT */
-
-renderProducts();
-
-
-/* COLLECTION BUTTON */
-
-document
-  .getElementById("collectionsBtn")
-  .onclick = () => {
-
-    document
-      .getElementById("shop")
-      .scrollIntoView({
-        behavior:"smooth"
-      });
-
-  };
-
-
-document
-  .getElementById("allProducts")
-  .onclick = () => {
-
-    document
-      .getElementById("shop")
-      .scrollIntoView({
-        behavior:"smooth"
-      });
-
-  };
-
-
-/* CART BUTTONS */
-
-document
-  .getElementById("cartTop")
-  .onclick = openCart;
-
-
-document
-  .getElementById("bottomCart")
-  .onclick = openCart;
-
-
-document
-  .getElementById("drawerCart")
-  .onclick = () => {
-
-    drawer.classList.remove(
-      "show"
-    );
-
-    openCart();
-
-  };
-
-
-/* DRAWER */
-
-document
-  .getElementById("menuBtn")
-  .onclick = () => {
-
-    drawer.classList.add(
-      "show"
-    );
-
-  };
-
-
-document
-  .getElementById("drawerBg")
-  .onclick = () => {
-
-    drawer.classList.remove(
-      "show"
-    );
-
-  };
-
-
-/* NAVIGATION */
-
-document
-  .querySelectorAll("[data-open]")
-  .forEach(button => {
-
-    button.onclick = () => {
-
-      drawer.classList.remove(
-        "show"
-      );
-
-
-      const page =
-        button.dataset.open;
-
-
-      if(page === "home"){
-
-        location.hash =
-          "home";
-
-      }
-
-      else if(page === "contact"){
-
-        contact();
-
-      }
-
-      else if(page === "reports"){
-
-        reports();
-
-      }
-
-      else if(page === "story"){
-
-        story();
-
-      }
-
-      else if(page === "policy"){
-
-        policy();
-
-      }
-
-      else if(page === "faq"){
-
-        faq();
-
-      }
-
-    };
-
-  });
-
-
-/* CLOSE MODAL */
-
-modalOverlay.addEventListener(
-  "click",
-  e => {
-
-    if(
-      e.target === modalOverlay
-    ){
-
-      closeModal();
-
-    }
-
-  }
-);
-
-
-/* AI OPEN */
-
-document
-  .getElementById("chatLaunch")
-  .onclick = () => {
-
-    chatPanel.classList.add(
-      "show"
-    );
-
-
-    if(
-      !chatBody.children.length
-    ){
-
-      addChat(
-        "Hi! I'm NAZRA AI 👋 How can I help you today?"
-      );
-
-    }
-
-  };
-
-
-/* AI CLOSE */
-
-document
-  .getElementById("chatClose")
-  .onclick = () => {
-
-    chatPanel.classList.remove(
-      "show"
-    );
-
-  };
-
-
-/* AI FORM */
-
-document
-  .getElementById("chatForm")
-  .onsubmit = e => {
-
-    e.preventDefault();
-
-
-    const q =
-      chatInput.value.trim();
-
-
-    if(!q){
-      return;
-    }
-
-
-    addChat(
-      q,
-      "user"
-    );
-
-
-    chatInput.value = "";
-
-
-    setTimeout(
-      () => {
-
-        addChat(
-          botReply(q)
-        );
-
-      },
-      250
-    );
-
-  };
-
-
-/* PHONE INPUT */
+/* =========================
+   PHONE
+========================= */
 
 document.addEventListener(
   "input",
-  e => {
+  function(e){
 
-    if(
-      e.target.matches(
-        'input[inputmode="numeric"]'
-      )
-    ){
+    if(e.target.id==="phone"){
 
-      e.target.value =
+      e.target.value=
         e.target.value
           .replace(/\D/g,"")
           .slice(0,11);
@@ -2686,6 +2223,528 @@ document.addEventListener(
 
   }
 );
+
+
+/* =========================
+   AI
+========================= */
+
+function toggleAI(){
+
+  document
+    .getElementById("aiWindow")
+    .classList.toggle("show");
+
+}
+
+function addMessage(text,type){
+
+  const box=
+    document.getElementById("aiMessages");
+
+  const div=
+    document.createElement("div");
+
+  div.className=
+    "message "+type;
+
+  div.innerHTML=text;
+
+  box.appendChild(div);
+
+  box.scrollTop=
+    box.scrollHeight;
+
+}
+
+
+/* =========================
+   AI LANGUAGE
+========================= */
+
+function detectLanguage(text){
+
+  if(/[\u0600-\u06FF]/.test(text))
+    return "ar";
+
+  if(
+    /\b(ana|enta|enti|el|3ayz|3andy|ezay|emta|fein|msh|mesh|momken|wesel|weselsh|abdl|astbdl|atlob)\b/i.test(text)
+    ||
+    /[23456789]/.test(text)
+  )
+    return "franco";
+
+  return "en";
+
+}
+
+
+/* =========================
+   AI NORMALIZE
+========================= */
+
+function normalize(text){
+
+  return text
+    .toLowerCase()
+    .replace(/[إأآ]/g,"ا")
+    .replace(/ى/g,"ي")
+    .replace(/ة/g,"ه")
+    .replace(/[ًٌٍَُِّْ]/g,"")
+    .trim();
+
+}
+
+
+/* =========================
+   AI BRAIN
+========================= */
+
+function generateAIReply(original){
+
+  const text=normalize(original);
+
+  const lang=
+    detectLanguage(original);
+
+
+  /* ORDER NOT ARRIVED */
+
+  if(
+    text.includes("الاوردر موصلش") ||
+    text.includes("الاوردر موصل") ||
+    text.includes("الاوردر فين") ||
+    text.includes("فين الاوردر") ||
+    text.includes("التوصيل متاخر") ||
+    text.includes("weselsh") ||
+    text.includes("mwasalsh") ||
+    text.includes("order weselsh") ||
+    text.includes("order mwasalsh") ||
+    text.includes("order late") ||
+    text.includes("order hasn't arrived") ||
+    text.includes("order didnt arrive") ||
+    text.includes("my order") &&
+    (
+      text.includes("late") ||
+      text.includes("arrived") ||
+      text.includes("missing")
+    )
+  ){
+
+    if(lang==="ar")
+      return `
+        تمام، خليني أساعدك في مشكلة الأوردر.
+        <br><br>
+        لو الأوردر متأخر أو موصلش،
+        ابعتلي <strong>رقم الأوردر</strong> لو معاك.
+        <br><br>
+        ولو مش معاك الرقم، ابعتلي
+        <strong>الاسم ورقم التليفون</strong>
+        اللي استخدمتهم في الطلب.
+      `;
+
+    if(lang==="franco")
+      return `
+        tamam, khaleny asa3dak fe moshkelt el order.
+        <br><br>
+        law el order weselsh aw et2a5ar,
+        eb3atly <strong>raqam el order</strong> law ma3ak.
+        <br><br>
+        law mesh ma3ak, eb3atly
+        <strong>el esm w raqam el phone</strong>
+        beta3 el order.
+      `;
+
+    return `
+      Sure, I'll help you with the order.
+      <br><br>
+      Send me your <strong>order number</strong>.
+      If you don't have it, send me the
+      <strong>name and phone number</strong>
+      used for the order.
+    `;
+
+  }
+
+
+  /* EXCHANGE */
+
+  if(
+    text.includes("استبدال") ||
+    text.includes("ابدال") ||
+    text.includes("تبديل") ||
+    text.includes("ارجع") ||
+    text.includes("abdl") ||
+    text.includes("astbdl") ||
+    text.includes("exchange") ||
+    text.includes("return")
+  ){
+
+    if(lang==="ar")
+      return `
+        أيوه، ينفع الاستبدال خلال
+        <strong>10 أيام</strong>
+        بشرط إن القطعة تكون بحالتها الأصلية
+        ومعاها التاج والتغليف.
+        <br><br>
+        القطعة اللي اتلبست أو اتغسلت
+        مينفعش تتبدل.
+      `;
+
+    if(lang==="franco")
+      return `
+        aywa, momken el exchange 5elal
+        <strong>10 ayam</strong>
+        law el piece b 7altaha el aslya
+        w ma3aha el tag w el packaging.
+        <br><br>
+        el piece ely etlbest aw etghaslet
+        mesh momken tetbadal.
+      `;
+
+    return `
+      Yes. Exchanges are available within
+      <strong>10 days</strong>,
+      as long as the item is in its original
+      condition with its tags and packaging.
+      <br><br>
+      Worn or washed items cannot be exchanged.
+    `;
+
+  }
+
+
+  /* PAYMENT */
+
+  if(
+    text.includes("دفع") ||
+    text.includes("تحويل") ||
+    text.includes("فودافون") ||
+    text.includes("انستا") ||
+    text.includes("vodafone") ||
+    text.includes("instapay") ||
+    text.includes("payment") ||
+    text.includes("pay")
+  ){
+
+    if(lang==="ar")
+      return `
+        عندك 3 طرق للدفع:
+        <br><br>
+        • Vodafone Cash<br>
+        • InstaPay<br>
+        • Cash on Delivery
+        <br><br>
+        لو هتدفع بتحويل،
+        هترفع صورة التحويل بعد الدفع.
+      `;
+
+    if(lang==="franco")
+      return `
+        3andak 3 toro2 lel payment:
+        <br><br>
+        • Vodafone Cash<br>
+        • InstaPay<br>
+        • Cash on Delivery
+        <br><br>
+        law hatdfa3 transfer,
+        hatraf3 screenshot beta3 el transfer
+        ba3d el daf3.
+      `;
+
+    return `
+      You can pay using:
+      <br><br>
+      • Vodafone Cash<br>
+      • InstaPay<br>
+      • Cash on Delivery
+      <br><br>
+      For transfer payments,
+      you need to upload the payment screenshot.
+    `;
+
+  }
+
+
+  /* DELIVERY */
+
+  if(
+    text.includes("التوصيل") ||
+    text.includes("يوصل") ||
+    text.includes("امتى") ||
+    text.includes("emta") ||
+    text.includes("delivery") ||
+    text.includes("when will")
+  ){
+
+    if(lang==="ar")
+      return `
+        وقت التوصيل بيختلف حسب المنطقة والطلب.
+        <br><br>
+        لو عندك أوردر بالفعل وعايز تعرف حالته،
+        ابعتلي رقم الأوردر أو بيانات الطلب.
+      `;
+
+    if(lang==="franco")
+      return `
+        wa2t el delivery bey5talef 7asab
+        el manta2a w el order.
+        <br><br>
+        law 3andak order w 3ayz te3raf 7alto,
+        eb3atly raqam el order aw bayanat el order.
+      `;
+
+    return `
+      Delivery time can vary depending on
+      the area and the order.
+      <br><br>
+      If you already placed an order,
+      send me the order number or order details.
+    `;
+
+  }
+
+
+  /* HOW TO ORDER */
+
+  if(
+    text.includes("ازاي اطلب") ||
+    text.includes("عايز اطلب") ||
+    text.includes("اطلب ازاي") ||
+    text.includes("ezay atlob") ||
+    text.includes("3ayz atlob") ||
+    text.includes("how do i order") ||
+    text.includes("how can i order")
+  ){
+
+    if(lang==="ar")
+      return `
+        بسيطة جدًا.
+        <br><br>
+        ادخل على <strong>TO COLLECTIONS</strong>،
+        اختار المنتج، ضيفه للكارت،
+        وبعدها كمل بيانات الشحن والدفع.
+      `;
+
+    if(lang==="franco")
+      return `
+        baseta gedan.
+        <br><br>
+        ed5ol 3ala <strong>TO COLLECTIONS</strong>,
+        e5tar el product,
+        deefa lel cart,
+        w kammel bayanat el shipping w payment.
+      `;
+
+    return `
+      It's simple.
+      <br><br>
+      Open <strong>TO COLLECTIONS</strong>,
+      choose your product, add it to your cart,
+      then complete your shipping and payment details.
+    `;
+
+  }
+
+
+  /* PRICE */
+
+  if(
+    text.includes("سعر") ||
+    text.includes("بكام") ||
+    text.includes("كام") ||
+    text.includes("price") ||
+    text.includes("how much") ||
+    text.includes("bkam") ||
+    text.includes("kam")
+  ){
+
+    if(lang==="ar")
+      return `
+        الأسعار بتختلف حسب المنتج.
+        ادخل على <strong>COLLECTION</strong>
+        وهتلاقي سعر كل قطعة تحت اسمها.
+      `;
+
+    if(lang==="franco")
+      return `
+        el as3ar bet5talef 7asab el product.
+        ed5ol <strong>COLLECTION</strong>
+        w hatla2y se3r kol piece ta7t esmha.
+      `;
+
+    return `
+      Prices depend on the product.
+      Open <strong>COLLECTION</strong>
+      to see the price of each item.
+    `;
+
+  }
+
+
+  /* GREETING */
+
+  if(
+    /^(hi|hello|hey|اهلا|اهلاً|هاي|هلا|سلام|salam|ahlan|ازيك|ezayak)/i
+      .test(original.trim())
+  ){
+
+    if(lang==="ar")
+      return "أهلاً بيك في NAZRA. قولي محتاج إيه وأنا هساعدك.";
+
+    if(lang==="franco")
+      return "ahlan beek fe NAZRA. 2oly me7tag eh w ana hasa3dak.";
+
+    return "Welcome to NAZRA. Tell me what you need and I'll help you.";
+
+  }
+
+
+  /* CONTACT */
+
+  if(
+    text.includes("رقم") ||
+    text.includes("تليفون") ||
+    text.includes("phone") ||
+    text.includes("email") ||
+    text.includes("contact") ||
+    text.includes("instagram")
+  ){
+
+    if(lang==="ar")
+      return `
+        تقدر تتواصل مع NAZRA على
+        <strong>01090356664</strong>
+        أو
+        <strong>nazra.co123@gmail.com</strong>
+        <br><br>
+        Instagram:
+        <strong>@nazra.co_</strong>
+      `;
+
+    if(lang==="franco")
+      return `
+        te2dar tetwasal ma3 NAZRA 3ala
+        <strong>01090356664</strong>
+        aw
+        <strong>nazra.co123@gmail.com</strong>
+        <br><br>
+        Instagram:
+        <strong>@nazra.co_</strong>
+      `;
+
+    return `
+      You can contact NAZRA at
+      <strong>01090356664</strong>,
+      <strong>nazra.co123@gmail.com</strong>
+      or Instagram
+      <strong>@nazra.co_</strong>.
+    `;
+
+  }
+
+
+  /* HELP */
+
+  if(
+    text.includes("مساعدة") ||
+    text.includes("ساعدني") ||
+    text.includes("help") ||
+    text.includes("msa3da")
+  ){
+
+    if(lang==="ar")
+      return `
+        أكيد. قولي مشكلتك بالتفصيل وأنا هساعدك.
+        <br><br>
+        ممكن تسألني عن الأوردر،
+        التوصيل، الدفع، الاستبدال،
+        الأسعار أو المنتجات.
+      `;
+
+    if(lang==="franco")
+      return `
+        akeed. 2oly moshkeltak bel tafseel
+        w ana hasa3dak.
+        <br><br>
+        momken tes2alny 3an el order,
+        delivery, payment, exchange,
+        prices aw products.
+      `;
+
+    return `
+      Of course. Tell me what happened
+      and I'll help you.
+      <br><br>
+      You can ask about orders, delivery,
+      payment, exchanges, prices or products.
+    `;
+
+  }
+
+
+  /* FALLBACK */
+
+  if(lang==="ar")
+    return `
+      أنا معاك. قولي بالظبط إيه اللي محتاجه
+      أو إيه المشكلة اللي حصلت،
+      وأنا هحاول أوجهك للخطوة الصح.
+    `;
+
+  if(lang==="franco")
+    return `
+      ana ma3ak. 2oly belzabt me7tag eh
+      aw eh el moshkela ely 7asalet,
+      w ana hawagahek lel 5atwa el sa7.
+    `;
+
+  return `
+    I'm here to help.
+    Tell me exactly what you need
+    or what happened, and I'll guide you
+    to the right next step.
+  `;
+
+}
+
+
+/* =========================
+   SEND AI
+========================= */
+
+function sendAI(){
+
+  const input=
+    document.getElementById("aiInput");
+
+  const text=
+    input.value.trim();
+
+  if(!text)return;
+
+  addMessage(text,"user");
+
+  input.value="";
+
+  setTimeout(()=>{
+
+    const reply=
+      generateAIReply(text);
+
+    addMessage(reply,"ai");
+
+  },350);
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+document.getElementById("home")
+  .style.display="flex";
 
 </script>
 
