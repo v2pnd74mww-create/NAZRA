@@ -1,62 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>NAZRA</title>
-
-  <meta name="description" content="NAZRA">
-
-  <meta name="robots" content="index, follow">
-
-  <link rel="canonical" href="https://nazra-qfdap.sevalla.page/">
-
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HSLKNCDLRK"></script>
-
-  <script>
-    window.dataLayer = window.dataLayer || [];
-
-    function gtag(){
-      dataLayer.push(arguments);
-    }
-
-    gtag('js', new Date());
-
-    gtag('config', 'G-HSLKNCDLRK');
-  </script>
-
-<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>NAZRA</title>
 
 <style>
+:root{
+  --bg:#050505;
+  --panel:#0c0c0c;
+  --card:#111;
+  --line:#262626;
+  --text:#f5f1e8;
+  --muted:#969696;
+  --gold:#b7a16b;
+}
 
 *{
   box-sizing:border-box;
   margin:0;
   padding:0;
-}
-
-:root{
-  --bg:#050505;
-  --card:#111;
-  --text:#fff;
-  --muted:#999;
-  --border:#292929;
-  --button:#fff;
-  --buttonText:#000;
-}
-
-body.light{
-  --bg:#f7f7f7;
-  --card:#fff;
-  --text:#111;
-  --muted:#666;
-  --border:#ddd;
-  --button:#111;
-  --buttonText:#fff;
 }
 
 html{
@@ -67,10 +30,10 @@ body{
   background:var(--bg);
   color:var(--text);
   font-family:Arial,Helvetica,sans-serif;
-  transition:.25s;
+  overflow-x:hidden;
 }
 
-button,input,select{
+button,input,select,textarea{
   font:inherit;
 }
 
@@ -79,581 +42,769 @@ button{
 }
 
 a{
-  color:inherit;
   text-decoration:none;
+  color:inherit;
 }
-
 
 /* HEADER */
 
-header{
-  height:75px;
-  padding:0 22px;
+.header{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  height:70px;
+  z-index:50;
+  background:rgba(5,5,5,.86);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
   display:flex;
   align-items:center;
   justify-content:space-between;
-  border-bottom:1px solid var(--border);
-  position:sticky;
-  top:0;
-  z-index:20;
-  background:var(--bg);
+  padding:0 18px;
 }
 
-.logo{
-  font-family:Georgia,serif;
-  font-size:27px;
-  letter-spacing:1px;
+.brand{
+  font:28px Georgia,serif;
+  letter-spacing:9px;
 }
 
-nav{
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-
-.nav-btn{
-  background:none;
-  border:0;
+.icon-btn{
+  width:42px;
+  height:42px;
+  border:1px solid var(--line);
+  background:#0a0a0a;
   color:var(--text);
-  font-size:12px;
-  letter-spacing:1px;
-  padding:8px;
+  border-radius:50%;
+  position:relative;
 }
 
-.small-btn{
-  border:1px solid var(--border);
-  background:var(--card);
-  color:var(--text);
-  border-radius:20px;
-  padding:7px 10px;
-  font-size:11px;
+.icon-btn span{
+  position:absolute;
+  right:-5px;
+  top:-5px;
+  background:var(--gold);
+  color:#111;
+  border-radius:50%;
+  min-width:17px;
+  height:17px;
+  font-size:9px;
+  line-height:17px;
 }
 
-
-/* HOME */
-
-#home{
-  min-height:calc(100vh - 75px);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:30px 20px;
-}
+/* HERO */
 
 .hero{
+  min-height:760px;
+  padding:130px 24px 80px;
+  display:flex;
+  align-items:center;
+  background:
+    radial-gradient(
+      circle at 76% 45%,
+      #28231c 0,
+      #11100e 20%,
+      #070707 54%,
+      #000 80%
+    );
+  position:relative;
+  overflow:hidden;
+}
+
+.hero:after{
+  content:"";
+  position:absolute;
+  right:-80px;
+  top:150px;
+  width:310px;
+  height:470px;
+  border-radius:170px 170px 0 0;
+  background:
+    radial-gradient(
+      circle at 55% 15%,
+      #6b6252 0,
+      #29261f 24%,
+      #090909 65%
+    );
+  opacity:.5;
+}
+
+.hero-content{
+  position:relative;
+  z-index:2;
   width:100%;
-  max-width:800px;
+  max-width:680px;
+}
+
+.eyebrow{
+  font-size:10px;
+  letter-spacing:5px;
+  color:var(--muted);
+  text-transform:uppercase;
+}
+
+.hero-logo{
+  width:min(78vw,440px);
+  max-height:180px;
+  object-fit:contain;
+  margin:22px 0 24px;
 }
 
 .hero h1{
-  font-family:Georgia,serif;
-  font-size:clamp(55px,16vw,125px);
-  letter-spacing:1px;
-  margin-bottom:15px;
+  font:clamp(46px,12vw,92px) Georgia,serif;
+  letter-spacing:8px;
 }
 
-.hero p{
-  color:var(--muted);
-  letter-spacing:4px;
+.hero-tag{
   font-size:12px;
-  margin-bottom:35px;
+  letter-spacing:6px;
+  color:#aaa;
+  margin:12px 0 32px;
 }
 
-.shop-main{
-  border:0;
-  background:var(--button);
-  color:var(--buttonText);
-  padding:18px 45px;
-  font-weight:bold;
-  letter-spacing:3px;
+.primary{
+  border:1px solid var(--gold);
+  background:transparent;
+  color:var(--text);
+  padding:17px 25px;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  min-height:54px;
 }
 
-
-/* SECTIONS */
-
-section{
-  padding:75px 6%;
+.primary:hover{
+  background:var(--gold);
+  color:#090909;
 }
 
-#shop{
-  display:none;
+/* COLLECTION */
+
+.section{
+  padding:76px 20px;
 }
 
-#shop.show{
-  display:block;
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  margin-bottom:25px;
 }
 
 .section-title{
-  text-align:center;
-  font-family:Georgia,serif;
-  font-size:34px;
-  letter-spacing:2px;
-  margin-bottom:45px;
+  font:34px Georgia,serif;
+  letter-spacing:5px;
 }
 
-
-/* PRODUCTS */
+.view{
+  font-size:10px;
+  letter-spacing:2px;
+  color:var(--gold);
+  background:none;
+  border:0;
+}
 
 .products{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:20px;
-  max-width:1200px;
+  gap:14px;
+  max-width:1100px;
   margin:auto;
 }
 
 .card{
   background:var(--card);
-  border:1px solid var(--border);
+  border:1px solid var(--line);
+  border-radius:12px;
   overflow:hidden;
 }
 
-.product-img{
+.photo{
+  aspect-ratio:1/1.12;
+  background:
+    radial-gradient(
+      circle at 50% 35%,
+      #30302f,
+      #151515 48%,
+      #090909
+    );
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+}
+
+.photo img{
   width:100%;
-  height:360px;
+  height:100%;
   object-fit:cover;
-  background:#111;
+}
+
+.placeholder{
+  font:28px Georgia,serif;
+  letter-spacing:5px;
+  color:#aaa;
 }
 
 .card-info{
-  padding:20px;
+  padding:15px;
 }
 
-.card h3{
-  font-size:14px;
-  letter-spacing:1px;
-  margin-bottom:8px;
+.card-name{
+  font-size:12px;
+  letter-spacing:2px;
 }
 
 .price{
+  font-size:12px;
   color:var(--muted);
-  margin-bottom:18px;
+  margin-top:7px;
 }
 
-.product-btn{
+.add{
   width:100%;
-  padding:13px;
-  border:1px solid var(--border);
-  background:var(--button);
-  color:var(--buttonText);
+  margin-top:13px;
+  padding:12px;
+  background:#eee;
+  color:#090909;
+  border:0;
+  font-size:11px;
+  letter-spacing:2px;
 }
 
+/* FOOTER */
 
-/* MODALS */
+.footer{
+  border-top:1px solid var(--line);
+  padding:28px 20px;
+  color:#777;
+  font-size:10px;
+  letter-spacing:3px;
+  display:flex;
+  justify-content:flex-start;
+}
 
-.modal{
+.footer strong{
+  font:20px Georgia,serif;
+  letter-spacing:7px;
+  color:#ddd;
+}
+
+/* BOTTOM NAV */
+
+.bottom{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  height:68px;
+  z-index:60;
+  background:rgba(5,5,5,.96);
+  border-top:1px solid var(--line);
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+}
+
+.bottom button{
+  background:none;
+  border:0;
+  color:#aaa;
+  font-size:9px;
+  letter-spacing:1px;
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+  align-items:center;
+}
+
+.bottom b{
+  font-size:18px;
+  font-weight:400;
+  color:#ddd;
+}
+
+/* MODAL */
+
+.overlay{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.75);
-  display:none;
-  align-items:center;
-  justify-content:center;
+  background:rgba(0,0,0,.72);
+  backdrop-filter:blur(10px);
   z-index:100;
-  padding:20px;
+  display:none;
+  align-items:flex-start;
+  justify-content:center;
+  padding:82px 14px 88px;
+  overflow:auto;
 }
 
-.modal.show{
+.overlay.show{
   display:flex;
 }
 
-.modal-box{
-  width:100%;
-  max-width:500px;
-  max-height:90vh;
-  overflow:auto;
-  background:var(--card);
-  border:1px solid var(--border);
-  padding:28px;
+.modal{
+  width:min(620px,100%);
+  background:
+    linear-gradient(
+      145deg,
+      #111,
+      #080808
+    );
+  border:1px solid #333;
+  border-radius:16px;
   position:relative;
+  box-shadow:0 20px 80px #000;
+  padding:25px;
 }
 
 .close{
   position:absolute;
-  right:18px;
-  top:15px;
-  background:none;
+  right:16px;
+  top:14px;
+  width:38px;
+  height:38px;
   border:0;
-  color:var(--text);
-  font-size:25px;
+  background:none;
+  color:#ddd;
+  font-size:28px;
 }
 
 .modal h2{
-  font-family:Georgia,serif;
-  letter-spacing:2px;
-  margin-bottom:25px;
+  font:30px Georgia,serif;
+  letter-spacing:5px;
+  margin-bottom:22px;
+  text-align:center;
+}
+
+.rule{
+  height:1px;
+  background:#333;
+  margin:15px 0 22px;
+}
+
+/* STORY / POLICY / FAQ */
+
+.story p,
+.policy p{
+  color:#c8c4bc;
+  line-height:1.75;
+  font-size:13px;
+  margin-bottom:16px;
+}
+
+.arabic{
+  direction:rtl;
+  text-align:right;
+}
+
+.arabic p{
+  font-size:14px;
+}
+
+.faq details{
+  border-bottom:1px solid #2a2a2a;
+  padding:15px 0;
+}
+
+.faq summary{
+  cursor:pointer;
+  font-size:12px;
+}
+
+.faq p{
+  color:#aaa;
+  margin-top:10px;
+  line-height:1.6;
+  font-size:12px;
+}
+
+/* FORMS */
+
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
 }
 
 .field{
-  margin-bottom:15px;
+  margin-bottom:12px;
+}
+
+.field.full{
+  grid-column:1/-1;
 }
 
 .field label{
   display:block;
-  color:var(--muted);
-  font-size:12px;
+  font-size:10px;
+  letter-spacing:1.5px;
+  color:#aaa;
   margin-bottom:7px;
 }
 
 .field input,
-.field select{
+.field select,
+.field textarea{
   width:100%;
-  padding:14px;
-  background:var(--bg);
-  color:var(--text);
-  border:1px solid var(--border);
+  background:#080808;
+  color:#eee;
+  border:1px solid #333;
+  border-radius:8px;
+  padding:13px;
   outline:none;
 }
 
-.primary{
+.field textarea{
+  min-height:110px;
+  resize:vertical;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+  border-color:var(--gold);
+}
+
+.req{
+  color:#c99;
+}
+
+.form-note{
+  font-size:10px;
+  color:#777;
+  line-height:1.5;
+  margin:8px 0 14px;
+}
+
+.submit{
   width:100%;
-  padding:15px;
-  border:0;
-  background:var(--button);
-  color:var(--buttonText);
-  font-weight:bold;
+  padding:14px;
+  border:1px solid #444;
+  background:#eee;
+  color:#080808;
+  letter-spacing:2px;
+  font-size:11px;
+}
+
+.submit:disabled{
+  opacity:.35;
+  cursor:not-allowed;
+}
+
+/* LIST BUTTONS */
+
+.type-list{
+  display:grid;
+  gap:8px;
+}
+
+.type-list button,
+.type-list a{
+  padding:14px;
+  text-align:left;
+  background:#0a0a0a;
+  border:1px solid #2b2b2b;
+  color:#ddd;
+  border-radius:8px;
+  letter-spacing:1px;
+}
+
+.type-list button:hover,
+.type-list a:hover{
+  border-color:var(--gold);
+}
+
+.back-link{
+  display:inline-block;
+  margin:0 0 18px;
+  color:#aaa;
+  font-size:10px;
   letter-spacing:2px;
 }
 
+/* CART */
 
-/* AUTH */
-
-.auth-tabs{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  margin-bottom:25px;
+.cart-row{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  border-bottom:1px solid #2a2a2a;
+  padding:14px 0;
+  font-size:12px;
 }
 
-.auth-tab{
-  padding:12px;
-  background:none;
-  color:var(--muted);
-  border:1px solid var(--border);
+.cart-empty{
+  text-align:center;
+  color:#888;
+  padding:25px;
 }
 
-.auth-tab.active{
-  color:var(--text);
-  border-color:var(--text);
+.total{
+  display:flex;
+  justify-content:space-between;
+  margin:18px 0;
+  font-size:13px;
 }
 
-.auth-form{
-  display:none;
+/* AI */
+
+.chat-launch{
+  position:fixed;
+  right:16px;
+  bottom:82px;
+  z-index:70;
+  width:62px;
+  height:62px;
+  border:1px solid var(--gold);
+  border-radius:50%;
+  background:#090909;
+  color:#eee;
+  box-shadow:0 8px 30px #000;
 }
 
-.auth-form.active{
+.chat-launch span{
   display:block;
+  font:22px Georgia,serif;
 }
 
-.error{
-  color:#ff6b6b;
-  font-size:13px;
-  margin-bottom:15px;
-  line-height:1.5;
+.chat-launch small{
+  font-size:7px;
+  letter-spacing:1px;
 }
 
-.success-msg{
-  color:#6cff9a;
-  font-size:13px;
-  margin-bottom:15px;
-  line-height:1.5;
-}
-
-
-/* PHONE */
-
-.phone-input{
-  direction:ltr !important;
-  text-align:left !important;
-  unicode-bidi:plaintext;
-  font-family:Arial,Helvetica,sans-serif;
-}
-
-
-/* ACCOUNT */
-
-.account-bar{
+.chat-panel{
+  position:fixed;
+  right:14px;
+  bottom:155px;
+  width:min(360px,calc(100vw - 28px));
+  height:450px;
+  z-index:80;
+  background:#0b0b0b;
+  border:1px solid #333;
+  border-radius:15px;
   display:none;
-  align-items:center;
+  flex-direction:column;
+  box-shadow:0 20px 70px #000;
 }
 
-.account-bar.show{
+.chat-panel.show{
   display:flex;
 }
 
-
-/* PRODUCT */
-
-.product-preview{
-  width:100%;
-  height:300px;
-  object-fit:cover;
-  margin-bottom:20px;
+.chat-head{
+  padding:14px 16px;
+  border-bottom:1px solid #292929;
+  display:flex;
+  justify-content:space-between;
 }
 
-.qty{
+.chat-head strong{
+  font:18px Georgia,serif;
+  letter-spacing:2px;
+}
+
+.chat-body{
+  padding:14px;
+  overflow:auto;
+  flex:1;
   display:flex;
-  align-items:center;
+  flex-direction:column;
   gap:10px;
 }
 
-.qty button{
-  width:38px;
-  height:38px;
-  background:var(--bg);
-  border:1px solid var(--border);
-  color:var(--text);
+.bubble{
+  max-width:84%;
+  padding:10px 12px;
+  border-radius:10px;
+  background:#181818;
+  color:#ddd;
+  font-size:12px;
+  line-height:1.45;
 }
 
-.qty span{
-  min-width:25px;
-  text-align:center;
+.bubble.user{
+  align-self:flex-end;
+  background:#ddd;
+  color:#111;
 }
 
-
-/* CART */
-
-.cart-item{
+.chat-input{
   display:flex;
-  justify-content:space-between;
-  gap:15px;
-  padding:15px 0;
-  border-bottom:1px solid var(--border);
+  border-top:1px solid #292929;
 }
 
-.cart-total{
-  margin:25px 0;
-  font-size:18px;
+.chat-input input{
+  flex:1;
+  background:#090909;
+  color:#fff;
+  border:0;
+  padding:13px;
 }
 
+.chat-input button{
+  width:54px;
+  border:0;
+  background:#eee;
+  color:#111;
+}
 
-/* FLOATING CART */
+/* DRAWER */
 
-.floating-cart{
+.drawer{
   position:fixed;
-  left:20px;
-  bottom:20px;
-  width:55px;
-  height:55px;
-  border-radius:50%;
-  border:1px solid var(--border);
-  background:var(--card);
-  color:var(--text);
+  inset:0;
   z-index:90;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:22px;
-  box-shadow:0 5px 20px rgba(0,0,0,.35);
-}
-
-.cart-count{
-  position:absolute;
-  top:-5px;
-  right:-5px;
-  min-width:19px;
-  height:19px;
-  padding:0 5px;
-  border-radius:50%;
-  background:var(--button);
-  color:var(--buttonText);
-  font-size:11px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-weight:bold;
-}
-
-
-/* PAYMENT */
-
-.payment-option{
-  border:1px solid var(--border);
-  padding:15px;
-  margin-bottom:10px;
-  cursor:pointer;
-}
-
-.payment-option.active{
-  border-color:var(--text);
-}
-
-.payment-details{
   display:none;
-  margin:15px 0;
 }
 
-.payment-details.show{
+.drawer.show{
   display:block;
 }
 
-.vodafone{
-  font-size:22px;
-  direction:ltr;
+.drawer-bg{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.65);
+}
+
+.drawer-panel{
+  position:absolute;
+  top:0;
+  left:0;
+  bottom:0;
+  width:min(310px,84vw);
+  background:#090909;
+  border-right:1px solid #333;
+  padding:90px 22px 30px;
+}
+
+.drawer-panel button{
+  display:block;
+  width:100%;
+  padding:17px 4px;
+  border:0;
+  border-bottom:1px solid #222;
+  background:none;
+  color:#ddd;
   text-align:left;
-  letter-spacing:1px;
-  margin:15px 0;
-}
-
-
-/* CONTACT */
-
-.contact-line{
-  padding:15px 0;
-  border-bottom:1px solid var(--border);
-}
-
-.contact-line span{
-  display:block;
-  color:var(--muted);
+  letter-spacing:2px;
   font-size:11px;
-  margin-bottom:5px;
 }
-
-
-/* SUCCESS */
-
-.success{
-  text-align:center;
-  padding:45px 10px;
-}
-
-.success h2{
-  font-size:32px;
-  margin-bottom:20px;
-}
-
-.success p{
-  color:var(--muted);
-  line-height:1.7;
-}
-
 
 /* MOBILE */
 
-@media(max-width:700px){
+@media(max-width:680px){
 
-  header{
-    padding:0 12px;
+  .products{
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
   }
 
-  .logo{
-    font-size:20px;
-    letter-spacing:1px;
-  }
-
-  nav{
-    gap:2px;
-  }
-
-  .nav-btn{
-    font-size:10px;
-    padding:6px;
-  }
-
-  .small-btn{
-    font-size:9px;
-    padding:6px 7px;
+  .hero{
+    min-height:720px;
   }
 
   .hero h1{
-    font-size:62px;
-    letter-spacing:1px;
+    font-size:48px;
   }
 
-  .hero p{
-    letter-spacing:2px;
+  .form-grid{
+    grid-template-columns:1fr;
   }
+
+  .field.full{
+    grid-column:auto;
+  }
+
+  .section{
+    padding:62px 14px;
+  }
+
+  .card-info{
+    padding:12px;
+  }
+
+  .add{
+    font-size:9px;
+  }
+
+  .modal{
+    padding:22px 16px;
+  }
+
+  .brand{
+    font-size:23px;
+  }
+
+  .hero:after{
+    right:-130px;
+    opacity:.4;
+  }
+}
+
+@media(max-width:420px){
 
   .products{
     grid-template-columns:1fr;
   }
 
-  .product-img{
-    height:390px;
+  .hero-logo{
+    width:85vw;
   }
 
-  section{
-    padding:55px 18px;
+  .hero-tag{
+    letter-spacing:4px;
   }
-
-  .floating-cart{
-    left:15px;
-    bottom:15px;
-  }
-
 }
-
 </style>
 </head>
 
-
 <body>
 
+<header class="header">
 
-<!-- HEADER -->
+  <button class="icon-btn" id="menuBtn">
+    ☰
+  </button>
 
-<header>
-
-  <div class="logo">
-    COLLECTION
+  <div class="brand">
+    NAZRA
   </div>
 
-  <nav>
-
-    <button class="nav-btn" onclick="openShop()">
-      SHOP
-    </button>
-
-    <button class="nav-btn" onclick="openContact()">
-      CONTACT
-    </button>
-
-    <div class="account-bar" id="accountBar">
-
-      <button class="small-btn" onclick="logout()">
-        LOGOUT
-      </button>
-
-    </div>
-
-    <button class="small-btn" onclick="toggleLanguage()">
-      EN / AR
-    </button>
-
-    <button
-      class="small-btn"
-      onclick="toggleTheme()"
-      id="themeBtn">
-
-      ☀️
-
-    </button>
-
-  </nav>
+  <button class="icon-btn" id="cartTop">
+    ♧
+    <span id="cartCount">0</span>
+  </button>
 
 </header>
 
 
-<!-- HOME -->
+<main>
 
-<section id="home">
+<section class="hero" id="home">
 
-  <div class="hero">
+  <div class="hero-content">
 
-    <h1 id="heroLogo">
+    <div class="eyebrow">
+      NAZRA
+    </div>
+
+    <img
+      class="hero-logo"
+      src="Logo.PNG"
+      alt="NAZRA logo"
+      onerror="this.style.display='none'"
+    >
+
+    <h1>
       NAZRA
     </h1>
 
-    <p id="heroText">
+    <div class="hero-tag">
       MINIMAL. BOLD. DIFFERENT.
-    </p>
+    </div>
 
-    <button
-      class="shop-main"
-      onclick="startShop()">
-
-      SHOP NOW
-
+    <button class="primary" id="collectionsBtn">
+      TO COLLECTIONS →
     </button>
 
   </div>
@@ -661,2548 +812,1880 @@ section{
 </section>
 
 
-<!-- COLLECTION -->
+<section class="section" id="shop">
 
-<section id="shop">
+  <div class="section-head">
 
-  <h2
-    class="section-title"
-    id="collectionTitle">
+    <h2 class="section-title">
+      COLLECTIONS
+    </h2>
 
-    COLLECTION
-
-  </h2>
-
-
-  <div class="products">
-
-
-    <div class="card">
-
-      <img
-        src="Logo.PNG"
-        class="product-img">
-
-      <div class="card-info">
-
-        <h3 id="productTitle1">
-          NAZRA HOODIE
-        </h3>
-
-        <div class="price">
-          EGP 0
-        </div>
-
-        <button
-          class="product-btn"
-          id="productButton1"
-          onclick="openProduct('NAZRA HOODIE')">
-
-          VIEW PRODUCT
-
-        </button>
-
-      </div>
-
-    </div>
-
-
-    <div class="card">
-
-      <img
-        src="Logo.PNG"
-        class="product-img">
-
-      <div class="card-info">
-
-        <h3 id="productTitle2">
-          NAZRA TEE
-        </h3>
-
-        <div class="price">
-          EGP 0
-        </div>
-
-        <button
-          class="product-btn"
-          id="productButton2"
-          onclick="openProduct('NAZRA TEE')">
-
-          VIEW PRODUCT
-
-        </button>
-
-      </div>
-
-    </div>
-
-
-    <div class="card">
-
-      <img
-        src="Logo.PNG"
-        class="product-img">
-
-      <div class="card-info">
-
-        <h3 id="productTitle3">
-          NAZRA COLLECTION
-        </h3>
-
-        <div class="price">
-          EGP 0
-        </div>
-
-        <button
-          class="product-btn"
-          id="productButton3"
-          onclick="openProduct('NAZRA COLLECTION')">
-
-          VIEW PRODUCT
-
-        </button>
-
-      </div>
-
-    </div>
+    <button class="view" id="allProducts">
+      VIEW ALL →
+    </button>
 
   </div>
 
+  <div class="products" id="products"></div>
+
 </section>
 
+</main>
 
-<!-- FLOATING CART -->
 
-<button
-  class="floating-cart"
-  onclick="openCart()"
-  aria-label="Cart">
+<footer class="footer">
+  <strong>
+    NAZRA
+  </strong>
+</footer>
 
-  🛒
 
-  <span
-    class="cart-count"
-    id="cartCount">
+<!-- BOTTOM NAV -->
 
-    0
+<nav class="bottom">
 
-  </span>
+  <button data-open="home">
+    <b>⌂</b>
+    HOME
+  </button>
 
+  <button id="bottomCart">
+    <b>♧</b>
+    CART
+  </button>
+
+  <button data-open="contact">
+    <b>⌕</b>
+    CONTACT
+  </button>
+
+  <button data-open="reports">
+    <b>▥</b>
+    REPORTS
+  </button>
+
+  <button data-open="story">
+    <b>N</b>
+    STORY
+  </button>
+
+  <button data-open="policy">
+    <b>◇</b>
+    POLICY
+  </button>
+
+  <button data-open="faq">
+    <b>?</b>
+    FAQ
+  </button>
+
+</nav>
+
+
+<!-- AI -->
+
+<button class="chat-launch" id="chatLaunch">
+  <span>N</span>
+  <small>AI CHAT</small>
 </button>
 
 
-<!-- AUTH -->
+<div class="chat-panel" id="chatPanel">
 
-<div
-  class="modal"
-  id="authModal">
+  <div class="chat-head">
 
-  <div class="modal-box">
+    <strong>
+      NAZRA AI
+    </strong>
 
-    <button
-      class="close"
-      onclick="closeModal('authModal')">
-
+    <button class="close" id="chatClose">
       ×
-
-    </button>
-
-
-    <h2 id="accountTitle">
-      NAZRA ACCOUNT
-    </h2>
-
-
-    <div class="auth-tabs">
-
-      <button
-        class="auth-tab active"
-        id="loginTab"
-        onclick="showAuth('login')">
-
-        LOGIN
-
-      </button>
-
-
-      <button
-        class="auth-tab"
-        id="signupTab"
-        onclick="showAuth('signup')">
-
-        SIGN UP
-
-      </button>
-
-    </div>
-
-
-    <div
-      id="authError"
-      class="error">
-    </div>
-
-
-    <div
-      id="authSuccess"
-      class="success-msg">
-    </div>
-
-
-    <!-- LOGIN -->
-
-    <form
-      id="loginForm"
-      class="auth-form active">
-
-      <div class="field">
-
-        <label id="loginEmailLabel">
-          EMAIL
-        </label>
-
-        <input
-          id="loginEmail"
-          type="email"
-          required
-          placeholder="Email">
-
-      </div>
-
-
-      <div class="field">
-
-        <label id="loginPasswordLabel">
-          PASSWORD
-        </label>
-
-        <input
-          id="loginPassword"
-          type="password"
-          required
-          minlength="6"
-          placeholder="Password">
-
-      </div>
-
-
-      <button
-        class="primary"
-        id="loginButton"
-        type="submit">
-
-        LOGIN
-
-      </button>
-
-    </form>
-
-
-    <!-- SIGN UP -->
-
-    <form
-      id="signupForm"
-      class="auth-form">
-
-      <div class="field">
-
-        <label id="signupPhoneLabel">
-          PHONE NUMBER
-        </label>
-
-        <input
-          id="signupPhone"
-          class="phone-input"
-          type="tel"
-          inputmode="numeric"
-          maxlength="11"
-          autocomplete="tel"
-          required
-          placeholder="01XXXXXXXXX">
-
-      </div>
-
-
-      <div class="field">
-
-        <label id="signupEmailLabel">
-          EMAIL
-        </label>
-
-        <input
-          id="signupEmail"
-          type="email"
-          required
-          placeholder="Email">
-
-      </div>
-
-
-      <div class="field">
-
-        <label id="signupPasswordLabel">
-          PASSWORD
-        </label>
-
-        <input
-          id="signupPassword"
-          type="password"
-          minlength="6"
-          required
-          placeholder="Password">
-
-      </div>
-
-
-      <button
-        class="primary"
-        id="signupButton"
-        type="submit">
-
-        CREATE ACCOUNT
-
-      </button>
-
-    </form>
-
-  </div>
-
-</div>
-
-
-<!-- PRODUCT -->
-
-<div
-  class="modal"
-  id="productModal">
-
-  <div class="modal-box">
-
-    <button
-      class="close"
-      onclick="closeModal('productModal')">
-
-      ×
-
-    </button>
-
-
-    <img
-      src="Logo.PNG"
-      class="product-preview">
-
-
-    <h2 id="productName">
-    </h2>
-
-
-    <div class="field">
-
-      <label id="colorLabel">
-        COLOR
-      </label>
-
-      <select id="productColor">
-
-        <option id="blackOption">
-          Black
-        </option>
-
-        <option id="whiteOption">
-          White
-        </option>
-
-      </select>
-
-    </div>
-
-
-    <div class="field">
-
-      <label id="sizeLabel">
-        SIZE
-      </label>
-
-      <select id="productSize">
-
-        <option>S</option>
-        <option>M</option>
-        <option>L</option>
-        <option>XL</option>
-
-      </select>
-
-    </div>
-
-
-    <div class="field">
-
-      <label id="quantityLabel">
-        QUANTITY
-      </label>
-
-
-      <div class="qty">
-
-        <button onclick="changeQty(-1)">
-          −
-        </button>
-
-        <span id="quantity">
-          1
-        </span>
-
-        <button onclick="changeQty(1)">
-          +
-        </button>
-
-      </div>
-
-    </div>
-
-
-    <button
-      class="primary"
-      id="addCartButton"
-      onclick="addToCart()">
-
-      ADD TO CART
-
     </button>
 
   </div>
 
+  <div class="chat-body" id="chatBody"></div>
+
+  <form class="chat-input" id="chatForm">
+
+    <input
+      id="chatInput"
+      autocomplete="off"
+      placeholder="Ask NAZRA AI..."
+    >
+
+    <button>
+      ➤
+    </button>
+
+  </form>
+
 </div>
 
 
-<!-- CART -->
+<!-- DRAWER -->
 
-<div
-  class="modal"
-  id="cartModal">
+<div class="drawer" id="drawer">
 
-  <div class="modal-box">
+  <div class="drawer-bg" id="drawerBg"></div>
 
-    <button
-      class="close"
-      onclick="closeModal('cartModal')">
+  <aside class="drawer-panel">
 
-      ×
-
+    <button data-open="home">
+      HOME
     </button>
 
-
-    <h2 id="cartTitle">
+    <button id="drawerCart">
       CART
-    </h2>
-
-
-    <div id="cartItems">
-    </div>
-
-
-    <div class="cart-total">
-
-      <span id="totalText">
-        TOTAL:
-      </span>
-
-      <strong id="cartTotal">
-        EGP 0
-      </strong>
-
-    </div>
-
-
-    <button
-      class="primary"
-      id="checkoutButton"
-      onclick="openCheckout()">
-
-      CHECKOUT
-
     </button>
 
-  </div>
-
-</div>
-
-
-<!-- CHECKOUT -->
-
-<div
-  class="modal"
-  id="checkoutModal">
-
-  <div class="modal-box">
-
-    <button
-      class="close"
-      onclick="closeModal('checkoutModal')">
-
-      ×
-
-    </button>
-
-
-    <h2 id="checkoutTitle">
-      CHECKOUT
-    </h2>
-
-
-    <div class="field">
-
-      <label id="nameLabel">
-        FULL NAME
-      </label>
-
-      <input
-        id="customerName"
-        placeholder="Full name">
-
-    </div>
-
-
-    <div class="field">
-
-      <label id="checkoutPhoneLabel">
-        PHONE NUMBER
-      </label>
-
-      <input
-        id="customerPhone"
-        class="phone-input"
-        type="tel"
-        inputmode="numeric"
-        maxlength="11"
-        autocomplete="tel"
-        placeholder="01XXXXXXXXX">
-
-    </div>
-
-
-    <div class="field">
-
-      <label id="emailLabel">
-        EMAIL
-      </label>
-
-      <input
-        id="customerEmail"
-        type="email"
-        placeholder="Email">
-
-    </div>
-
-
-    <div class="field">
-
-      <label id="addressLabel">
-        ADDRESS
-      </label>
-
-      <input
-        id="customerAddress"
-        placeholder="Delivery address">
-
-    </div>
-
-
-    <button
-      class="primary"
-      id="paymentContinueButton"
-      onclick="openPayment()">
-
-      CONTINUE TO PAYMENT
-
-    </button>
-
-  </div>
-
-</div>
-
-
-<!-- PAYMENT -->
-
-<div
-  class="modal"
-  id="paymentModal">
-
-  <div class="modal-box">
-
-    <button
-      class="close"
-      onclick="closeModal('paymentModal')">
-
-      ×
-
-    </button>
-
-
-    <h2 id="paymentTitle">
-      PAYMENT
-    </h2>
-
-
-    <!-- TRANSFER -->
-
-    <div
-      class="payment-option"
-      onclick="selectPayment('transfer')"
-      id="transferOption">
-
-      <strong id="transferTitle">
-        VODAFONE CASH / INSTAPAY
-      </strong>
-
-    </div>
-
-
-    <!-- COD -->
-
-    <div
-      class="payment-option"
-      onclick="selectPayment('cod')"
-      id="codOption">
-
-      <strong id="codTitle">
-        CASH ON DELIVERY
-      </strong>
-
-    </div>
-
-
-    <!-- TRANSFER DETAILS -->
-
-    <div
-      class="payment-details"
-      id="transferDetails">
-
-      <p id="transferToText">
-        Transfer the amount to:
-      </p>
-
-
-      <div class="vodafone">
-        01229884447
-      </div>
-
-
-      <p
-        id="transferInfo"
-        style="
-        color:var(--muted);
-        font-size:13px;
-        line-height:1.6;
-        margin-bottom:18px;
-        ">
-
-        You can pay using Vodafone Cash or InstaPay.
-
-      </p>
-
-
-      <form
-        action="https://formsubmit.co/Nazrapayment@gmail.com"
-        method="POST"
-        enctype="multipart/form-data">
-
-
-        <input
-          type="hidden"
-          name="_subject"
-          value="New NAZRA Vodafone Cash / InstaPay Order">
-
-
-        <input
-          type="hidden"
-          name="_captcha"
-          value="true">
-
-
-        <input
-          type="hidden"
-          name="_next"
-          value="https://nazra-qfdap.sevalla.page/?order=complete">
-
-
-        <input
-          type="hidden"
-          name="payment_method"
-          value="Vodafone Cash / InstaPay">
-
-
-        <input
-          type="hidden"
-          name="customer_name"
-          id="hiddenName">
-
-
-        <input
-          type="hidden"
-          name="phone"
-          id="hiddenPhone">
-
-
-        <input
-          type="hidden"
-          name="email"
-          id="hiddenEmail">
-
-
-        <input
-          type="hidden"
-          name="address"
-          id="hiddenAddress">
-
-
-        <input
-          type="hidden"
-          name="order_details"
-          id="hiddenOrder">
-
-
-        <input
-          type="hidden"
-          name="transferred_from"
-          id="hiddenTransferFrom">
-
-
-        <div class="field">
-
-          <label id="transferFromLabel">
-            TRANSFERRED FROM PHONE NUMBER
-          </label>
-
-          <input
-            id="transferFromPhone"
-            class="phone-input"
-            type="tel"
-            inputmode="numeric"
-            maxlength="11"
-            autocomplete="tel"
-            placeholder="01XXXXXXXXX"
-            required>
-
-        </div>
-
-
-        <div class="field">
-
-          <label id="screenshotLabel">
-            TRANSFER SCREENSHOT
-          </label>
-
-
-          <input
-            type="file"
-            name="attachment"
-            accept="image/png,image/jpeg,image/webp"
-            required>
-
-        </div>
-
-
-        <button
-          class="primary"
-          id="confirmPaymentButton"
-          type="submit">
-
-          CONFIRM PAYMENT
-
-        </button>
-
-      </form>
-
-    </div>
-
-
-    <!-- COD DETAILS -->
-
-    <div
-      class="payment-details"
-      id="codDetails">
-
-      <p
-        id="deliveryFeeText"
-        style="
-        color:var(--muted);
-        line-height:1.6;
-        ">
-
-        Delivery fee:
-        <strong>EGP 0</strong>
-
-      </p>
-
-
-      <form
-        action="https://formsubmit.co/Nazrapayment@gmail.com"
-        method="POST">
-
-
-        <input
-          type="hidden"
-          name="_subject"
-          value="New NAZRA Cash on Delivery Order">
-
-
-        <input
-          type="hidden"
-          name="_captcha"
-          value="true">
-
-
-        <input
-          type="hidden"
-          name="_next"
-          value="https://nazra-qfdap.sevalla.page/?order=complete">
-
-
-        <input
-          type="hidden"
-          name="payment_method"
-          value="Cash on Delivery">
-
-
-        <input
-          type="hidden"
-          name="customer_name"
-          id="codName">
-
-
-        <input
-          type="hidden"
-          name="phone"
-          id="codPhone">
-
-
-        <input
-          type="hidden"
-          name="email"
-          id="codEmail">
-
-
-        <input
-          type="hidden"
-          name="address"
-          id="codAddress">
-
-
-        <input
-          type="hidden"
-          name="order_details"
-          id="codOrder">
-
-
-        <button
-          class="primary"
-          id="confirmOrderButton"
-          type="submit">
-
-          CONFIRM ORDER
-
-        </button>
-
-      </form>
-
-    </div>
-
-  </div>
-
-</div>
-
-
-<!-- CONTACT -->
-
-<div
-  class="modal"
-  id="contactModal">
-
-  <div class="modal-box">
-
-    <button
-      class="close"
-      onclick="closeModal('contactModal')">
-
-      ×
-
-    </button>
-
-
-    <h2 id="contactTitle">
+    <button data-open="contact">
       CONTACT
-    </h2>
+    </button>
 
+    <button data-open="reports">
+      REPORTS
+    </button>
 
-    <div class="contact-line">
+    <button data-open="story">
+      NAZRA STORY
+    </button>
 
-      <span id="phoneText1">
-        PHONE
-      </span>
+    <button data-open="policy">
+      POLICY
+    </button>
 
-      <span
-        class="phone-input"
-        style="
-        color:var(--text);
-        font-size:inherit;
-        ">
+    <button data-open="faq">
+      FAQ
+    </button>
 
-        01090356664
-
-      </span>
-
-    </div>
-
-
-    <div class="contact-line">
-
-      <span id="phoneText2">
-        PHONE
-      </span>
-
-      <span
-        class="phone-input"
-        style="
-        color:var(--text);
-        font-size:inherit;
-        ">
-
-        01095666622
-
-      </span>
-
-    </div>
-
-
-    <div class="contact-line">
-
-      <span id="emailText">
-        EMAIL
-      </span>
-
-      nazra.co123@gmail.com
-
-    </div>
-
-
-    <div class="contact-line">
-
-      <span id="instagramText">
-        INSTAGRAM
-      </span>
-
-      <a
-        href="https://instagram.com/nazra.co_"
-        target="_blank">
-
-        @nazra.co_
-
-      </a>
-
-    </div>
-
-  </div>
+  </aside>
 
 </div>
 
 
-<!-- SUCCESS -->
+<!-- MODAL -->
 
-<div
-  class="modal"
-  id="successModal">
+<div class="overlay" id="modalOverlay">
 
-  <div class="modal-box success">
-
-    <h2 id="successTitle">
-      ORDER COMPLETED
-    </h2>
-
-
-    <p id="successText">
-
-      Your order has been received successfully.
-
-      <br><br>
-
-      You will receive an email shortly confirming your order.
-
-    </p>
-
-
-    <br>
-
-
-    <button
-      class="primary"
-      id="backButton"
-      onclick="location.href='/'">
-
-      BACK TO COLLECTION
-
-    </button>
-
-  </div>
+  <div class="modal" id="modal"></div>
 
 </div>
 
 
 <script>
 
-/* =====================================================
-   FIREBASE
-===================================================== */
-
-const firebaseConfig = {
-
-  apiKey:
-  "AIzaSyDJoKLH3lxWV-O_lRApNMGGCdGUL-6R-vc",
-
-  authDomain:
-  "nazra-c5aa2.firebaseapp.com",
-
-  projectId:
-  "nazra-c5aa2",
-
-  storageBucket:
-  "nazra-c5aa2.firebasestorage.app",
-
-  messagingSenderId:
-  "23487988128",
-
-  appId:
-  "1:23487988128:web:aa30f0a3b1e182a743a4c5",
-
-  measurementId:
-  "G-QGWWBB1PS2"
-
-};
-
-firebase.initializeApp(firebaseConfig);
-
-const auth = firebase.auth();
-
-auth.setPersistence(
-  firebase.auth.Auth.Persistence.LOCAL
-);
-
-
-/* =====================================================
-   LANGUAGE
-===================================================== */
-
-let arabic=false;
-
-
-function toggleLanguage(){
-
-  arabic=!arabic;
-
-
-  if(arabic){
-
-    document.documentElement.dir="rtl";
-
-    document.querySelector(".logo").textContent=
-      "المجموعة";
-
-    document.getElementById("heroLogo").textContent=
-      "NAZRA";
-
-    document.getElementById("heroText").textContent=
-      "بسيط. جريء. مختلف.";
-
-    document.querySelector(".shop-main").textContent=
-      "تسوق الآن";
-
-    document.getElementById("collectionTitle").textContent=
-      "المجموعة";
-
-
-    document.getElementById("productTitle1").textContent=
-      "هودي NAZRA";
-
-    document.getElementById("productTitle2").textContent=
-      "تيشيرت NAZRA";
-
-    document.getElementById("productTitle3").textContent=
-      "مجموعة NAZRA";
-
-
-    document.getElementById("productButton1").textContent=
-      "عرض المنتج";
-
-    document.getElementById("productButton2").textContent=
-      "عرض المنتج";
-
-    document.getElementById("productButton3").textContent=
-      "عرض المنتج";
-
-
-    document.getElementById("accountTitle").textContent=
-      "حساب NAZRA";
-
-    document.getElementById("loginTab").textContent=
-      "تسجيل الدخول";
-
-    document.getElementById("signupTab").textContent=
-      "إنشاء حساب";
-
-
-    document.getElementById("loginEmailLabel").textContent=
-      "البريد الإلكتروني";
-
-    document.getElementById("loginPasswordLabel").textContent=
-      "كلمة المرور";
-
-    document.getElementById("loginButton").textContent=
-      "تسجيل الدخول";
-
-
-    document.getElementById("signupPhoneLabel").textContent=
-      "رقم الهاتف";
-
-    document.getElementById("signupEmailLabel").textContent=
-      "البريد الإلكتروني";
-
-    document.getElementById("signupPasswordLabel").textContent=
-      "كلمة المرور";
-
-    document.getElementById("signupButton").textContent=
-      "إنشاء حساب";
-
-
-    document.getElementById("colorLabel").textContent=
-      "اللون";
-
-    document.getElementById("sizeLabel").textContent=
-      "المقاس";
-
-    document.getElementById("quantityLabel").textContent=
-      "الكمية";
-
-    document.getElementById("addCartButton").textContent=
-      "أضف إلى السلة";
-
-
-    document.getElementById("cartTitle").textContent=
-      "السلة";
-
-    document.getElementById("totalText").textContent=
-      "الإجمالي:";
-
-    document.getElementById("checkoutButton").textContent=
-      "إتمام الطلب";
-
-
-    document.getElementById("checkoutTitle").textContent=
-      "إتمام الطلب";
-
-    document.getElementById("nameLabel").textContent=
-      "الاسم بالكامل";
-
-    document.getElementById("checkoutPhoneLabel").textContent=
-      "رقم الهاتف";
-
-    document.getElementById("emailLabel").textContent=
-      "البريد الإلكتروني";
-
-    document.getElementById("addressLabel").textContent=
-      "العنوان";
-
-    document.getElementById("paymentContinueButton").textContent=
-      "الانتقال إلى الدفع";
-
-
-    document.getElementById("paymentTitle").textContent=
-      "الدفع";
-
-    document.getElementById("transferTitle").textContent=
-      "فودافون كاش / إنستا باي";
-
-    document.getElementById("codTitle").textContent=
-      "الدفع عند الاستلام";
-
-    document.getElementById("transferToText").textContent=
-      "حوّل المبلغ إلى:";
-
-    document.getElementById("transferInfo").textContent=
-      "يمكنك الدفع عن طريق فودافون كاش أو إنستا باي.";
-
-    document.getElementById("transferFromLabel").textContent=
-      "رقم الهاتف المُحوَّل منه";
-
-    document.getElementById("screenshotLabel").textContent=
-      "صورة التحويل";
-
-    document.getElementById("confirmPaymentButton").textContent=
-      "تأكيد الدفع";
-
-    document.getElementById("deliveryFeeText").innerHTML=
-      "مصاريف التوصيل: <strong>EGP 0</strong>";
-
-    document.getElementById("confirmOrderButton").textContent=
-      "تأكيد الطلب";
-
-
-    document.getElementById("contactTitle").textContent=
-      "تواصل معنا";
-
-    document.getElementById("phoneText1").textContent=
-      "الهاتف";
-
-    document.getElementById("phoneText2").textContent=
-      "الهاتف";
-
-    document.getElementById("emailText").textContent=
-      "البريد الإلكتروني";
-
-    document.getElementById("instagramText").textContent=
-      "إنستجرام";
-
-
-    document.getElementById("successTitle").textContent=
-      "تم إتمام الطلب";
-
-    document.getElementById("successText").innerHTML=
-      "تم استلام طلبك بنجاح.<br><br>ستصلك رسالة بريد إلكتروني قريبًا لتأكيد طلبك.";
-
-    document.getElementById("backButton").textContent=
-      "العودة إلى المجموعة";
-
-
-  }else{
-
-    document.documentElement.dir="ltr";
-
-    document.querySelector(".logo").textContent=
-      "COLLECTION";
-
-    document.getElementById("heroLogo").textContent=
-      "NAZRA";
-
-    document.getElementById("heroText").textContent=
-      "MINIMAL. BOLD. DIFFERENT.";
-
-    document.querySelector(".shop-main").textContent=
-      "SHOP NOW";
-
-    document.getElementById("collectionTitle").textContent=
-      "COLLECTION";
-
-
-    document.getElementById("productTitle1").textContent=
-      "NAZRA HOODIE";
-
-    document.getElementById("productTitle2").textContent=
-      "NAZRA TEE";
-
-    document.getElementById("productTitle3").textContent=
-      "NAZRA COLLECTION";
-
-
-    document.getElementById("productButton1").textContent=
-      "VIEW PRODUCT";
-
-    document.getElementById("productButton2").textContent=
-      "VIEW PRODUCT";
-
-    document.getElementById("productButton3").textContent=
-      "VIEW PRODUCT";
-
-
-    document.getElementById("accountTitle").textContent=
-      "NAZRA ACCOUNT";
-
-    document.getElementById("loginTab").textContent=
-      "LOGIN";
-
-    document.getElementById("signupTab").textContent=
-      "SIGN UP";
-
-
-    document.getElementById("loginEmailLabel").textContent=
-      "EMAIL";
-
-    document.getElementById("loginPasswordLabel").textContent=
-      "PASSWORD";
-
-    document.getElementById("loginButton").textContent=
-      "LOGIN";
-
-
-    document.getElementById("signupPhoneLabel").textContent=
-      "PHONE NUMBER";
-
-    document.getElementById("signupEmailLabel").textContent=
-      "EMAIL";
-
-    document.getElementById("signupPasswordLabel").textContent=
-      "PASSWORD";
-
-    document.getElementById("signupButton").textContent=
-      "CREATE ACCOUNT";
-
-
-    document.getElementById("colorLabel").textContent=
-      "COLOR";
-
-    document.getElementById("sizeLabel").textContent=
-      "SIZE";
-
-    document.getElementById("quantityLabel").textContent=
-      "QUANTITY";
-
-    document.getElementById("addCartButton").textContent=
-      "ADD TO CART";
-
-
-    document.getElementById("cartTitle").textContent=
-      "CART";
-
-    document.getElementById("totalText").textContent=
-      "TOTAL:";
-
-    document.getElementById("checkoutButton").textContent=
-      "CHECKOUT";
-
-
-    document.getElementById("checkoutTitle").textContent=
-      "CHECKOUT";
-
-    document.getElementById("nameLabel").textContent=
-      "FULL NAME";
-
-    document.getElementById("checkoutPhoneLabel").textContent=
-      "PHONE NUMBER";
-
-    document.getElementById("emailLabel").textContent=
-      "EMAIL";
-
-    document.getElementById("addressLabel").textContent=
-      "ADDRESS";
-
-    document.getElementById("paymentContinueButton").textContent=
-      "CONTINUE TO PAYMENT";
-
-
-    document.getElementById("paymentTitle").textContent=
-      "PAYMENT";
-
-    document.getElementById("transferTitle").textContent=
-      "VODAFONE CASH / INSTAPAY";
-
-    document.getElementById("codTitle").textContent=
-      "CASH ON DELIVERY";
-
-    document.getElementById("transferToText").textContent=
-      "Transfer the amount to:";
-
-    document.getElementById("transferInfo").textContent=
-      "You can pay using Vodafone Cash or InstaPay.";
-
-    document.getElementById("transferFromLabel").textContent=
-      "TRANSFERRED FROM PHONE NUMBER";
-
-    document.getElementById("screenshotLabel").textContent=
-      "TRANSFER SCREENSHOT";
-
-    document.getElementById("confirmPaymentButton").textContent=
-      "CONFIRM PAYMENT";
-
-    document.getElementById("deliveryFeeText").innerHTML=
-      "Delivery fee: <strong>EGP 0</strong>";
-
-    document.getElementById("confirmOrderButton").textContent=
-      "CONFIRM ORDER";
-
-
-    document.getElementById("contactTitle").textContent=
-      "CONTACT";
-
-    document.getElementById("phoneText1").textContent=
-      "PHONE";
-
-    document.getElementById("phoneText2").textContent=
-      "PHONE";
-
-    document.getElementById("emailText").textContent=
-      "EMAIL";
-
-    document.getElementById("instagramText").textContent=
-      "INSTAGRAM";
-
-
-    document.getElementById("successTitle").textContent=
-      "ORDER COMPLETED";
-
-    document.getElementById("successText").innerHTML=
-      "Your order has been received successfully.<br><br>You will receive an email shortly confirming your order.";
-
-    document.getElementById("backButton").textContent=
-      "BACK TO COLLECTION";
-
+/* PRODUCTS */
+
+const products = [
+
+  {
+    id:1,
+    name:"NAZRA HOODIE",
+    price:0,
+    img:"product1.jpg"
+  },
+
+  {
+    id:2,
+    name:"NAZRA TEE",
+    price:0,
+    img:"product2.jpg"
+  },
+
+  {
+    id:3,
+    name:"NAZRA COLLECTION",
+    price:0,
+    img:"product3.jpg"
   }
 
-}
+];
 
 
-/* =====================================================
-   THEME
-===================================================== */
-
-function toggleTheme(){
-
-  document.body.classList.toggle("light");
-
-  const light =
-    document.body.classList.contains("light");
-
-  document.getElementById("themeBtn").textContent=
-    light ? "🌙" : "☀️";
-
-}
+let cart = [];
 
 
-/* =====================================================
-   COLLECTION
-===================================================== */
+/* STORY */
 
-function showCollection(){
+const storyEn = [
 
-  const shop =
-    document.getElementById("shop");
+"There are things you do not see when you look at them but only when you look through them. We do not always remember faces and we do not always remember the words that were said but we remember one gaze that changed something inside us without knowing how.",
 
-  shop.classList.add("show");
+"A gaze is not a moment. It is a meaning. It is a feeling that passes between two people without a sound and a small detail that may remain in memory longer than it should.",
 
-  setTimeout(function(){
+"This is where NAZRA came from. Not to tell you who you are and not to give you a shape to wear but to leave you the space to say something about yourself without speaking.",
 
-    shop.scrollIntoView({
-      behavior:"smooth",
-      block:"start"
-    });
+"We believe true difference does not need to ask for attention and what truly catches the eye is not what tries to be seen but what makes you look twice.",
 
-  },100);
+"NAZRA. Because some things are not understood the first time."
 
-}
+];
 
 
-/* =====================================================
-   SHOP
-===================================================== */
+const storyAr = [
 
-function openShop(){
+"هناك أشياء لا ترى حين تنظر إليها بل ترى حين تنظر من خلالها. نحن لا نتذكر الوجوه دائما ولا نتذكر الكلمات التي قيلت لكننا نتذكر نظرة واحدة غيرت شيئا بداخلنا دون أن نعرف كيف.",
 
-  if(auth.currentUser){
+"النظرة ليست لحظة. هي معنى. هي شعور يمر بين شخصين دون صوت وتفصيلة صغيرة قد تظل عالقة في الذاكرة أطول مما ينبغي.",
 
-    showCollection();
+"ومن هنا جاءت NAZRA. ليس لنقول لك من تكون ولا لنضع لك شكلا ترتديه بل لنترك لك مساحة أن تقول شيئا عن نفسك دون أن تنطق.",
 
-  }else{
+"نؤمن أن الاختلاف الحقيقي لا يحتاج إلى أن يطلب الانتباه وأن ما يلفت النظر حقا ليس ما يحاول أن يرى بل ما يجعلك تنظر مرة أخرى.",
 
-    clearAuthMessages();
+"NAZRA. لأن بعض الأشياء لا تفهم من المرة الأولى."
 
-    showAuth("login");
+];
 
-    document
-      .getElementById("authModal")
-      .classList
-      .add("show");
 
-  }
+/* MODALS */
+
+function openModal(html){
+
+  modal.innerHTML = html;
+
+  modalOverlay.classList.add("show");
 
 }
 
 
-function startShop(){
+function closeModal(){
 
-  if(auth.currentUser){
+  modalOverlay.classList.remove("show");
 
-    showCollection();
-
-  }else{
-
-    clearAuthMessages();
-
-    showAuth("login");
-
-    document
-      .getElementById("authModal")
-      .classList
-      .add("show");
-
-  }
+  modal.innerHTML = "";
 
 }
 
 
-/* =====================================================
-   CONTACT
-===================================================== */
+function shell(title,body){
 
-function openContact(){
+  return `
 
-  document
-    .getElementById("contactModal")
-    .classList
-    .add("show");
+    <button
+      class="close"
+      onclick="closeModal()"
+    >
+      ×
+    </button>
 
-}
+    <h2>${title}</h2>
 
+    ${body}
 
-/* =====================================================
-   MODAL
-===================================================== */
-
-function closeModal(id){
-
-  document
-    .getElementById(id)
-    .classList
-    .remove("show");
+  `;
 
 }
 
 
-/* =====================================================
-   AUTH UI
-===================================================== */
+/* PRODUCTS */
 
-function showAuth(type){
+function renderProducts(){
 
-  clearAuthMessages();
+  productsEl.innerHTML = products.map(p => `
 
-  document
-    .querySelectorAll(".auth-tab")
-    .forEach(function(el){
+    <article class="card">
 
-      el.classList.remove("active");
+      <div class="photo">
 
-    });
+        <img
+          src="${p.img}"
+          alt="${p.name}"
+          onerror="
+            this.style.display='none';
+            this.nextElementSibling.style.display='block'
+          "
+        >
 
-  document
-    .querySelectorAll(".auth-form")
-    .forEach(function(el){
+        <div
+          class="placeholder"
+          style="display:none"
+        >
+          NAZRA
+        </div>
 
-      el.classList.remove("active");
+      </div>
 
-    });
+      <div class="card-info">
 
+        <div class="card-name">
+          ${p.name}
+        </div>
 
-  if(type==="login"){
+        <div class="price">
+          ${p.price} EGP
+        </div>
 
-    document
-      .getElementById("loginTab")
-      .classList
-      .add("active");
+        <button
+          class="add"
+          data-product="${p.id}"
+        >
+          ADD TO CART
+        </button>
 
-    document
-      .getElementById("loginForm")
-      .classList
-      .add("active");
+      </div>
 
-  }else{
+    </article>
 
-    document
-      .getElementById("signupTab")
-      .classList
-      .add("active");
+  `).join("");
 
-    document
-      .getElementById("signupForm")
-      .classList
-      .add("active");
+  document.querySelectorAll(".add").forEach(button => {
 
-  }
+    button.onclick = () => {
 
-}
+      addToCart(
+        Number(button.dataset.product)
+      );
 
-
-function clearAuthMessages(){
-
-  document
-    .getElementById("authError")
-    .textContent="";
-
-  document
-    .getElementById("authSuccess")
-    .textContent="";
-
-}
-
-
-function authError(message){
-
-  document
-    .getElementById("authError")
-    .textContent=
-    message;
-
-  document
-    .getElementById("authSuccess")
-    .textContent="";
-
-}
-
-
-function authSuccess(message){
-
-  document
-    .getElementById("authSuccess")
-    .textContent=
-    message;
-
-  document
-    .getElementById("authError")
-    .textContent="";
-
-}
-
-
-/* =====================================================
-   PHONE VALIDATION
-===================================================== */
-
-function onlyEnglishDigits(value){
-
-  return value
-    .replace(/[^0-9]/g,"")
-    .slice(0,11);
-
-}
-
-
-function validEgyptianPhone(phone){
-
-  return /^01[0-9]{9}$/.test(phone);
-
-}
-
-
-/*
-   ALL PHONE FIELDS:
-   English numbers only.
-*/
-
-document
-  .querySelectorAll(".phone-input")
-  .forEach(function(input){
-
-    input.addEventListener(
-      "input",
-      function(){
-
-        this.value =
-          onlyEnglishDigits(this.value);
-
-      }
-    );
+    };
 
   });
 
-
-/* =====================================================
-   SIGN UP
-===================================================== */
-
-document
-  .getElementById("signupForm")
-  .addEventListener(
-    "submit",
-    async function(e){
-
-      e.preventDefault();
-
-      clearAuthMessages();
+}
 
 
-      const phone =
-        document
-          .getElementById("signupPhone")
-          .value
-          .trim();
+/* CART */
 
+function addToCart(id){
 
-      const email =
-        document
-          .getElementById("signupEmail")
-          .value
-          .trim();
-
-
-      const password =
-        document
-          .getElementById("signupPassword")
-          .value;
-
-
-      if(!validEgyptianPhone(phone)){
-
-        authError(
-          arabic
-          ? "رقم الهاتف يجب أن يكون 11 رقمًا إنجليزيًا ويبدأ بـ 01."
-          : "Phone number must be exactly 11 English digits and start with 01."
-        );
-
-        return;
-
-      }
-
-
-      if(password.length<6){
-
-        authError(
-          arabic
-          ? "كلمة المرور يجب أن تكون 6 أحرف على الأقل."
-          : "Password must be at least 6 characters."
-        );
-
-        return;
-
-      }
-
-
-      try{
-
-        const result =
-          await auth
-            .createUserWithEmailAndPassword(
-              email,
-              password
-            );
-
-
-        const user =
-          result.user;
-
-
-        await user.updateProfile({
-
-          displayName:phone
-
-        });
-
-
-        authSuccess(
-          arabic
-          ? "تم إنشاء الحساب بنجاح."
-          : "Account created successfully."
-        );
-
-
-        updateAccountUI();
-
-
-        setTimeout(function(){
-
-          closeModal("authModal");
-
-          showCollection();
-
-        },500);
-
-
-      }catch(error){
-
-        let message =
-          error.message;
-
-
-        if(
-          error.code ===
-          "auth/email-already-in-use"
-        ){
-
-          message =
-            arabic
-            ? "هذا البريد الإلكتروني مسجل بالفعل. سجل الدخول."
-            : "This email is already registered. Please login.";
-
-        }
-
-
-        if(
-          error.code ===
-          "auth/invalid-email"
-        ){
-
-          message =
-            arabic
-            ? "أدخل بريدًا إلكترونيًا صحيحًا."
-            : "Please enter a valid email address.";
-
-        }
-
-
-        if(
-          error.code ===
-          "auth/weak-password"
-        ){
-
-          message =
-            arabic
-            ? "كلمة المرور يجب أن تكون 6 أحرف على الأقل."
-            : "Password must be at least 6 characters.";
-
-        }
-
-
-        authError(message);
-
-      }
-
-    }
+  const product = products.find(
+    p => p.id === id
   );
 
-
-/* =====================================================
-   LOGIN
-===================================================== */
-
-document
-  .getElementById("loginForm")
-  .addEventListener(
-    "submit",
-    async function(e){
-
-      e.preventDefault();
-
-      clearAuthMessages();
-
-
-      const email =
-        document
-          .getElementById("loginEmail")
-          .value
-          .trim();
-
-
-      const password =
-        document
-          .getElementById("loginPassword")
-          .value;
-
-
-      try{
-
-        await auth
-          .signInWithEmailAndPassword(
-            email,
-            password
-          );
-
-
-        authSuccess(
-          arabic
-          ? "تم تسجيل الدخول بنجاح."
-          : "Login successful."
-        );
-
-
-        updateAccountUI();
-
-
-        setTimeout(function(){
-
-          closeModal("authModal");
-
-          showCollection();
-
-        },300);
-
-
-      }catch(error){
-
-        let message =
-          error.message;
-
-
-        if(
-          error.code ===
-          "auth/invalid-credential"
-        ){
-
-          message =
-            arabic
-            ? "البريد الإلكتروني أو كلمة المرور غير صحيحة."
-            : "Email or password is incorrect.";
-
-        }
-
-
-        if(
-          error.code ===
-          "auth/user-not-found"
-        ){
-
-          message =
-            arabic
-            ? "لا يوجد حساب بهذا البريد الإلكتروني."
-            : "No account found with this email.";
-
-        }
-
-
-        if(
-          error.code ===
-          "auth/wrong-password"
-        ){
-
-          message =
-            arabic
-            ? "كلمة المرور غير صحيحة."
-            : "Incorrect password.";
-
-        }
-
-
-        authError(message);
-
-      }
-
-    }
-  );
-
-
-/* =====================================================
-   LOGOUT
-===================================================== */
-
-async function logout(){
-
-  try{
-
-    await auth.signOut();
-
-
-    document
-      .getElementById("shop")
-      .classList
-      .remove("show");
-
-
-    updateAccountUI();
-
-
-    window.scrollTo({
-      top:0,
-      behavior:"smooth"
-    });
-
-
-  }catch(error){
-
-    alert(error.message);
-
-  }
-
-}
-
-
-/* =====================================================
-   AUTH STATE
-===================================================== */
-
-auth.onAuthStateChanged(
-  function(user){
-
-    updateAccountUI();
-
-
-    if(!user){
-
-      document
-        .getElementById("shop")
-        .classList
-        .remove("show");
-
-    }
-
-  }
-);
-
-
-/* =====================================================
-   ACCOUNT UI
-===================================================== */
-
-function updateAccountUI(){
-
-  const bar =
-    document.getElementById("accountBar");
-
-
-  if(auth.currentUser){
-
-    bar
-      .classList
-      .add("show");
-
-  }else{
-
-    bar
-      .classList
-      .remove("show");
-
-  }
-
-}
-
-
-/* =====================================================
-   PRODUCT
-===================================================== */
-
-let selectedProduct="";
-
-let quantity=1;
-
-
-function openProduct(name){
-
-  if(!auth.currentUser){
-
-    startShop();
-
-    return;
-
-  }
-
-
-  selectedProduct=name;
-
-  quantity=1;
-
-
-  document
-    .getElementById("quantity")
-    .textContent=
-    quantity;
-
-
-  document
-    .getElementById("productName")
-    .textContent=
-    name;
-
-
-  document
-    .getElementById("productModal")
-    .classList
-    .add("show");
-
-}
-
-
-function changeQty(amount){
-
-  quantity+=amount;
-
-
-  if(quantity<1){
-
-    quantity=1;
-
-  }
-
-
-  document
-    .getElementById("quantity")
-    .textContent=
-    quantity;
-
-}
-
-
-/* =====================================================
-   CART
-===================================================== */
-
-let cart=[];
-
-
-function addToCart(){
-
-  const color =
-    document
-      .getElementById("productColor")
-      .value;
-
-
-  const size =
-    document
-      .getElementById("productSize")
-      .value;
-
-
-  cart.push({
-
-    product:selectedProduct,
-
-    color:color,
-
-    size:size,
-
-    quantity:quantity,
-
-    price:0
-
-  });
-
-
-  closeModal("productModal");
+  cart.push(product);
 
   updateCart();
 
-
-}
-
-
-function openCart(){
-
-  updateCart();
-
-  document
-    .getElementById("cartModal")
-    .classList
-    .add("show");
+  openCart();
 
 }
 
 
 function updateCart(){
 
-  const box =
-    document.getElementById("cartItems");
+  cartCount.textContent = cart.length;
+
+}
 
 
-  const count =
-    cart.reduce(
-      function(total,item){
+function openCart(){
 
-        return total + item.quantity;
+  let body = cart.length
 
-      },
-      0
-    );
+    ? cart.map((p,i) => `
+
+      <div class="cart-row">
+
+        <span>
+
+          ${p.name}
+
+          <br>
+
+          <small>
+            ${p.price} EGP
+          </small>
+
+        </span>
+
+        <button
+          onclick="
+            cart.splice(${i},1);
+            updateCart();
+            openCart();
+          "
+        >
+          ×
+        </button>
+
+      </div>
+
+    `).join("")
+
+    : `
+
+      <div class="cart-empty">
+        Your cart is empty
+      </div>
+
+    `;
 
 
-  document
-    .getElementById("cartCount")
-    .textContent=
-    count;
+  const total = cart.reduce(
+    (sum,p) => sum + p.price,
+    0
+  );
 
 
-  if(cart.length===0){
+  openModal(
 
-    box.innerHTML =
-      `<p>${arabic ? "السلة فارغة." : "Your cart is empty."}</p>`;
+    shell(
+
+      "CART",
+
+      `
+
+      ${body}
+
+      <div class="total">
+
+        <b>
+          TOTAL
+        </b>
+
+        <b>
+          ${total} EGP
+        </b>
+
+      </div>
+
+      ${
+        cart.length
+
+        ?
+
+        '<button class="submit" onclick="openCheckout()">CHECKOUT</button>'
+
+        :
+
+        ''
+      }
+
+      `
+
+    )
+
+  );
+
+}
 
 
-    document
-      .getElementById("cartTotal")
-      .textContent=
-      "EGP 0";
+/* PHONE */
 
-    return;
+function validPhone(value){
 
-  }
+  return /^01\d{9}$/.test(value);
 
-
-  let html="";
+}
 
 
-  cart.forEach(
-    function(item,index){
+/* CHECKOUT */
 
-      html+=`
+function openCheckout(){
 
-        <div class="cart-item">
+  openModal(
 
-          <div>
+    shell(
 
-            <strong>
-              ${item.product}
-            </strong>
+      "CHECKOUT",
 
-            <br>
+      `
 
-            ${arabic ? "اللون" : "Color"}:
-            ${item.color}
+      <form id="checkoutForm">
 
-            <br>
+        <div class="form-grid">
 
-            ${arabic ? "المقاس" : "Size"}:
-            ${item.size}
+          <div class="field">
 
-            <br>
+            <label>
+              FULL NAME <span class="req">*</span>
+            </label>
 
-            ${arabic ? "الكمية" : "Quantity"}:
-            ${item.quantity}
+            <input
+              name="name"
+              required
+            >
 
           </div>
 
 
-          <button
-            class="small-btn"
-            onclick="removeCart(${index})">
+          <div class="field">
 
-            ×
+            <label>
+              PHONE <span class="req">*</span>
+            </label>
 
+            <input
+              name="phone"
+              inputmode="numeric"
+              maxlength="11"
+              required
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <label>
+              EMAIL <span class="req">*</span>
+            </label>
+
+            <input
+              name="email"
+              type="email"
+              required
+            >
+
+          </div>
+
+
+          <div class="field full">
+
+            <label>
+              ADDRESS <span class="req">*</span>
+            </label>
+
+            <textarea
+              name="address"
+              required
+            ></textarea>
+
+          </div>
+
+        </div>
+
+
+        <button class="submit">
+          CONTINUE TO PAYMENT
+        </button>
+
+      </form>
+
+      `
+
+    )
+
+  );
+
+
+  checkoutForm.onsubmit = e => {
+
+    e.preventDefault();
+
+
+    if(
+      !validPhone(
+        e.target.phone.value
+      )
+    ){
+
+      return alert(
+        "Phone number must be exactly 11 digits and start with 01"
+      );
+
+    }
+
+
+    openPayment();
+
+  };
+
+}
+
+
+/* PAYMENT */
+
+function openPayment(){
+
+  const total = cart.reduce(
+    (sum,p) => sum + p.price,
+    0
+  );
+
+
+  openModal(
+
+    shell(
+
+      "PAYMENT",
+
+      `
+
+      <div class="type-list">
+
+        <button
+          onclick="
+            paymentChoice(
+              'Vodafone Cash / InstaPay',
+              ${total}
+            )
+          "
+        >
+          VODAFONE CASH / INSTAPAY
+        </button>
+
+
+        <button
+          onclick="
+            paymentChoice(
+              'Cash on Delivery',
+              ${total}
+            )
+          "
+        >
+          CASH ON DELIVERY
+        </button>
+
+      </div>
+
+
+      <p class="form-note">
+
+        For transfer payment the transfer screenshot is required.
+
+      </p>
+
+      `
+
+    )
+
+  );
+
+}
+
+
+/* PAYMENT CHOICE */
+
+function paymentChoice(
+  method,
+  total
+){
+
+  openModal(
+
+    shell(
+
+      "PAYMENT DETAILS",
+
+      `
+
+      <form id="paymentForm">
+
+        <div class="field">
+
+          <label>
+            PAYMENT METHOD
+          </label>
+
+          <input
+            value="${method}"
+            readonly
+          >
+
+        </div>
+
+
+        ${
+          method.includes("Vodafone")
+
+          ?
+
+          `
+
+          <div class="field">
+
+            <label>
+              TRANSFER SCREENSHOT
+              <span class="req">*</span>
+            </label>
+
+            <input
+              type="file"
+              accept="image/*"
+              required
+            >
+
+          </div>
+
+          `
+
+          :
+
+          ""
+        }
+
+
+        <div class="field">
+
+          <label>
+            ORDER NOTE
+          </label>
+
+          <textarea
+            placeholder="Optional note"
+          ></textarea>
+
+        </div>
+
+
+        <button class="submit">
+
+          CONFIRM ORDER —
+          ${total} EGP
+
+        </button>
+
+      </form>
+
+      `
+
+    )
+
+  );
+
+
+  paymentForm.onsubmit = e => {
+
+    e.preventDefault();
+
+
+    openModal(
+
+      shell(
+
+        "ORDER RECEIVED",
+
+        `
+
+        <div
+          style="
+            text-align:center;
+            color:#bbb;
+            line-height:1.7
+          "
+        >
+
+          Your order has been received successfully.
+
+          <br>
+
+          NAZRA will contact you
+          to confirm the details.
+
+        </div>
+
+        `
+
+      )
+
+    );
+
+
+    cart = [];
+
+    updateCart();
+
+  };
+
+}
+
+
+/* CONTACT */
+
+function contact(){
+
+  openModal(
+
+    shell(
+
+      "CONTACT",
+
+      `
+
+      <div class="type-list">
+
+        <a href="tel:01090356664">
+          01090356664
+        </a>
+
+
+        <a href="mailto:nazra.co123@gmail.com">
+          nazra.co123@gmail.com
+        </a>
+
+
+        <a
+          href="https://www.instagram.com/nazra.co_/"
+          target="_blank"
+        >
+          @nazra.co_
+        </a>
+
+      </div>
+
+      `
+
+    )
+
+  );
+
+}
+
+
+/* STORY */
+
+function story(){
+
+  openModal(
+
+    shell(
+
+      "NAZRA STORY",
+
+      `
+
+      <div class="story">
+
+        ${
+
+          storyEn.map(
+            text => `<p>${text}</p>`
+          ).join("")
+
+        }
+
+
+        <div class="rule"></div>
+
+
+        <div class="arabic">
+
+          ${
+
+            storyAr.map(
+              text => `<p>${text}</p>`
+            ).join("")
+
+          }
+
+        </div>
+
+      </div>
+
+      `
+
+    )
+
+  );
+
+}
+
+
+/* POLICY */
+
+function policy(){
+
+  const en = [
+
+    "All NAZRA pieces are carefully prepared and checked before they are delivered.",
+
+    "We believe every piece should reach you exactly as intended and for that reason we ask you to check your order when you receive it.",
+
+    "Exchange is available within 10 days from the date of delivery.",
+
+    "The piece must be in its original condition, unworn, unwashed, undamaged and with all original tags and packaging.",
+
+    "NAZRA does not offer refunds. Exchanges only.",
+
+    "Any piece that has been worn, washed, damaged or altered will not be accepted for exchange.",
+
+    "The exchange process is subject to checking the condition of the piece before approval.",
+
+    "By placing an order with NAZRA you agree to these terms."
+
+  ];
+
+
+  const ar = [
+
+    "كل قطعة من NAZRA يتم تجهيزها ومراجعتها بعناية قبل تسليمها.",
+
+    "نحن نؤمن أن كل قطعة يجب أن تصل إليك كما صممت تماما ولهذا نطلب منك مراجعة طلبك عند استلامه.",
+
+    "الاستبدال متاح خلال 10 أيام من تاريخ الاستلام.",
+
+    "يجب أن تكون القطعة بحالتها الأصلية وغير مستخدمة أو مغسولة أو تالفة مع وجود جميع التيكتات والتغليف الأصلي.",
+
+    "NAZRA لا توفر استرجاع للمنتجات. الاستبدال فقط.",
+
+    "أي قطعة تم ارتداؤها أو غسلها أو إتلافها أو تعديلها لن يتم قبول استبدالها.",
+
+    "عملية الاستبدال تخضع لمراجعة حالة القطعة قبل الموافقة عليها.",
+
+    "بإتمام طلبك من NAZRA فأنت توافق على هذه الشروط."
+
+  ];
+
+
+  openModal(
+
+    shell(
+
+      "POLICY",
+
+      `
+
+      <div class="policy">
+
+        ${
+
+          en.map(
+            text => `<p>${text}</p>`
+          ).join("")
+
+        }
+
+
+        <div class="rule"></div>
+
+
+        <div class="arabic">
+
+          ${
+
+            ar.map(
+              text => `<p>${text}</p>`
+            ).join("")
+
+          }
+
+        </div>
+
+      </div>
+
+      `
+
+    )
+
+  );
+
+}
+
+
+/* FAQ */
+
+function faq(){
+
+  const questions = [
+
+    [
+      "What payment methods are available?",
+      "You can pay through Vodafone Cash, InstaPay or Cash on Delivery.",
+      "ايه طرق الدفع المتاحة؟",
+      "تقدر تدفع عن طريق فودافون كاش أو إنستا باي أو الدفع عند الاستلام."
+    ],
+
+    [
+      "How can I place an order?",
+      "Choose your piece, select the size and color, then add it to your cart and complete the checkout.",
+      "ازاي اقدر اعمل اوردر؟",
+      "اختار القطعة وحدد المقاس واللون وبعدها ضيفها للعربة وكمل بيانات الطلب."
+    ],
+
+    [
+      "How long does delivery take?",
+      "Delivery time depends on your location and will be confirmed with you after placing your order.",
+      "التوصيل بياخد وقت قد ايه؟",
+      "مدة التوصيل بتختلف حسب مكانك وبيتم تأكيدها معاك بعد تسجيل الطلب."
+    ],
+
+    [
+      "Can I exchange my order?",
+      "Yes. Exchanges are available within 10 days of delivery as long as the piece is in its original condition.",
+      "هل اقدر استبدل الأوردر؟",
+      "اه الاستبدال متاح خلال 10 أيام من تاريخ الاستلام بشرط إن القطعة تكون بحالتها الأصلية."
+    ],
+
+    [
+      "Can I return my order?",
+      "No. NAZRA does not offer refunds. Exchanges only.",
+      "هل اقدر ارجع الأوردر؟",
+      "لا NAZRA لا توفر استرجاع للمنتجات والاستبدال فقط."
+    ],
+
+    [
+      "Can I exchange a piece that has been worn or washed?",
+      "No. The piece must be unworn, unwashed, undamaged and in its original condition with the original tags and packaging.",
+      "هل اقدر استبدل قطعة اتلبست أو اتغسلت؟",
+      "لا لازم القطعة تكون غير مستخدمة وغير مغسولة وغير تالفة وبحالتها الأصلية مع التيكتات والتغليف الأصلي."
+    ],
+
+    [
+      "How can I contact NAZRA?",
+      "You can contact NAZRA through the Contact section on the website.",
+      "ازاي اقدر اتواصل مع NAZRA؟",
+      "تقدر تتواصل معانا من خلال قسم Contact الموجود في الموقع."
+    ]
+
+  ];
+
+
+  openModal(
+
+    shell(
+
+      "FAQ",
+
+      `
+
+      <div class="faq">
+
+        ${
+
+          questions.map(q => `
+
+            <details>
+
+              <summary>
+                ${q[0]}
+              </summary>
+
+              <p>
+                ${q[1]}
+              </p>
+
+
+              <div class="arabic">
+
+                <strong>
+                  ${q[2]}
+                </strong>
+
+                <p>
+                  ${q[3]}
+                </p>
+
+              </div>
+
+            </details>
+
+          `).join("")
+
+        }
+
+      </div>
+
+      `
+
+    )
+
+  );
+
+}
+
+
+/* REPORTS */
+
+function reports(){
+
+  openModal(
+
+    shell(
+
+      "REPORT AN ISSUE",
+
+      `
+
+      <div id="reportChooser">
+
+        <div class="form-note">
+
+          Choose the type of issue and complete
+          every required field before you can submit.
+
+        </div>
+
+
+        <div class="type-list">
+
+          <button onclick="reportForm('order')">
+            ORDER ISSUE →
           </button>
+
+          <button onclick="reportForm('payment')">
+            PAYMENT ISSUE →
+          </button>
+
+          <button onclick="reportForm('delivery')">
+            DELIVERY ISSUE →
+          </button>
+
+          <button onclick="reportForm('product')">
+            PRODUCT ISSUE →
+          </button>
+
+          <button onclick="reportForm('other')">
+            OTHER →
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div id="reportArea"></div>
+
+      `
+
+    )
+
+  );
+
+}
+
+
+/* REPORT FORM */
+
+function reportForm(type){
+
+  const configs = {
+
+    order:[
+      "ORDER NUMBER",
+      "FULL NAME",
+      "PHONE NUMBER",
+      "DESCRIBE THE ISSUE",
+      "UPLOAD PHOTO (OPTIONAL)"
+    ],
+
+    payment:[
+      "ORDER NUMBER",
+      "PAYMENT METHOD",
+      "FULL NAME",
+      "PHONE NUMBER",
+      "DESCRIBE THE ISSUE",
+      "PAYMENT SCREENSHOT"
+    ],
+
+    delivery:[
+      "ORDER NUMBER",
+      "FULL NAME",
+      "PHONE NUMBER",
+      "DELIVERY ADDRESS",
+      "DESCRIBE THE ISSUE"
+    ],
+
+    product:[
+      "ORDER NUMBER",
+      "FULL NAME",
+      "PHONE NUMBER",
+      "PRODUCT NAME",
+      "DESCRIBE THE ISSUE",
+      "PHOTOS OF THE PRODUCT"
+    ],
+
+    other:[
+      "FULL NAME",
+      "PHONE NUMBER",
+      "DESCRIBE THE ISSUE"
+    ]
+
+  };
+
+
+  const fields = configs[type].map(label => {
+
+    const name =
+      label
+      .toLowerCase()
+      .replaceAll(" ","_")
+      .replace(/[()]/g,"");
+
+
+    if(label === "PAYMENT METHOD"){
+
+      return `
+
+        <div class="field">
+
+          <label>
+            ${label}
+            <span class="req">*</span>
+          </label>
+
+          <select
+            name="${name}"
+            required
+          >
+
+            <option value="">
+              Select
+            </option>
+
+            <option>
+              Vodafone Cash
+            </option>
+
+            <option>
+              InstaPay
+            </option>
+
+            <option>
+              Cash on Delivery
+            </option>
+
+          </select>
 
         </div>
 
       `;
 
     }
+
+
+    if(
+      label.includes("SCREENSHOT") ||
+      label.includes("PHOTOS")
+    ){
+
+      return `
+
+        <div class="field full">
+
+          <label>
+
+            ${label}
+            <span class="req">*</span>
+
+          </label>
+
+          <input
+            type="file"
+            name="${name}"
+            accept="image/*"
+            required
+          >
+
+        </div>
+
+      `;
+
+    }
+
+
+    if(label.includes("OPTIONAL")){
+
+      return `
+
+        <div class="field full">
+
+          <label>
+            ${label}
+          </label>
+
+          <input
+            type="file"
+            name="${name}"
+            accept="image/*"
+          >
+
+        </div>
+
+      `;
+
+    }
+
+
+    if(
+      label.includes("DESCRIBE") ||
+      label.includes("ADDRESS")
+    ){
+
+      return `
+
+        <div class="field full">
+
+          <label>
+
+            ${label}
+            <span class="req">*</span>
+
+          </label>
+
+          <textarea
+            name="${name}"
+            required
+          ></textarea>
+
+        </div>
+
+      `;
+
+    }
+
+
+    return `
+
+      <div class="field">
+
+        <label>
+
+          ${label}
+          <span class="req">*</span>
+
+        </label>
+
+        <input
+          name="${name}"
+          ${
+            label === "PHONE NUMBER"
+            ?
+            'inputmode="numeric" maxlength="11"'
+            :
+            ''
+          }
+          required
+        >
+
+      </div>
+
+    `;
+
+  }).join("");
+
+
+  reportArea.innerHTML = `
+
+    <a
+      class="back-link"
+      href="#"
+      onclick="
+        reports();
+        return false
+      "
+    >
+      ← BACK
+    </a>
+
+
+    <form id="reportForm">
+
+      <div class="form-grid">
+
+        ${fields}
+
+      </div>
+
+
+      <button
+        class="submit"
+        disabled
+        id="reportSubmit"
+      >
+        CONFIRM REPORT
+      </button>
+
+    </form>
+
+  `;
+
+
+  const form =
+    document.getElementById(
+      "reportForm"
+    );
+
+
+  const btn =
+    document.getElementById(
+      "reportSubmit"
+    );
+
+
+  function check(){
+
+    let ok =
+      [...form.querySelectorAll("[required]")]
+      .every(x => {
+
+        if(x.type === "file"){
+
+          return x.files.length;
+
+        }
+
+        return x.value.trim();
+
+      });
+
+
+    const phone =
+      form.querySelector(
+        '[name="phone_number"]'
+      );
+
+
+    if(
+      phone &&
+      phone.value &&
+      !validPhone(phone.value)
+    ){
+
+      ok = false;
+
+    }
+
+
+    btn.disabled = !ok;
+
+  }
+
+
+  form.addEventListener(
+    "input",
+    check
   );
 
 
-  box.innerHTML=html;
+  form.addEventListener(
+    "change",
+    check
+  );
 
 
-  document
-    .getElementById("cartTotal")
-    .textContent=
-    "EGP 0";
+  form.onsubmit = e => {
 
-}
+    e.preventDefault();
 
 
-function removeCart(index){
-
-  cart.splice(index,1);
-
-  updateCart();
-
-}
+    if(btn.disabled){
+      return;
+    }
 
 
-/* =====================================================
-   CHECKOUT
-===================================================== */
+    openModal(
 
-function openCheckout(){
+      shell(
 
-  if(cart.length===0){
+        "REPORT SENT",
 
-    alert(
-      arabic
-      ? "السلة فارغة."
-      : "Your cart is empty."
+        `
+
+        <div
+          style="
+            text-align:center;
+            color:#bbb;
+            line-height:1.7
+          "
+        >
+
+          Your report has been submitted.
+
+          <br>
+
+          NAZRA will review the issue.
+
+        </div>
+
+        `
+
+      )
+
     );
 
-    return;
-
-  }
-
-
-  closeModal("cartModal");
-
-
-  if(auth.currentUser){
-
-    document
-      .getElementById("customerEmail")
-      .value =
-      auth.currentUser.email || "";
-
-  }
-
-
-  document
-    .getElementById("checkoutModal")
-    .classList
-    .add("show");
+  };
 
 }
 
 
-/* =====================================================
-   PAYMENT
-===================================================== */
+/* AI CHAT */
 
-function openPayment(){
+function addChat(
+  text,
+  who="ai"
+){
 
-  const name =
-    document
-      .getElementById("customerName")
-      .value
-      .trim();
-
-
-  const phone =
-    document
-      .getElementById("customerPhone")
-      .value
-      .trim();
+  const div =
+    document.createElement(
+      "div"
+    );
 
 
-  const email =
-    document
-      .getElementById("customerEmail")
-      .value
-      .trim();
+  div.className =
+    "bubble " +
+    (who === "user" ? "user" : "");
 
 
-  const address =
-    document
-      .getElementById("customerAddress")
-      .value
-      .trim();
+  div.textContent = text;
+
+
+  chatBody.appendChild(div);
+
+
+  chatBody.scrollTop =
+    chatBody.scrollHeight;
+
+}
+
+
+/* FRANCO + ENGLISH AI */
+
+function botReply(q){
+
+  const s =
+    q.toLowerCase();
 
 
   if(
-    !name ||
-    !phone ||
-    !email ||
-    !address
+    /exchange|بدل|استبدال|el exchange|momken/.test(s)
   ){
 
-    alert(
-      arabic
-      ? "من فضلك أكمل جميع البيانات."
-      : "Please complete all information."
-    );
-
-    return;
+    return "Aywa, momken within 10 days mn date of delivery بشرط en el piece tkoun b7altaha el aslya w ma tkounsh etlbest aw etghaslet w ykoon el tags w packaging mawgoodin.";
 
   }
 
 
-  if(!validEgyptianPhone(phone)){
+  if(
+    /delivery|توصيل|الشحن|يوصل|بياخد|el delivery/.test(s)
+  ){
 
-    alert(
-      arabic
-      ? "رقم الهاتف يجب أن يكون 11 رقمًا إنجليزيًا ويبدأ بـ 01."
-      : "Phone number must be exactly 11 English digits and start with 01."
-    );
-
-    return;
+    return "Delivery time depends on your location and will be confirmed with you after placing your order.";
 
   }
 
 
-  document
-    .getElementById("hiddenName")
-    .value=
-    name;
+  if(
+    /payment|دفع|فلوس|vodafone|instapay|فودافون|انستا/.test(s)
+  ){
+
+    return "You can pay through Vodafone Cash, InstaPay or Cash on Delivery.";
+
+  }
 
 
-  document
-    .getElementById("hiddenPhone")
-    .value=
-    phone;
+  if(
+    /order|اوردر|طلب|اطلب|اعمل/.test(s)
+  ){
+
+    return "Choose your piece, select the size and color, then add it to your cart and complete the checkout.";
+
+  }
 
 
-  document
-    .getElementById("hiddenEmail")
-    .value=
-    email;
+  if(
+    /return|refund|استرجاع|ارجع/.test(s)
+  ){
+
+    return "NAZRA does not offer refunds. Exchanges only.";
+
+  }
 
 
-  document
-    .getElementById("hiddenAddress")
-    .value=
-    address;
+  if(
+    /worn|washed|اتلبس|اتغسل/.test(s)
+  ){
+
+    return "No. The piece must be unworn, unwashed, undamaged and in its original condition with the original tags and packaging.";
+
+  }
 
 
-  document
-    .getElementById("codName")
-    .value=
-    name;
+  if(
+    /contact|تواصل|كلم|انست/.test(s)
+  ){
+
+    return "You can contact NAZRA through the Contact section on the website.";
+
+  }
 
 
-  document
-    .getElementById("codPhone")
-    .value=
-    phone;
-
-
-  document
-    .getElementById("codEmail")
-    .value=
-    email;
-
-
-  document
-    .getElementById("codAddress")
-    .value=
-    address;
-
-
-  const orderText =
-    cart
-      .map(function(item){
-
-        return `${item.product} | Color: ${item.color} | Size: ${item.size} | Quantity: ${item.quantity} | Price: EGP 0`;
-
-      })
-      .join("\n");
-
-
-  document
-    .getElementById("hiddenOrder")
-    .value=
-    orderText;
-
-
-  document
-    .getElementById("codOrder")
-    .value=
-    orderText;
-
-
-  closeModal("checkoutModal");
-
-
-  document
-    .getElementById("paymentModal")
-    .classList
-    .add("show");
+  return "I am not sure about that yet. Please contact NAZRA through the Contact section and we will help you.";
 
 }
 
 
-/* =====================================================
-   TRANSFER PHONE
-===================================================== */
+/* ELEMENTS */
 
-document
-  .getElementById("transferFromPhone")
-  .addEventListener(
-    "input",
-    function(){
+const productsEl =
+  document.getElementById(
+    "products"
+  );
 
-      this.value =
-        onlyEnglishDigits(this.value);
+const cartCount =
+  document.getElementById(
+    "cartCount"
+  );
 
-    }
+const modalOverlay =
+  document.getElementById(
+    "modalOverlay"
+  );
+
+const modal =
+  document.getElementById(
+    "modal"
+  );
+
+const chatPanel =
+  document.getElementById(
+    "chatPanel"
+  );
+
+const chatBody =
+  document.getElementById(
+    "chatBody"
   );
 
 
-/* =====================================================
-   PAYMENT SELECTION
-===================================================== */
+/* INIT */
 
-function selectPayment(type){
-
-  document
-    .querySelectorAll(".payment-option")
-    .forEach(function(el){
-
-      el.classList.remove("active");
-
-    });
+renderProducts();
 
 
-  document
-    .querySelectorAll(".payment-details")
-    .forEach(function(el){
-
-      el.classList.remove("show");
-
-    });
-
-
-  if(type==="transfer"){
-
-    document
-      .getElementById("transferOption")
-      .classList
-      .add("active");
-
-
-    document
-      .getElementById("transferDetails")
-      .classList
-      .add("show");
-
-  }
-
-
-  if(type==="cod"){
-
-    document
-      .getElementById("codOption")
-      .classList
-      .add("active");
-
-
-    document
-      .getElementById("codDetails")
-      .classList
-      .add("show");
-
-  }
-
-}
-
-
-/* =====================================================
-   TRANSFER FORM
-===================================================== */
+/* COLLECTION BUTTON */
 
 document
-  .querySelector("#transferDetails form")
-  .addEventListener(
-    "submit",
-    function(e){
+  .getElementById("collectionsBtn")
+  .onclick = () => {
 
-      const transferPhone =
-        document
-          .getElementById("transferFromPhone")
-          .value
-          .trim();
+    document
+      .getElementById("shop")
+      .scrollIntoView({
+        behavior:"smooth"
+      });
+
+  };
 
 
-      if(!validEgyptianPhone(transferPhone)){
+document
+  .getElementById("allProducts")
+  .onclick = () => {
 
-        e.preventDefault();
+    document
+      .getElementById("shop")
+      .scrollIntoView({
+        behavior:"smooth"
+      });
 
-        alert(
-          arabic
-          ? "رقم الهاتف الذي تم التحويل منه يجب أن يكون 11 رقمًا إنجليزيًا ويبدأ بـ 01."
-          : "Transferred-from phone number must be exactly 11 English digits and start with 01."
-        );
+  };
 
-        return;
+
+/* CART BUTTONS */
+
+document
+  .getElementById("cartTop")
+  .onclick = openCart;
+
+
+document
+  .getElementById("bottomCart")
+  .onclick = openCart;
+
+
+document
+  .getElementById("drawerCart")
+  .onclick = () => {
+
+    drawer.classList.remove(
+      "show"
+    );
+
+    openCart();
+
+  };
+
+
+/* DRAWER */
+
+document
+  .getElementById("menuBtn")
+  .onclick = () => {
+
+    drawer.classList.add(
+      "show"
+    );
+
+  };
+
+
+document
+  .getElementById("drawerBg")
+  .onclick = () => {
+
+    drawer.classList.remove(
+      "show"
+    );
+
+  };
+
+
+/* NAVIGATION */
+
+document
+  .querySelectorAll("[data-open]")
+  .forEach(button => {
+
+    button.onclick = () => {
+
+      drawer.classList.remove(
+        "show"
+      );
+
+
+      const page =
+        button.dataset.open;
+
+
+      if(page === "home"){
+
+        location.hash =
+          "home";
 
       }
 
+      else if(page === "contact"){
 
-      document
-        .getElementById("hiddenTransferFrom")
-        .value=
-        transferPhone;
+        contact();
+
+      }
+
+      else if(page === "reports"){
+
+        reports();
+
+      }
+
+      else if(page === "story"){
+
+        story();
+
+      }
+
+      else if(page === "policy"){
+
+        policy();
+
+      }
+
+      else if(page === "faq"){
+
+        faq();
+
+      }
+
+    };
+
+  });
+
+
+/* CLOSE MODAL */
+
+modalOverlay.addEventListener(
+  "click",
+  e => {
+
+    if(
+      e.target === modalOverlay
+    ){
+
+      closeModal();
 
     }
-  );
+
+  }
+);
 
 
-/* =====================================================
-   SUCCESS
-===================================================== */
+/* AI OPEN */
 
-if(
-  new URLSearchParams(location.search)
-    .get("order")==="complete"
-){
+document
+  .getElementById("chatLaunch")
+  .onclick = () => {
 
-  document
-    .getElementById("successModal")
-    .classList
-    .add("show");
-
-}
+    chatPanel.classList.add(
+      "show"
+    );
 
 
-/* =====================================================
-   INITIAL CART
-===================================================== */
+    if(
+      !chatBody.children.length
+    ){
 
-updateCart();
+      addChat(
+        "Hi! I'm NAZRA AI 👋 How can I help you today?"
+      );
+
+    }
+
+  };
+
+
+/* AI CLOSE */
+
+document
+  .getElementById("chatClose")
+  .onclick = () => {
+
+    chatPanel.classList.remove(
+      "show"
+    );
+
+  };
+
+
+/* AI FORM */
+
+document
+  .getElementById("chatForm")
+  .onsubmit = e => {
+
+    e.preventDefault();
+
+
+    const q =
+      chatInput.value.trim();
+
+
+    if(!q){
+      return;
+    }
+
+
+    addChat(
+      q,
+      "user"
+    );
+
+
+    chatInput.value = "";
+
+
+    setTimeout(
+      () => {
+
+        addChat(
+          botReply(q)
+        );
+
+      },
+      250
+    );
+
+  };
+
+
+/* PHONE INPUT */
+
+document.addEventListener(
+  "input",
+  e => {
+
+    if(
+      e.target.matches(
+        'input[inputmode="numeric"]'
+      )
+    ){
+
+      e.target.value =
+        e.target.value
+          .replace(/\D/g,"")
+          .slice(0,11);
+
+    }
+
+  }
+);
 
 </script>
 
