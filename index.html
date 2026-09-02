@@ -1,3546 +1,2012 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#090909">
 <title>NAZRA</title>
 
-<meta name="description" content="NAZRA — Look Twice.">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://nazra-qfdap.sevalla.page/">
-
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-HSLKNCDLRK"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-HSLKNCDLRK');
-</script>
-
-<!-- Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&family=Noto+Kufi+Arabic:wght@300;400;500&display=swap" rel="stylesheet">
-
 <style>
-
-/* =====================================================
-   RESET
-===================================================== */
-
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
-html{
-    scroll-behavior:smooth;
+html,body{
+  width:100%;
+  min-height:100%;
+  background:#080808;
+  color:#f4f1eb;
+  font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
-    background:#050505;
-    color:#f4f1eb;
-    font-family:'Montserrat',sans-serif;
-    overflow-x:hidden;
-    transition:.5s ease;
+  overflow:hidden;
 }
 
-button,
-input,
-select,
-textarea{
-    font:inherit;
+/* =========================
+   LANDING
+========================= */
+
+#landing{
+  position:fixed;
+  inset:0;
+  z-index:999;
+  background:
+    radial-gradient(circle at 50% 40%,#252525 0%,#111 35%,#080808 72%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
 }
 
-button{
-    cursor:pointer;
+.landing-inner{
+  width:min(900px,90%);
+  text-align:center;
 }
 
-a{
-    color:inherit;
-    text-decoration:none;
+.logo-main{
+  font-family:Georgia,serif;
+  font-size:clamp(65px,14vw,170px);
+  letter-spacing:.14em;
+  font-weight:400;
+  margin-left:.14em;
+  line-height:.8;
 }
 
-/* =====================================================
-   VARIABLES
-===================================================== */
-
-:root{
-
-    --bg:#050505;
-    --bg2:#090909;
-    --card:#0d0d0d;
-    --text:#f4f1eb;
-    --muted:#858585;
-    --line:rgba(255,255,255,.13);
-    --lineStrong:rgba(255,255,255,.3);
-    --accent:#f4f1eb;
-
+.logo-sub{
+  margin-top:25px;
+  font-size:10px;
+  letter-spacing:8px;
+  opacity:.5;
 }
 
-body.light{
-
-    --bg:#eeeae2;
-    --bg2:#e5e0d7;
-    --card:#f5f2ec;
-    --text:#171717;
-    --muted:#69645d;
-    --line:rgba(0,0,0,.13);
-    --lineStrong:rgba(0,0,0,.3);
-    --accent:#171717;
-
+.enter-btn{
+  margin-top:55px;
+  background:transparent;
+  color:#fff;
+  border:1px solid rgba(255,255,255,.4);
+  padding:18px 42px;
+  letter-spacing:4px;
+  font-size:11px;
+  cursor:pointer;
+  transition:.35s;
 }
 
-/* =====================================================
-   GRAIN
-===================================================== */
-
-body::after{
-
-    content:"";
-
-    position:fixed;
-    inset:0;
-
-    pointer-events:none;
-
-    opacity:.035;
-
-    background-image:
-    url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
-
-    z-index:9999;
-
+.enter-btn:hover{
+  background:#fff;
+  color:#000;
+  border-color:#fff;
 }
 
-/* =====================================================
+/* =========================
+   APP
+========================= */
+
+#app{
+  display:none;
+  min-height:100vh;
+  height:100vh;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 70% 25%,#202020 0,#0b0b0b 45%,#060606 100%);
+}
+
+/* =========================
    SIDEBAR
-===================================================== */
+========================= */
 
 .sidebar{
-
-    position:fixed;
-
-    left:0;
-    top:0;
-
-    width:88px;
-    height:100vh;
-
-    border-right:1px solid var(--line);
-
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:space-between;
-
-    padding:28px 0;
-
-    z-index:1000;
-
-    background:rgba(5,5,5,.75);
-
-    backdrop-filter:blur(18px);
-
+  position:fixed;
+  left:0;
+  top:0;
+  bottom:0;
+  width:90px;
+  border-right:1px solid rgba(255,255,255,.08);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  z-index:50;
+  background:rgba(5,5,5,.8);
+  backdrop-filter:blur(15px);
 }
 
-body.light .sidebar{
-    background:rgba(238,234,226,.78);
+.nav-item{
+  writing-mode:vertical-rl;
+  transform:rotate(180deg);
+  margin:13px 0;
+  color:#777;
+  font-size:9px;
+  letter-spacing:3px;
+  cursor:pointer;
+  transition:.3s;
 }
 
-.side-top{
-
-    writing-mode:vertical-rl;
-
-    transform:rotate(180deg);
-
-    font-family:'Cormorant Garamond',serif;
-
-    font-size:11px;
-
-    letter-spacing:5px;
-
-    opacity:.4;
-
+.nav-item:hover{
+  color:#fff;
 }
 
-.side-menu{
-
-    display:flex;
-
-    flex-direction:column;
-
-    align-items:center;
-
-    gap:25px;
-
+.nav-item.active{
+  color:#fff;
 }
 
-.side-item{
-
-    position:relative;
-
-    width:54px;
-    height:54px;
-
-    border:1px solid transparent;
-
-    background:transparent;
-
-    color:var(--text);
-
-    display:flex;
-
-    flex-direction:column;
-
-    align-items:center;
-
-    justify-content:center;
-
-    gap:4px;
-
-    transition:.35s ease;
-
-}
-
-.side-item:hover{
-
-    border-color:var(--lineStrong);
-
-}
-
-.side-item.active{
-
-    border-color:var(--lineStrong);
-
-}
-
-.side-icon{
-
-    font-size:18px;
-
-    line-height:1;
-
-    font-weight:300;
-
-}
-
-.side-label{
-
-    font-size:6px;
-
-    letter-spacing:1.5px;
-
-    opacity:.55;
-
-}
-
-.side-bottom{
-
-    font-family:'Cormorant Garamond',serif;
-
-    font-size:12px;
-
-    letter-spacing:4px;
-
-    opacity:.35;
-
-}
-
-/* =====================================================
-   TOP CONTROLS
-===================================================== */
-
-.top-controls{
-
-    position:fixed;
-
-    top:26px;
-    right:32px;
-
-    z-index:1001;
-
-    display:flex;
-
-    gap:8px;
-
-}
-
-.control{
-
-    height:34px;
-
-    padding:0 13px;
-
-    background:transparent;
-
-    color:var(--text);
-
-    border:1px solid var(--line);
-
-    font-size:8px;
-
-    letter-spacing:2px;
-
-    transition:.3s ease;
-
-}
-
-.control:hover{
-
-    border-color:var(--lineStrong);
-
-}
-
-/* =====================================================
+/* =========================
    MAIN
-===================================================== */
+========================= */
 
-main{
-
-    margin-left:88px;
-
+.main{
+  margin-left:90px;
+  height:100vh;
+  overflow-y:auto;
+  overflow-x:hidden;
+  scroll-behavior:smooth;
 }
-
-/* =====================================================
-   HERO
-===================================================== */
 
 .hero{
-
-    min-height:100vh;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    position:relative;
-
-    overflow:hidden;
-
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  padding:40px;
 }
 
-.hero::before{
-
-    content:"";
-
-    position:absolute;
-
-    width:620px;
-    height:620px;
-
-    border-radius:50%;
-
-    background:radial-gradient(
-        circle,
-        rgba(255,255,255,.075),
-        transparent 68%
-    );
-
-    top:50%;
-    left:50%;
-
-    transform:translate(-50%,-50%);
-
-}
-
-body.light .hero::before{
-
-    background:radial-gradient(
-        circle,
-        rgba(0,0,0,.07),
-        transparent 68%
-    );
-
-}
-
-.hero-lines{
-
-    position:absolute;
-
-    inset:0;
-
-    pointer-events:none;
-
-}
-
-.hero-lines::before,
-.hero-lines::after{
-
-    content:"";
-
-    position:absolute;
-
-    background:var(--line);
-
-}
-
-.hero-lines::before{
-
-    width:1px;
-    height:70%;
-
-    left:22%;
-
-    top:15%;
-
-}
-
-.hero-lines::after{
-
-    width:45%;
-
-    height:1px;
-
-    left:27.5%;
-
-    top:72%;
-
+.hero:before{
+  content:"";
+  position:absolute;
+  width:55vw;
+  height:55vw;
+  max-width:700px;
+  max-height:700px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,255,.08),transparent 68%);
+  filter:blur(20px);
 }
 
 .hero-content{
-
-    text-align:center;
-
-    position:relative;
-
-    z-index:2;
-
+  position:relative;
+  text-align:center;
 }
 
-.eyebrow{
-
-    font-size:8px;
-
-    letter-spacing:7px;
-
-    opacity:.4;
-
-    margin-bottom:35px;
-
+.hero-title{
+  font-family:Georgia,serif;
+  font-size:clamp(70px,13vw,190px);
+  font-weight:400;
+  letter-spacing:.12em;
+  margin-left:.12em;
 }
 
-.hero-logo{
-
-    font-family:'Cormorant Garamond',serif;
-
-    font-weight:400;
-
-    font-size:clamp(95px,16vw,205px);
-
-    line-height:.72;
-
-    letter-spacing:12px;
-
-    margin-left:12px;
-
+.hero-line{
+  margin-top:28px;
+  color:#777;
+  font-size:10px;
+  letter-spacing:7px;
 }
 
-.hero-subtitle{
-
-    margin-top:42px;
-
-    font-size:9px;
-
-    letter-spacing:8px;
-
-    opacity:.4;
-
+.hero-button{
+  margin-top:50px;
+  padding:17px 36px;
+  border:1px solid rgba(255,255,255,.35);
+  background:transparent;
+  color:#fff;
+  letter-spacing:4px;
+  font-size:10px;
+  cursor:pointer;
+  transition:.3s;
 }
 
-/* =====================================================
-   SPECIAL COLLECTION BUTTON
-===================================================== */
-
-.collection-btn{
-
-    position:relative;
-
-    margin-top:58px;
-
-    width:255px;
-    height:66px;
-
-    background:transparent;
-
-    color:var(--text);
-
-    border:1px solid var(--lineStrong);
-
-    overflow:hidden;
-
-    transition:.6s cubic-bezier(.77,0,.18,1);
-
+.hero-button:hover{
+  background:#fff;
+  color:#000;
 }
 
-.collection-btn::before{
-
-    content:"";
-
-    position:absolute;
-
-    left:-100%;
-
-    top:0;
-
-    width:100%;
-    height:100%;
-
-    background:var(--accent);
-
-    transition:.65s cubic-bezier(.77,0,.18,1);
-
-}
-
-.collection-btn:hover::before{
-
-    left:0;
-
-}
-
-.collection-btn span{
-
-    position:relative;
-
-    z-index:3;
-
-    font-size:9px;
-
-    letter-spacing:4px;
-
-    transition:.5s ease;
-
-}
-
-.collection-btn:hover span{
-
-    color:var(--bg);
-
-    letter-spacing:5px;
-
-}
-
-.collection-arrow{
-
-    position:absolute;
-
-    right:18px;
-
-    top:50%;
-
-    transform:translateY(-50%);
-
-    z-index:4;
-
-    opacity:.45;
-
-    transition:.5s ease;
-
-}
-
-.collection-btn:hover .collection-arrow{
-
-    color:var(--bg);
-
-    right:11px;
-
-    opacity:1;
-
-}
-
-.corner{
-
-    position:absolute;
-
-    width:7px;
-    height:7px;
-
-    border-color:var(--text);
-
-    transition:.5s ease;
-
-    z-index:5;
-
-}
-
-.corner.tl{
-    left:-1px;
-    top:-1px;
-    border-left:1px solid;
-    border-top:1px solid;
-}
-
-.corner.tr{
-    right:-1px;
-    top:-1px;
-    border-right:1px solid;
-    border-top:1px solid;
-}
-
-.corner.bl{
-    left:-1px;
-    bottom:-1px;
-    border-left:1px solid;
-    border-bottom:1px solid;
-}
-
-.corner.br{
-    right:-1px;
-    bottom:-1px;
-    border-right:1px solid;
-    border-bottom:1px solid;
-}
-
-.collection-btn:hover .corner{
-
-    width:15px;
-    height:15px;
-
-}
-
-/* =====================================================
-   SECTION
-===================================================== */
+/* =========================
+   SECTIONS
+========================= */
 
 .section{
-
-    min-height:100vh;
-
-    padding:120px 8%;
-
-    border-top:1px solid var(--line);
-
+  min-height:100vh;
+  padding:100px 8%;
+  display:none;
 }
 
-.section-head{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:end;
-
-    margin-bottom:60px;
-
-}
-
-.section-number{
-
-    font-size:8px;
-
-    letter-spacing:4px;
-
-    color:var(--muted);
-
+.section.open{
+  display:block;
 }
 
 .section-title{
-
-    font-family:'Cormorant Garamond',serif;
-
-    font-size:62px;
-
-    font-weight:400;
-
-    letter-spacing:3px;
-
+  font-family:Georgia,serif;
+  font-size:clamp(40px,7vw,90px);
+  font-weight:400;
+  margin-bottom:60px;
 }
 
-/* =====================================================
+.section-description{
+  max-width:650px;
+  line-height:1.9;
+  color:#999;
+  font-size:14px;
+}
+
+/* =========================
    COLLECTION
-===================================================== */
+========================= */
 
 .products{
-
-    display:grid;
-
-    grid-template-columns:repeat(3,1fr);
-
-    gap:18px;
-
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:25px;
 }
 
-.product-card{
-
-    position:relative;
-
-    background:var(--card);
-
-    border:1px solid var(--line);
-
-    overflow:hidden;
-
-    transition:.5s ease;
-
+.product{
+  border:1px solid rgba(255,255,255,.1);
+  min-height:380px;
+  padding:25px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  position:relative;
+  overflow:hidden;
+  cursor:pointer;
+  transition:.35s;
 }
 
-.product-card:hover{
-
-    transform:translateY(-6px);
-
-    border-color:var(--lineStrong);
-
-}
-
-.product-image-wrap{
-
-    height:480px;
-
-    overflow:hidden;
-
-    background:#0b0b0b;
-
+.product:hover{
+  border-color:rgba(255,255,255,.4);
+  transform:translateY(-5px);
 }
 
 .product-image{
-
-    width:100%;
-    height:100%;
-
-    object-fit:cover;
-
-    transition:.7s ease;
-
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at center,#292929,#101010 60%,#080808);
 }
 
-.product-card:hover .product-image{
-
-    transform:scale(1.035);
-
+.product-number{
+  position:absolute;
+  top:20px;
+  right:20px;
+  font-size:9px;
+  color:#666;
+  letter-spacing:2px;
 }
 
 .product-info{
-
-    padding:25px;
-
-}
-
-.product-index{
-
-    font-size:7px;
-
-    letter-spacing:3px;
-
-    color:var(--muted);
-
-    margin-bottom:12px;
-
+  position:relative;
+  z-index:2;
 }
 
 .product-name{
-
-    font-family:'Cormorant Garamond',serif;
-
-    font-size:25px;
-
-    font-weight:400;
-
-    letter-spacing:1px;
-
-    margin-bottom:8px;
-
+  font-family:Georgia,serif;
+  font-size:27px;
 }
 
 .product-price{
-
-    font-size:10px;
-
-    color:var(--muted);
-
-    letter-spacing:2px;
-
-    margin-bottom:22px;
-
+  margin-top:8px;
+  color:#888;
+  font-size:12px;
 }
 
-.product-button{
-
-    width:100%;
-
-    height:46px;
-
-    background:transparent;
-
-    border:1px solid var(--lineStrong);
-
-    color:var(--text);
-
-    font-size:8px;
-
-    letter-spacing:3px;
-
-    transition:.35s ease;
-
-}
-
-.product-button:hover{
-
-    background:var(--accent);
-
-    color:var(--bg);
-
-}
-
-/* =====================================================
+/* =========================
    STORY
-===================================================== */
+========================= */
 
-.story-wrap{
-
-    max-width:900px;
-
-    margin:auto;
-
+.story{
+  max-width:850px;
 }
 
-.story-text{
-
-    font-family:'Cormorant Garamond',serif;
-
-    font-size:24px;
-
-    line-height:1.65;
-
-    font-weight:300;
-
+.story p{
+  color:#aaa;
+  line-height:2;
+  font-size:15px;
+  margin-bottom:28px;
 }
 
-.story-text p{
-
-    margin-bottom:35px;
-
+.separator{
+  width:100%;
+  height:1px;
+  background:rgba(255,255,255,.15);
+  margin:55px 0;
 }
 
-.story-separator{
+/* =========================
+   FAQ / POLICY / REPORTS
+========================= */
 
-    height:1px;
-
-    background:var(--lineStrong);
-
-    margin:65px 0;
-
+.card{
+  max-width:850px;
+  border-top:1px solid rgba(255,255,255,.12);
 }
 
-/* =====================================================
-   INFO SECTIONS
-===================================================== */
-
-.info-grid{
-
-    max-width:950px;
-
-    margin:auto;
-
+.card-item{
+  padding:25px 0;
+  border-bottom:1px solid rgba(255,255,255,.12);
 }
 
-.info-block{
-
-    padding:32px 0;
-
-    border-bottom:1px solid var(--line);
-
+.card-question{
+  font-family:Georgia,serif;
+  font-size:19px;
+  margin-bottom:12px;
 }
 
-.info-number{
-
-    font-size:8px;
-
-    letter-spacing:3px;
-
-    color:var(--muted);
-
-    margin-bottom:12px;
-
+.card-answer{
+  color:#888;
+  line-height:1.8;
+  font-size:13px;
 }
 
-.info-heading{
-
-    font-family:'Cormorant Garamond',serif;
-
-    font-size:28px;
-
-    margin-bottom:14px;
-
-    font-weight:400;
-
-}
-
-.info-text{
-
-    color:var(--muted);
-
-    line-height:1.8;
-
-    font-size:13px;
-
-}
-
-/* =====================================================
-   REPORTS
-===================================================== */
-
-.report-form{
-
-    max-width:650px;
-
-    margin:auto;
-
-}
-
-.field{
-
-    margin-bottom:20px;
-
-}
-
-.field label{
-
-    display:block;
-
-    font-size:8px;
-
-    letter-spacing:3px;
-
-    color:var(--muted);
-
-    margin-bottom:8px;
-
-}
-
-.field input,
-.field select,
-.field textarea{
-
-    width:100%;
-
-    background:transparent;
-
-    color:var(--text);
-
-    border:1px solid var(--line);
-
-    padding:15px;
-
-    outline:none;
-
-}
-
-.field textarea{
-
-    min-height:150px;
-
-    resize:vertical;
-
-}
-
-.field input:focus,
-.field select:focus,
-.field textarea:focus{
-
-    border-color:var(--lineStrong);
-
-}
-
-.submit-button{
-
-    width:100%;
-
-    height:52px;
-
-    background:var(--accent);
-
-    color:var(--bg);
-
-    border:0;
-
-    font-size:8px;
-
-    letter-spacing:3px;
-
-    font-weight:500;
-
-}
-
-/* =====================================================
+/* =========================
    CONTACT
-===================================================== */
+========================= */
 
-.contact-grid{
-
-    max-width:850px;
-
-    margin:auto;
-
+.contact-box{
+  max-width:600px;
 }
 
 .contact-row{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    padding:25px 0;
-
-    border-bottom:1px solid var(--line);
-
+  padding:22px 0;
+  border-bottom:1px solid rgba(255,255,255,.1);
+  display:flex;
+  justify-content:space-between;
 }
 
 .contact-label{
-
-    font-size:8px;
-
-    letter-spacing:3px;
-
-    color:var(--muted);
-
+  color:#666;
+  font-size:10px;
+  letter-spacing:2px;
 }
 
 .contact-value{
-
-    font-family:'Cormorant Garamond',serif;
-
-    font-size:21px;
-
+  color:#fff;
+  font-size:13px;
 }
 
-.contact-value a:hover{
-
-    opacity:.5;
-
-}
-
-/* =====================================================
-   FOOTER
-===================================================== */
-
-.footer{
-
-    margin-left:88px;
-
-    border-top:1px solid var(--line);
-
-    padding:35px 8%;
-
-    display:flex;
-
-    justify-content:space-between;
-
-    color:var(--muted);
-
-    font-size:8px;
-
-    letter-spacing:3px;
-
-}
-
-/* =====================================================
+/* =========================
    CART BUTTON
-===================================================== */
+========================= */
 
-.cart-float{
-
-    position:fixed;
-
-    right:30px;
-    bottom:30px;
-
-    width:58px;
-    height:58px;
-
-    border-radius:50%;
-
-    border:1px solid var(--lineStrong);
-
-    background:var(--card);
-
-    color:var(--text);
-
-    z-index:900;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    transition:.35s ease;
-
-}
-
-.cart-float:hover{
-
-    transform:translateY(-4px);
-
+.cart-button{
+  position:fixed;
+  right:25px;
+  top:25px;
+  width:48px;
+  height:48px;
+  border:1px solid rgba(255,255,255,.25);
+  background:rgba(10,10,10,.8);
+  color:#fff;
+  cursor:pointer;
+  z-index:100;
+  font-size:20px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
 .cart-count{
-
-    position:absolute;
-
-    top:-5px;
-    right:-5px;
-
-    min-width:19px;
-    height:19px;
-
-    border-radius:50%;
-
-    background:var(--accent);
-
-    color:var(--bg);
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    font-size:9px;
-
+  position:absolute;
+  right:-3px;
+  top:-3px;
+  background:#fff;
+  color:#000;
+  width:17px;
+  height:17px;
+  border-radius:50%;
+  font-size:9px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
-/* =====================================================
+/* =========================
    MODAL
-===================================================== */
+========================= */
 
 .modal{
-
-    position:fixed;
-
-    inset:0;
-
-    background:rgba(0,0,0,.82);
-
-    backdrop-filter:blur(15px);
-
-    display:none;
-
-    align-items:center;
-
-    justify-content:center;
-
-    padding:20px;
-
-    z-index:3000;
-
-}
-
-body.light .modal{
-
-    background:rgba(0,0,0,.6);
-
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.75);
+  backdrop-filter:blur(15px);
+  z-index:200;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
 }
 
 .modal.show{
-
-    display:flex;
-
+  display:flex;
 }
 
 .modal-box{
-
-    width:100%;
-
-    max-width:520px;
-
-    max-height:90vh;
-
-    overflow:auto;
-
-    background:var(--card);
-
-    border:1px solid var(--lineStrong);
-
-    padding:35px;
-
-    position:relative;
-
-}
-
-.modal-close{
-
-    position:absolute;
-
-    right:18px;
-    top:14px;
-
-    background:none;
-
-    border:0;
-
-    color:var(--text);
-
-    font-size:25px;
-
+  width:min(700px,100%);
+  max-height:90vh;
+  overflow:auto;
+  background:#111;
+  border:1px solid rgba(255,255,255,.12);
+  padding:35px;
 }
 
 .modal-title{
-
-    font-family:'Cormorant Garamond',serif;
-
-    font-size:38px;
-
-    font-weight:400;
-
-    letter-spacing:2px;
-
-    margin-bottom:30px;
-
+  font-family:Georgia,serif;
+  font-size:36px;
+  margin-bottom:25px;
 }
 
-/* =====================================================
-   PRODUCT MODAL
-===================================================== */
-
-.product-modal-image{
-
-    width:100%;
-
-    height:350px;
-
-    object-fit:cover;
-
-    margin-bottom:25px;
-
+.close{
+  float:right;
+  background:none;
+  border:none;
+  color:#777;
+  font-size:24px;
+  cursor:pointer;
 }
 
-.qty{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:14px;
-
+.field{
+  width:100%;
+  padding:15px;
+  margin:8px 0;
+  background:#080808;
+  border:1px solid rgba(255,255,255,.12);
+  color:#fff;
+  outline:none;
 }
 
-.qty button{
-
-    width:38px;
-    height:38px;
-
-    background:transparent;
-
-    border:1px solid var(--line);
-
-    color:var(--text);
-
+.primary{
+  width:100%;
+  padding:16px;
+  margin-top:15px;
+  border:1px solid #fff;
+  background:#fff;
+  color:#000;
+  cursor:pointer;
+  letter-spacing:2px;
 }
 
-.qty span{
-
-    min-width:25px;
-
-    text-align:center;
-
+.secondary{
+  width:100%;
+  padding:16px;
+  margin-top:10px;
+  border:1px solid rgba(255,255,255,.2);
+  background:transparent;
+  color:#fff;
+  cursor:pointer;
 }
 
-/* =====================================================
-   CART MODAL
-===================================================== */
+/* =========================
+   AI
+========================= */
 
-.cart-row{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    gap:15px;
-
-    padding:18px 0;
-
-    border-bottom:1px solid var(--line);
-
+.ai-button{
+  position:fixed;
+  right:25px;
+  bottom:25px;
+  width:55px;
+  height:55px;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.3);
+  background:#111;
+  color:#fff;
+  z-index:100;
+  cursor:pointer;
 }
 
-.cart-details{
-
-    font-size:12px;
-
-    line-height:1.8;
-
+.ai-window{
+  position:fixed;
+  right:25px;
+  bottom:90px;
+  width:min(390px,calc(100vw - 40px));
+  height:570px;
+  background:#0e0e0e;
+  border:1px solid rgba(255,255,255,.14);
+  z-index:300;
+  display:none;
+  flex-direction:column;
+  box-shadow:0 20px 80px rgba(0,0,0,.6);
 }
 
-.remove-btn{
-
-    background:none;
-
-    border:1px solid var(--line);
-
-    color:var(--text);
-
-    width:32px;
-    height:32px;
-
+.ai-window.show{
+  display:flex;
 }
 
-.cart-total{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    margin:25px 0;
-
-    font-family:'Cormorant Garamond',serif;
-
-    font-size:24px;
-
+.ai-head{
+  padding:18px;
+  border-bottom:1px solid rgba(255,255,255,.1);
+  display:flex;
+  justify-content:space-between;
 }
 
-/* =====================================================
-   PAYMENT
-===================================================== */
-
-.payment-option{
-
-    padding:20px;
-
-    border:1px solid var(--line);
-
-    margin-bottom:10px;
-
-    transition:.3s ease;
-
+.ai-name{
+  font-family:Georgia,serif;
 }
 
-.payment-option:hover,
-.payment-option.active{
-
-    border-color:var(--lineStrong);
-
+.ai-status{
+  font-size:9px;
+  color:#777;
 }
 
-.payment-details{
-
-    display:none;
-
-    padding:20px 0;
-
+.ai-messages{
+  flex:1;
+  padding:15px;
+  overflow-y:auto;
 }
 
-.payment-details.show{
-
-    display:block;
-
+.msg{
+  max-width:85%;
+  padding:12px 14px;
+  margin-bottom:12px;
+  line-height:1.6;
+  font-size:13px;
+  border:1px solid rgba(255,255,255,.08);
 }
 
-.transfer-number{
-
-    font-family:'Montserrat',sans-serif;
-
-    font-size:25px;
-
-    letter-spacing:3px;
-
-    margin:18px 0;
-
+.msg.ai{
+  background:#151515;
+  margin-right:auto;
 }
 
-.payment-note{
-
-    color:var(--muted);
-
-    font-size:12px;
-
-    line-height:1.8;
-
-    margin-bottom:20px;
-
+.msg.user{
+  background:#eee;
+  color:#000;
+  margin-left:auto;
 }
 
-.file-input{
-
-    padding:12px 0 !important;
-
-    border:0 !important;
-
+.ai-input{
+  display:flex;
+  border-top:1px solid rgba(255,255,255,.1);
 }
 
-/* =====================================================
-   SUCCESS
-===================================================== */
-
-.success-box{
-
-    text-align:center;
-
-    padding:30px 10px;
-
+.ai-input input{
+  flex:1;
+  padding:15px;
+  background:#090909;
+  color:#fff;
+  border:0;
+  outline:0;
 }
 
-.success-mark{
-
-    font-family:'Cormorant Garamond',serif;
-
-    font-size:70px;
-
-    margin-bottom:15px;
-
+.ai-input button{
+  width:60px;
+  background:#fff;
+  color:#000;
+  border:0;
+  cursor:pointer;
 }
 
-.success-box p{
-
-    color:var(--muted);
-
-    line-height:1.8;
-
-}
-
-/* =====================================================
+/* =========================
    MOBILE
-===================================================== */
+========================= */
 
 @media(max-width:800px){
 
-    .sidebar{
-
-        width:62px;
-
-        padding:18px 0;
-
-    }
-
-    main{
-
-        margin-left:62px;
-
-    }
-
-    .footer{
-
-        margin-left:62px;
-
-    }
-
-    .side-menu{
-
-        gap:10px;
-
-    }
-
-    .side-item{
-
-        width:45px;
-        height:45px;
-
-    }
-
-    .side-label{
-
-        display:none;
-
-    }
-
-    .side-icon{
-
-        font-size:17px;
-
-    }
-
-    .side-top{
-
-        font-size:9px;
-
-    }
-
-    .top-controls{
-
-        right:12px;
-
-        top:15px;
-
-    }
-
-    .control{
-
-        height:30px;
-
-        padding:0 8px;
-
-        font-size:7px;
-
-        letter-spacing:1px;
-
-    }
-
-    .hero-logo{
-
-        font-size:75px;
-
-        letter-spacing:5px;
-
-    }
-
-    .eyebrow{
-
-        letter-spacing:4px;
-
-    }
-
-    .hero-subtitle{
-
-        letter-spacing:4px;
-
-    }
-
-    .collection-btn{
-
-        width:225px;
-
-        height:60px;
-
-    }
-
-    .section{
-
-        padding:85px 22px;
-
-    }
-
-    .section-head{
-
-        display:block;
-
-    }
-
-    .section-title{
-
-        font-size:45px;
-
-        margin-top:12px;
-
-    }
-
-    .products{
-
-        grid-template-columns:1fr;
-
-    }
-
-    .product-image-wrap{
-
-        height:420px;
-
-    }
-
-    .story-text{
-
-        font-size:21px;
-
-    }
-
-    .contact-row{
-
-        display:block;
-
-    }
-
-    .contact-value{
-
-        margin-top:8px;
-
-    }
-
-    .footer{
-
-        padding:28px 22px;
-
-    }
-
+  .sidebar{
+    width:100%;
+    height:65px;
+    top:auto;
+    bottom:0;
+    left:0;
+    right:0;
+    border-right:0;
+    border-top:1px solid rgba(255,255,255,.1);
+    flex-direction:row;
+    justify-content:space-around;
+    background:rgba(5,5,5,.95);
+  }
+
+  .nav-item{
+    writing-mode:horizontal-tb;
+    transform:none;
+    margin:0;
+    font-size:7px;
+    letter-spacing:1.5px;
+  }
+
+  .main{
+    margin-left:0;
+    height:100vh;
+    padding-bottom:65px;
+  }
+
+  .hero{
+    min-height:100vh;
+  }
+
+  .products{
+    grid-template-columns:1fr;
+  }
+
+  .section{
+    padding:70px 25px;
+  }
+
+  .cart-button{
+    right:20px;
+    top:20px;
+  }
+
+  .ai-button{
+    right:20px;
+    bottom:85px;
+  }
+
+  .ai-window{
+    right:20px;
+    bottom:150px;
+    height:500px;
+  }
 }
-
-/* =====================================================
-   ARABIC
-===================================================== */
-
-body.arabic .story-text,
-body.arabic .info-text,
-body.arabic .modal-box{
-
-    font-family:'Noto Kufi Arabic',sans-serif;
-
-}
-
-body.arabic .hero-logo{
-
-    font-family:'Cormorant Garamond',serif;
-
-}
-
-/* =====================================================
-   HIDE
-===================================================== */
-
-.hidden{
-    display:none !important;
-}
-
 </style>
 </head>
 
 <body>
 
-<!-- =====================================================
-     SIDEBAR
-===================================================== -->
+<!-- =========================
+     FIRST SCREEN
+========================= -->
 
-<aside class="sidebar">
+<div id="landing">
+  <div class="landing-inner">
 
-    <div class="side-top">
-        NAZRA
+    <div class="logo-main">NAZRA</div>
+
+    <div class="logo-sub">
+      SOME THINGS ARE NOT UNDERSTOOD THE FIRST TIME
     </div>
 
-    <div class="side-menu">
-
-        <button class="side-item active" onclick="goHome()" id="sideHome">
-            <span class="side-icon">⌂</span>
-            <span class="side-label">HOME</span>
-        </button>
-
-        <button class="side-item" onclick="openCart()">
-            <span class="side-icon">◫</span>
-            <span class="side-label">CART</span>
-        </button>
-
-        <button class="side-item" onclick="openContact()">
-            <span class="side-icon">☎</span>
-            <span class="side-label">CONTACT</span>
-        </button>
-
-        <button class="side-item" onclick="goSection('reports')">
-            <span class="side-icon">⚠</span>
-            <span class="side-label">REPORTS</span>
-        </button>
-
-        <button class="side-item" onclick="goSection('story')">
-            <span class="side-icon">◈</span>
-            <span class="side-label">STORY</span>
-        </button>
-
-        <button class="side-item" onclick="goSection('policy')">
-            <span class="side-icon">◇</span>
-            <span class="side-label">POLICY</span>
-        </button>
-
-        <button class="side-item" onclick="goSection('faq')">
-            <span class="side-icon">?</span>
-            <span class="side-label">FAQ</span>
-        </button>
-
-    </div>
-
-    <div class="side-bottom">
-        01
-    </div>
-
-</aside>
-
-<!-- =====================================================
-     TOP CONTROLS
-===================================================== -->
-
-<div class="top-controls">
-
-    <button class="control" onclick="toggleLanguage()" id="languageBtn">
-        ENGLISH / عربي
+    <button class="enter-btn" onclick="enterSite()">
+      TO COLLECTIONS
     </button>
 
-    <button class="control" onclick="toggleTheme()" id="themeBtn">
-        DARK / LIGHT
-    </button>
-
+  </div>
 </div>
 
-<!-- =====================================================
-     MAIN
-===================================================== -->
 
-<main>
+<!-- =========================
+     WEBSITE
+========================= -->
 
-<!-- =====================================================
-     HOME
-===================================================== -->
+<div id="app">
 
-<section class="hero" id="home">
+  <nav class="sidebar">
 
-    <div class="hero-lines"></div>
+    <div class="nav-item active" onclick="showSection('home')">
+      HOME
+    </div>
 
-    <div class="hero-content">
+    <div class="nav-item" onclick="openCart()">
+      CART
+    </div>
 
-        <div class="eyebrow">
-            THE FIRST COLLECTION
+    <div class="nav-item" onclick="showSection('contact')">
+      CONTACT
+    </div>
+
+    <div class="nav-item" onclick="showSection('reports')">
+      REPORTS
+    </div>
+
+    <div class="nav-item" onclick="showSection('story')">
+      NAZRA STORY
+    </div>
+
+    <div class="nav-item" onclick="showSection('policy')">
+      POLICY
+    </div>
+
+    <div class="nav-item" onclick="showSection('faq')">
+      FAQ
+    </div>
+
+  </nav>
+
+
+  <!-- REAL SHOPPING CART ICON -->
+
+  <button class="cart-button" onclick="openCart()" aria-label="Shopping Cart">
+    🛒
+    <span class="cart-count" id="cartCount">0</span>
+  </button>
+
+
+  <main class="main">
+
+    <!-- HOME -->
+
+    <section id="home" class="hero">
+
+      <div class="hero-content">
+
+        <div class="hero-title">NAZRA</div>
+
+        <div class="hero-line">
+          LOOK TWICE
         </div>
 
-        <div class="hero-logo">
-            NAZRA
-        </div>
-
-        <div class="hero-subtitle">
-            LOOK TWICE
-        </div>
-
-        <button class="collection-btn" onclick="goCollections()">
-
-            <span>
-                TO COLLECTIONS
-            </span>
-
-            <b class="collection-arrow">
-                →
-            </b>
-
-            <i class="corner tl"></i>
-            <i class="corner tr"></i>
-            <i class="corner bl"></i>
-            <i class="corner br"></i>
-
+        <button class="hero-button" onclick="showSection('collection')">
+          TO COLLECTIONS
         </button>
 
-    </div>
+      </div>
 
-</section>
+    </section>
 
-<!-- =====================================================
-     COLLECTIONS
-===================================================== -->
 
-<section class="section" id="collections">
+    <!-- COLLECTION -->
 
-    <div class="section-head">
+    <section id="collection" class="section">
 
-        <div class="section-number">
-            01 / COLLECTIONS
+      <div class="section-title">
+        COLLECTION
+      </div>
+
+      <div class="products">
+
+        <div class="product" onclick="addProduct('NAZRA HOODIE',1200)">
+          <div class="product-image"></div>
+          <div class="product-number">01</div>
+
+          <div class="product-info">
+            <div class="product-name">NAZRA HOODIE</div>
+            <div class="product-price">1200 EGP · ADD TO CART</div>
+          </div>
         </div>
 
-        <h2 class="section-title" id="collectionTitle">
-            COLLECTIONS
-        </h2>
+        <div class="product" onclick="addProduct('NAZRA TEE',650)">
+          <div class="product-image"></div>
+          <div class="product-number">02</div>
 
-    </div>
-
-    <div class="products">
-
-        <!-- PRODUCT 1 -->
-
-        <div class="product-card">
-
-            <div class="product-image-wrap">
-
-                <img
-                    src="Logo.PNG"
-                    class="product-image"
-                    alt="NAZRA HOODIE">
-
-            </div>
-
-            <div class="product-info">
-
-                <div class="product-index">
-                    01
-                </div>
-
-                <div class="product-name">
-                    NAZRA HOODIE
-                </div>
-
-                <div class="product-price">
-                    EGP 0
-                </div>
-
-                <button
-                    class="product-button"
-                    onclick="openProduct('NAZRA HOODIE')">
-
-                    VIEW PRODUCT
-
-                </button>
-
-            </div>
-
+          <div class="product-info">
+            <div class="product-name">NAZRA TEE</div>
+            <div class="product-price">650 EGP · ADD TO CART</div>
+          </div>
         </div>
 
-        <!-- PRODUCT 2 -->
+        <div class="product" onclick="addProduct('NAZRA COLLECTION',1500)">
+          <div class="product-image"></div>
+          <div class="product-number">03</div>
 
-        <div class="product-card">
-
-            <div class="product-image-wrap">
-
-                <img
-                    src="Logo.PNG"
-                    class="product-image"
-                    alt="NAZRA TEE">
-
-            </div>
-
-            <div class="product-info">
-
-                <div class="product-index">
-                    02
-                </div>
-
-                <div class="product-name">
-                    NAZRA TEE
-                </div>
-
-                <div class="product-price">
-                    EGP 0
-                </div>
-
-                <button
-                    class="product-button"
-                    onclick="openProduct('NAZRA TEE')">
-
-                    VIEW PRODUCT
-
-                </button>
-
-            </div>
-
+          <div class="product-info">
+            <div class="product-name">NAZRA COLLECTION</div>
+            <div class="product-price">1500 EGP · ADD TO CART</div>
+          </div>
         </div>
 
-        <!-- PRODUCT 3 -->
+      </div>
 
-        <div class="product-card">
+    </section>
 
-            <div class="product-image-wrap">
 
-                <img
-                    src="Logo.PNG"
-                    class="product-image"
-                    alt="NAZRA COLLECTION">
+    <!-- CONTACT -->
 
-            </div>
+    <section id="contact" class="section">
 
-            <div class="product-info">
+      <div class="section-title">
+        CONTACT
+      </div>
 
-                <div class="product-index">
-                    03
-                </div>
-
-                <div class="product-name">
-                    NAZRA COLLECTION
-                </div>
-
-                <div class="product-price">
-                    EGP 0
-                </div>
-
-                <button
-                    class="product-button"
-                    onclick="openProduct('NAZRA COLLECTION')">
-
-                    VIEW PRODUCT
-
-                </button>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- =====================================================
-     STORY
-===================================================== -->
-
-<section class="section" id="story">
-
-    <div class="section-head">
-
-        <div class="section-number">
-            02 / NAZRA STORY
-        </div>
-
-        <h2 class="section-title">
-            NAZRA STORY
-        </h2>
-
-    </div>
-
-    <div class="story-wrap">
-
-        <div class="story-text">
-
-            <p>
-                There are things you do not see when you look at them but only when you look through them We do not always remember faces and we do not always remember the words that were said but we remember one gaze that changed something inside us without knowing how
-            </p>
-
-            <p>
-                A gaze is not a moment it is a meaning it is a feeling that passes between two people without a sound and a small detail that may remain in memory longer than it should
-            </p>
-
-            <p>
-                This is where NAZRA came from Not to tell you who you are and not to give you a shape to wear but to leave you the space to say something about yourself without speaking
-            </p>
-
-            <p>
-                We believe true difference does not need to ask for attention and what truly catches the eye is not what tries to be seen but what makes you look twice
-            </p>
-
-            <div class="story-separator"></div>
-
-            <p>
-                NAZRA Because some things are not understood the first time
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- =====================================================
-     POLICY
-===================================================== -->
-
-<section class="section" id="policy">
-
-    <div class="section-head">
-
-        <div class="section-number">
-            03 / POLICY
-        </div>
-
-        <h2 class="section-title">
-            POLICY
-        </h2>
-
-    </div>
-
-    <div class="info-grid">
-
-        <div class="info-block">
-
-            <div class="info-number">01</div>
-
-            <div class="info-heading">
-                PAYMENT
-            </div>
-
-            <div class="info-text">
-                We currently accept Vodafone Cash, InstaPay and Cash on Delivery.
-            </div>
-
-        </div>
-
-        <div class="info-block">
-
-            <div class="info-number">02</div>
-
-            <div class="info-heading">
-                ORDERS
-            </div>
-
-            <div class="info-text">
-                Choose your product, color, size and quantity, then complete your delivery information and payment method.
-            </div>
-
-        </div>
-
-        <div class="info-block">
-
-            <div class="info-number">03</div>
-
-            <div class="info-heading">
-                EXCHANGE
-            </div>
-
-            <div class="info-text">
-                Exchange requests are accepted within 10 days as long as the item remains in its original condition with the original tags and packaging.
-            </div>
-
-        </div>
-
-        <div class="info-block">
-
-            <div class="info-number">04</div>
-
-            <div class="info-heading">
-                NO REFUNDS
-            </div>
-
-            <div class="info-text">
-                We do not offer refunds. Exchanges only are available according to the conditions above.
-            </div>
-
-        </div>
-
-        <div class="info-block">
-
-            <div class="info-number">05</div>
-
-            <div class="info-heading">
-                CONDITION
-            </div>
-
-            <div class="info-text">
-                Items that have been worn or washed are not eligible for exchange.
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- =====================================================
-     FAQ
-===================================================== -->
-
-<section class="section" id="faq">
-
-    <div class="section-head">
-
-        <div class="section-number">
-            04 / FAQ
-        </div>
-
-        <h2 class="section-title">
-            FAQ
-        </h2>
-
-    </div>
-
-    <div class="info-grid">
-
-        <div class="info-block">
-
-            <div class="info-heading">
-                How can I pay?
-            </div>
-
-            <div class="info-text">
-                You can pay through Vodafone Cash, InstaPay or Cash on Delivery.
-            </div>
-
-        </div>
-
-        <div class="info-block">
-
-            <div class="info-heading">
-                How do I place an order?
-            </div>
-
-            <div class="info-text">
-                Select a product from the Collections section, choose the color and size, add it to your cart and continue to checkout.
-            </div>
-
-        </div>
-
-        <div class="info-block">
-
-            <div class="info-heading">
-                Can I exchange my item?
-            </div>
-
-            <div class="info-text">
-                Yes. Exchanges are available within 10 days if the item is unused and remains in its original condition with tags and packaging.
-            </div>
-
-        </div>
-
-        <div class="info-block">
-
-            <div class="info-heading">
-                Can I return a worn item?
-            </div>
-
-            <div class="info-text">
-                No. Worn or washed items cannot be exchanged.
-            </div>
-
-        </div>
-
-        <div class="info-block">
-
-            <div class="info-heading">
-                Do you offer refunds?
-            </div>
-
-            <div class="info-text">
-                No. NAZRA currently offers exchanges only.
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- =====================================================
-     REPORTS
-===================================================== -->
-
-<section class="section" id="reports">
-
-    <div class="section-head">
-
-        <div class="section-number">
-            05 / REPORTS
-        </div>
-
-        <h2 class="section-title">
-            REPORTS
-        </h2>
-
-    </div>
-
-    <form class="report-form" id="reportForm">
-
-        <div class="field">
-
-            <label>
-                REPORT TYPE
-            </label>
-
-            <select id="reportType" required>
-
-                <option value="">
-                    Select issue
-                </option>
-
-                <option>
-                    Order Issue
-                </option>
-
-                <option>
-                    Payment Issue
-                </option>
-
-                <option>
-                    Delivery Issue
-                </option>
-
-                <option>
-                    Product Issue
-                </option>
-
-                <option>
-                    Other
-                </option>
-
-            </select>
-
-        </div>
-
-        <div class="field">
-
-            <label>
-                FULL NAME
-            </label>
-
-            <input
-                id="reportName"
-                type="text"
-                required>
-
-        </div>
-
-        <div class="field">
-
-            <label>
-                PHONE NUMBER
-            </label>
-
-            <input
-                id="reportPhone"
-                class="phone-input"
-                type="tel"
-                inputmode="numeric"
-                maxlength="11"
-                required
-                placeholder="01XXXXXXXXX">
-
-        </div>
-
-        <div class="field">
-
-            <label>
-                EMAIL
-            </label>
-
-            <input
-                id="reportEmail"
-                type="email"
-                required>
-
-        </div>
-
-        <div class="field">
-
-            <label>
-                DETAILS
-            </label>
-
-            <textarea
-                id="reportDetails"
-                required></textarea>
-
-        </div>
-
-        <button
-            class="submit-button"
-            type="submit">
-
-            SUBMIT REPORT
-
-        </button>
-
-    </form>
-
-</section>
-
-<!-- =====================================================
-     CONTACT
-===================================================== -->
-
-<section class="section" id="contact">
-
-    <div class="section-head">
-
-        <div class="section-number">
-            06 / CONTACT
-        </div>
-
-        <h2 class="section-title">
-            CONTACT
-        </h2>
-
-    </div>
-
-    <div class="contact-grid">
+      <div class="contact-box">
 
         <div class="contact-row">
-
-            <div class="contact-label">
-                PHONE
-            </div>
-
-            <div class="contact-value">
-                <a href="tel:01090356664">
-                    01090356664
-                </a>
-            </div>
-
+          <span class="contact-label">PHONE</span>
+          <span class="contact-value">01090356664</span>
         </div>
 
         <div class="contact-row">
-
-            <div class="contact-label">
-                EMAIL
-            </div>
-
-            <div class="contact-value">
-                <a href="mailto:nazra.co123@gmail.com">
-                    nazra.co123@gmail.com
-                </a>
-            </div>
-
+          <span class="contact-label">EMAIL</span>
+          <span class="contact-value">nazra.co123@gmail.com</span>
         </div>
 
         <div class="contact-row">
-
-            <div class="contact-label">
-                INSTAGRAM
-            </div>
-
-            <div class="contact-value">
-
-                <a
-                    href="https://instagram.com/nazra.co_"
-                    target="_blank">
-
-                    @nazra.co_
-
-                </a>
-
-            </div>
-
+          <span class="contact-label">INSTAGRAM</span>
+          <span class="contact-value">@nazra.co_</span>
         </div>
 
-    </div>
+      </div>
 
-</section>
+    </section>
 
-</main>
 
-<!-- =====================================================
-     FOOTER
-===================================================== -->
+    <!-- REPORTS -->
 
-<footer class="footer">
+    <section id="reports" class="section">
 
-    <span>
-        NAZRA
-    </span>
+      <div class="section-title">
+        REPORTS
+      </div>
 
-    <span>
-        LOOK TWICE
-    </span>
+      <div class="card">
 
-</footer>
-
-<!-- =====================================================
-     FLOATING CART
-===================================================== -->
-
-<button
-    class="cart-float"
-    onclick="openCart()">
-
-    ◫
-
-    <span
-        class="cart-count"
-        id="cartCount">
-
-        0
-
-    </span>
-
-</button>
-
-<!-- =====================================================
-     PRODUCT MODAL
-===================================================== -->
-
-<div
-    class="modal"
-    id="productModal">
-
-    <div class="modal-box">
-
-        <button
-            class="modal-close"
-            onclick="closeModal('productModal')">
-
-            ×
-
-        </button>
-
-        <img
-            src="Logo.PNG"
-            class="product-modal-image"
-            id="productModalImage">
-
-        <h2
-            class="modal-title"
-            id="productName">
-
-        </h2>
-
-        <div class="field">
-
-            <label>
-                COLOR
-            </label>
-
-            <select id="productColor">
-
-                <option>
-                    Black
-                </option>
-
-                <option>
-                    White
-                </option>
-
-            </select>
-
+        <div class="card-item">
+          <div class="card-question">ORDER ISSUE</div>
+          <div class="card-answer">
+            Report an issue with your order, delivery or order details.
+          </div>
         </div>
 
-        <div class="field">
-
-            <label>
-                SIZE
-            </label>
-
-            <select id="productSize">
-
-                <option>S</option>
-                <option>M</option>
-                <option>L</option>
-                <option>XL</option>
-
-            </select>
-
+        <div class="card-item">
+          <div class="card-question">PAYMENT ISSUE</div>
+          <div class="card-answer">
+            Report a problem with Vodafone Cash, InstaPay or payment confirmation.
+          </div>
         </div>
 
-        <div class="field">
-
-            <label>
-                QUANTITY
-            </label>
-
-            <div class="qty">
-
-                <button onclick="changeQty(-1)">
-                    −
-                </button>
-
-                <span id="quantity">
-                    1
-                </span>
-
-                <button onclick="changeQty(1)">
-                    +
-                </button>
-
-            </div>
-
+        <div class="card-item">
+          <div class="card-question">DELIVERY ISSUE</div>
+          <div class="card-answer">
+            Report a delayed, missing or incorrect delivery.
+          </div>
         </div>
 
-        <button
-            class="submit-button"
-            onclick="addToCart()">
-
-            ADD TO CART
-
-        </button>
-
-    </div>
-
-</div>
-
-<!-- =====================================================
-     CART MODAL
-===================================================== -->
-
-<div
-    class="modal"
-    id="cartModal">
-
-    <div class="modal-box">
-
-        <button
-            class="modal-close"
-            onclick="closeModal('cartModal')">
-
-            ×
-
-        </button>
-
-        <h2 class="modal-title">
-            CART
-        </h2>
-
-        <div id="cartItems"></div>
-
-        <div class="cart-total">
-
-            <span>
-                TOTAL
-            </span>
-
-            <strong id="cartTotal">
-                EGP 0
-            </strong>
-
+        <div class="card-item">
+          <div class="card-question">PRODUCT ISSUE</div>
+          <div class="card-answer">
+            Report a problem with the product you received.
+          </div>
         </div>
 
-        <button
-            class="submit-button"
-            onclick="openCheckout()">
-
-            CHECKOUT
-
-        </button>
-
-    </div>
-
-</div>
-
-<!-- =====================================================
-     CHECKOUT MODAL
-===================================================== -->
-
-<div
-    class="modal"
-    id="checkoutModal">
-
-    <div class="modal-box">
-
-        <button
-            class="modal-close"
-            onclick="closeModal('checkoutModal')">
-
-            ×
-
-        </button>
-
-        <h2 class="modal-title">
-            CHECKOUT
-        </h2>
-
-        <div class="field">
-
-            <label>
-                FULL NAME
-            </label>
-
-            <input
-                id="customerName"
-                required>
-
+        <div class="card-item">
+          <div class="card-question">OTHER</div>
+          <div class="card-answer">
+            Tell us anything else you need help with.
+          </div>
         </div>
 
-        <div class="field">
+      </div>
 
-            <label>
-                PHONE NUMBER
-            </label>
+    </section>
 
-            <input
-                id="customerPhone"
-                class="phone-input"
-                type="tel"
-                inputmode="numeric"
-                maxlength="11"
-                required
-                placeholder="01XXXXXXXXX">
 
-        </div>
+    <!-- STORY -->
 
-        <div class="field">
+    <section id="story" class="section">
 
-            <label>
-                EMAIL
-            </label>
+      <div class="section-title">
+        NAZRA STORY
+      </div>
 
-            <input
-                id="customerEmail"
-                type="email"
-                required>
-
-        </div>
-
-        <div class="field">
-
-            <label>
-                ADDRESS
-            </label>
-
-            <input
-                id="customerAddress"
-                required>
-
-        </div>
-
-        <button
-            class="submit-button"
-            onclick="openPayment()">
-
-            CONTINUE TO PAYMENT
-
-        </button>
-
-    </div>
-
-</div>
-
-<!-- =====================================================
-     PAYMENT MODAL
-===================================================== -->
-
-<div
-    class="modal"
-    id="paymentModal">
-
-    <div class="modal-box">
-
-        <button
-            class="modal-close"
-            onclick="closeModal('paymentModal')">
-
-            ×
-
-        </button>
-
-        <h2 class="modal-title">
-            PAYMENT
-        </h2>
-
-        <!-- TRANSFER -->
-
-        <div
-            class="payment-option"
-            id="transferOption"
-            onclick="selectPayment('transfer')">
-
-            <strong>
-                VODAFONE CASH / INSTAPAY
-            </strong>
-
-        </div>
-
-        <div
-            class="payment-details"
-            id="transferDetails">
-
-            <div class="payment-note">
-                Transfer the order amount to:
-            </div>
-
-            <div class="transfer-number">
-                01229884447
-            </div>
-
-            <div class="payment-note">
-                After transferring the amount, enter the number you transferred from and upload your transfer screenshot.
-            </div>
-
-            <form
-                id="transferForm"
-                action="https://formsubmit.co/Nazrapayment@gmail.com"
-                method="POST"
-                enctype="multipart/form-data">
-
-                <input
-                    type="hidden"
-                    name="_subject"
-                    value="New NAZRA Vodafone Cash / InstaPay Order">
-
-                <input
-                    type="hidden"
-                    name="_captcha"
-                    value="true">
-
-                <input
-                    type="hidden"
-                    name="_next"
-                    value="https://nazra-qfdap.sevalla.page/?order=complete">
-
-                <input
-                    type="hidden"
-                    name="payment_method"
-                    value="Vodafone Cash / InstaPay">
-
-                <input
-                    type="hidden"
-                    name="customer_name"
-                    id="hiddenName">
-
-                <input
-                    type="hidden"
-                    name="phone"
-                    id="hiddenPhone">
-
-                <input
-                    type="hidden"
-                    name="email"
-                    id="hiddenEmail">
-
-                <input
-                    type="hidden"
-                    name="address"
-                    id="hiddenAddress">
-
-                <input
-                    type="hidden"
-                    name="order_details"
-                    id="hiddenOrder">
-
-                <input
-                    type="hidden"
-                    name="transferred_from"
-                    id="hiddenTransferFrom">
-
-                <div class="field">
-
-                    <label>
-                        TRANSFERRED FROM PHONE NUMBER
-                    </label>
-
-                    <input
-                        id="transferFromPhone"
-                        class="phone-input"
-                        type="tel"
-                        inputmode="numeric"
-                        maxlength="11"
-                        required
-                        placeholder="01XXXXXXXXX">
-
-                </div>
-
-                <div class="field">
-
-                    <label>
-                        TRANSFER SCREENSHOT
-                    </label>
-
-                    <input
-                        class="file-input"
-                        type="file"
-                        name="attachment"
-                        accept="image/png,image/jpeg,image/webp"
-                        required>
-
-                </div>
-
-                <button
-                    class="submit-button"
-                    type="submit">
-
-                    CONFIRM PAYMENT
-
-                </button>
-
-            </form>
-
-        </div>
-
-        <!-- COD -->
-
-        <div
-            class="payment-option"
-            id="codOption"
-            onclick="selectPayment('cod')">
-
-            <strong>
-                CASH ON DELIVERY
-            </strong>
-
-        </div>
-
-        <div
-            class="payment-details"
-            id="codDetails">
-
-            <div class="payment-note">
-                Your order will be paid when delivered.
-            </div>
-
-            <form
-                id="codForm"
-                action="https://formsubmit.co/Nazrapayment@gmail.com"
-                method="POST">
-
-                <input
-                    type="hidden"
-                    name="_subject"
-                    value="New NAZRA Cash on Delivery Order">
-
-                <input
-                    type="hidden"
-                    name="_captcha"
-                    value="true">
-
-                <input
-                    type="hidden"
-                    name="_next"
-                    value="https://nazra-qfdap.sevalla.page/?order=complete">
-
-                <input
-                    type="hidden"
-                    name="payment_method"
-                    value="Cash on Delivery">
-
-                <input
-                    type="hidden"
-                    name="customer_name"
-                    id="codName">
-
-                <input
-                    type="hidden"
-                    name="phone"
-                    id="codPhone">
-
-                <input
-                    type="hidden"
-                    name="email"
-                    id="codEmail">
-
-                <input
-                    type="hidden"
-                    name="address"
-                    id="codAddress">
-
-                <input
-                    type="hidden"
-                    name="order_details"
-                    id="codOrder">
-
-                <button
-                    class="submit-button"
-                    type="submit">
-
-                    CONFIRM ORDER
-
-                </button>
-
-            </form>
-
-        </div>
-
-    </div>
-
-</div>
-
-<!-- =====================================================
-     CONTACT MODAL
-===================================================== -->
-
-<div
-    class="modal"
-    id="contactModal">
-
-    <div class="modal-box">
-
-        <button
-            class="modal-close"
-            onclick="closeModal('contactModal')">
-
-            ×
-
-        </button>
-
-        <h2 class="modal-title">
-            CONTACT
-        </h2>
-
-        <div class="contact-row">
-
-            <div class="contact-label">
-                PHONE
-            </div>
-
-            <div class="contact-value">
-                <a href="tel:01090356664">
-                    01090356664
-                </a>
-            </div>
-
-        </div>
-
-        <div class="contact-row">
-
-            <div class="contact-label">
-                EMAIL
-            </div>
-
-            <div class="contact-value">
-                <a href="mailto:nazra.co123@gmail.com">
-                    nazra.co123@gmail.com
-                </a>
-            </div>
-
-        </div>
-
-        <div class="contact-row">
-
-            <div class="contact-label">
-                INSTAGRAM
-            </div>
-
-            <div class="contact-value">
-                <a
-                    href="https://instagram.com/nazra.co_"
-                    target="_blank">
-                    @nazra.co_
-                </a>
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-<!-- =====================================================
-     SUCCESS MODAL
-===================================================== -->
-
-<div
-    class="modal"
-    id="successModal">
-
-    <div class="modal-box success-box">
-
-        <div class="success-mark">
-            ✓
-        </div>
-
-        <h2 class="modal-title">
-            ORDER COMPLETED
-        </h2>
+      <div class="story">
 
         <p>
-            Your order has been received successfully.
-            <br><br>
-            You will receive an email shortly confirming your order.
+          There are things you do not see when you look at them but only when you look through them
         </p>
 
-        <br>
+        <p>
+          We do not always remember faces and we do not always remember the words that were said but we remember one gaze that changed something inside us without knowing how
+        </p>
 
-        <button
-            class="submit-button"
-            onclick="goHome(); closeModal('successModal')">
+        <p>
+          A gaze is not a moment it is a meaning it is a feeling that passes between two people without a sound and a small detail that may remain in memory longer than it should
+        </p>
 
-            BACK TO NAZRA
+        <p>
+          This is where NAZRA came from Not to tell you who you are and not to give you a shape to wear but to leave you the space to say something about yourself without speaking
+        </p>
 
-        </button>
+        <p>
+          We believe true difference does not need to ask for attention and what truly catches the eye is not what tries to be seen but what makes you look twice
+        </p>
+
+        <p>
+          NAZRA Because some things are not understood the first time
+        </p>
+
+        <div class="separator"></div>
+
+        <p dir="rtl">
+          هناك أشياء لا ترى حين تنظر إليها بل ترى حين تنظر من خلالها نحن لا نتذكر الوجوه دائما ولا نتذكر الكلمات التي قيلت لكننا نتذكر نظرة واحدة غيرت شيئا بداخلنا دون أن نعرف كيف
+        </p>
+
+        <p dir="rtl">
+          النظرة ليست لحظة هي معنى هي شعور يمر بين شخصين دون صوت وتفصيلة صغيرة قد تظل عالقة في الذاكرة أطول مما ينبغي
+        </p>
+
+        <p dir="rtl">
+          ومن هنا جاءت NAZRA ليس لنقول لك من تكون ولا لنضع لك شكلا ترتديه بل لنترك لك مساحة أن تقول شيئا عن نفسك دون أن تنطق
+        </p>
+
+        <p dir="rtl">
+          نؤمن أن الاختلاف الحقيقي لا يحتاج إلى أن يطلب الانتباه وأن ما يلفت النظر حقا ليس ما يحاول أن يرى بل ما يجعلك تنظر مرة أخرى
+        </p>
+
+        <p dir="rtl">
+          NAZRA لأن بعض الأشياء لا تفهم من المرة الأولى
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- POLICY -->
+
+    <section id="policy" class="section">
+
+      <div class="section-title">
+        POLICY
+      </div>
+
+      <div class="card">
+
+        <div class="card-item">
+          <div class="card-question">PAYMENT</div>
+          <div class="card-answer">
+            Vodafone Cash, InstaPay and Cash on Delivery are available.
+          </div>
+        </div>
+
+        <div class="card-item">
+          <div class="card-question">EXCHANGE</div>
+          <div class="card-answer">
+            Exchange is available within 10 days if the item is in its original condition.
+          </div>
+        </div>
+
+        <div class="card-item">
+          <div class="card-question">NO REFUNDS</div>
+          <div class="card-answer">
+            NAZRA does not offer refunds. Exchange only.
+          </div>
+        </div>
+
+        <div class="card-item">
+          <div class="card-question">ITEM CONDITION</div>
+          <div class="card-answer">
+            Items that have been worn or washed cannot be exchanged. Original tags and packaging must remain.
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- FAQ -->
+
+    <section id="faq" class="section">
+
+      <div class="section-title">
+        FAQ
+      </div>
+
+      <div class="card">
+
+        <div class="card-item">
+          <div class="card-question">
+            How can I place an order?
+          </div>
+          <div class="card-answer">
+            Choose your product, add it to the cart and complete your checkout information.
+          </div>
+        </div>
+
+        <div class="card-item">
+          <div class="card-question">
+            What payment methods are available?
+          </div>
+          <div class="card-answer">
+            Vodafone Cash, InstaPay and Cash on Delivery.
+          </div>
+        </div>
+
+        <div class="card-item">
+          <div class="card-question">
+            Can I exchange my item?
+          </div>
+          <div class="card-answer">
+            Yes. Exchange is available within 10 days under the exchange policy.
+          </div>
+        </div>
+
+        <div class="card-item">
+          <div class="card-question">
+            What if my order has not arrived?
+          </div>
+          <div class="card-answer">
+            Contact NAZRA support or use the Reports section to report the delivery issue.
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       CART MODAL
+  ========================= -->
+
+  <div class="modal" id="cartModal">
+
+    <div class="modal-box">
+
+      <button class="close" onclick="closeModal('cartModal')">
+        ×
+      </button>
+
+      <div class="modal-title">
+        YOUR CART
+      </div>
+
+      <div id="cartItems">
+        Your cart is empty.
+      </div>
+
+      <button class="primary" onclick="checkout()">
+        CHECKOUT
+      </button>
 
     </div>
 
+  </div>
+
+
+  <!-- =========================
+       CHECKOUT
+  ========================= -->
+
+  <div class="modal" id="checkoutModal">
+
+    <div class="modal-box">
+
+      <button class="close" onclick="closeModal('checkoutModal')">
+        ×
+      </button>
+
+      <div class="modal-title">
+        CHECKOUT
+      </div>
+
+      <input class="field" id="fullName" placeholder="Full Name">
+
+      <input
+        class="field"
+        id="phone"
+        placeholder="Phone Number"
+        maxlength="11"
+        inputmode="numeric"
+      >
+
+      <input class="field" id="email" placeholder="Email">
+
+      <input class="field" id="address" placeholder="Address">
+
+      <button class="primary" onclick="goPayment()">
+        CONTINUE TO PAYMENT
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       PAYMENT
+  ========================= -->
+
+  <div class="modal" id="paymentModal">
+
+    <div class="modal-box">
+
+      <button class="close" onclick="closeModal('paymentModal')">
+        ×
+      </button>
+
+      <div class="modal-title">
+        PAYMENT
+      </div>
+
+      <button class="secondary" onclick="selectPayment('Vodafone Cash')">
+        VODAFONE CASH
+      </button>
+
+      <button class="secondary" onclick="selectPayment('InstaPay')">
+        INSTAPAY
+      </button>
+
+      <button class="secondary" onclick="selectPayment('Cash on Delivery')">
+        CASH ON DELIVERY
+      </button>
+
+      <div id="paymentInfo" style="margin-top:20px;color:#888;line-height:1.8;"></div>
+
+      <input
+        type="file"
+        id="transferImage"
+        class="field"
+        accept="image/*"
+        style="display:none;"
+      >
+
+      <button
+        id="finishPayment"
+        class="primary"
+        style="display:none;"
+        onclick="finishOrder()"
+      >
+        COMPLETE ORDER
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       AI
+  ========================= -->
+
+  <button class="ai-button" onclick="toggleAI()">
+    AI
+  </button>
+
+  <div class="ai-window" id="aiWindow">
+
+    <div class="ai-head">
+
+      <div>
+        <div class="ai-name">NAZRA AI</div>
+        <div class="ai-status">ONLINE · SUPPORT</div>
+      </div>
+
+      <button
+        onclick="toggleAI()"
+        style="background:none;border:0;color:#777;cursor:pointer"
+      >
+        ×
+      </button>
+
+    </div>
+
+    <div class="ai-messages" id="aiMessages">
+
+      <div class="msg ai">
+        أهلاً بيك في NAZRA. اسألني عن الأوردر، الدفع، التوصيل، المقاسات، الاستبدال أو أي حاجة تخص البراند.
+        <br><br>
+        You can also speak English or Franco.
+      </div>
+
+    </div>
+
+    <div class="ai-input">
+
+      <input
+        id="aiInput"
+        placeholder="Ask NAZRA AI..."
+        onkeydown="if(event.key==='Enter') sendAI()"
+      >
+
+      <button onclick="sendAI()">
+        →
+      </button>
+
+    </div>
+
+  </div>
+
 </div>
+
 
 <script>
 
-/* =====================================================
-   LANGUAGE
-===================================================== */
+/* =========================
+   LANDING CONTROL
+========================= */
 
-let arabic = false;
+function enterSite(){
 
-function toggleLanguage(){
+  document.getElementById("landing").style.display="none";
 
-    arabic = !arabic;
+  document.getElementById("app").style.display="block";
 
-    document.body.classList.toggle(
-        "arabic",
-        arabic
-    );
+  document.body.style.overflow="hidden";
 
-    document.documentElement.dir =
-        arabic ? "rtl" : "ltr";
+  showSection("home");
+}
 
-    if(arabic){
 
-        document.getElementById("languageBtn").textContent =
-            "عربي / ENGLISH";
+/* =========================
+   SECTION SYSTEM
+========================= */
 
-        document.querySelector(".eyebrow").textContent =
-            "المجموعة الأولى";
+const sections=[
+  "home",
+  "collection",
+  "contact",
+  "reports",
+  "story",
+  "policy",
+  "faq"
+];
 
-        document.querySelector(".hero-subtitle").textContent =
-            "انظر مرتين";
+function showSection(id){
 
-        document.querySelector(".collection-btn span").textContent =
-            "إلى المجموعات";
+  sections.forEach(section=>{
 
-        document.getElementById("collectionTitle").textContent =
-            "المجموعات";
+    const el=document.getElementById(section);
 
-        document.querySelectorAll(".product-button").forEach(
-            el => el.textContent = "عرض المنتج"
-        );
+    if(!el)return;
 
-        document.querySelectorAll(".product-name")[0].textContent =
-            "هودي NAZRA";
-
-        document.querySelectorAll(".product-name")[1].textContent =
-            "تيشيرت NAZRA";
-
-        document.querySelectorAll(".product-name")[2].textContent =
-            "مجموعة NAZRA";
-
+    if(section==="home"){
+      el.style.display=id==="home"?"flex":"none";
     }else{
-
-        document.getElementById("languageBtn").textContent =
-            "ENGLISH / عربي";
-
-        document.querySelector(".eyebrow").textContent =
-            "THE FIRST COLLECTION";
-
-        document.querySelector(".hero-subtitle").textContent =
-            "LOOK TWICE";
-
-        document.querySelector(".collection-btn span").textContent =
-            "TO COLLECTIONS";
-
-        document.getElementById("collectionTitle").textContent =
-            "COLLECTIONS";
-
-        document.querySelectorAll(".product-button").forEach(
-            el => el.textContent = "VIEW PRODUCT"
-        );
-
-        document.querySelectorAll(".product-name")[0].textContent =
-            "NAZRA HOODIE";
-
-        document.querySelectorAll(".product-name")[1].textContent =
-            "NAZRA TEE";
-
-        document.querySelectorAll(".product-name")[2].textContent =
-            "NAZRA COLLECTION";
-
+      el.classList.toggle("open",section===id);
     }
 
-}
+  });
 
-/* =====================================================
-   THEME
-===================================================== */
+  document.querySelector(".main").scrollTop=0;
 
-function toggleTheme(){
-
-    document.body.classList.toggle("light");
+  document.querySelectorAll(".nav-item").forEach(item=>{
+    item.classList.remove("active");
+  });
 
 }
 
-/* =====================================================
-   NAVIGATION
-===================================================== */
 
-function goHome(){
-
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
-
-    setActive("sideHome");
-
-}
-
-function goCollections(){
-
-    document.getElementById("collections")
-        .scrollIntoView({
-            behavior:"smooth",
-            block:"start"
-        });
-
-}
-
-function goSection(id){
-
-    document.getElementById(id)
-        .scrollIntoView({
-            behavior:"smooth",
-            block:"start"
-        });
-
-}
-
-function setActive(id){
-
-    document.querySelectorAll(".side-item")
-        .forEach(
-            el => el.classList.remove("active")
-        );
-
-    document.getElementById(id)
-        ?.classList.add("active");
-
-}
-
-/* =====================================================
-   MODALS
-===================================================== */
-
-function closeModal(id){
-
-    document.getElementById(id)
-        .classList.remove("show");
-
-}
-
-function openContact(){
-
-    document.getElementById("contactModal")
-        .classList.add("show");
-
-}
-
-/* =====================================================
-   PRODUCT
-===================================================== */
-
-let selectedProduct = "";
-let quantity = 1;
-
-function openProduct(name){
-
-    selectedProduct = name;
-
-    quantity = 1;
-
-    document.getElementById("quantity")
-        .textContent = quantity;
-
-    document.getElementById("productName")
-        .textContent = name;
-
-    document.getElementById("productModal")
-        .classList.add("show");
-
-}
-
-function changeQty(amount){
-
-    quantity += amount;
-
-    if(quantity < 1){
-        quantity = 1;
-    }
-
-    document.getElementById("quantity")
-        .textContent = quantity;
-
-}
-
-/* =====================================================
+/* =========================
    CART
-===================================================== */
+========================= */
 
-let cart = [];
+let cart=[];
 
-function addToCart(){
+function addProduct(name,price){
 
-    const color =
-        document.getElementById("productColor").value;
+  cart.push({
+    name:name,
+    price:price,
+    quantity:1
+  });
 
-    const size =
-        document.getElementById("productSize").value;
+  updateCart();
 
-    cart.push({
-
-        product:selectedProduct,
-        color:color,
-        size:size,
-        quantity:quantity,
-        price:0
-
-    });
-
-    closeModal("productModal");
-
-    updateCart();
-
-}
-
-function openCart(){
-
-    updateCart();
-
-    document.getElementById("cartModal")
-        .classList.add("show");
+  openCart();
 
 }
 
 function updateCart(){
 
-    const box =
-        document.getElementById("cartItems");
+  const count=cart.reduce(
+    (total,item)=>total+item.quantity,
+    0
+  );
 
-    const count =
-        cart.reduce(
-            (sum,item) =>
-                sum + item.quantity,
-            0
-        );
+  document.getElementById("cartCount").textContent=count;
 
-    document.getElementById("cartCount")
-        .textContent = count;
+  const container=document.getElementById("cartItems");
 
-    if(cart.length === 0){
+  if(cart.length===0){
 
-        box.innerHTML = `
-            <p style="color:var(--muted);line-height:1.8;">
-                Your cart is empty.
-            </p>
-        `;
+    container.innerHTML="Your cart is empty.";
 
-        document.getElementById("cartTotal")
-            .textContent = "EGP 0";
+    return;
+  }
 
-        return;
+  container.innerHTML=cart.map((item,index)=>`
 
-    }
+    <div style="
+      padding:18px 0;
+      border-bottom:1px solid rgba(255,255,255,.1);
+      display:flex;
+      justify-content:space-between;
+    ">
 
-    let html = "";
+      <div>
+        <strong>${item.name}</strong>
+        <div style="color:#777;font-size:12px;margin-top:5px">
+          ${item.price} EGP × ${item.quantity}
+        </div>
+      </div>
 
-    cart.forEach(
-        (item,index) => {
+      <button
+        onclick="removeProduct(${index})"
+        style="
+          background:none;
+          border:0;
+          color:#777;
+          cursor:pointer;
+        "
+      >
+        REMOVE
+      </button>
 
-            html += `
+    </div>
 
-                <div class="cart-row">
-
-                    <div class="cart-details">
-
-                        <strong>
-                            ${item.product}
-                        </strong>
-
-                        <br>
-
-                        Color: ${item.color}
-
-                        <br>
-
-                        Size: ${item.size}
-
-                        <br>
-
-                        Quantity: ${item.quantity}
-
-                    </div>
-
-                    <button
-                        class="remove-btn"
-                        onclick="removeCart(${index})">
-
-                        ×
-
-                    </button>
-
-                </div>
-
-            `;
-
-        }
-    );
-
-    box.innerHTML = html;
-
-    document.getElementById("cartTotal")
-        .textContent = "EGP 0";
+  `).join("");
 
 }
 
-function removeCart(index){
+function removeProduct(index){
 
-    cart.splice(index,1);
+  cart.splice(index,1);
 
-    updateCart();
+  updateCart();
 
 }
 
-/* =====================================================
+function openCart(){
+
+  updateCart();
+
+  document.getElementById("cartModal").classList.add("show");
+
+}
+
+function closeModal(id){
+
+  document.getElementById(id).classList.remove("show");
+
+}
+
+
+/* =========================
    CHECKOUT
-===================================================== */
+========================= */
 
-function openCheckout(){
+function checkout(){
 
-    if(cart.length === 0){
+  if(cart.length===0){
 
-        alert(
-            arabic
-            ? "السلة فارغة."
-            : "Your cart is empty."
-        );
+    alert("Your cart is empty.");
 
-        return;
+    return;
+  }
 
-    }
+  closeModal("cartModal");
 
-    closeModal("cartModal");
-
-    document.getElementById("checkoutModal")
-        .classList.add("show");
+  document.getElementById("checkoutModal").classList.add("show");
 
 }
 
-/* =====================================================
-   PHONE
-===================================================== */
+function goPayment(){
 
-function onlyEnglishDigits(value){
+  const name=document.getElementById("fullName").value.trim();
 
-    return value
-        .replace(/[^0-9]/g,"")
-        .slice(0,11);
+  const phone=document.getElementById("phone").value.trim();
+
+  const email=document.getElementById("email").value.trim();
+
+  const address=document.getElementById("address").value.trim();
+
+  if(!name || !phone || !email || !address){
+
+    alert("Please complete all fields.");
+
+    return;
+  }
+
+  if(!/^01[0-9]{9}$/.test(phone)){
+
+    alert("Phone number must contain exactly 11 digits and start with 01.");
+
+    return;
+  }
+
+  closeModal("checkoutModal");
+
+  document.getElementById("paymentModal").classList.add("show");
 
 }
 
-function validEgyptianPhone(phone){
 
-    return /^01[0-9]{9}$/.test(phone);
-
-}
-
-document.querySelectorAll(".phone-input")
-    .forEach(input => {
-
-        input.addEventListener(
-            "input",
-            function(){
-
-                this.value =
-                    onlyEnglishDigits(this.value);
-
-            }
-        );
-
-    });
-
-/* =====================================================
+/* =========================
    PAYMENT
-===================================================== */
+========================= */
 
-function openPayment(){
+let selectedPayment="";
 
-    const name =
-        document.getElementById("customerName")
-            .value.trim();
+function selectPayment(method){
 
-    const phone =
-        document.getElementById("customerPhone")
-            .value.trim();
+  selectedPayment=method;
 
-    const email =
-        document.getElementById("customerEmail")
-            .value.trim();
+  const info=document.getElementById("paymentInfo");
 
-    const address =
-        document.getElementById("customerAddress")
-            .value.trim();
+  const upload=document.getElementById("transferImage");
 
-    if(!name || !phone || !email || !address){
+  const finish=document.getElementById("finishPayment");
 
-        alert(
-            arabic
-            ? "من فضلك أكمل جميع البيانات."
-            : "Please complete all information."
-        );
+  if(method==="Cash on Delivery"){
 
-        return;
+    info.innerHTML=`
+      Cash on Delivery selected.<br>
+      You will pay when your order arrives.
+    `;
 
-    }
+    upload.style.display="none";
 
-    if(!validEgyptianPhone(phone)){
+  }else{
 
-        alert(
-            arabic
-            ? "رقم الهاتف يجب أن يكون 11 رقمًا إنجليزيًا ويبدأ بـ 01."
-            : "Phone number must be exactly 11 English digits and start with 01."
-        );
+    info.innerHTML=`
+      Send your payment through <strong>${method}</strong>.<br><br>
+      Vodafone Cash / InstaPay number:<br>
+      <strong style="color:#fff">01229884447</strong><br><br>
+      After transferring, upload your payment screenshot.
+    `;
 
-        return;
+    upload.style.display="block";
 
-    }
+  }
 
-    document.getElementById("hiddenName")
-        .value = name;
-
-    document.getElementById("hiddenPhone")
-        .value = phone;
-
-    document.getElementById("hiddenEmail")
-        .value = email;
-
-    document.getElementById("hiddenAddress")
-        .value = address;
-
-    document.getElementById("codName")
-        .value = name;
-
-    document.getElementById("codPhone")
-        .value = phone;
-
-    document.getElementById("codEmail")
-        .value = email;
-
-    document.getElementById("codAddress")
-        .value = address;
-
-    const orderText =
-        cart.map(item => {
-
-            return `${item.product} | Color: ${item.color} | Size: ${item.size} | Quantity: ${item.quantity} | Price: EGP 0`;
-
-        }).join("\n");
-
-    document.getElementById("hiddenOrder")
-        .value = orderText;
-
-    document.getElementById("codOrder")
-        .value = orderText;
-
-    closeModal("checkoutModal");
-
-    document.getElementById("paymentModal")
-        .classList.add("show");
+  finish.style.display="block";
 
 }
 
-/* =====================================================
-   PAYMENT SELECTION
-===================================================== */
+function finishOrder(){
 
-function selectPayment(type){
+  if(
+    selectedPayment!=="Cash on Delivery" &&
+    !document.getElementById("transferImage").files.length
+  ){
 
-    document.querySelectorAll(".payment-option")
-        .forEach(
-            el => el.classList.remove("active")
-        );
+    alert("Please upload your transfer screenshot.");
 
-    document.querySelectorAll(".payment-details")
-        .forEach(
-            el => el.classList.remove("show")
-        );
+    return;
+  }
 
-    if(type === "transfer"){
+  alert(
+    "Your order has been prepared successfully. Thank you for choosing NAZRA."
+  );
 
-        document.getElementById("transferOption")
-            .classList.add("active");
+  cart=[];
 
-        document.getElementById("transferDetails")
-            .classList.add("show");
+  updateCart();
 
-    }
-
-    if(type === "cod"){
-
-        document.getElementById("codOption")
-            .classList.add("active");
-
-        document.getElementById("codDetails")
-            .classList.add("show");
-
-    }
+  closeModal("paymentModal");
 
 }
 
-/* =====================================================
-   TRANSFER VALIDATION
-===================================================== */
 
-document.getElementById("transferForm")
-    .addEventListener(
-        "submit",
-        function(e){
+/* =========================
+   PHONE VALIDATION
+========================= */
 
-            const phone =
-                document.getElementById("transferFromPhone")
-                    .value.trim();
+document.addEventListener("input",function(e){
 
-            if(!validEgyptianPhone(phone)){
+  if(e.target.id==="phone"){
 
-                e.preventDefault();
+    e.target.value=e.target.value
+      .replace(/\D/g,"")
+      .slice(0,11);
 
-                alert(
-                    arabic
-                    ? "رقم الهاتف يجب أن يكون 11 رقمًا إنجليزيًا ويبدأ بـ 01."
-                    : "Transferred-from phone number must be exactly 11 English digits and start with 01."
-                );
+  }
 
-                return;
+});
 
-            }
 
-            document.getElementById("hiddenTransferFrom")
-                .value = phone;
+/* =========================
+   AI
+========================= */
 
-        }
-    );
+function toggleAI(){
 
-/* =====================================================
-   REPORT FORM
-===================================================== */
-
-document.getElementById("reportForm")
-    .addEventListener(
-        "submit",
-        function(e){
-
-            e.preventDefault();
-
-            const phone =
-                document.getElementById("reportPhone")
-                    .value.trim();
-
-            if(!validEgyptianPhone(phone)){
-
-                alert(
-                    arabic
-                    ? "رقم الهاتف يجب أن يكون 11 رقمًا إنجليزيًا ويبدأ بـ 01."
-                    : "Phone number must be exactly 11 English digits and start with 01."
-                );
-
-                return;
-
-            }
-
-            const type =
-                document.getElementById("reportType").value;
-
-            const name =
-                document.getElementById("reportName").value.trim();
-
-            const email =
-                document.getElementById("reportEmail").value.trim();
-
-            const details =
-                document.getElementById("reportDetails").value.trim();
-
-            const subject =
-                encodeURIComponent(
-                    "NAZRA Report - " + type
-                );
-
-            const body =
-                encodeURIComponent(
-                    `Report Type: ${type}
-
-Name: ${name}
-
-Phone: ${phone}
-
-Email: ${email}
-
-Details:
-${details}`
-                );
-
-            window.location.href =
-                `mailto:nazra.co123@gmail.com?subject=${subject}&body=${body}`;
-
-        }
-    );
-
-/* =====================================================
-   CLOSE MODAL WHEN CLICKING OUTSIDE
-===================================================== */
-
-document.querySelectorAll(".modal")
-    .forEach(modal => {
-
-        modal.addEventListener(
-            "click",
-            function(e){
-
-                if(e.target === modal){
-
-                    modal.classList.remove("show");
-
-                }
-
-            }
-        );
-
-    });
-
-/* =====================================================
-   SUCCESS URL
-===================================================== */
-
-if(
-    new URLSearchParams(location.search)
-        .get("order") === "complete"
-){
-
-    document.getElementById("successModal")
-        .classList.add("show");
+  document
+    .getElementById("aiWindow")
+    .classList.toggle("show");
 
 }
 
-/* =====================================================
-   INITIAL
-===================================================== */
+function addMessage(text,type){
 
-updateCart();
+  const box=document.getElementById("aiMessages");
+
+  const div=document.createElement("div");
+
+  div.className="msg "+type;
+
+  div.innerHTML=text;
+
+  box.appendChild(div);
+
+  box.scrollTop=box.scrollHeight;
+
+}
+
+
+/*
+  Normalize Arabic / Franco / English
+*/
+
+function normalize(text){
+
+  return text
+    .toLowerCase()
+    .trim()
+    .replace(/[إأآ]/g,"ا")
+    .replace(/ى/g,"ي")
+    .replace(/ة/g,"ه")
+    .replace(/[ًٌٍَُِّْ]/g,"")
+    .replace(/[^\w\s\u0600-\u06ff]/g," ");
+
+}
+
+
+/*
+  Detect language
+*/
+
+function detectLanguage(text){
+
+  const arabic=/[\u0600-\u06ff]/;
+
+  if(arabic.test(text))
+    return "ar";
+
+  const francoWords=[
+    "el","ana","enta","enti","3ayz",
+    "3andy","ezay","emta","fein",
+    "wesel","weselsh","order","keda",
+    "msh","mesh","mafeesh","momken"
+  ];
+
+  const words=text.toLowerCase().split(/\s+/);
+
+  if(
+    words.some(word=>francoWords.includes(word)) ||
+    /[23][a-z]/i.test(text)
+  )
+    return "franco";
+
+  return "en";
+
+}
+
+
+/*
+  Main AI brain
+*/
+
+function generateAIReply(original){
+
+  const text=normalize(original);
+
+  const lang=detectLanguage(original);
+
+  /*
+    ORDER NOT ARRIVED
+  */
+
+  if(
+    text.includes("موصلش") ||
+    text.includes("موصل") ||
+    text.includes("متاخر") ||
+    text.includes("تاخر") ||
+    text.includes("فين الاوردر") ||
+    text.includes("الاوردر فين") ||
+    text.includes("order weselsh") ||
+    text.includes("order mwasalsh") ||
+    text.includes("el order weselsh") ||
+    text.includes("my order") && (
+      text.includes("not arrived") ||
+      text.includes("didnt arrive") ||
+      text.includes("hasnt arrived") ||
+      text.includes("late")
+    )
+  ){
+
+    if(lang==="ar"){
+
+      return `
+      تمام، خليني أساعدك في مشكلة التوصيل.<br><br>
+      لو الأوردر متأخر أو موصلش، ابعتلي <strong>رقم الأوردر</strong> لو معاك.
+      ولو مش معاك، ابعتلي <strong>الاسم ورقم التليفون</strong> اللي استخدمتهم في الطلب.
+      `;
+
+    }
+
+    if(lang==="franco"){
+
+      return `
+      tamam, khaleny asa3dak fe moshkelt el delivery.<br><br>
+      law el order et2a5ar aw weselsh, eb3atly <strong>raqam el order</strong> law ma3ak.
+      law mesh ma3ak, eb3atly <strong>el esm w raqam el phone</strong> beta3 el order.
+      `;
+
+    }
+
+    return `
+      Sure, I can help you with the delivery issue.<br><br>
+      Send me your <strong>order number</strong>.
+      If you don't have it, send me the <strong>name and phone number</strong> used for the order.
+    `;
+
+  }
+
+
+  /*
+    EXCHANGE
+  */
+
+  if(
+    text.includes("استبدال") ||
+    text.includes("ابدال") ||
+    text.includes("ارجع") ||
+    text.includes("تبديل") ||
+    text.includes("abdl") ||
+    text.includes("astbdl") ||
+    text.includes("exchange") ||
+    text.includes("return")
+  ){
+
+    if(lang==="ar"){
+
+      return `
+      أيوه، ينفع الاستبدال خلال <strong>10 أيام</strong> بشرط إن القطعة تكون بحالتها الأصلية ومعاها التاج والتغليف.
+      <br><br>
+      القطعة اللي اتلبست أو اتغسلت مينفعش تتبدل.
+      `;
+
+    }
+
+    if(lang==="franco"){
+
+      return `
+      aywa, momken el exchange 5elal <strong>10 ayam</strong> law el piece b 7altaha el aslya w ma3aha el tag w el packaging.
+      <br><br>
+      el piece ely etlbest aw etghaslet mesh momken tetbadal.
+      `;
+
+    }
+
+    return `
+      Yes. Exchanges are available within <strong>10 days</strong>,
+      as long as the item is in its original condition with its tags and packaging.
+      <br><br>
+      Worn or washed items cannot be exchanged.
+    `;
+
+  }
+
+
+  /*
+    PAYMENT
+  */
+
+  if(
+    text.includes("دفع") ||
+    text.includes("فلوس") ||
+    text.includes("تحويل") ||
+    text.includes("فودافون") ||
+    text.includes("انستا") ||
+    text.includes("vodafone") ||
+    text.includes("instapay") ||
+    text.includes("payment") ||
+    text.includes("pay")
+  ){
+
+    if(lang==="ar"){
+
+      return `
+      عندك 3 طرق للدفع:
+      <br><br>
+      • Vodafone Cash<br>
+      • InstaPay<br>
+      • Cash on Delivery
+      <br><br>
+      لو هتدفع بتحويل، هتحتاج ترفع صورة التحويل بعد الدفع.
+      `;
+
+    }
+
+    if(lang==="franco"){
+
+      return `
+      3andak 3 toro2 lel payment:
+      <br><br>
+      • Vodafone Cash<br>
+      • InstaPay<br>
+      • Cash on Delivery
+      <br><br>
+      law hatdfa3 transfer, hatraf3 screenshot beta3 el transfer ba3d el daf3.
+      `;
+
+    }
+
+    return `
+      You can pay using:
+      <br><br>
+      • Vodafone Cash<br>
+      • InstaPay<br>
+      • Cash on Delivery
+      <br><br>
+      For transfer payments, you need to upload the payment screenshot.
+    `;
+
+  }
+
+
+  /*
+    DELIVERY TIME
+  */
+
+  if(
+    text.includes("مدة التوصيل") ||
+    text.includes("التوصيل كام") ||
+    text.includes("هيوصل امتي") ||
+    text.includes("يوصل امتى") ||
+    text.includes("امتي يوصل") ||
+    text.includes("emta") ||
+    text.includes("delivery time") ||
+    text.includes("when will")
+  ){
+
+    if(lang==="ar"){
+
+      return `
+      وقت التوصيل ممكن يختلف حسب المنطقة والطلب.
+      لو عندك أوردر بالفعل وعايز تعرف حالته، ابعتلي رقم الأوردر أو بيانات الطلب.
+      `;
+
+    }
+
+    if(lang==="franco"){
+
+      return `
+      wa2t el delivery momken ye5talef 7asab el manta2a w el order.
+      law 3andak order w 3ayz te3raf 7alto, eb3atly raqam el order aw bayanat el order.
+      `;
+
+    }
+
+    return `
+      Delivery time can vary depending on the area and the order.
+      If you already placed an order, send me the order number or order details and I can guide you.
+    `;
+
+  }
+
+
+  /*
+    ORDER HOW TO
+  */
+
+  if(
+    text.includes("ازاي اطلب") ||
+    text.includes("عايز اطلب") ||
+    text.includes("اطلب ازاي") ||
+    text.includes("ezay atlob") ||
+    text.includes("3ayz atlob") ||
+    text.includes("how do i order") ||
+    text.includes("how can i order")
+  ){
+
+    if(lang==="ar"){
+
+      return `
+      بسيطة جدًا.<br><br>
+      ادخل على <strong>TO COLLECTIONS</strong>،
+      اختار المنتج، ضيفه للكارت، وبعدها كمل بيانات الشحن والدفع.
+      `;
+
+    }
+
+    if(lang==="franco"){
+
+      return `
+      baseta gedan.<br><br>
+      ed5ol 3ala <strong>TO COLLECTIONS</strong>,
+      e5tar el product, deefa lel cart, w kammel bayanat el shipping w el payment.
+      `;
+
+    }
+
+    return `
+      It's simple.<br><br>
+      Open <strong>TO COLLECTIONS</strong>, choose your product,
+      add it to your cart, then complete your shipping and payment details.
+    `;
+
+  }
+
+
+  /*
+    PRICE
+  */
+
+  if(
+    text.includes("سعر") ||
+    text.includes("بكام") ||
+    text.includes("كام") ||
+    text.includes("price") ||
+    text.includes("how much") ||
+    text.includes("bkam") ||
+    text.includes("kam")
+  ){
+
+    if(lang==="ar"){
+
+      return `
+      الأسعار بتختلف حسب المنتج.
+      ادخل على <strong>COLLECTION</strong> وهتلاقي سعر كل قطعة تحت اسمها.
+      `;
+
+    }
+
+    if(lang==="franco"){
+
+      return `
+      el as3ar bet5talef 7asab el product.
+      ed5ol <strong>COLLECTION</strong> w hatla2y se3r kol piece ta7t esmha.
+      `;
+
+    }
+
+    return `
+      Prices depend on the product.
+      Open <strong>COLLECTION</strong> and you'll find the price under each item.
+    `;
+
+  }
+
+
+  /*
+    GREETING
+  */
+
+  if(
+    text.match(/^(hi|hello|hey|اهلا|اهلاً|هاي|هلا|سلام|salam|ahlan|ezayak|ازيك)/)
+  ){
+
+    if(lang==="ar")
+      return "أهلاً بيك في NAZRA. قولي محتاج إيه وأنا هساعدك.";
+
+    if(lang==="franco")
+      return "ahlan beek fe NAZRA. 2oly me7tag eh w ana hasa3dak.";
+
+    return "Welcome to NAZRA. Tell me what you need and I'll help you.";
+
+  }
+
+
+  /*
+    NAZRA / STORY
+  */
+
+  if(
+    text.includes("nazra") ||
+    text.includes("قصه") ||
+    text.includes("story") ||
+    text.includes("brand")
+  ){
+
+    if(lang==="ar")
+      return "NAZRA مبنية على فكرة النظرة والمعنى اللي ممكن يفضل معاك حتى من غير كلام. تقدر تقرأ القصة كاملة من قسم NAZRA STORY.";
+
+    if(lang==="franco")
+      return "NAZRA mabneya 3ala fekret el nazra w el ma3na ely momken yefdal ma3ak men 8eer kalam. te2dar te2ra el story kamla fe NAZRA STORY.";
+
+    return "NAZRA is built around the idea of a gaze and the meaning that can stay with you without words. You can read the full story in NAZRA STORY.";
+
+  }
+
+
+  /*
+    CONTACT
+  */
+
+  if(
+    text.includes("رقم") ||
+    text.includes("تليفون") ||
+    text.includes("فون") ||
+    text.includes("email") ||
+    text.includes("phone") ||
+    text.includes("contact") ||
+    text.includes("instagram")
+  ){
+
+    if(lang==="ar")
+      return "تقدر تتواصل مع NAZRA على 01090356664 أو nazra.co123@gmail.com، وكمان Instagram: @nazra.co_.";
+
+    if(lang==="franco")
+      return "te2dar tetwasal ma3 NAZRA 3ala 01090356664 aw nazra.co123@gmail.com, w Instagram: @nazra.co_.";
+
+    return "You can contact NAZRA at 01090356664, nazra.co123@gmail.com, or Instagram @nazra.co_.";
+
+  }
+
+
+  /*
+    HELP
+  */
+
+  if(
+    text.includes("مساعدة") ||
+    text.includes("ساعدني") ||
+    text.includes("help") ||
+    text.includes("msa3da")
+  ){
+
+    if(lang==="ar")
+      return "أكيد. قولي مشكلتك بالتفصيل، مثلًا: الأوردر موصلش، عايز أبدل، مشكلة في الدفع، عايز أعرف السعر أو التوصيل.";
+
+    if(lang==="franco")
+      return "akeed. 2oly moshkeltak bel tafseel, zay: el order weselsh, 3ayz abdl, moshkela fel payment, se3r aw delivery.";
+
+    return "Of course. Tell me what happened, for example: my order hasn't arrived, I want an exchange, payment issue, price, or delivery.";
+
+  }
+
+
+  /*
+    FALLBACK
+  */
+
+  if(lang==="ar"){
+
+    return `
+    فاهم إنك بتسأل عن NAZRA، بس محتاج أعرف تفاصيل أكتر عشان أساعدك صح.
+    <br><br>
+    ممكن تقولّي مثلًا:
+    <br>
+    • الأوردر موصلش<br>
+    • عايز أبدل<br>
+    • عايز أعرف طريقة الدفع<br>
+    • عايز أعرف السعر<br>
+    • التوصيل بياخد قد إيه
+    `;
+
+  }
+
+  if(lang==="franco"){
+
+    return `
+    fahm enak betes2al 3an NAZRA, bas me7tag tafaseel aktar 3ashan asa3dak sa7.
+    <br><br>
+    momken te2oly masalan:
+    <br>
+    • el order weselsh<br>
+    • 3ayz abdl<br>
+    • 3ayz a3raf el payment<br>
+    • 3ayz a3raf el se3r<br>
+    • el delivery bya5od ad eh
+    `;
+
+  }
+
+  return `
+    I understand you're asking about NAZRA, but I need a little more detail to help you properly.
+    <br><br>
+    You can ask me about orders, delivery, payment, exchanges, prices, products or anything related to NAZRA.
+  `;
+
+}
+
+
+/*
+  SEND AI
+*/
+
+function sendAI(){
+
+  const input=document.getElementById("aiInput");
+
+  const text=input.value.trim();
+
+  if(!text)return;
+
+  addMessage(text,"user");
+
+  input.value="";
+
+  setTimeout(()=>{
+
+    const reply=generateAIReply(text);
+
+    addMessage(reply,"ai");
+
+  },400);
+
+}
+
+
+/* =========================
+   INITIAL STATE
+========================= */
+
+document.getElementById("home").style.display="flex";
 
 </script>
 
